@@ -1,13 +1,14 @@
-import os, re
-#import numpy as np
+import os, re, yaml
 import requests
-import zipfile
-import tarfile
+import zipfile, tarfile
 import bz2
-#import seaborn as sns
-#import matplotlib.pyplot as plt
-#import matplotlib.cm as cm
 from tqdm import tqdm
+
+
+# Load config file
+with open("../config.yaml") as f:
+    config = yaml.safe_load(f)
+    
 
 def create_folder(folder_name, exist_ok=True):
     try:
@@ -16,10 +17,11 @@ def create_folder(folder_name, exist_ok=True):
     except:
         return None
 
+
 def download_file(file_path, source_folder=None, target_folder=None, overwrite=False):
     # If the source folder is not specified use default (this could be fetch by some request instead of hard-coded)
     if source_folder is None:
-        source_folder = "https://chrisvdw.net/notebooks/test/"
+        source_folder = config["urls"]["downloads"]["data"]
     # If the target folder is not specified, derive it from the source path
     if target_folder is None:
         target_folder = "/".join(file_path.split("/")[0:-1]) + "/"
