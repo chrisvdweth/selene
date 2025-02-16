@@ -1,6 +1,6 @@
 urls:
   downloads:
-    notbooks: "https://github.com/chrisvdweth/selene/tree/master/notebooks"
+    notebooks: "https://github.com/chrisvdweth/selene/tree/master/notebooks"
     data: "https://chrisvdw.net/notebooks/test/"
     models: ""
     
