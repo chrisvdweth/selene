@@ -1,7 +1,9 @@
 import numpy as np
 import pandas as pd
+import statsmodels.api as sm
+import scipy.stats as stats
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sklearn.linear_model import LinearRegression
