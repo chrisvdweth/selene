@@ -99,7 +99,7 @@ def decompress_file(file_name, target_path='.', overwrite=False):
         
         
 def is_html_file(content):
-    content = content.decode("utf-8").strip().lower()
+    content = content.decode('utf-8', 'ignore').strip().lower()
     if content.startswith("<!doctype html") is True:
         return True
     elif content.startswith("<html") is True:
