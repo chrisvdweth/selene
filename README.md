@@ -2,7 +2,7 @@
 
 ## What is SELENE?
 
-The goal of SELENE to be an open platform for self-paced learning and self-assessment, with a focus on but not limited to AI and related topics. Simply speaking, SELENE can be seen as a large-scale virtual textbook, going beyond the limitations of classic textbooks in the following ways:
+The goal of SELENE is to be an open platform for self-paced learning and self-assessment, with a focus on but not limited to AI and related topics. Simply speaking, SELENE can be seen as a large-scale virtual textbook, going beyond the limitations of classic textbooks in the following ways:
 * Unlimited scope w.r.t. to the topics covered (at least in principle)
 * Support and emphasis on hands-on learning (*"Learning  by Doing"*) through interactive topic materials
 * Easy linking between related and dependent topics to guide the learning process and provide mastery paths
