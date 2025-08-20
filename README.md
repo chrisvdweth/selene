@@ -32,3 +32,15 @@ Most notebooks import common Python packages such as `numpy`, `pandas`, `sklearn
 ### Errors Downloading Data
 
 Many notebooks use datasets for interactive examples. Since these datasets can be very large, they are not part of the Github repository itself. Instead, all data files (e.g., datasets or pretrained models) are hosted on a separate server and are downloaded at the beginning of a notebook using auxiliary methods provided by SELENE. If downloading files fails, please check your local copy configuration file `config.yaml` if the URLs for downloading datasets, models, etc. are up to date and match the URLs in the copy of the configuration file on Github. If not, simply download or pull the latest version from Github.
+
+
+## Licensing
+
+### Content License
+- Code in `src/`: [MIT License](LICENSE-MIT.md)
+- Images in `images/`: [CC BY 4.0](LICENSE-CC-BY.md)
+
+### Notebook License
+- Code cells: [MIT License](LICENSE-MIT.md)
+- Text/figures: [CC BY 4.0](LICENSE-CC-BY.md)
+
