@@ -1,5 +1,9 @@
 # SELENE
 
+## Announcements
+
+* Join our [Discord Server](https://discord.gg/aWU3tMTU) for latest updates, support, feedback, and more.
+
 ## What is SELENE?
 
 The goal of SELENE is to be an open platform for self-paced learning and self-assessment, with a focus on but not limited to AI and related topics. Simply speaking, SELENE can be seen as a large-scale virtual textbook, going beyond the limitations of classic textbooks in the following ways:
