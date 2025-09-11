@@ -2,7 +2,8 @@
 
 ## Announcements
 
-* Join our [Discord Server](https://discord.gg/aWU3tMTU) for latest updates, support, feedback, and more.
+* Join our [Discord Server](https://discord.gg/nQMzt4QAM8) for latest updates, support, feedback, and more.
+
 
 ## What is SELENE?
 
