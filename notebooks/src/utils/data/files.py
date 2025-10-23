@@ -70,11 +70,15 @@ def download_file(url, download_path, overwrite=False, ignore_html=False):
         
 
 def decompress_file(file_name, target_path='.', overwrite=False):
+    file_list = []
     if file_name.lower().endswith("zip"):
-        zip_file = zipfile.ZipFile(file_name, 'r')
-        zip_file.extractall(target_path)
-        zip_file.close()
-        return None
+        with zipfile.ZipFile(file_name, "r") as zip_file:
+            for member in zip_file.namelist():
+                extracted_path = zip_file.extract(member, path=target_path)
+                file_list.append(extracted_path)
+        #print("Extracted:", extracted_path)
+        #zip_file.extractall(target_path)
+        return file_list
     elif file_name.lower().endswith("tar.gz"):
         tar = tarfile.open(file_name, "r:gz")
         tar.extractall(path=target_path)
