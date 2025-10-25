@@ -7,14 +7,14 @@ from tqdm import tqdm
 
 # Load config file
 with open("../config.yaml") as f:
-    config = yaml.safe_load(f)
+    CONFIG = yaml.safe_load(f)
     
 
 
 def download_dataset(dataset_path, base_url=None, download_path=None, overwrite=False, ignore_html=True):
     if base_url is None:
         # Use default base url from config file
-        base_url = config["urls"]["downloads"]["datasets"]
+        base_url = CONFIG["urls"]["downloads"]["datasets"]
     if download_path is None:
         # Set default destination directory
         download_path = "data/datasets/" + "/".join(dataset_path.split("/")[0:-1]) + "/"
@@ -24,7 +24,7 @@ def download_dataset(dataset_path, base_url=None, download_path=None, overwrite=
 
 #def download_model(file_path, source_folder=None, download_path=None, overwrite=False):
 #    if source_folder is None:
-#        source_folder = config["urls"]["downloads"]["models"]
+#        source_folder = CONFIG["urls"]["downloads"]["models"]
 #    return download_file(file_path, source_folder, download_path=download_path, overwrite=overwrite)
 
 
