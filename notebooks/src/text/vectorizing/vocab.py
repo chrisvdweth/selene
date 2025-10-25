@@ -1,15 +1,19 @@
 import numpy as np
 from tqdm import tqdm
+from collections import Counter
+
 
 class Vocabulary:
 
-    def __init__(self, tokens, special_tokens: list=[]):
-        self.token2index = { token:index for index, token in enumerate(list(special_tokens)+list(tokens)) }
-        self.index2token = { index:token for token, index in self.token2index.items() }
+    def __init__(self, tokens, special_tokens: list=[], token_counts=None):
+        self.index2token = special_tokens + tokens
+        self.token2index = { token:index for index, token in enumerate(self.index2token) }
+        if token_counts is not None:
+            self.token_counts = np.array([token_counts.get(token, 0) for token in self.index2token])
         self.default_index = -1
 
     def set_default_index(self, default_index: int):
-        if default_index not in self.index2token: 
+        if default_index >= len(self.index2token): 
             raise Exception("Invalid default index.")
         self.default_index = default_index
 
@@ -17,7 +21,7 @@ class Vocabulary:
         return np.asarray([ self.token2index[t] if t in self.token2index else self.default_index for t in tokens ])
 
     def decode(self, indices: list[int], default_token="[???]"):
-        return [ self.index2token[i] if i in self.index2token else default_token for i in indices ]
+        return [ self.index2token[i] if int(i) < len(self.index2token) else default_token for i in indices ]
     
     def __getitem__(self, token: str):
         return self.token2index[token]
