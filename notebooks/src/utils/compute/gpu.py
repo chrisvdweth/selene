@@ -13,7 +13,7 @@ def select_device(force_cpu=False, required_memory_gb=None):
     for i in range(torch.cuda.device_count()):
         # Get free and total amount of memory for current device
         free, total = torch.cuda.mem_get_info(device=i)
-        if (required_memory_gb is None) or ((free/(1024*1024*1024)) > required_memory):
+        if (required_memory_gb is None) or ((free/(1024*1024*1024)) > required_memory_gb):
             candidate_gpus.append((i, free))
 
     # If no candidates found return CPU, otherwise pick randomly
