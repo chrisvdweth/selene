@@ -2,7 +2,8 @@
 
 ## Announcements
 
-* Join our [Discord Server](https://discord.gg/nQMzt4QAM8) for latest updates, support, feedback, and more.
+* (20/12/2025) The new folder notebooks/standalone/ contains standalone versions of the original notebooks with all the code required to run each notebook "as is" on Cloud platforms such as Google Colab.
+* (22/08/2025) Join our [Discord Server](https://discord.gg/nQMzt4QAM8) for latest updates, support, feedback, and more.
 
 
 ## What is SELENE?
