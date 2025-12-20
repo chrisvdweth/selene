@@ -3,6 +3,7 @@
 ## Announcements
 
 * (20/12/2025) The new folder notebooks/standalone/ contains standalone versions of the original notebooks with all the code required to run each notebook "as is" on Cloud platforms such as Google Colab.
+* (01/12/2025) A small milestone: We have uploaded our 50th notebook!
 * (22/08/2025) Join our [Discord Server](https://discord.gg/nQMzt4QAM8) for latest updates, support, feedback, and more.
 
 
