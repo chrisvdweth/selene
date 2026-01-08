@@ -1,0 +1,12 @@
+# Ignore everything by default
+*
+
+# Allow root index.html
+!index.html
+
+# Allow the html folder and its contents
+!html/
+!html/**
+
+# (Optional) Keep the .gitignore itself tracked
+!.gitignore
