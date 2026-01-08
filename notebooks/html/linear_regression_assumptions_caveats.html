@@ -7521,7 +7521,7 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><img alt="SELENE Logo" src="images/logo/selene-logo-640.png" style="max-height:75px;"/></p>
+<p><img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/logo/selene-logo-640.png" style="max-height:75px;"/></p>
 <p><strong>Disclaimer:</strong> This Jupyter Notebook contains content generated with the assistance of AI. While every effort has been made to review and validate the outputs, users should independently verify critical information before relying on it. The SELENE notebook repository is constantly evolving. We recommend downloading or pulling the latest version of this notebook from Github.</p>
 </div>
 </div>
@@ -8954,9 +8954,9 @@ $$</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Caveat-2-(C2):-Interpolation-vs-Extrapolation">Caveat 2 (C2): Interpolation vs Extrapolation<a class="anchor-link" href="#Caveat-2-(C2):-Interpolation-vs-Extrapolation">¶</a></h3><p>Consider the plot below showing a highly non-linear data distribution describing some true relationship between an input feature $x$ and a target variable $y$; in fact, this demo dataset was generated using the sine function with some added noise.</p>
-<img alt="Decision Tree for Banking Example" src="images/plots/linear-regression/sine-example-data-full.png" style="margin:auto;"/>
+<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/plots/linear-regression/sine-example-data-full.png" style="margin:auto;"/>
 <p>Since this dataset clearly violates the Linearity assumption, using a Linear Regression model to fit the data would be unsuitable. However, now let's assume that we were only able to collect a dataset for a limited range of feature values, say $3 \leq x \leq 7$. As a consequence, we would only have a partial view of the true relationship between $x$ and $y$. The plot below visualizes the dataset that we would now see; the very light blue data points indicate that data sample now missing from the dataset assuming the restricted range of $x$ values:</p>
-<img alt="Decision Tree for Banking Example" src="images/plots/linear-regression/sine-example-data-partial.png" style="margin:auto;"/>
+<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/plots/linear-regression/sine-example-data-partial.png" style="margin:auto;"/>
 <p>This dataset now shows a very linear relationship between $x$ and $y$, thus arguably no longer violating the Linearity Assumption. Thus, training or fitting a Linear Regression model for this partial dataset is perfectly meaningful even though the model will not capture the true relationship between $x$ and $y$ for the full range of $x$ values. In fact, as long as we use our model to predict the output for unseen data points of the range $3 \leq x \leq 7$, the predictions are likely to be reasonably good.</p>
 <p>This very simple example already highlights two important aspects we need to consider:</p>
 <ul>
