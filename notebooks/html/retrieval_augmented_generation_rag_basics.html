@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>gradient_descent_basics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>retrieval_augmented_generation_rag_basics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7515,18 +7515,7 @@ video {max-width: 100% !important; height: auto !important; }
 </style>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2834c4c2-0e68-49fe-989d-c305c8a09aa2">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">!!!WORK IN PROGRESS — TESTING ANIMATIONS!!!<a class="anchor-link" href="#!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79c8c281-f6f4-4fa9-88ac-4f5e2ab5a530">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56b27913-9130-4776-9eea-a82b729aa1f3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7538,63 +7527,31 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08cf57e1-2b8a-4704-8a11-f0ba19109cd5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c79d8169-29db-458f-9a36-4b9c4ee108e0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Gradient-Descent-%E2%80%94-The-Very-Basics">Gradient Descent — The Very Basics<a class="anchor-link" href="#Gradient-Descent-%E2%80%94-The-Very-Basics">¶</a></h1><p>Gradient Descent is an iterative optimization algorithm used to find the minimum of a function by repeatedly taking steps in the direction of the steepest decrease of that function. In the context of machine learning, this function is typically a <strong>loss function</strong> that measures how well a model's predictions match the data. By computing the gradient of the loss with respect to the model parameters, Gradient Descent tells us <em>how</em> and <em>in which direction</em> to adjust those parameters to reduce error. Conceptually, it can be thought of as navigating a landscape of error values, moving downhill step by step until a (local) minimum is reached.</p>
-<p>The general purpose of Gradient Descent is therefore <strong>parameter optimization</strong>. Most machine learning models (from linear regression to deep neural networks) are defined by a set of parameters (weights and biases) that determine their behavior. These parameters are not chosen analytically in closed form for complex models; instead, they are learned from data. Gradient Descent provides a systematic, scalable way to tune millions (or even billions) of parameters by relying only on local information: the gradient at the current point.</p>
-<p>Gradient Descent has become a cornerstone of machine learning and neural networks because it scales extremely well to high-dimensional problems and works hand-in-hand with <strong>backpropagation</strong>. Backpropagation efficiently computes gradients of the loss with respect to all parameters in a neural network, and Gradient Descent uses those gradients to update the parameters. This separation of concerns — gradient computation on one side, optimization on the other — makes the training of deep models both conceptually clean and computationally feasible.</p>
-<p>We need Gradient Descent because, for most realistic models, there is no direct mathematical solution for finding the optimal parameters. The loss surfaces of neural networks are highly non-linear, high-dimensional, and often non-convex. Gradient Descent offers a practical and flexible approach to navigating these complex landscapes, allowing models to improve gradually through incremental updates. Understanding Gradient Descent at a fundamental level is therefore essential: it reveals <em>how</em> learning actually happens inside a model and provides the foundation for more advanced optimization methods used in modern machine learning.</p>
+<h1 id="Retrieval-Augmented-Generation-(RAG)-%E2%80%94-Basics">Retrieval-Augmented Generation (RAG) — Basics<a class="anchor-link" href="#Retrieval-Augmented-Generation-(RAG)-%E2%80%94-Basics">¶</a></h1><p>Retrieval-Augmented Generation (RAG) is an AI framework that enhances the output of Large Language Models (LLMs) by giving them access to external, up-to-date, and authoritative knowledge sources before generating a response. Instead of relying solely on the static, potentially outdated knowledge contained in their training data, a RAG system first retrieves relevant documents or data snippets from a specified knowledge base (like a company's internal documents, a specialized database, or the live web). This retrieved information is then provided as additional context, or "augmentation", to the LLM alongside the user's initial prompt, guiding the model to generate a more grounded, accurate, and relevant answer. This process essentially turns the LLM's task into an "open-book" exam, rather than a "closed-book" one, significantly improving the quality of its output.</p>
+<p>RAG is needed and incredibly useful for many applications because it directly addresses key limitations of standard LLMs. A major issue is the <strong>knowledge cutoff</strong>: an LLM's internal knowledge is limited to the data it was trained on, which means it can't answer questions about recent events or proprietary, domain-specific information (e.g., a company's newest product manual or current stock prices). Furthermore, LLMs can sometimes <strong>"hallucinate"</strong>, producing confidently stated but factually incorrect or nonsensical information. RAG mitigates these problems by ensuring the response is <strong>factually grounded</strong> in verified external data. This provides <strong>current and domain-specific information</strong> without the massive computational cost and time required to constantly retrain the entire LLM. It also enables <strong>source attribution</strong>, allowing users to verify the information and increasing trust in the AI system.</p>
+<p>It is important to learn about RAG because it has rapidly become the <strong>industry-standard architecture</strong> for deploying LLMs into real-world, enterprise-level applications. For anyone working with generative AI—from developers and data scientists to product managers—understanding RAG is essential for building practical, scalable, and trustworthy solutions. RAG is the foundation for creating sophisticated, custom AI agents, chatbots, and knowledge management systems that can intelligently interact with private, constantly evolving data. Its focus on accuracy, auditability, and cost-efficiency makes it a cornerstone technology for the next wave of AI products, making knowledge of RAG a critical and highly sought-after skill in the modern technology landscape.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e0581fd7-1104-40e6-ad85-52de61e118b2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4d1c5d2c-1cb4-4fdb-a416-1ceae078a162">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Setting-up-the-Notebook">Setting up the Notebook<a class="anchor-link" href="#Setting-up-the-Notebook">¶</a></h3><h4 id="Make-Required-Imports">Make Required Imports<a class="anchor-link" href="#Make-Required-Imports">¶</a></h4><p>This notebook requires the import of different Python packages but also additional Python modules that are part of the repository. If a package is missing, use your preferred package manager (e.g., <a href="https://anaconda.org/anaconda/conda">conda</a> or <a href="https://pypi.org/project/pip/">pip</a>) to install it. If the code cell below runs with any errors, all required packages and modules have successfully been imported.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=632ec98d-37d5-4e71-87f6-a2c4b76b9cba">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.plotting.gd</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-</pre></div>
+<h3 id="Setting-up-the-Notebook">Setting up the Notebook<a class="anchor-link" href="#Setting-up-the-Notebook">¶</a></h3><p>This notebook does not contain any code, so there is no need to import any libraries.</p>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8d6d5cff-9324-4455-937a-a9d5437c3634">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85249e00-759a-4859-83d0-502e7d1fb1f3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2feaff1a-029f-4b4c-9e29-efc024beca08">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7605,649 +7562,577 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e6de94a-7976-4b30-95af-44da21968a3c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2cbc1c26-e9a4-4d33-b036-c7cf7d074e83">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b8041e6d-70d9-4751-9aa4-af076112c861">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<h2 id="Motivation-&amp;-Overview">Motivation &amp; Overview<a class="anchor-link" href="#Motivation-&amp;-Overview">¶</a></h2><p>Retrieval-Augmented Generation (RAG) has become very popular because it (a) addresses a fundamental limitation of LLMs, and (b) offers a rather powerful, flexible, and relatively cost-effective solution. Let's elaborate on this a bit more by looking at the two questions: why do we use RAG and how does it work in a nutshell?</p>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a0d4e3aa-915d-43d9-92d5-38c19244c97a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2c7d48d1-824a-4d40-ba67-bfae8d8bccc9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Why-do-we-need-Gradient-Descent?">Why do we need Gradient Descent?<a class="anchor-link" href="#Why-do-we-need-Gradient-Descent?">¶</a></h3><p>Let's assume we have a very simply function $f(x)$ which is define as:</p>
+<h3 id="Why-RAG?">Why RAG?<a class="anchor-link" href="#Why-RAG?">¶</a></h3><p>Large language models (LLMs) have become powerful, but they face several limitations that affect their usefulness in practical applications. One of the biggest limitations is their <strong>fixed knowledge cutoff</strong>: LLMs can generate responses based on what they saw and learned during training. Most obviously, this cutoff includes any kind of knowledge or data generated after the training. This is a particular concern for fast-changing domains like current events (i.e., news), stock markets, or scientific research. Also LLMs are (hopefully) not training using non-public and potentially sensitive data (e.g., company data, healthcare data, personal information). Thus a company cannot use a pretrained LLM "as is" to make its internal data accessible and searchable using natural language — a very common target application for LLMs!</p>
+<p>When questions go beyond an LLM's knowledge cutoff, the model cannot truly access or "know" the proper answer. However, since LLMs generate text based on statistical patterns rather than explicit fact-checking, that falls back on patterns learned from training data to still reply with something. This can lead to several problematic behaviors, mainly:</p>
+<ul>
+<li><p><strong>Hallucination of plausible answers:</strong> The model may generate a confident-sounding response by extrapolating from older patterns, even if the information is outdated or entirely fabricated. For example, if asked about a political leader elected after the cutoff date, the model might wrongly guess based on past candidates or trends.</p>
+</li>
+<li><p><strong>Generic or vague responses:</strong> Sometimes the model hedges by giving broad or timeless information instead of a concrete answer. For instance, it might describe "how elections generally work" instead of naming a specific winner it hasn’t seen in training.</p>
+</li>
+<li><p><strong>Inability to acknowledge limits:</strong> Unless specifically designed to do so as part of the training, LLMs may not clearly state that they lack up-to-date knowledge. They often prioritize sounding fluent and helpful over signaling uncertainty, which can mislead users into trusting outdated content.</p>
+</li>
+</ul>
+<p>Because of these behaviors, LLMs alone are unreliable for real-time or evolving knowledge. This is one of the main motivations for <strong>Retrieval-Augmented Generation (RAG)</strong>, where the model can pull in fresh, external information to overcome its static knowledge limitations. Instead of relying only on what a language model has memorized during training, RAG allows the model to retrieve relevant information from an external knowledge base or document collection and use it to generate responses. This means that, when faced with a query, the system can pull in up-to-date or domain-specific knowledge and integrate it into its generated answer. RAG therefore helps reduce hallucinations by grounding the model's responses in retrieved evidence, giving it a factual basis to draw from rather than relying solely on what it "remembers". This grounding not only improves accuracy but also increases user trust, as responses can often be linked back to source documents.</p>
+<p>Another important reason for using RAG is efficiency. Training a large model to know everything is costly, both in terms of computation and data collection. RAG provides a more scalable solution: the model can remain relatively general while relying on retrieval for specialized or fast-changing knowledge. For example, instead of retraining a model every time new medical research is published, a RAG system can simply retrieve the latest articles from a medical database. This modularity makes RAG both practical and flexible for real-world deployments.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d2a9d07-b0f7-4b80-bf50-46eae9a18864">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7a47c55e-8ace-48aa-985f-effc132c8422">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$\large
-f(x) = x^2 - 4x + 5
-$$</p>
+<h3 id="How-does-it-Work?">How does it Work?<a class="anchor-link" href="#How-does-it-Work?">¶</a></h3><p>The figure below shows the architecture of a basic RAG pipeline. In a nutshell, RAG uses a curated knowledge repository or database to augment user queries before prompting the LLM. To create the repository, the documents in the dataset (e.g., internal company data or sensitive healthcare data) are first split into smaller chunks, and then stored and indexed in the repository. Given a user query, the retriever then fetches the most relevant chunks with respect to the user query. Augmentation then refers to the step of combining the query, the retrieved chunks, as well as any other optional instructions into the final prompt. This prompt is then given to the LLM to generate the response which is then returned to the user.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b9e055e-9d60-4c23-ab72-f1c2308cc7bc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8afddf3d-be92-4ed6-ba63-3b717b2f2dc1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We can also define this function as a Python method:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=afea43ec-3008-4558-b2b0-057bd8303016">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
-</pre></div>
+<p><img alt="RAG - Basic Architecture" src="images/illustrations/rag/rag-basic-architecture.png" style="margin:auto;max-width:800px;width:100%"/></p>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e9dd820d-0e9b-4787-8b4c-de95495029b1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=37239fc4-c1b3-4721-ba43-3e48cce717b7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Using this method, we can plot the function</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a78c920b-c444-482c-b2f5-d9f0617b4b07">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
+<p><br/></p>
+<p>A key assumption in RAG is therefore that the answer to a user’s query is already contained within the retrieved chunks. In other words, the retrieval step is expected to provide all the information needed for the LLM to generate an accurate and complete response. The model's primary role is thus not to invent or infer new knowledge, but to <em>extract</em>, <em>synthesize</em>, and <em>rephrase</em> the relevant content from these chunks into a coherent answer. This assumption is critical but also limiting: if the retrieval step fails to surface the necessary information, or retrieves incomplete or irrelevant chunks, the LLM’s output will likely be inaccurate or uninformative, regardless of its reasoning ability. Therefore, the performance of a RAG system depends heavily on the quality of retrieval, including how documents are chunked, indexed, and ranked for relevance.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
-<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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mjQJgGOYfPXq1ZgxY4bYcOSxZFnGgw8+iMWLF2Pt2rVITU0VHcmj2O12WCwW0TEU58orr8TevXvPeO6uu+5CRkYGHn/8cRaPc6ivr8fRo0dx++23C3l/ryofHVFYWIiamhoUFhbCZrNh165dAIC0tDQEBweLDSfYI488gmnTpmHw4MEYOnQo5syZg4aGBtx1112ioylKfX39GT81HDt2DLt27UJYWBiSkpIEJlOe6dOnY8GCBVi6dCn0ej3KysoAAAaDAQEBAYLTKcsTTzyBsWPHIikpCXV1dViwYAHWrl2LlStXio6mOHq9/lfzhoKCghAeHs75RL/w6KOPYsKECUhOTkZpaSmeeeYZqNVq3HLLLWICiV5uI8q0adNkAL96rFmzRnQ0RXj99dflpKQkWafTyUOHDpW3bNkiOpLirFmz5qzfQ9OmTRMdTXHO9jkBkOfNmyc6muLcfffdcnJysqzT6eTIyEj5yiuvlL///nvRsTwGl9qe3c033yzHxsbKOp1Ojo+Pl2+++Wb5yJEjwvJIsizL7q88RERE5Ku8arULERERKR/LBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG51f8DdjbJ7xUsJgoAAAAASUVORK5CYII="/>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0dcf3e41-ecea-497d-b97b-4482d74afda1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=32bd86e7-0291-4d47-a635-82da5a51f380">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If we now assume that $f(x)$ is some kind of loss function where we want to find the value for $x$ thar minimizes this function. Of course, given the simple nature of $f(x)$ and just by looking at the plot above, we can see that $x=2$ minimizes $f(x)$ with $f(2) = 1$. Beyond eye-balling the solution, the systematic approach to find the minimum is using calculus by means of the first derivative $\frac{df}{dx}$. If $g(x)$ denotes the first derivative of $f(x)$, and using the derivation rules from calculus, we get:</p>
+<hr/>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c472ee70-b71b-4c29-a841-aa2a3bb334ab">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7e3e1c1a-096b-482f-a2d0-e1e9df47eb9f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$\large
-g(x) = \frac{df(x)}{dx} = 2x - 4
-$$</p>
+<h2 id="Knowledge-Repository-Creation">Knowledge Repository Creation<a class="anchor-link" href="#Knowledge-Repository-Creation">¶</a></h2><p>Building a <strong>high-quality knowledge repository</strong> is one of the most critical steps for an effective RAG pipeline. Since the retriever's job is to identify the most relevant information to support the generator's response, the usefulness of the entire pipeline depends directly on <strong>what</strong> is stored and <strong>how</strong> it is structured. A well-organized and semantically meaningful repository ensures that the system retrieves precise, trustworthy, and contextually appropriate information, thus reducing hallucinations and improving factual accuracy in generated outputs. While the quality of the data — correct, consistent, up to date, etc. — is  naturally important, it depends on the actual application use case. In the following, we therefore focus on the two core steps required by all RAG pipelines: <strong>chunking</strong> and <strong>indexing</strong>.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c723379a-29b8-4886-bfc9-48e03707a46c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5d317738-747b-4cbf-90d2-1c282f271b93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The first derivative tells us the <strong>rate of change</strong> of a function with respect to its input, including both the direction** and steepness of that change. Its sign indicates whether the function is increasing or decreasing, and points where it is zero identify <strong>critical points</strong> where the behavior of the function may change. Thus, to find $x$ that minimizes $f(x)$, we need to find $x$ where $g(x) = 0$. Again, given the very simple nature of $f(x)$ and thus $g(x)$, this is a very simple calculation.</p>
+<h3 id="Chunking">Chunking<a class="anchor-link" href="#Chunking">¶</a></h3><p>In RAG, we typically work with chunks instead of entire documents because large documents are often <strong>too long to fit</strong> into the LLM's input context window. Modern LLMs have token limits, and if we tried to feed an entire document, much of the input would be truncated or ignored. By splitting content into smaller, semantically meaningful chunks, we ensure that relevant information can be retrieved and passed into the model without exceeding its processing limits. This makes retrieval more efficient and precise, since only the most relevant portions of text are selected. Additionally, we can still control the size of the input by deciding how many chunks we use to form the context for the final prompt.</p>
+<p>Another reason for chunking is <strong>improving retrieval accuracy</strong>. When documents are stored as a whole, the retrieval system might select a document that contains some relevant information, but most of it could be irrelevant. This dilutes the context provided to the LLM and can lead to off-topic or less accurate answers. With chunking, retrieval is done at a finer granularity, so the model gets exactly the passages that matter. This reduces noise, increases precision, and allows the LLM to ground its responses more directly in the most relevant evidence. Of course, this assumes that the chunking, indexing, and then later the retrieval is implemented appropriately.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0343bab7-8c3c-45f9-926d-f1a6c60b7cd7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83fdbb73-e3bb-4f62-8134-fa97ba05d2b5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large 2x - 4\ &amp;\large= 0\\[0.25em]
-\large 2x\ &amp;\large= 4\\[0.25em]
-\large x\ &amp;\large= 2
-\end{align}
-$$</p>
+<p>While the general idea of splitting a large document into smaller chunks seems straightforward, there are both conceptual as well as practical challenges involved when it comes to finding "good" chunks. We said before that we are looking for <em>semantically meaningful chunks</em>. While there is no single best definition, a semantically meaningful chunk preserves complete, coherent units of meaning from the source text, such that each chunk can stand on its own for retrieval and interpretation without relying heavily on missing surrounding context. For more detail, let's break this down further:</p>
+<ul>
+<li><p><strong>Preserve coherence:</strong> A chunk should capture a full thought or concept (e.g., a paragraph explaining one idea, a subsection describing a method, or a set of sentences that jointly define a term). Cutting in the middle of a definition, table, or argument would reduce usefulness because the chunk loses context.</p>
+</li>
+<li><p><strong>Retrievable utility</strong>: Each chunk should be "retrieval-ready", that is, if it surfaces as a top result, it should provide enough information for the model to either directly answer a query or serve as a reliable grounding source.</p>
+</li>
+<li><p><strong>Balance between size and meaning:</strong> Too small, and chunks lose meaning; too large, and they may dilute retrieval precision and exceed token constraints. The "sweet spot" is often paragraph-level or section-level segments, sometimes with sliding windows for continuity.</p>
+</li>
+</ul>
+<p>Addressing these goals for chunking also depends on the type of document. In case of <strong>general text</strong> (e.g., articles, books, reports) paragraph boundaries as well as headings/subheadings are natural cut points, since authors typically organize one idea per paragraph. <strong>Academic or technical papers</strong> often have clear logical units (e.g., abstract, problem definition, method description, experimental setup, evaluation) which should arguably be preserved during chunking. Papers also often include equations, tables, and figures. Not only should chunking avoid splitting formulas or tables, a good chunk should contain the formula/table/image including some of the surrounding text. When chunking <strong>dialogue or conversation</strong>, each chunk should split at speaker turns, and also group say, 3-5 consecutive turns to preserve some coherence of the conversation. Particularly question-answer pairs should be in the same chunk. As a last example, chunking <strong>source code</strong> should preserve complete functions, classes, or config blocks, together with an documentation (e.g., comments, docstrings).</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c096d3ac-9132-4631-be6d-66ff436267ff">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2f69c87b-3149-484b-bfdf-874c32423d6b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Of course, we get the result that $x=2$ minimizes $f(x)$ as we spotted from the plot.</p>
-<p><strong>Important:</strong> The first derivative of a function allows us to identify critical points, where the slope is zero and the function has a horizontal tangent. These points are candidates for <strong>local minima, local maxima, or saddle points</strong>. However, the first derivative alone does not tell us which type of point we have found. To classify a critical point, we must perform an additional check—either by examining the second derivative (which reveals local curvature) or by evaluating the function slightly before and after the point to see whether the function value decreases, increases, or does both. In the context of <strong>loss functions</strong>, we typically do not need to explicitly distinguish between minima, maxima, and saddle points. This is because training is formulated as a <strong>pure minimization problem</strong>: we only ever move parameters in the direction that reduces the loss. Gradient-based optimization methods like Gradient Descent naturally move <em>away</em> from maxima and tend not to get stuck at saddle points in practice, especially in high-dimensional spaces where true saddle points are unstable. As a result, it is sufficient to follow the gradient and monitor whether the loss decreases, rather than classifying each stationary point mathematically.</p>
-<p>Now that we have seen an example for how we can find the minimum of a function, you may wonder what the big deal is, and why we cannot train machine learning models — not even Linear Regression let alone large neural networks — that way. Our example was easy to solve because $g(x)$, i.e., the derivative of $f(x)$, was such a simple function that allowed us to set $g(x) = 0$ and solve for $x$. In other words, we could find an analytically solution in terms of a closed-form expression that allowed is to find $x$ that minimized $f(x)$ directly.</p>
-<p>However, if $f(x)$ and particularly its first derivative, becomes more complex, this might no longer be possible. While we can still compute the derivative, and set the derivative to $0$, we fail to solve for $x$.</p>
+<p>Given the variety of document types and the non-obvious idea of a semantically meaningful chunk, there is also no single chunking strategy. Apart from the type of the input documents, these strategies also offer trade-offs between simplicity, accuracy, efficiency, and adaptability. Typically, the better a strategy can preserve the coherence of chunks the more complex its implementation, and vice versa. Let's have a look at some of the most popular strategies together with their pros and cons:</p>
+<ul>
+<li><p><strong>Fixed-size (naïve) chunking</strong> is the simplest way to split documents. The text is divided into uniform windows based on a fixed number of tokens or characters (e.g., every 512 tokens). The method is straightforward to implement and works reliably across large datasets without requiring domain-specific logic or preprocessing. However, its main drawback is that it ignores the semantic structure of the text. A chunk may split in the middle of a sentence, paragraph, definition, or code block, resulting in fragments that lack meaning or context. This can make retrieval less precise, since the retrieved chunk might not provide a coherent answer on its own. While fixed-size chunking is useful for speed and scalability, it often sacrifices semantic fidelity and is less effective for domains that require nuanced understanding (e.g., legal text, scientific articles).</p>
+</li>
+<li><p><strong>Sliding chunking</strong> (or overlapping chunking) is a strategy where text is split into fixed-size chunks, but with intentional overlap between consecutive chunks. For example, each chunk containing 512 tokens might overlap the previous one by 50-100 tokens. This overlap helps preserve continuity at the boundaries and reduces the risk of losing meaning when sentences or concepts span across chunk boundaries. The downside, however, is increased storage and indexing cost, as overlapping content leads to redundancy. Retrieval might also return multiple very similar chunks, which the system must handle carefully. Despite these trade-offs, sliding chunking is popular in practice for domains like technical documentation, code, and conversational text where context continuity is crucial.</p>
+</li>
+<li><p><strong>Structure-based chunking</strong> splits text according to natural boundaries in the document, such as paragraphs, headings, sections, bullet lists, or code blocks. Instead of cutting at arbitrary lengths, it respects the author's intended organization, ensuring that each chunk represents a semantically meaningful unit. It avoids fragments that cut off mid-sentence or mid-definition, which improves answer quality. The drawback is that chunks can vary widely in size, some may be too short to provide enough context, while others may exceed token limits if a section is long. This makes it less predictable for indexing and may require further hybrid strategies (e.g., recursive splitting) to handle very large sections.</p>
+</li>
+<li><p><strong>Recursive chunking</strong> is a hybrid strategy that combines structure-awareness with size control. The idea is to first split a document at larger, natural boundaries (e.g., sections, paragraphs, headings). If a resulting piece is still too large with respect to some maximum size, it is recursively broken down into smaller units, such as sentences or sub-sentences, until it fits within the desired chunk size. This preserves semantic coherence as much as possible, while guaranteeing that all chunks remain within practical token limits. The main benefit of recursive chunking is that it balances semantic fidelity with technical constraints. It avoids cutting text arbitrarily, while still ensuring compatibility with retrieval and generation systems. However, it is more complex to implement than simple fixed-size chunking, and in some cases, the final smaller splits may still feel fragmented if the original content was unusually long or dense. Despite these challenges, recursive chunking is one of the most widely used strategies in modern RAG frameworks because it adapts well across domains.</p>
+</li>
+<li><p><strong>Semantic chunking</strong> is a more advanced chunking strategy that focuses on splitting text based on meaning or topic shifts rather than arbitrary fixed sizes or structural elements like paragraphs. It works by first breaking text into small units (like sentences) and then using an embedding model to measure the semantic similarity between adjacent units; a significant drop in similarity indicates a natural "break point", ensuring that each resulting chunk contains a coherent, complete idea. The main advantage of semantic chunking is that it produces highly meaningful, contextually self-contained chunks that align with how humans naturally organize and query information. This often improves retrieval precision and answer quality. The drawback is that it is computationally heavier to implement, requiring embedding models or NLP tools for pre-processing, and the resulting chunks may vary widely in length, sometimes exceeding token budgets. As a result, semantic chunking works best in high-value domains (e.g., legal, financial, or scientific documents) where retrieval accuracy outweighs processing cost.</p>
+</li>
+<li><p><strong>Modality-specific chunking</strong> addresses documents containing mixed content, such as text, tables, images, and code. Instead of applying a single rule to the entire document, this method handles each content type (modality) separately, applying tailored chunking rules. For example, it might use semantic chunking for paragraphs of prose, treat an entire table as a single, large chunk (perhaps converted to a structured text format), and index code blocks based on logical units like functions or classes. This ensures that the contextually important elements of each different content type are preserved during the splitting process. The main pro is significantly improved retrieval accuracy for complex, multi-format documents like scientific papers or technical manuals, because it ensures that tables and figures are indexed coherently and retrieved alongside their corresponding explanatory text. However, the primary con is the high engineering complexity; it requires dedicated parsers and logic for every modality, leading to increased development time and maintenance overhead compared to simpler, uniform chunking methods.</p>
+</li>
+<li><p><strong>Agentic chunking</strong> is a sophisticated strategy that uses an LLM or a specialized agent to intelligently determine how to split a document. Unlike methods with fixed rules, agentic chunking analyzes the content to find natural, logical breakpoints, similar to how a human would read and segment a document. This often involves an initial split into small units like sentences or "propositions" (self-contained statements), followed by the agent dynamically deciding whether to group these units into a larger, coherent chunk based on semantic meaning, document structure, or the expected use case. The primary pro is its ability to produce highly relevant, contextually rich chunks that lead to more accurate and complete answers from the RAG system. However, the main con is that it is computationally expensive and complex to implement. The process requires multiple calls to an LLM during the preprocessing phase, which increases both cost and latency compared to simpler, rule-based chunking methods.</p>
+</li>
+</ul>
+<p>Apart from these main chunking strategies, practical implementations often combine different strategies for better results. The choice of chunking strategy depends on multiple factors, including the type and modality of the documents, the specific use case of the RAG system, and resource constraints such as processing power, storage, and indexing requirements. For example, technical or legal documents may benefit from structure- or semantic-aware chunking, while large-scale corpora may rely on fixed-size or sliding windows for efficiency. Ultimately, selecting the right strategy requires balancing retrieval quality, computational cost, and the nature of the content to create chunks that are both practical and semantically useful.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31817523-24f0-4ee7-b21c-b269ddf13d8c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82646741-b5aa-4002-bbbc-a0c4068014ea">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large g(x)\ &amp;\large = 0\\[0.25em]
-\large\Downarrow\\[0.25em]
-\large x\ &amp;\large = {\color{red} \times} \\
-\end{align}
-$$</p>
+<h3 id="Indexing">Indexing<a class="anchor-link" href="#Indexing">¶</a></h3><p>So far, we have taken our input documents and split them into chunks of appropriate size(s) to fit the context size of the LLM we use or other constraints. This includes that we can store all chunks, typically with other metadata (mainly the information about the original source document), in some database or other knowledge repository. Now we have to make the chunks <em>retrievable</em> or <em>searchable</em> to find the most relevant chunk(s) for a given input query. This is where <strong>indexing</strong> comes into play.</p>
+<p>An <strong>index</strong> n a database or knowledge repository storing text chunks is a structured data component that maps the features of chunks (e.g., concepts, keywords, semantic) to their location in the repository, enabling efficient search and retrieval. The index then acts as a bridge between input queries and relevant chunks based on the similarity between the same features of an input query and the chunks. The more similar the features of a query and a chunk are, the more relevant is the chunk for that query. There are two main types of indexes that are commonly used for RAG: <strong>full-text search</strong> and <strong>vector search</strong>.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ebf2f9c-4bb8-46f5-8bb1-5265967e7372">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3a02878d-7cc0-4710-8eb3-1050cb5b937e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>For most machine learning models (but especially neural networks), the loss function is highly non-linear, high-dimensional, and has millions of parameters, making such equations impossible to solve in closed form.
-In fact, basic Logistic Regression — which can crudely be considered a neural network with a single neuron — cannot be solve analytically. Additionally, real-world loss function are often <strong>non-convex</strong>, with many local minima and saddle points. Even if we could write down the equations, solving them exactly would be computationally intractable.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d09ee21b-e049-44de-8da2-c460ec5da776">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<h4 id="Full-Text-Search">Full-Text Search<a class="anchor-link" href="#Full-Text-Search">¶</a></h4><p>Full-text search is a technique for searching a single chunk or a collection of chunks by examining every word of the text to find the most relevant results for a query. For example, given a query such as <em>"What is the height of Mount Everest?"</em>, chunks are considered most relevant if they contain the terms <em>"height"</em>, <em>"Mount"</em>, <em>"Everest"</em> — or even the phrase <em>"Mount Everest"</em>. The most common index to support full-text search is the <strong>inverted index</strong>. It works by mapping each unique term (typically ngrams or words) in a collection of documents (or chunk) to a list of all the documents where that token appears. By precomputing these word-to-document mappings, the inverted index allows users to quickly locate and rank documents that match a query, without scanning every text file.</p>
+<p>The figure below shows a basic example of an inverted index. In this example, for simplicity, we assume all chunks are movie titles. Before indexing each term (here: words), we also perform several common preprocessing steps:</p>
+<ul>
+<li><strong>Stopword and punctuation removal:</strong> Both stopwords (e.g., prepositions, pronouns, conjunctions) and punctuation marks typically do not have any semantics on their own to meaningfully describe the content of a chunk; they are therefore often removed before the indexing.</li>
+<li><strong>Normalization:</strong> All words are changed to lowercase and lemmatized (i.e., converted into their base form). This allows us to ignore syntax variations that typically do not change the meaning of a word (e.g., plural vs. singular nouns, or the tense of verbs).</li>
+</ul>
+<p>After the preprocessing, we can now build the inverted index by mapping each unique term/word to the IDs of the chunks that contain these terms. For example, <em>"beast"</em> appears in Chunk 1, 2, and 4. Notice how Chunks 1 and 4 contain the plural form of <em>"beast"</em>, but which are ignored due to lemmatizing each word.</p>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3cd3a3ba-9744-4832-aa7d-4a24bf12dff6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6b6dea45-4fa5-472c-abee-d6294c5b3437">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">df</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e84eccfb-75e8-49fa-9eae-0603e1995ab4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=33a0b200-f85f-4bda-b9db-fd2908e754f4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Basic-Idea">Basic Idea<a class="anchor-link" href="#Basic-Idea">¶</a></h3>
+<p><img alt="Inverted Index - Example" src="images/illustrations/rag/rag-inverted-index-example.png" style="margin:auto;max-width:700px;width:100%"/></p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4cac7485-6a3e-4026-b750-6dad47bbb4f9">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cc954914-6c25-44ec-9448-9ef1c133055a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><br/></p>
+<p>When receiving a user query, we first need to perform the same preprocessing steps to extract all terms from the query. We can then use the inverted index to quickly look up which chunks contain one or more of the query terms, and potentially rank the match chunks with respect to the overlap. Note that the inverted index shown above represents the most basic implementation. Beyond chunk IDs, inverted indexes typically store detailed information to improve ranking and query accuracy. This includes <strong>term frequency (TF)</strong> to measure how often a word appears in a document, and <strong>term positions</strong> to enable phrase and proximity searches, and others. At a global level, the index maintains <strong>term statistics</strong> such as document frequency (DF) and inverse document frequency (IDF), which help identify distinctive versus common terms. Together, these elements make inverted indexes not just efficient for retrieval, but also powerful for relevance scoring and advanced search features.</p>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e0de9ef7-7284-463d-9902-ea9da5fa32aa">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=acfc36e6-4614-4d6f-a80b-56593bc7455c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">animate_gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">x0</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="Pros">Pros<a class="anchor-link" href="#Pros">¶</a></h5><p>Using full-text search based on inverted indexes provides a <strong>highly efficient and interpretable</strong> retrieval mechanism for RAG systems. An inverted index allows RAG pipelines to perform keyword-based searches extremely quickly, even across millions of documents. Since RAG systems often need to retrieve supporting information in real time before passing it to a language model, such speed and efficiency are crucial for maintaining low-latency responses. Inverted indexes are also scalable and storage-efficient. Instead of storing full documents, the index only contains references and term frequencies, which keeps the overall memory footprint low.</p>
+<p>Full-text search also provides <strong>high precision</strong> when queries contain specific terms, entities, or keywords that are directly mentioned in the source texts. For domains where terminology overlap between user queries and documents is high (e.g., legal, scientific, or technical information) this approach ensures that retrieved chunks are highly relevant. A closely related strength lies in <strong>transparency and control</strong>. Inverted index–based retrieval is deterministic and interpretable. This means that you can easily see which words triggered a match and how documents were ranked. This is particularly valuable for debugging or fine-tuning RAG pipelines, as it allows direct inspection of retrieval quality and user query behavior.</p>
+<p>Lastly, full-text search is a <strong>well known and well understood task</strong>. Mature search engines like <a href="https://www.elastic.co/elasticsearch">Elasticsearch</a>o or <a href="https://lucene.apache.org/">Lucene</a> are optimized for these operations and can easily scale to enterprise-level or web-scale datasets. This makes inverted indexes especially practical for large knowledge bases that need to be updated or queried frequently. Their inverted indexes often include ranking mechanisms such as <a href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf">TF-IDF</a> or <a href="https://en.wikipedia.org/wiki/Okapi_BM25">BM25</a>, which prioritize documents where query terms appear more meaningfully. Additionally, these systems support flexible query features such as phrase matching, wildcards, fuzzy matching, and boolean logic, which can significantly enhance retrieval accuracy in specific applications.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0e98ebb8-c156-43c8-9ecd-428e8d6b17ca">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<video autoplay="" controls="" height="500" width="800">
-<source src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAARoZtZGF0AAACrQYF//+p
-3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2MyByMzA2MCA1ZGI2YWE2IC0gSC4yNjQvTVBF
-Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMSAtIGh0dHA6Ly93d3cudmlkZW9sYW4u
-b3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFs
-eXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVk
-X3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBk
-ZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTkg
-bG9va2FoZWFkX3RocmVhZHM9MSBzbGljZWRfdGhyZWFkcz0wIG5yPTAgZGVjaW1hdGU9MSBpbnRl
-cmxhY2VkPTAgYmx1cmF5X2NvbXBhdD0wIGNvbnN0cmFpbmVkX2ludHJhPTAgYmZyYW1lcz0zIGJf
-cHlyYW1pZD0yIGJfYWRhcHQ9MSBiX2JpYXM9MCBkaXJlY3Q9MSB3ZWlnaHRiPTEgb3Blbl9nb3A9
-MCB3ZWlnaHRwPTIga2V5aW50PTI1MCBrZXlpbnRfbWluPTIgc2NlbmVjdXQ9NDAgaW50cmFfcmVm
-cmVzaD0wIHJjX2xvb2thaGVhZD00MCByYz1jcmYgbWJ0cmVlPTEgY3JmPTIzLjAgcWNvbXA9MC42
-MCBxcG1pbj0wIHFwbWF4PTY5IHFwc3RlcD00IGlwX3JhdGlvPTEuNDAgYXE9MToxLjAwAIAAAC//
-ZYiEABb//vfTP8yy6/c5teOo96KeJl9DdSUBm5bE7TqAAAADAAADAAADAA/hMFtS4RUJjBaAAAAD
-Ad9znfikcP4nMARaKgzEFM0W99LPRwFw2CeMH689n7aSUtb2hqT9c+l/N/eLqNMn0MFBXIHPbr6r
-4VO5jWriD8yErBoLE1QQHsvWmR4iwhaz1AkJwPY67HqnnD4myr5S2AcCAPfxj57k4s523P9Tj2qH
-WtF1RzYSpln5RBrC//krKumukEBFgqB1nBTHsanL0i4tlBixdhO55ZoxgjsTRS3Sk9sD70nWWPSZ
-XZoj4s/zbTTXLkSmGNh1qahOWK7stW8pv5ydUPftjLqFXWFT48voxfZmX75AdOJT9D5392eBBhe8
-hNLueu51Fx7mfd7O7F6/CSCoyUvB26E48jgF3Fvl9aTAYpnH81ky99sUs6rhpEreiuFolzW/QqY2
-lOWARt2eS8c3d/+ZvLtbvcdfrA6M4XCoZYKAFdTtTshJKux95sXIa9/YBzzOM5UYcPekliNU/5g2
-HhezZljRh1aErDZ9oTucmCsFIZSL04yJ6gr4xooBQhNOxbOh6oD/ewvFMxY8aJnLLRYeUmadSAD6
-vSnTHMXREpxQoH04O1NgVOfWvF6+bkk3KuCfzoNzGyn0UgsfYR3E1YzdyUqFrj4+ekr+kecyDaW7
-ncTOSCO/gjWNfU6pcRHbilJ2Jcv0B04eUeqlCta8I/3Dic6C1KsfgDkt+Pvt28AMFWRbwAkcO2Fc
-TwQgUlscL4/cdkPM0hhEiMf45D4g6LKCBLTl78XAiULo/oHQJbwD//BAhjGHzKKx0bzFnGJcSLQo
-DjDPVgW/YnQUTNRSzDZ5XdZHPweDGTYggDUe3Bp7ogCvu1z7tcZ1KvV6X5iVHQhgqQP9tHFr2QTZ
-XdEU9pxbY6EzsMx/inysigHqxTa4/oXEEvpGMuaAbKgP7XgcbMaMXnyRgFyYTJA2E0J3oJaJK+dt
-kiQqXRTdJW8YUx7zy1RFSgYFic2a5TQQgWuAeqfLlfFijW3zxMbWOOC5o2MHvzHKeFerazG99RO0
-5E79Mkz9W6t4oAZn49eOhJe/eR2Aja35fxfwOoRPdulrro3zlXjd9Jf+AL0T+cpV2YiGfsqydCyn
-UT7jV3oXfn31w6HQTv5OWt6fbZxQe1GMzdDeWEASXDcEI6gXllYCdF6Qt5646ggOUGVD03MnVAg2
-1cDRUHINZh4WUUflW3/RRHcoQgii6+Bg6qxpRJBHx+jPwPNXAjdfNvDGCJiGv09OP2Bk3T/7ElR7
-RZupsUW5SilQxIGeWTWgR07ikAe5Ny+gN+1vhomwvi/A4PJHbaUGp0teHPWj5BpC+I7/v13QbKy7
-iGEO2euRZAi4A3fCCbKvNacpSL1JCFspNBcM9NR5abmoXcZb15Yv4wEgpMtQR9XFZMPyZrYBCvXj
-Hf2zq6cjpgzXcAaFVo6JJ0ZNvYj0WO7prP/P8fvW0cz+69jv9FrCvrTJVcTLCZhefQo2f1fcvWMI
-EvNYqdHkVTYahGrVIUEbuI//7rcWgJaQxo1FtfgGyIEHH45LGIhiE/d8x9hHNCxcFRJ6TWHH/19b
-F7W6FLckzYtHuk5xBFqIQ6e2cG0rC1UA7Rvh3IDtJdk19EQtaF9TzzHuDPZ1r8tKrTK76F7mxIT+
-Ua4fBPA7MAlCL6YylR5Kcs8EnvvYAuSvRcZaFdLvuLWhnuwj0Hqzl/rtqAsiA9ncxtdlF7Flpfln
-tgTsenyWUD98VgfyGGEC6jdOvONwM6KgQNWHmWuy3gyV57/njT33yo0Q6mwymgXpzk0ifpvxPuIS
-Lg/KZJI3zuuZI0QJLyr6L6Bi/ljideeaBssWoHrN9J4pgannUO8Y/OxVKSKRAjnkZrZ0Bv6Gfw9S
-xuGX+64tnAkmIbMoHHa0hjfK5nCm9Zqqtd455fm7AQ+BfssaMxynArSjeFldAEDDiBczu9YdJEzr
-uEhlI/9kVlY6t89khcnQpWzcR/cP4X3ugNCTD6+ATq92yzBPv6XIhJxcFsidhNyEl/1PLh5LKkBy
-vhDAduvWjBeKGO5x59Pj8lO3YFgqI5CGYMP9+Lr1tK4azTdsgJuw/6ScFSH9vhWD/C8hbqZKd1iO
-KyF+F+q/TluH1jGvDDbZHcUZiiiEL1TWOfgejV0UaH6+NRmOx3pAbe1Cur1NjC9ctp4JFTn2ouMv
-GV4024DQPyAJoRqxi1ioz6tFgZ9WEgIVa4phGbMFkggYyuG4401wSNOow203dIcp8Zv/yjz49jnF
-/5rZL126ngyjnJp719/1iNev+55iKNl5h6EOA9n7+JpKpuF9nZXFftrNRBmjaocKmKszRfDNd7hq
-nmDSSoybHE24YyMg9B1cNN0FTOtqaOyikx5ieZAku5TSr9IXfl/7OpL7Mm8+C8YdlBmCiUEg89cn
-E92mN0StvwssKDTxThQZy+sRRrex33k73DoszMP2ePur22/CLQC5uSMTq+gRkfRSvirZi0diiM+R
-R0mCKKEv9SSR8P8BCFIaBKMn2ObSGn0SJo6+HSPNIt0pv0LDvueim1aJjoXAXOpBX+LbMiDzk5kj
-ta+uqcZWZ5Aox3dTyHGERi6XYSxTU6gkiuZ33P1CGxm4taMhYI8o33hWXMCJh44+Hjn9SWH2D4Pb
-cO/1q2909taZSwtPrM/htdGxA2/bymP+2UsL1g1xxv6HeJnR6FXzuTjHKdblNQyqZtMJAoblAsJ1
-XWRS7ru9KS59r/GYN2EwtHhGYWiEnaF4vj3ahQmmrkYLFhOQMKmfObGBv65SK4rQyK2q8idEMNyH
-zq8ua2U7JdVIM8evEG2dmCCTqeX9eltkfwfHNgyxA5HWRLWbggDjy5196KoyqcuWEmf8p9/xxWJB
-jtpF7KouNAOwmkq8NJte0X8+tEFf13C1blMVe/i6sqlci8iMV6HALhl+Y6ZeN8ef///innvfQIbs
-2F5yfcY/tkrQGyqjjn5tl/w5esf6gaX/cdWMzmotKLKMlJENaevijSNeGKCrKtSlFR9rd3KHMhNu
-ACliYJOzXcCRQxO5hyoobn2JR6wCdM/6MMVwO6XRIMYHSGAsSsEuuoD9tVnQUUNgEK+73Kv/t/95
-YhqBMEd9MIGjyDVaVD8IDDPe/jygh2kXd52HrM0MvYKA5BqtxuCuiB2V6RYn/3jfFY/2tw3uULvD
-KbLK0Kx65fIwsUht75umbaWubvFKn40SNhHCY2j5VSOeaLIhGhYvCobXGsslrhzHqn5OY+IfBcx/
-8ti2LUWmYppvIhDJSeEY9Xp+B2FG0VQx+8H+mGymdsX/2r1c7XSxGG49mJkj6gb2muRtT+H0xMoc
-1vSs8+PIzSkc4zmfLNl2GRppDPoI89jorCyASwZk/6VD5Kr8J22MEKb6EguznV+pDMi1239FmpIB
-9eH5aVFnZmvSM7wQvUB8Rdz7PeDHoZMgS5it4pSGkm79FokIoFZiVM/NWsIny5MzoORZ9K54d4wM
-Y24y/jFge49wvEpgw7dTXv4CvUDpCiHtnQkFLqTK73AVtCgUdAHCG1dajpW+urVRduP4PYRmy8H2
-Yv6vD7ViVmTwWORTQiZ2oz7sNDqLX0I8L9NWnKrwlZwqOXtAcR/30MyLzAuD4rkPK/cHsWP6segO
-RaFvPwOxQjWocl8UzjkmgDWhqRXe3q22YZWLWTEBoE4QDM2hCjGc0JttNMTmiGyCiYORLj2M6m2C
-jxp97Dauz1SA7XVff+5Q6rV+MPUh4kWZ539psdHV4lv8jg2BOy+b/0sttvmsus5ItwEijXrBf22v
-WeaOULLhaEbnGf3HJRBdZJinr/C6AAAgUvt4rydu/3BfcbjToyRCQUQ5frlGlrJNBGYNFMB/Q58b
-0DZb/9WQI6h6sh37TH44r/BQxzDm8l1wOB7Z3q0Q/ly8cfdHp8cLXXlIxfSWbxeK6+mzpQJnaaBg
-pU77KfcphBh939fCGvmLsZ98KmrDFoZqNxh6+yHmh5f/Aq/2mvTILSH1zW7iv4+6Ss/QCEJOd+VO
-lSSosHzYYjufemlJcfboczoJ4hZZw26S59QMlHLitUY4XIiS1Payq+pAKo6eEssUFj2WtjFX++0S
-vcQzJ0CjITRHQxSP1fz4cn+ujSewXQLP8sJNrpKug5l2FnEP6rH9D6ifYA5x90vLmwlE9T9nPLvv
-jKELP4Lto1Fe+9xm1OSPhZKkYW+hlR7wVubxzNjnqo4sSWB07KGzrojPu4j7fdWO5BIRasCGxwuX
-BX30rkVimKoGURmB+UDPOjH3QwuitZDj7mSszB8gVqqwXRHqUoMp+jJer3ptszT4/1BTOS1iN4Jv
-ju/3sRm4elGR0417vVHnsTKMpc9yGWZPTws28j5lgGYJCfsL3SqhftprDmkB2VBRk+8Ucehl/cpQ
-rrPcuazfi4/Q2xifjK6Ju3jZkJuy8BU/Y/F6CaTI5fPX6m6oL5iSCoHYBtDqg8E+UVo1xdik9+3b
-x9lTpWdInKvjW+hEEidIJeScDZTl24y2e3fZgKD9SbKTA7CVhuVCrR4dnikBPavzuzMkKBm7vdYJ
-xRGU+Y4lUf18s6IS4jUOuNGe5fadkvrCnhaxsMNgqXQDryvVV/ifmEoJVkz/4M+TqxgvM2ueEklK
-etWAs2DJNseJ4AQYVvfvRI/npvF9caPffeS3i/LEG1PKkAfMgfzDvBqS+c4tuZ/xjtW8SQxijWgr
-c7p/22eDSx4qIzK++i1xf9qlTQuQIFpqthUAOW06oc8GWUZSzsAe7+l2UgUfbcO1EazoEWvlLZlc
-cEKWhsCEs4/sLLPwCdwSaInfiXh/vFDm11r9/8e/kFwtVppA5FU45iiMnxtU9Y7xkCG9GFM5kxJ0
-RJ/7C2JkQrCS+GKQJKlQUrHY7E2d/FZhLZLCj4/m0q2ve6A2jRBTcoq6MVFI8wgXCnKjONe5kapm
-JkcJivu+G/APxL2DgdEqHn+83i0Glqjne3IAwSTyAKUOMkABEP41nzkiS0Cse7u+fCW1ID1ofNNJ
-J7RC3yXCCzGY5dOX5uTu4ENbC9PTDj9sPp+5oDgyHCpJmOAsgKfE84tVxYa4VactNvSngT0kv6v5
-osdQPbs1gXP44eV2EqO66j60HYNyoOEayqc+j1vC+8UdQZe7tqQHKGDM6DWKiJbxcz5twpkYV3QE
-WDCAZ4maSU16fBaq0aD7QCrV5p7M0r8y22Rnya15g4r2O+cSDeVPA8QiOJSNcQo1UwsZvj+58lw6
-+gj1pYh2UJbrvGXCRzrZsMzjejkjlMnDb9QU0IcFL2JH17zF9dLq3dtXwlAHPl2f7HtthL/4IAtJ
-VefsL41jyb7A+8mhm4s/D3uSfi7wfwG7+X18+tSHb7EnwRCgJPKmX0w7Pc8WruWnZIsOL+MP46Vn
-7lcfa4o88gE6OQaL1z0GC29bdISvfFhvwF9dhIc7rlixM2ZRMZlQYjx9EoODv196j7FbvIPUqefP
-WnF+ySRMYjwxtKPEGZnP6ocjlTcJJzL/X8Me5MRKBVHA/ru4BvdE22pXRB7EeDgzcrZ+wf9TD3Vc
-g7RCyXRygATj1Bqg9omGxm/llvZBpFCdfkBHifMZxOHkuJU/3/L3ox9G4m+Tl44MEOMy/bQnhl7x
-uXkP1F0WJrUK9z5gveSuOAAPO67RLtFLmAGMdvWfraKS/edZr9R+/ucJA7n4s5wjMFePxPzcjzH9
-M+gVhnqxwzghNR3PNPqhnYDaqrgNUciXR+6iEhj2uSZ6MNsfAyagJtCyrrlbo8ALNVZ4lcwQyfPe
-xst7vTQ9Rrx1bu/aRWUgbp9VW/bAJV4dLKYg34q7naAJXvUXTbBSoB8QHJTW/JbZOz2QgMdJnezY
-NSvUmLBe36SKXsVnf7iruffxf39lU6LO5tGCTWSgdwor9l0b+Z+MQ20n3Jkja7o1HJwLVHpDXq91
-/O95Y6MrYFtQj7yTUvp1ABF2UO/k39KpOigoD5fb02pWy47UsSKEhANvug/CD+f5voPYa8F4EUg1
-f0iB8hoDmFyGe1/MjZtQxgA8lMq3d24dIQFMGRhcqh+QdhNipRecxfs6/ABcMUH0bpdKXU3WbJKz
-2Uy+dEEwP0cA4zPqFedLFNdZ3vL5GPWFCZMYziAawEcxwcBR91tc+DLo2NHqdT71ms7f9I0Ra3tD
-Gktc82y5Deo85arZTdGguT6Q2323DFPcbXeQ6g4mw9Xc6ZXuY+a9KUxAcuM62Yp8p11SUO/yBt3B
-Rj7SMjGXQYw770vzamJmsDsOkfrSqjUFyfdZSvyyK1awYsIXy/LEGbVivXabCefdOPxzHnrgbLFj
-Vtti2vdL7MJonQjD1J3ZKwoyx1YO4Cq+tj8dZ4fzJxUP1icJmpJAnqBdpQhfuWuFlQlJo0J9/nna
-ezevqOo8vXbfBvsPI3yxXaaNd7e8KS7dntxUHvKCnzLEwT4ubyfMg6sHfAs3mY0U/PiQZyra5Rc7
-prgGhDbdcpugDgE1S+L7Fum3xgpEaQBRhFKURtGy1OPwiH/K+WsvAu3vILRcErHKvqbakUCt3fs8
-zCoJ0k/TWi4GikihJdq8+pROvEz2D+fiRO2XPUEcuOrZIQu2DQnnUN2lC5S5uhIy0v77Rg0dOJbD
-O2mcXrneE8qf8ZRNBeivv8EXKU6B8tYfXWrgFCAtGeW7sbOknmdvyMgyDk3tHWRlhMr1NHNrnpnQ
-Wbzx33Uc6auxgHpa/bZ3E+Ks2/VeSfEfmgLiyIugeA3dGlV6WARonAM1H+jNpr2hWBNG3ZXqiEJG
-+aT18Up7Ki/jj8tj/baEIDjHIoeprRDeLnQMZ2Zp0XxR2s8JqERjAqeYzbAAg6u/DWoCUEkHHfdp
-SouwcavswA8dpUDgq/WPOxrvL10MQ0KtgPpPT42jmsDlf+IloQ4DWg+TtYKABHDeYhbi9qxk4qf3
-ZCnkdvceMyWCFcjuq3DX6SUfbm652OEms8f4xK8j51VQkKZtSkZvw+TXRjkKMKyGOlWnVSOQjTsG
-4z4oSOmK4YPcQGkT11gegwaIWSNlNNYsPX2fvWJMuEPUA/iyGpqqhHNOGsbn4AJp3brCM7UD4MVi
-syG46AerDRiEKGfdAn2tiN4M+7XYsQV3EqPeBPxDBE73VHRJl2L71E8L2hFnCvhha5ikUCEAQimh
-QGDavIoYWci3VoHkYxmZXsv4f1aKblxRDJ4abFUbQpyHdujnLW4w0TfaK1ol2nFNyr6ktpXRcZeM
-+NmUI1OqqOLDII887P3CWwzWxf5jhaJzRN6lgB9CNfUOLFOteniKEQeiwYgGwc66ocvOwBMEfw+g
-w0V6VSDs/pZabTViOzrJc/zkKP6wt5l0pVt7bWFmfG+XwYnXqbRhuDq7aX306GrqeVuxLoXN78pS
-BImO0BMTZXtkVu/Euvwd1RcS4P3j4qgrvsEmxv9KOkPdBf++tbds7kVc8beurZw40LFyhmtSaOhd
-kuI/KyyuiHvXPdxhtoALSZcqglQnP8dGsRTYelJ1knKh6leoSBXjJDIS76A2DcDziHCL9wdojjlY
-op5/UBnOvDha43yYSfgRZfcBkNEFgiMTTjZ9vZQN74eOi2hQlpcYdXwv3Is2S+M/UuyutcpzlqmZ
-R99cf14Xw6chmAqmvYsdEXdqrkR3ue2n/QYwNCMDLlzt9ENF9E84lIe6gRZ9VHHSaktrUzVnsIz5
-B2/gLLB17wbwhyXUorvmNOACxKfyKGoII4fqt83l+7a185BsC0HIKHDGws0rsxVBSHDZReNMP1Yj
-9b/pImPqqWLCpk+3CtWNYS87rqD94Td/5CwzJRZtoddouNv3/X9Pzq8goA/8v3qVzVkY2XfSZbMA
-Mw4zTzGgDkSRU7jLTeBX4t1ICrPPY649H8d60RDIM0Wz17yf7h9wVJSGpABtenJfEuXdeehNEDxI
-v5zeyuJqufrA2M7TYnfjYUo4nAOFyZU9NvP7f2nGm88Wry8s1IB7xjp6bja2s/D37vyU6ykXX6Lo
-6tc6ANRbhDvilioR7fzqmY2lf7BC7KNwKZgqBllNoQNn98eqNLkhNMqCZIxFo6PYgZ3xm84bC0Lw
-JN5xF4iWu63CEBVYU9avXM5/+4CaXL0emBMlWAxsCGYL0qIDG2tJeBk8d3XW8rjl8Yu1XP8BFj9w
-RJ9YF6UDczJhPXSUMamtRJwV8y5rh0JAP6SQG86fQ9J2uIqLnAN8HNPQyrldiaDsJrBH+OcEP/0Q
-/8QvuMiaKDG7ulenJbE0Pr7rCW/XrgmzuMM4QYgmZh/s9RsDBzsgRk0tXfKkj18JPiVcUQlCx9GZ
-KzzVxTb/2PtmMpphAyXtl6Cv57MOpjJd8ikX76ii3t0aaVOFLR7CBdYjs042GLIfb0UgwrWWxdn9
-6x0te8YzqgIvfwPMPjm3Iu4hLftvlh98OYJH/jTasuIF9ZPcowxDQd6PEvLWsDZfnLl5EItNQqIt
-d04u5lx5EYQ4N/3yIjWQDFTekESbE9xX5VvN9EZNx2WuX4Um/5eJjN5x+YAHqJmbEBP/WfEnK9EG
-otcbIqV73hUlgSVjNrlkbrLBvbtuiyxgwIbxW4eITgqi04QCFJZXV7dV0HxeVWEBD0gyO1LYNBam
-U+ZtqivV/q2n/vH6yz1F3kUnr1bEQo4ulV9hUTWSdCJWw+XwA7r3hdLRC5zs2AQl4QgI+z76JAAA
-AwMfZMK9eA0VGL3c3adHoseixd8Z7pt31/ce4LPYp/m4sdL+jlj6fbE/KLzwUtsTd++taLpQ4ZyY
-pjbo1OIdFQaf1ngKSI10wSf9DPe8cuM2CPZ2YEiW43d3ZbFQAE97wqBLsEeJBJQbUo6aqrNDtLP/
-cxLq1T2RTYmu+f3OMsNQnFsxQPq7+N1Rgf/BJRMuCNaTOMWWXEGhWodHNqy6wjkq5wdHmGWBhoOz
-m0qkQ1j1Q8bhanGvdsRy/S9sBW6Q2EOvOjY93oqYH7suaB2Y5YVmisetTjktPQXn9pwFdcl2sjq2
-ee98w5bFLFB9bthTuJfAal5t1L+61sTUPry1LAyIMvEqFNfIxLP4/I4K5pPwr6aJ73B8fnDVdigq
-RRiUp0o/HcOYhP1efX3Fmz3Y3dH6QgMcfcA4YBLQvZv2eBewOZRsNHMe32ggh95XwZk/zZsJF0C1
-10sAAz8mClUx2rcpeVHOefxeSs4FO15x8k2BxSe71kFv9VYAN3ZxVA1Whtc+hlK9N4QpiQUvfH42
-zcBUUQPr4mRZJt6EjpFhvnuy/gb5UgOhzLGdDuMjcGIu4xCIiywum3W0Rk3M3pf/K82NhXMhHQ5e
-gx7NYYdXugTfN5au2prmlbJJ7NHxs2DcUM8ggqdnNatT81mJCZQc4dO/sYa8aN8d/IbmsO5agBM3
-mF1ys4DTxMw7JSnu+yulhcVgIN2pU7XBT2u8SqC7TPAxrMrvB1/efnulLX3pQ0djqoWbg5kOEnzg
-a1GaoLHyCaaoQzsMuUx2yQGSd8PT9l/iHrp547c0CIEFCyB4xNtIBzeNUGD6ZmdhPf9+lrJGmZLk
-fPrQfxVVAzvp9Bh2mANWwSkDitqNO9HchAPQUoLLFK0yiZxyjZjdgTKjQqnE4AmcRtRuBNDkFccq
-v6L7OAGAJmgDbIV9iTL2CiFgE6deivuZBKPipWvXBnhbLMwtTMYS5MvZnhb+/Mlz0tjVFu71B5uC
-aOnrvtDsqOMJMOTBi4/X1LmO9Oxtd3nCIVqMvTHiaz0ZL5yH1/uKmVfxnISweUieLyX8BxoGs4ev
-kLjAIIUJleNDbfGLQW3ED5bRE6TvU7ME7ONfvHa0tYyrxP1IgDCG7YgdQt28bIgTWSH4XmjZLKxP
-egmTick86WWxFQx8DEb7i4ZLNmWMnst4dpCLWFYeeay++cnXsol1s5exyvWiYQx8ni4I223hZ830
-PpHmmaNYg3BrUFhM9/uZ5Tcvyd02NRkcIwfaXTko7lmmdTKZ6YAa1z7s5JY9/dcCZsBa2cdUsGFH
-FeTx3jex2WM9ftJcxETDCxx7pUeAQuNP1xMBKYpaZZIV5Oiwf8scTE7rAc97Xk/ry5D5SOviDbsR
-VL2LXwRbPT6Cb8CfLC7Xosk24chjDDZsIG+0bf1wY8z7/rUILDgLMfGjMLw3G0LyvjBOsjJM0Vve
-mRHmo2Q6M4V+UXFWgz6V5VY/QvpDfQTSJ4uazh1em2QJw9Jm/1NdchLRI57zit/i/+ljmfEGaoTD
-Nz9rTRYOXGPDAel5L4dG2fTsFphmQTzWTOtERCcPMIWa+EUlRCn+DYraAC+Z+d3hb+AjRji6El4Z
-Xsqcuw8AqNQuSC2bD/hwsZxlAH6rHsBgy+FyqTmSuDaldieu7woHMYTVux+pIPeiJWnmZgjiby9w
-CVmsWmhDyQNuGLrb6X5D5ei+5/Irm56LAsHRGHNxXHpaeRRo7NrdSCN+CTFj/7Evy7qJBa47sgFp
-5jI1To07ajCa7A9aFwKm1y21PNLVREQ+lW0F4lIoAAe1viorjDDpbmOPMPBHP1AygnsO9XF0M7AP
-4Fio7kAOoK84v6aHT5jpydmOiNz5aeAasjNnZ04Cl56bHWvRAqOU3OgUUVooEvLW5DGe7VO5Alqw
-+tiOPVemw/jW5R9VufvCC58fmUugs/LwqMhvdyJrgZmXyjtP1WQdtGrl+eEQYRzOdSnpB9lZtU7w
-ps1N4DMVTegT2IsdVHl4nToXIiIaNZKLhFAQnzzslMoRyplGItIhe8PH/iWwfgaBGmnIHLqfj9AK
-4QoJt2BmWmBwpMwSNgU6NXZm6Cgg0IFK3Q43pQzqdFLPiup4iInNYQfPiZH5qa8oGcZ4cvASpzMh
-epAUfJK5tL0vmfGDk1zgSy+w3yr60QWRvBvy8IFnw6jYOGqNneQPVIvbJppD2Wxj6BYBJguoD7en
-2PQasU/fbi08zzcx3Al6cxOyOrnj2DW3JxgiLEPEfbooLG+GqwK0zaVoN2HZBJA9/sBc5TghYlBo
-8UevHtJHrwmICWfsskr66RqL1NhTzvr73SNe0ebCqDZtA9/HFG6hssjYZ4TiBTyDXpdWjMhWhuoq
-AldrJWMJSnsL2+WBwYMuyD4kOC3U3I403YaX6FKqLRoK2Dgwup182ScuYAmAUB/xNc293kQa70F9
-1aj7yqXZpbnex+AbBX1PtNZfd5ARE96IG68dIfThsXqcJFVuCuXEHiFAZeDkmOlApa9LrI/vOZqv
-40+K+bfmwDhBCi5tb+PJPu7fvJuk+CbNjG0vmtQNH7bjXSYfjrG2atNjKEuda3eRZLEAM/iuMuVQ
-RMWAPcTNOJU2XHcDuDpa4bvAq10xdd76duDTdnyAD4kBve2DoYOn37shgYX69cnRDone7LzZxmGB
-cBZd6TukOOKeffo5Xv0WzRb5LXh7tmDleD+Bcz2xs8IgBWIrhlyv5wYg0Y+HRr0iY++jh0lWl4TK
-Oj9LTLJp7aTZtRPvgI4WW5eyChQzRMEF3WuNU4nGKYraOHc43HMFOlUCpemfzyaRyzOhij6RHc+h
-C9rdTlRs/vPGnAnf9u08bdMOO+Nxrtm4nGCxi6d9Gvk6tzMjgFR5rjeRlWPw80O/xNQ7nESBXkfd
-3tVCOr0aAcbTrSk8iNWEyOUsVaYatJ0M2YOEp1AA0DXkILoK5KGWWxBIVrBnyUvxtBR5fD3A3mRj
-+oHJb6Kqw0dMF+8NPgvPAM5zBj8NscHBL8DKYCGSrXr/waFpWzLhsXH5bYk8rvzgocT0IhPIxDlz
-Pf2E+T5TpCom3qHY50yLVKN4hR15CDPsoQw6IKoKqOtjm8c3Dl1vr6xYAEuRSnoDZFTl5wokoceK
-ZovOBK/ePzA4WgVNw8xdqE2qkvr1+A18WLT7FympZTBWU68GziPq4CCjSgPWr2oqMydZCfVWtVzn
-6FXQNE1q5HzbfjDyfa8LZgumZboM7hYLb6FGfqkH1upgol5FZiEDRVEI8XlPh/bqccN74PYtwk6W
-dUjoQc7dzH0LZY2Fvp0hRFNUlqQ17EmKiDhOFr0bkYuY1RdcUHP5TJZdqbgYQCcoeeAO/+IGFq/O
-YH1m8eoewU2Ntewr9iIqc/59sU/hlQui81zjyRp2SBWdNZdS5jw7MMx3MblnDswfSy3ZWArdssQK
-+0O4XrjsyxTgnr+ywRzNjlzmZpF6QthkmVv6YMgvpgAqT3wjHwDL+hVhFv1qmO359l2gIp1zXSsR
-9PAKb8ozhapiXNtbIMIhCEHH8DLUjduwCURpSSZX5dIMdesuCU2mqjF1o0fbcd5ntavRdyOEMo4r
-X5u7SisWSXbNzYAqHTbCOa8s2hvqoLC8pXCJcYLZjCMG9TapVREkyTCVWCeceTexrURLP0Q5QIQs
-HWlBUtnY0H8X7w8muZV2yWPE8jC2W8kqXQmn2kYtk+ANoVcnhmv17Z1yyX+Ioa90H+xt3lkSl4H9
-e7sjYlEq5Krh5MZLavOFt0wkGxCO27Hsk9Wdb4hIEfzQSo/XUGNRgvWA1Ac0AcetYUULzHpHkvoB
-in1ie2DDurUD0uMIBvVHddqws92Ikvw8r/vx8lUEHQ+5cIyHjfaMQ4WWRzw7NWTxJnCm7u266WpM
-LpgqMEZqD+8z1/BbzfWSUMfbqTaZf/B67KYT1ZMU4dzLIfnztf9Hhkdp2Lx9Wlw7PiApAoeQi2+A
-chYGzubU+i4J8uDCkXWJROOcTgUaP6q92nTBzEO4TAYAllfibR79GWQFwjKRqUSvVoMgDVynMAEQ
-VWvOriln8OK4QnWOCcBGTzqEEPMAmSmAhuFZn3CCpH7K2Zl9AK2QqdLz7kLEL7Ce1Pp1FyPb0O9f
-EGhN/jKQYvit6pfEUJEMf5p68VvRxR7mm/OD0LXnlcH+BdNbFIspd6Qmas6xCpM9qGzo5aa4uCLM
-QKwNxIFywJ8V+t932SdDbNjl3djT+I4yiMsSQ15TeRQ3+I3tXxotJW2LNKh9u4wBt0P9EdCZWsMr
-kErMi7D08a8lKI0YdAfchAFkRprq+zM9tIq+e0GrB6bWuzKjND+VJif62jlvbnlUflQhhT2dH4Iy
-TG/9GIHQbfofTmPetVW1D+DmhJYMZKMq0sICuLC5vmSCDOvkndQcR/mTgKqNrgm0IqS594P2+3cL
-p/3DiNYQk6AOktK4uhSvaKd1AZghLvYOZ4fqp/hr+vBH+FAOfzKnLfyuQiHd+8rwdr8Rh94mk111
-qDX3x3ZcozXos1FYMOVVsBPd5wLyx+rsGP/N7JshpMH05NqS6veow/L2J6Hftq5Mn+aEZYe8Tgpn
-nhHpQyTZs9TVCet/Qs3V6+w5ytaEvoFLt2kAXAsnlcGf27AiLi21DKDA3CxfvTPAQeBjzPcM+Uk1
-WWJ2pSTlCDNYeW/DEGM5CqlCUIswyCxE44mjbZ+mvq/g67jf3dosBVKOGNuz3N8tzpNUpN4MOmGU
-bAkeBY9aCoTPO9nJrXOl1hBcPWVkugEtdTzN/h+XWQX21//uBZDuoUB53Buy0FjALE5v0yv8gHWN
-3hlBvnW27cMqMg8SoUF8MmUj0dA7Z2I0zzwpWkbzkF3MX31qsY1809Rh6lgYTekfvqSCnjGZ7ENq
-HaDU+qM9c5AM+23576r3lmVuxXBh7B4s+PJzCzeTBPXTBAi2Y9CP6zXKgMm09Lt5QEWVNSgbR6P+
-k/5/VK9adTGs/5cHsgIuhiJWyM/dxaRixKu3k9wApB1K9qPtFDwsop/ya0WSDz6B4XzbZo4RhmEw
-ztaevXB3C7mzbi5eIQyOFmcEMaJGfCWOItPJqXbNfhbLZopCHcwIboKYw+KVig3XuH4CnYFCsAFK
-TPwSdRb/8Livpb5TdbZFHuTOR8bvNz9v7n5dPnuhzn4cIkoMxcxcDoGNGosi+9K72hTY3qezjWTc
-iC9MSGrwNylfIa8gV6xmcsdP3gDEqy2NYzLH/YCtgalQVpU3//Hi4IRsQS1CwGNwyDmwd+nUnjs2
-3ibhg/6GfeX3GybSXYssdJB9m1sMaqXwwgbVL2YvuDpaOT6T7rdp3LKmVbIzTuqLzBnsi3Er6rfO
-on1YvyJ8j14CzuspsqdUc2A+F3hpvsGUKWj4ewf9rwal5DMZ7ZPIxOs4lZGGyT+9WrlgbM5gpxDC
-HtIos6eRKw1zZDu3ytAbcZWPBPKkiXWxCadTiK5he6ymBavkE47zTCt1LwUTMBSIEjbPXqpX0KZh
-ywsFndCzniTuHE7YczRIfp5oso3fFd3XYCWRq2/gbaIOzJ5qpebwoa3htXNJA9XkUXowFsd8wJP0
-QCBvqTq5GsZnbsq6fVqlNgujCAhUL878EnsNCGDWR8XDL1tfeUgyD/ajKQTf5gLBy/p7/1qXmNRT
-bFEIBh5yiZVJnF1sgpBOvE7SJ9y9yT+AbuBZCh/yQ8OoXveLkHv1TGWG9RWy2sdvpP9bpNoWmgQU
-fOGk8gU8SJTIJK49HbaT5JbO0QIGGrOgSIWzm73zgeSrUhb+creNA7VYlasWdWyqwOS4Bln68xqT
-CubREV2Avl9Syl8pwoO/gpNTths1U844GDX+lKsyYb9RQj3XmXbPD2y95/Lf9UYLTYeoaod8xmDu
-BI72VKPXuu+3hlIpauYV4ZVfnrEgUXLMp13C9IC4bzNHIg5flhnPAb0mQAlmIFU9no+QD7Zpib+m
-VhM1kvjf2nKX8LLw0/An/KHSXC2JbFKA0waoV2dMj+bkKvzsU5udnVtxv7rb/kBEXeNo4mSIgYbt
-sAVSTG1Jq/A+vhW5Ys/1rIo30g/1FyrbPvir5qQ7UkqqYeUki6jtOzhp3ePkIFwFNOHmFkozcd4t
-X1a/D6VE8KV8NhhY0iHOE6xnzaPKN2AiE4ed/nhAqm7E8hYI4b2r1+oJ6/nW+Y4wn+dC2vv9P+EV
-5t9imVKJE6ZfqHJz2KA76pnxW55viIGoQEdotfGIO4ELxZCzWNqpiba6qmIrTJvFD/Ym/F4vfPJf
-GiiP3ioW6Kglr9kmjFrtIeuQBCacdvjhgUIYt0ZXd6Pq2R99Z8r1F/eq3RXKAPrdRES8Cpi+c1ER
-9595FJ1QKSH8m4GdWnP+yJauTMuWlzRNIkCE6Cbi+amcsStnNmxrXFhWWM6fKcQ2VIg2ZWS6RJVR
-/RWboP8Ii+rDyZIXO1Ui9t6Rl3Jiv41qNsB0EZd3klge2pASYfcTuiH4Ii42naNp5MhuYy6RCeUq
-r3+JHSoo6A2s3OvvA0Fno/p5enAKl2X5+oulkOFAGcrb9Qlp5Mtdd8xEK95rk5uGC2kVBak94pCs
-KkqkU76mSu1byNO0bUFAH4lfUiPGhhyyPuDoiu/Pdf/h6MP7Evtn2zdQHBXFnvIKm86kG1HTHTo/
-ShA/hIGe35wKrrDc24kWxEGkFEOv4ZWVI/rlzf1uCMB9T+t1kqDfjloWmCeMAGFtdbRmtH3gQN0u
-KLPhsX4LiqJ+bBcYVp89Kxj+6iAV0dkMbMHxHGEg9nO1y6Y7225812aq4p5hFgdUMvflrHYnlanS
-WA9RPUo6EVpeCG2t/P97e2c/Z+YCZ39sluuEAeJ9s96HOpw/lN8ApqOZHFH1LZX054tzm74aRgmE
-jShyoL3b3uS8ZzGALRQuSTvwxK3Yw3VzDKUp5t9JadaDhkWKtiUWhQ7F+DPu/gGouQ6fqzuN8sRb
-VabydSbnIwWQ58ADYDlUr0slUVjT3ky53zJOxHQEnabn1YFFpZ/XxZ0Zu9ytFPismB7FOqeeo+Aq
-7D1PPRijhqMWZGqkG0C6dTD0CpLANvz6b3IyS0ewzht6qTSxz16RJNBvcTiWOYikulGmkOe3AgMD
-Z/d3xGlFZti0nB/UFWdNCIHnopFJwQ5H7Ms/JqR3PF8cLpxsuYMqHR7tGyiXVB1AMu9PqQganksB
-YsX//88NYtG1OuockIr0mL1hF6p7gDO7T1Ry5miYw7mStVW3Az2VS/b9A5UilvabSGTSY0tZaRCU
-xoJ0nbsw2R8ZvgyXqEY43kftl90itZ9xuZYANYc5rOf3sk6SCZWvIqcsn8tuIkOz4frSe1XFpECt
-DUWl8LLa222hB06WwD6QPMx0cMsUWSdNGn2xx0WxM8ACiR5sExwSis7KXNuy6g8UGYYv7BUWsUgh
-BSthAcKQQrASaYxjjB335zRpFgZEELSooIVv7mqNhnLF/7PT7M3gtq8mqgEH3bnEfhkTi3il5sg6
-z4k1/Dl/NiwfrlN4jCn3LIAEISeSRh0voeOt1ydTn33/qJYNY+mKQdcWRhdwNYkivPG8BxanTSrt
-uzmuLZP1GAz1Njq6ERzep4HprCdDFH2Ay81SjT32zxB8LS/bt0lM0QgZZ39RZjUl7HWNh2nW9aJj
-T5FxFn+qNIfQ4B6jL+ImFHFfpPM60QgTdjqQ1IJfiwHvHgDEL+PXc3hkTvgUjQrA3HUo/7wS0qPf
-rdVqXl2Ylw5PoHlFtoTP6xNDDz4Ynkp5WMGlTEn8s10AAAk+QZokbEFv/talUACglvQAAlq+BWae
-SR7or+Z2PTk2/lULAA9FKBtnKRCIFHe38rUpQiRln+0S8F7Io/wVYLyq27mFwZo2sh+lNkXjvhPg
-WfhItvUaDkcGyuaESD+9Wg/TmhytAx/4mg20X58Vf5nWMqa+mflGWXWOeMUDIe6U8tbfmzQTwi6p
-bJw88xa5L1SoAYByC7ILF8bADyT28tSWTMpGHWuBVHpwQVes0PrgHRyy3owpMdx3VBe5dO0YVYyz
-lp4D7g4RGEwOSIt4s5IcfhTCMNH01KjNNDzMtjMB2qjVcLAEglXGHITuDFmAZK4JYrke05Br1dSx
-pzUHi57o/SVFuyyDO69s6EroAlNHNUADmYwgOKbMl+3oLVCERC71db4gqcDOcXAnLAQ0KA5E7pOy
-eext/iVHPPAq23aojpyJ/27JYRtIyTR6W8OUTGWVb8edc15GUgH6eSA66itV4vKheuhSW0TlB5t8
-ihEPNWqvpjC7w89D09Ibsvx3rAF6MYz6ZjIrZvjwW4GZGlT1yZzvdMyVVFOCY/QpjVpGDjhbngyn
-+0EQ13O7Y60RrW6SzGmx1VpcSZdLRF3gvW6XvijMqg01nNKwS197Tu1a1ShRhPsYfhIIy1Wk+/8H
-4o+JKloET3WvjXiMoSZbyhCdp7v/Mvkhh8mfzm50DK3ACZtPgOtl3xUe+LrZuImkY0ThOj+BXj1w
-Kx6Lpsw+rLPBZKWgyqnZEMYld1pAnIiK8V2s3vEOcC+vwE9iV/zhOoLuIVSHz1qZZ7lhfIsTKP/8
-kKS0gDf3lAjGj2tu+TMJ1QK58VGKOW4o6HGrNK+f3qhpJ5FyLQAvdh/J50lsgmHTkrHOMqmSpipf
-K+Dxm7TjDzZJaEpA5N2AjkGR72bUW9bHh8EUgbmK6tWyKt0vfnbgOWtsvAWsQHpcgbILIWm0QoTG
-gpbLo5ybm9sY0viaj6VjKzwRtLSRM3BZ/qZn0+W327oijcScFx13GKRDsGR4RuUyx0j9NAa9WveC
-uat8WyHxFrI8XetfRPBUrgJ/mHNhpNyZfnzzJRXbrsVPyYOif0aED8iOb5aKQbkR0/RLQ117relY
-23d9kgC7K5TcWijalzRoBycqoukyL/is1qLTRR5sFdPmtXJ6CINevVpVVeYyw5W6TNA5IYoWOkQC
-l9UzfwpEpalvH1fX3o82kn19N60DEJ/wVphq66/0OgRk0kOchbo3KIYGyS8yRJo/AE/0Kfk/d48e
-3jWtkaBrCPRzy+PPrQQ8jmrpO8lTv0gTyEX0lWd6HUfQGKFGDhMxvC3Uw0aTqaIpRaRk+tkDArym
-ZaLc32bGfl09d18ZcQucWlSq56obHVjbqVGkKm90EIleTQFvPEqL9tygQrK1uT1QzX1CWsZ/Fmhf
-/N8H6t1Dc41Y61FQp/94ghs4zq/JulM8KpHtVTie6Py1AC3WxLcCgytDJFhtC8YFnGMqFiChWfd5
-F2VjNs2MlvBPMxUS5e5Qv3H64ul1uq3e7BwqfeBYxuQU9Xtk9Pk8bL2nHgFQq+rRAaAZb6QnFmHZ
-lX6Y4uAibVcYIadvViWYL5n9cJJvs9p+9SsIf5YgJ/vYOZ/RNDCxm39uv6VEHqjCkFM3NlBWMiHo
-Nrfn2qgM0WSROPsjexRaBRcYKn/n6YE2YJxRjkN3upGj24PgzFneXw/GOCcGdhlO0J4WUpgLrLj1
-OGNZQTjU7K6yBAZnY01ayklWbdNB/anfg+qrpGqKR1Q+hpZgXbCQGDDSumNKyTseJMWIPG3cXJu8
-oQYXvgO+QuYkGhaWFEdlNCeKgeeCiuWxyhCFPmxdQUPCQzso7C23KQm8Ix2Y4JJiKmJ0by/33gAq
-1IUmwx1QWWCs+7ZeP1Tkb3f9firwCbfH6sO7jNKMDTSH19zRA7PaKV2lsXngOh6iBt/RPhCerTid
-pif6IG/Zd8IMZTJsAlbcnzvRddQ1hLsqO4E2mqsBMMSA+kS3oJVrB5j3cFtLwHkipb9b8jfosn1u
-i0S9a6+PnzE/73neAfllNr51x62GEjfEKrL6bAH2HuJN+93ZT16pepFGAQtfGNkUKYW8cNB45ken
-/0V2/A5y1GpGCsKvzg3o1AzrY9UwdCslUZK4QeHqnI3Yzvph6kfDZEK7OJJY8bpdooh/uheneWHu
-q9oLb+4KlXgcn/rCQu52jd347OJyqtVczbneoOQE52Je6BEmrBAdo0Yd29NNlM4eyUb2EIkDGjyP
-wIuWjVwC35kjATaNERKIlQXFmafwpDCwto7/rXSEoG2QVtOrSWSWvz/IhEGNUPkJtBIXldZBcwUJ
-nWnqP/hmpdsHcklbM/VN4zGA4h+LZ+T4rveBsgPcrge13h4dJ9ZnGp44fvu9mDySRFgHXiL3ep5Q
-cVzg2Xeu9+FoKge+IJg9fsfp2J4Cq8liiUXX8sO+aLpJgH+aWuh9WkuvtJhEcRwzwoBrvcJbYQ3R
-PSJ7bDLTr04f+b4Jgb85NF25x71kYH1Tls01P0oq8nkE1IGdoE90BM7QA/FY2uHk2OImXxVjYFpi
-ahXMAKmXuaC4G68nxMUf6Zd3SgaMsasXik+Zd52Pe6cRaXCL2XHG29KdagLP9B8FfzsukSDBvUTY
-OOJifLq63aHNUN5ngtnGxXIsmZNEDo7Ni6p0FkeR1BDKc7X5VcVLNbJ9tdRgpkzmNnHVMghJolHf
-rgoUeH09tBxbcaYHufA2Hnxdc6ibGjJi9JmsgEdXjpnUvnLMVWWjrU1O0ivdp15gdhnICdFW8/oR
-5vdPYk6jisVJHx1NLLmawH4eOFJGfl1b58tZhQM+NqC1zzOPxjszN2E/U5ZeXdmvbZ0mwC+XBrxa
-VPGJn5jClCQCkzJ5YMTrpvzuTkaeNyRlanmW1aTAys03FV8FLaZEEFeS+vUE0sPjK6dlvZHRFrvO
-2yXQi/pmlnON51lAJ8CWESmOoZc8pKmeZdNWDmCi6mvwndahiBfmu5XGnWG4MuATjQMU4fZ7xt8x
-VAkuuOUGxPDglNG8FiRCqvLYvKK1vT3LN1VqtFdaqyUdKMQHRLyJCNRXcpYgEIAR/5NIRlp6XffU
-Z99uArLfNxK5wL/b7ca73wIU1D/Pe4Ak8bY4SYlFqI05cYIz9hvytQjm4gGIYQA69tOAvDWLDjYR
-Mm1VvvuGGVAAAADkQZ5CeIKfAADcZCNm7cB6DNRgAAIUXy8/lbJ09Tk7v8xjfTl1k+lcYrTPxyBZ
-27czdW/wzsmZ9w9wrpOrQCFfDCwV1ga1xuOFuRiW09+M3z4PX9TG0nfiRc7/iOKgUn39WTmvWHw4
-wMXXxAsjuGFimnto0ySnNi/rqIQpJZhHER4aiDYqy5o6pXS/OnGBE0YIxVVZ3BYn81VisnBmXIIz
-/io43Iz058VfpI4u5Q0aAoOaWpjNE3Qz7pZDXNNs8+KcodsfTjxxnsEXUoN2j19WcZuIWOFrfX+r
-fR3vP4kCJnfH2Im5AAAAsgGeYXRBLwAB7/XIZ2TAB/ITidq9UlSL6aciGXFlqbl/3QlafwUipDHi
-fGiiRz3lS2StlQ8tStrljAQ1Pa3FCXwVJSDOV0eyTzwkIetXiMsqzRHaRlVfdvf1N+P1isGztIoG
-V2hvL87PwTitWmjdH9MNpMYNW3svPO/S+SsWIA4OaS4ZmQcKRFLU32N5aSTbLmdiN5Y1/DBsAEUH
-RiZCwT5X3WAm9wUbWfjvgvzjB8kQAScAAACwAZ5jakEvAAHq+52+m2YWCF3THAB+g3/nC7pUObUR
-1OGsrDRM9LzFHJkhteP6miDN6HVJikb6c8OBMCDLfv9p3wURgUvz830Rn2I8fuaTlxAypDhqzgXb
-qUnYk/BDdFNU3ubOx1EE536TjZkwA891jkXTtY0ZT6YA/4EfSkbryYnDeU3JaLIuHbGEaO4HuC6F
-47tMU4IEEq3DSDKEUaYp/uf3lOz+5IzqekN1TrrHARcAAAM3QZpoSahBaJlMCCn//taMsAEBZIbJ
-B9ABtW9tc9WyQlwsbX767Atox3j66bNfRDL32zQDj9gG2EnzEr/OY5HpzTIybod6ZXhbC7IXzz3d
-Nbgqp/3yc2wcU3JGEtT4PLCS0jxAbXBgMNU5aE0Cc8qAACjTVLkrScq+jXocgu8AXOHAZirV2yZk
-QaQCgZRyw50irUMoweAPTqIE4tXP72Ur3mJp+j7/Gy6Jo5ruqJSBONfNdWQ02mSM+eVgV8PN9AkY
-fFoLeX+kd6AR+9J205BLfVO/HFUchMLlYp7wQdyaCPekIVzXxKCwYAUF4cuzm+y9c8hOZ6V2Eupo
-XQ5O/rc+5dGvMkH8jADSXt+EsjTn+GrD59DY94rB7oSiwFQuZ/dmIjg5qxBpizyf7p7jyiEg7NJW
-F75VyCoeOgHCcdV+Tsk48QBElfTHV6JAmrzfsYJqQQkoXsilRIM/3WhNCWSYDgHc2GuzVUVbHs1M
-ddq+eT9x0EsEW8O1bSXuDshEGUs/hWP6t/qAjZyolb7l8uZqBNkJx+/aCDi7ttFDoiB+IQxBRf8Q
-LNfEmCyavqem55IkdkDZhgUOjXO8KSDl7ojmeKVyDfYGT//tX2jlAnMG1M9ePSFRNLyb2gofHzaa
-30+3772zUxMLbdJodicRTo4xJAkri7W206cvyZhYh8HiT3qnoFXzcyNugf3aTImK+d0xeQmlx5yj
-J0eoQjlf2o54qVF+2D7Xyf8HeMKeCn7O5SCCZOCzwcmpzk/TPRzgkrZr3XGKIe4sWK0WIweAS2+x
-8GPmV+zOPLa1TaJpjIRca+lxbYyvzQ1BhYPg+S7CSal7vByF6glC3vLMIrV5ZQcaYouC05nK6TGa
-R3j4w0NNaI2XTMGSBtfrFFwkcZXZknUPxJgm62tWyTIVoUGoE4wGNffWX8kAjH8tBKMUtMF3azfT
-JvOkipcpathQyEeAt2AJTirF21kG/Pc+z3LCqJxNKn9y4LWqDnuvCnNzrkUrvwRtQP+xNnRCOqn9
-r8zAJTpianIieStZ6LswEBrhnE/IA+CXyLUK0HLdaPY+zva5VRxbLD8lRORkIAFwi94lMLPDhr3S
-4/5kbQAAAMxBnoZFESwU/wAAs1u6ZIQhGAeJDcADZjbmm4k1hOjM+EiCsfMwlkNgK2RMqfUaM0WB
-HdnP6uhBmi7Xw9d1ZFa9rreBC/xwYy3x9/QrFNvemvmjDeCv4ADtQviwJwwmZv54pAuRNKUwQBhs
-iTbIqckQCeXy+EHRorOtbQhOgTwXbyQwSD205e2y7+Bj0VkMu2MvwR4nacLAYzTIizll/dOQyYx+
-I85b0bfa4VSNi5ZgPiutzNWPExhRZmIPOnfbi9Z2ro6+mY5YIAkIBN0AAADQAZ6ldEEvAAHrCK7/
-RNMlFOyACd1GiTCxTtvJRD81aTrOuZcpQ5GcQZp0mFMaqHw0cmnYOqFfgcBH8ULg2tcc+4og5Tny
-zIqtyl0ErfeVNOZX66VEGrMlS+hmLqF26lJD1gGXVyPM5zEUSBRGofYsSjO7UAkDlOlC6jir/H6N
-8N8pZOFk/nOoAc0PLx18nGkNFV5UHOMhx2di6FOQ7+lqYrVZYhH2g8iJaaKBgZwnmkHm8VJiujve
-ZO1+gSTkh8Ieg/4rqCZhFNl22tasRwAQcQAAAK4BnqdqQS8AAesIJtSgoh7x9+z9UgAndSS/AMHf
-oVOQLSbHi5X8LoJ+AUpG/HkEyoup3KhlDUzTfX6qb08xWeEb1uNI4iT1T/c6WVh+JOsWPrPM5/mB
-iE+ViMPqtH4Iuqc5r4BbG5BqjAoIAKNi7E9FffHPPoqL8MLaU8f2h98vm1g1HckD6zXgYzbfvlrK
-0EzNLGAcnwYHrP7psjQbiKXAP2VcdgJoyS9Wp38ANSAAAAHQQZqqSahBbJlMFEwS//61KoAGUzod
-wVP7xlLDznM+i5cx+jBY2gVybF32u4iI7wPApQnO/d8AEtbw1w0sFCnuSWV4JL6xZplY8ngvTmjn
-gvlW3mhdL1SmKo/DofjqYd9pRhVc0U9sTv70ef3AZej4VQ96fC9E/Sb5BRDUVlGJrctvBNU/r5sY
-34wmsUZF0xjWwLuvbisiRj6n73YQwW0J4sFIt/TszSMjyEIneUoo7vsdUWdJ+vXoWKWWu7/vBozx
-TjEy+csdLJ9Lpfh4sDtAlsh8jd+L1zRirxcsJE2vfewSpBgKHD9xgYsR+92pOkjFuFPrhX8s85T9
-Fmv644GUPg0IKMJV/f24Gzs5WfrkaV8xoIUuDW+Nf4EtmlbpZvlZ3Sbc/rHaHiCwOHQi7HJawmhv
-xfEAx7inG+McaZycQpqNQ7nhX50W06n4YJljSQexmEeEafE1wxnJbmyGm4ONAf/4mbyOfcJSFeFV
-uExGaSv0QpQsvNgsrtTBXCBoWjG+ZBGMli8q4AtO4JeXAMfSyrBvzHICZ4/cj5f94RVS+Or6l2PT
-UwF+BFWhfm2yivK4wGfrLzVxbN6oEAowDqzNqPYLHZUdjmtP1uwYC/tADjgAAADNAZ7JakEvAAMi
-5lAPorYU6Y3gXg0YAAOa/GMigVRDJax6zIoANqv3wvcMcACJB5RlUe3chG/LO46bP/popA+hCrmV
-YKAKln5HzehPlwvixTb2s/j2MNTAI921TVTNCXblRpsLBSsjp85zx/MqXOdX1qQMcoPD8UQyNcgL
-S21GvlG3HZOqU8gUWgonPxQSGEIduZnLcv0ZAilrywT36UN5QhBCrTJewmmamIj1SAAXT5emI8Rc
-TWaDhCOEDXUFlzIUnp7sYZ3FMif2/TgA/wAAA7htb292AAAAbG12aGQAAAAAAAAAAAAAAAAAAAPo
-AAAVfAABAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAC4nRyYWsAAABcdGtoZAAAAAMAAAAAAAAAAAAA
-AAEAAAAAAAAVfAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA
-AEAAAAADIAAAAfQAAAAAACRlZHRzAAAAHGVsc3QAAAAAAAAAAQAAFXwAAEAAAAEAAAAAAlptZGlh
-AAAAIG1kaGQAAAAAAAAAAAAAAAAAAEAAAAFgAFXEAAAAAAAtaGRscgAAAAAAAAAAdmlkZQAAAAAA
-AAAAAAAAAFZpZGVvSGFuZGxlcgAAAAIFbWluZgAAABR2bWhkAAAAAQAAAAAAAAAAAAAAJGRpbmYA
-AAAcZHJlZgAAAAAAAAABAAAADHVybCAAAAABAAABxXN0YmwAAAC5c3RzZAAAAAAAAAABAAAAqWF2
-YzEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAADIAH0AEgAAABIAAAAAAAAAAEAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAY//8AAAA3YXZjQwFkABb/4QAaZ2QAFqzZQMgQfnhAAAADAEAA
-AAMBA8WLZYABAAZo6+PLIsD9+PgAAAAAHHV1aWRraEDyXyRPxbo5pRvPAyPzAAAAAAAAABhzdHRz
-AAAAAAAAAAEAAAALAAAgAAAAABRzdHNzAAAAAAAAAAEAAAABAAAAaGN0dHMAAAAAAAAACwAAAAEA
-AEAAAAAAAQAAoAAAAAABAABAAAAAAAEAAAAAAAAAAQAAIAAAAAABAACgAAAAAAEAAEAAAAAAAQAA
-AAAAAAABAAAgAAAAAAEAAGAAAAAAAQAAIAAAAAAcc3RzYwAAAAAAAAABAAAAAQAAAAsAAAABAAAA
-QHN0c3oAAAAAAAAAAAAAAAsAADK0AAAJQgAAAOgAAAC2AAAAtAAAAzsAAADQAAAA1AAAALIAAAHU
-AAAA0QAAABRzdGNvAAAAAAAAAAEAAAAwAAAAYnVkdGEAAABabWV0YQAAAAAAAAAhaGRscgAAAAAA
-AAAAbWRpcmFwcGwAAAAAAAAAAAAAAAAtaWxzdAAAACWpdG9vAAAAHWRhdGEAAAABAAAAAExhdmY1
-OC43Ni4xMDA=
-" type="video/mp4"/>
-  Your browser does not support the video tag.
-</video>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="Cons">Cons<a class="anchor-link" href="#Cons">¶</a></h5><p>The main drawback full-text search is that inverted indexes rely purely on <strong>lexical matching</strong>, meaning they retrieve documents that contain the same words as the query. This approach fails when users phrase questions differently or use synonyms, paraphrases, or related terms not explicitly present in the chunks. This includes inverted indexes struggle with <strong>semantic understanding</strong>. They treat text as a collection of words without capturing deeper relationships, meanings, or context. For example, a query like <em>"How to prevent heart disease?"</em> might not retrieve documents that discuss <em>"reducing cardiovascular risk"</em> unless those exact terms overlap. In RAG systems, where understanding nuanced meaning is often crucial, this lack of semantic comprehension can lead to less informative or incomplete responses from the language model.</p>
+<p>Full-text search also faces challenges with <strong>multilingual, unstructured, or domain-specific data</strong>. Since inverted indexes depend on exact word forms, they require extensive preprocessing (e.g., stemming, lemmatization, and stopword removal) to work effectively. However, these steps can be language-specific and difficult to generalize across diverse corpora. Similarly, in specialized fields like medicine or law, where terminology and synonyms are abundant, keyword-based retrieval often underperforms unless carefully tuned. Lastly, this also includes that inverted indexes do not directly support multiple modalities and are generally limited to text chunks.</p>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f5b15353-a04f-48ad-82b8-8a0950aa037d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c16ce2ff-32d2-44d6-92c9-c838a30e5cbe">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Vector-Search">Vector Search<a class="anchor-link" href="#Vector-Search">¶</a></h4><p>One of the limitations of traditional full-text search using inverted indexes is that it essentially relies on exact word matches. In many real-world queries, however, users may express their intent using different wording, synonyms, or paraphrases that may not appear literally in the source documents. Vector search addresses this problem by representing both queries and documents as <strong>dense numerical embeddings</strong> that capture their <strong>semantic meaning</strong> rather than their surface form. This allows the retrieval process to find conceptually similar text even when the exact words differ.</p>
+<p>The core idea of vector search is to use a <strong>pretrained embedding model</strong> — often derived from Transformers architectures such as BERT or Sentence Transformers — to map text (sentences, paragraphs, or chunks) into a shared high-dimensional space. These embedding models are trained so that semantically related pieces of text lie close to each other in the embedding space, while unrelated ones are far apart. When a user query arrives, it is converted into an embedding vector and compared with stored document embeddings using <strong>similarity metrics</strong> such as cosine similarity or dot product. The top-ranked vectors represent the most semantically relevant documents or chunks for the RAG system to feed into the language model.</p>
+<p>The figure below shows an example using our 8 example chunks. Each chunk is fed into a pretrained embedding model which maps each chunk to a vector representation. To ease presentation, we only map chunks to 5-dimensional embedding vectors. In practice, these embedding vectors typically have a size of several hundreds or several thousand entries.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8442dac5-9ce6-4cc4-a071-2534bb20523b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><img alt="Vector Index - Example" src="images/illustrations/rag/rag-vector-index-example.png" style="margin:auto;max-width:700px;width:100%"/></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6fe826d3-11e3-43ad-9547-924e804b992e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><br/></p>
+<p>The same pretrained embedding model is then also used to transform each user query to its corresponding embedding vector. We can then retrieve the most relevant chunks(s) based on the similarity between the query vector and chunk vectors. The more similar the vectors, the more relevant is a respective chunk to the user query. Finding the most similar vectors (nearest neighbors) among potentially millions or billions of stored embeddings is <strong>computationally expensive</strong>, both in time and memory. Thus, a lot of more advanced strategies are required to find the most similar vectors efficiently. However, a more detailed discussion of such strategies is beyond the scope of this notebook.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67eae418-f3f0-43dd-ae1b-c0d89a118979">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="Pros">Pros<a class="anchor-link" href="#Pros">¶</a></h5><p>Compared to full-text search, vector search has ability to capture <strong>semantic similarity</strong> rather than relying on exact keyword matches. By representing queries and documents as dense embeddings in a shared vector space, vector search can retrieve relevant information even when the wording differs. For example, a query like <em>"ways to lower blood pressure"</em> can retrieve documents about <em>"reducing hypertension"</em>, something traditional keyword search would likely miss. This makes vector search also more <strong>robust to natural language variation</strong>. Because embeddings encode contextual meaning, vector search performs well even with informal phrasing, spelling variations, or multilingual input. This allows RAG systems to support a wider range of user queries without requiring exact alignment between query and document vocabulary.</p>
+<p>Vector search also enhances <strong>retrieval quality and response coherence</strong>. Since retrieved chunks are semantically aligned with the query's intent, the language model receives more meaningful and contextually relevant context. This often leads to responses that are more accurate, grounded, and natural. Moreover, embedding-based retrieval can capture relationships across sentences or topics, helping RAG systems retrieve documents that match the overall idea rather than isolated words. This also includes can handle <strong>multiple modalities</strong> beyond text. Since embeddings can represent not only language but also <strong>images, audio, and video</strong>, RAG systems can retrieve and reason across different types of data in a unified vector space. This enables multimodal applications such as answering questions about images or combining textual and visual context—using the same underlying retrieval framework.</p>
+<p>While relatively new compared to full-text search, the popularity of vector search spurred the development of many <strong>vector databases</strong> (like <a href="https://github.com/facebookresearch/faiss">FAISS</a>, <a href="https://milvus.io/">Milvus</a>, or <a href="https://www.pinecone.io/">Pinecone</a>) that are optimized for scalable similarity search, enabling efficient retrieval even from millions of embedded chunks. This scalability makes it practical for large knowledge repositories. Finally, vector search is well-suited for <strong>continuous improvement and adaptation</strong>. Since embeddings can be fine-tuned for specific domains or tasks, the retrieval quality can improve over time without re-indexing text manually. This adaptability, combined with semantic robustness and scalability, makes vector search a cornerstone of modern RAG systems—particularly in scenarios where understanding meaning, not just matching words, is essential.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=534a65e6-02d4-410d-a11f-5234aa64d4d9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h5 id="Cons">Cons<a class="anchor-link" href="#Cons">¶</a></h5><p>One of the main challenges of vector search is its <strong>computational cost</strong>. Assuming you want or need to train your own embedding model, generating dense embeddings for large document collections requires substantial processing power and storage, especially when using high-dimensional vectors. Searching through millions of embeddings also demands specialized vector databases and approximate nearest neighbor (ANN) algorithms to maintain reasonable latency. This makes vector search more resource-intensive compared to traditional inverted indexes, both during indexing and retrieval. The alternative of training your own embedding model is to use a pretrained model. However, the vector search then depends heavily on the <strong>quality and domain relevance of the embedding model</strong>. Pretrained embeddings might not fully capture the nuances of specialized or technical language, leading to semantically imprecise retrievals.</p>
+<p>Another major limitation is the <strong>lack of transparency and interpretability</strong>. Unlike keyword-based search, where it is clear which terms matched, vector search relies on abstract embeddings that are difficult to interpret. When a retrieved document seems irrelevant, it can be challenging to understand <em>why</em> it was selected or how to adjust the retrieval behavior. This opacity complicates debugging, evaluation, and trust in RAG systems, especially in domains that require explainability, such as healthcare or law.</p>
+<p>From a systems perspective, <strong>scalability and maintenance</strong> pose additional challenges. Storing and updating large vector indexes can become expensive and complex, particularly when the knowledge base changes frequently. Vector indexes often require batch processing and re-embedding steps to remain consistent which can limit their flexibility in dynamic environments where data updates occur continuously. Finally, while vector search enables semantic retrieval, it sometimes suffers from <strong>semantic drift</strong> and may retrieve conceptually related but factually irrelevant content. Because embeddings prioritize meaning over exact wording, results can be topically similar yet miss critical factual details. For RAG systems that aim for factual grounding, this can lead to the generation of subtly incorrect or off-topic responses.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f07e4620-c396-4d5b-acf3-04fe5f540302">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Indexing-Strategies-%E2%80%94-Summary">Indexing Strategies — Summary<a class="anchor-link" href="#Indexing-Strategies-%E2%80%94-Summary">¶</a></h4><p>In Retrieval-Augmented Generation (RAG), the two main retrieval strategies are <strong>full-text search</strong> and <strong>vector search</strong>. Full-text search relies on inverted indexes to quickly find documents containing exact query terms, offering fast, interpretable, and resource-efficient retrieval. However, it struggles with synonyms, paraphrases, and semantic understanding. Vector search, on the other hand, uses dense embeddings to capture the meaning of queries and documents, enabling semantic retrieval, handling natural language variation, and even supporting multiple modalities. Its drawbacks include higher computational cost, lower interpretability, and reliance on embedding quality.</p>
+<p>The choice between these strategies depends on the application's requirements, such as latency constraints, domain specificity, and the importance of semantic versus exact matches. In practice, many RAG implementations adopt <strong>hybrid approaches</strong>, combining full-text and vector search to leverage the speed and precision of keyword matching with the semantic flexibility of embeddings. This allows systems to maximize relevance, coverage, and efficiency across a wide range of queries and document types.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0e6e1748-0e65-4cca-a8f2-0d4f4f44270e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7e593196-6443-4b14-9431-2538ae2b89d2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="RAG-based-Prompting">RAG-based Prompting<a class="anchor-link" href="#RAG-based-Prompting">¶</a></h2><p>With the knowledge repository with all chunks stored and indexed, we can now use it to enhance the generation of responses to user queries by augmenting the queries with the most relvant chunk or set of chunks. We already outlined the basic workflow in the overview section showing the overall architecture of a basic RAG pipeline. Let's look at all the involved steps a bit more closely.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e884a1da-b570-4a9a-9865-a3b265ac9655">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Retrieval">Retrieval<a class="anchor-link" href="#Retrieval">¶</a></h3><p>The retrieval step is the actual step that involves the knowledge repository; see the figure below. Each query is passed to the retriever which in turn uses this query to fetch the most relevant chunks, either using full-text search, vector search, or a hybrid approach, depending on the exact implementation of the knowledge base.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e1a3fd3-3b62-4d00-abcc-753373ac079a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><img alt="RAG - Retrieval Step" src="images/illustrations/rag/rag-basic-architecture-retrieval.png" style="margin:auto;max-width:600px;width:100%"/></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c02500b9-d89e-422b-a6bf-a94a663cf053">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><br/></p>
+<p>At the bare minimum, the knowledge repository returns the most relevant chunk — or no chunk at all if the query does not (sufficiently) match any chunk. However, In modern RAG systems, the retriever is often extended beyond simple similarity search to improve the relevance and usefulness of the retrieved chunks. A common extension is <strong>multi-stage retrieval</strong>, where the system first retrieves a broader set of top-(k) candidate chunks  and then applies a <strong>re-ranking step</strong> to refine the results. Re-ranking typically uses a pretrained model to score how well each chunk matches the query in context, providing more accurate and contextually aware results than vector similarity alone.</p>
+<p>Another popular enhancement is <strong>query expansion or reformulation</strong>, where the original user query is rewritten or enriched — often using a language model — to capture different phrasings or related concepts. This helps the retriever overcome embedding limitations and improves recall for complex or ambiguous questions. Some systems also use <strong>iterative retrieval</strong>, where the generator's intermediate reasoning or partial answer is fed back into the retriever to refine subsequent searches, creating a feedback loop between retrieval and generation. Many other minor and major refinements to this basic retrieval step are possible and are often customized to the application use case.</p>
+<p>All retrieved chunks (that also pass any potentially re-ranking or filtering steps) are considered the context, which is then used for the augmentation step.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=648f0520-b335-43d1-9a3c-e99db86bc910">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Augmentation">Augmentation<a class="anchor-link" href="#Augmentation">¶</a></h3><p>The augmentation step assembles the final prompt that gets submitted to the LLM. The prompt naturally includes the original query and the context, but may also include other instructions. A common example for such an instruction may tell the LLM to use only the provided context to generate the reponse (instead using any other information captured as part of the training). Another common instraction may specify the format (e.g., paragraphs, bullet points, Json/XML, etc.) or the style (e.g., formal vs. informal) of the response. The figure below shows the augmentation step. Any content between the context and the query illustrates any additional instructions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6b1bc2c3-16a2-417d-a7d9-20f15bb4ce55">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><img alt="RAG - Augmentation Step" src="images/illustrations/rag/rag-basic-architecture-augmentation.png" style="margin:auto;max-width:700px;width:100%"/></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3fc9face-bc82-4ae8-a28b-3767532b0727">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Note that in the figure above, the order of the prompt — context, optional instructions, query — is just an example. In practice, more structured templates may be used to combine all components into the final prompt. The snippet below shows a very simple example of such a template:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=941c56e3-a2d6-4471-95ae-371dde2c4bfb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<pre><code>You are a helpful assistant. Use the context below to answer the question truthfully.
+
+### Context:
+{chunk_1}
+{chunk_2}
+{chunk_3}
+
+### Question:
+{user_query}
+
+### Answer:
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35641de3-19df-49ad-88c7-7aa1c21a8ad4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><br/></p>
+<p>Using this template, <code>{chunk_1}</code>, <code>{chunk_2}</code>, <code>{chunk_1}</code>, and <code>{user_query}</code> get replaced the retrieved chunk (here 3) and the original query. The format of the template may depend on how the LLM was originally trained or fine-tuned but can otherwise be structured very differently. Overall, the only (hard) requirement is that the size of the prompt does not exceed the maximum context size of the LLM.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8fd4109e-ac36-4a7e-b01b-e8bb66bcfe08">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Generation">Generation<a class="anchor-link" href="#Generation">¶</a></h3><p>Now that we have the final prompt, all that is remaining is to pass this prompt to the LLM to generate the response; see figure below. In general, the quality of the response depends on both the accuracy of the model and the prompt. However, we typically can only affect the prompt. And since the quality of the prompt mainly depends on the quality of the retrieved content, it becomes obvious how important the creation of the knowledge base as well as the retrieval step of the RAG pipeline are.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fa771274-75fe-425a-90dd-f39e6d1f036b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><img alt="RAG - Generation Step" src="images/illustrations/rag/rag-basic-architecture-generation.png" style="margin:auto;max-width:700px;width:100%"/></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dad17588-e15d-4184-95af-ec8c02c83823">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><br/></p>
+<p>Using this basic setup, the response generated by the LLM is returned to the user. However, not all RAG systems return the (initial) response directly to the user. In many advanced pipelines, the model's output serves as an <strong>intermediate step</strong> in a larger reasoning or validation process. For instance, verification-oriented RAG systems use a secondary model or process to <strong>check the factual accuracy and consistency</strong> of the initial answer against the retrieved evidence before presenting it to the user. This helps reduce hallucinations and improves trustworthiness in sensitive domains like law, medicine, or enterprise knowledge systems.</p>
+<p>Other RAG architectures adopt an <strong>agentic or multi-step reasoning approach</strong>, where the first response triggers further retrievals, computations, or follow-up questions<strong>. The final answer is only produced after several iterations of reasoning and evidence gathering. This enables more complex, multi-hop reasoning and deeper contextual understanding. Some RAG pipelines use the LLM's outputs for **non-user-facing purposes</strong>, such as content moderation, compliance checks, or knowledge base enrichment. In these setups, the generated responses are filtered, validated, or transformed before becoming visible — or are used to improve the repository itself. In all such cases, the goal is to move beyond immediate generation toward more accurate, interpretable, and reliable knowledge workflows. But such advanced strategies are beyond our scope here.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dcb0fca1-40fb-4e9a-afbd-ff30260cc42c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a9b4a436-978c-49af-b140-ae4679056136">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">¶</a></h2><p>RAG can be powerful to integrate new knowledge into a pretrained LLM. However, this does not make RAG perfect, and does come with its own set of limitations and challenges. Some of those can be addressed through more advanced RAG pipelines. Also, RAG is not the only strategy to extend the knowledge of a pretrained model. A common alternative is fine-tuning. Let's briefly discuss all the considerations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b5c5962d-8666-4ec1-b57f-7c5153258294">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Limitations-&amp;-Challenges">Limitations &amp; Challenges<a class="anchor-link" href="#Limitations-&amp;-Challenges">¶</a></h3><p>Despite its flexibility and power, RAG also comes with several core limitations that affect its performance, scalability, and reliability. These challenges mainly arise from its dependence on retrieval quality, context management, and integration between retrieval and generation:</p>
+<ul>
+<li><p><strong>Importance of retrieval step:</strong> If the retriever fails to find relevant or accurate documents, the generation step will produce poor or incorrect answers, even if the LLM itself is strong. This issue often stems from limitations in indexing, chunking, or query formulation (for example, when relevant information is phrased differently than the user query or split across multiple chunks). In such cases, RAG may retrieve irrelevant or incomplete context, leading to hallucinations or misleading answers.</p>
+</li>
+<li><p><strong>Context and scalability constraints:</strong> The model can only process a limited number of retrieved passages due to the LLM's context window size. This means potentially relevant information may be excluded or truncated, especially in large knowledge bases. Managing which chunks to include, in what order, and how to combine them effectively is a key design challenge. This challenge becomes harder as document collections grow.</p>
+</li>
+<li><p><strong>Shallow knowledge integration:</strong> Unlike fine-tuning, where knowledge is embedded directly into model weights, RAG merely "borrows" information at inference time. This can lead to inconsistencies across responses, as the model does not permanently internalize the new knowledge. Additionally, retrieved text may conflict or overlap, requiring the model to reason over noisy or redundant information — something LLMs are not always robust at handling.</p>
+</li>
+</ul>
+<p>Some of these limitations spurred the development of more advanced RAG solutions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9d7be731-76aa-4d08-a79c-26428a231b20">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Advanced-RAG-Pipelines">Advanced RAG Pipelines<a class="anchor-link" href="#Advanced-RAG-Pipelines">¶</a></h3><p>In this notebook, we introduced RAG by focusing on the most basic setup of a single sequence of retrieve, augment, and generate. However, the strengths and popularity of RAG have resulted in the exploration and development of more advanced RAG pipelines. The list below outlines some of the more common approaches.</p>
+<ul>
+<li><p><strong>Multi-Stage or hierarchical retrieval:</strong> Instead of a single retrieval step, multiple successive steps allow to progressively refine the set of candidate documents or chunks. The first stage typically performs a broad, recall-oriented search (e.g., using a fast keyword-based full-text search) to collect a large set of potentially relevant results. The next stage then applies a more precise, semantic filtering step, often using a vector search, to narrow down this initial pool to the most relevant passages. This is especially useful when working with large or heterogeneous knowledge repositories, where a single retrieval method might either miss key documents or return too many irrelevant ones.</p>
+</li>
+<li><p><strong>Query expansion and reformulation:</strong> Instead of relying on the raw query, the system generates alternative or extended versions that capture synonyms, related concepts, or sub-questions. For example, a query like <em>"Who started OpenAI?"</em> could be expanded to include terms like <em>"OpenAI founders"</em> <em>"OpenAI creation"</em> or <em>"founding members of OpenAI"</em>. This can be done using linguistic methods (e.g., synonym dictionaries), statistical methods (e.g., co-occurrence analysis), or LLM-based reformulation (where the model itself generates better retrieval queries). The main goal is to increase recall, ensuring that relevant information is not missed due to wording differences between the query and the stored documents. Reformulated queries can also make retrieval more context-aware, especially when dealing with ambiguous, under-specified, or multi-faceted questions.</p>
+</li>
+<li><p><strong>Iterative or feedback-driven RAG:</strong> After the model retrieves first information and generates a partial answer, it evaluates its own confidence or identifies missing pieces of information, then issues new or refined queries to retrieve additional evidence. This iterative loop continues until the model has gathered enough context to form a complete and accurate answer. This setup enables multi-hop reasoning, where the model connects facts spread across different documents or knowledge sources — something basic RAG cannot easily achieve. It also improves factuality and coverage since the model can refine its understanding as it goes. Iterative RAG is particularly useful for complex or compositional questions that require combining multiple facts, reasoning through dependencies, or verifying uncertain information before producing a final response.</p>
+</li>
+<li><p><strong>Modular or Agentic RAG:</strong> This approach extends the basic RAG pipeline by breaking it into multiple specialized components or "agents", each responsible for a specific subtask such as retrieval, summarization, reasoning, verification, or synthesis. Instead of a single end-to-end model handling everything, these modules interact in a coordinated workflow, often guided by a controller or orchestrator model. For example, one agent may retrieve documents, another may extract key facts, a third may reason over them, and a final agent may generate a coherent, evidence-grounded answer. This modular structure makes RAG systems more flexible, interpretable, and robust, especially for complex or domain-specific applications like legal, biomedical, or technical QA. Each agent can be optimized or fine-tuned separately, and the system can dynamically decide which modules to activate based on the task.</p>
+</li>
+</ul>
+<p>Of course, the main drawbacks of advanced RAG pipelines lie in their <strong>complexity, cost, and manageability</strong>. Multi-stage retrieval, query reformulation, or agentic reasoning require multiple model calls, retrievers, and coordination steps, which significantly increase computational overhead and latency compared to a simple one-shot RAG. These pipelines also introduce more hyperparameters (e.g., thresholds, query reformulation depth, number of retrieval rounds) that must be tuned carefully to maintain performance and avoid unnecessary retrieval or reasoning loops.</p>
+<p>Additionally, advanced RAG systems are <strong>harder to design, debug, and evaluate</strong> because of their modular and dynamic nature. Errors can propagate across components — for instance, a poor query reformulation can mislead all subsequent retrieval steps. Maintaining consistency and factual reliability across multiple reasoning or verification stages can also be challenging. As a result, while these advanced architectures offer higher accuracy and reasoning power, they come with trade-offs in engineering complexity, interpretability, and scalability.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=786be585-272a-475a-a8fd-5cf001e849e5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="RAG-vs-Fine-Tuning">RAG vs Fine-Tuning<a class="anchor-link" href="#RAG-vs-Fine-Tuning">¶</a></h3><p>RAG is not the only approach to tackle the central limitation of large language models (LLMs): their static and incomplete knowledge. An alternative method is fine-tuning, which works by adapting the model's parameters through additional training on curated datasets that reflect the desired knowledge or behavior. This allows the model to internalize new facts, terminology, and reasoning patterns, effectively updating its "understanding" of a domain. As a result, fine-tuned models perform better on tasks within that domain and make fewer errors due to outdated or irrelevant pretraining data.</p>
+<p>However, particularly when it comes to instilling new knowledge, RAG offers several clear advantages over fine-tuning. The main benefits stem from RAG's flexibility, efficiency, and interpretability compared to the static and resource-intensive nature of fine-tuning; more specifically</p>
+<ul>
+<li><p><strong>Flexibility and easy updates:</strong> Instead of retraining the model every time new information becomes available, RAG simply retrieves relevant knowledge from an external repository at inference time. This means that the model can instantly access the latest data — for example, recent research papers or company policies — without any modification to its parameters. In contrast, fine-tuning requires collecting and cleaning new datasets, retraining the model, and validating performance, which is costly and time-consuming.</p>
+</li>
+<li><p><strong>Efficiency and cost-effectiveness:</strong> Fine-tuning large models demands substantial computational resources and expertise, often making it impractical for frequent updates or domain-specific deployments. RAG avoids this overhead because it keeps the model frozen and only manipulates its input context. This also makes it easier to maintain multiple specialized applications using a single base model with different retrieval databases, rather than maintaining many separately fine-tuned versions.</p>
+</li>
+<li><p><strong>Transparency and control:</strong> Because the retrieved documents are part of the model's visible context, you can inspect what information the model relied on to generate its answer. This traceability supports debugging, trust, and interpretability — features largely absent from fine-tuned models, where knowledge is "baked" into the weights and cannot be easily traced or corrected if wrong.</p>
+</li>
+</ul>
+<p>Particularly when the goal is to incorporate new knowledge, fine-tuning also poses unique challenges. Apart from the higher computational cost and complexity (compared to RAG), key difficulty lies in <strong>catastrophic forgetting and knowledge integration</strong>. When a model is fine-tuned on new data, it may unintentionally overwrite or distort previously learned knowledge, leading to inconsistencies or reduced performance on general tasks. Moreover, because new facts are absorbed into the model's weights, it becomes difficult to precisely control or verify what the model has "learned". Unlike RAG, fine-tuning provides little transparency about the source or correctness of the information embedded in the model.Fine-tuned knowledge is <strong>static and hard to update or correct</strong>. Once a model has been fine-tuned, removing outdated or incorrect information requires another round of retraining. This makes it unsuitable for applications that demand rapidly changing or verifiable knowledge. As a result, while fine-tuning can deeply align a model with a specific domain, it remains an inflexible and resource-heavy approach for keeping a model's factual knowledge current.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=060dd625-4f52-453c-9a82-8aa30ebfc733">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1eddcbce-4d31-4e23-80b6-6893605421e9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><p>Retrieval-Augmented Generation (RAG) is a powerful framework that enhances large language models (LLMs) by grounding their responses in external knowledge sources. Unlike traditional LLMs that rely solely on their internal training data, RAG dynamically retrieves relevant information from an external knowledge repository, such as documents, databases, or web pages, before generating a response. This approach allows RAG systems to provide up-to-date, factual, and domain-specific answers even when the LLM's internal knowledge is outdated or limited by its training cutoff. As a result, RAG has become one of the most popular and effective methods for extending an LLM’s capabilities without retraining it.</p>
+<p>The success of a RAG system depends critically on the <strong>quality of the knowledge repository</strong>. A well-curated, comprehensive, and up-to-date collection of documents ensures that relevant and accurate information is available for retrieval. If the repository contains errors, outdated facts, or lacks coverage in key areas, the LLM's generated answers will likely reflect these weaknesses. Hence, maintaining and improving the knowledge base is a central part of any robust RAG pipeline.</p>
+<p>Equally important is the <em>retrieval step</em>, which determines which pieces of information (known as "chunks") are selected from the repository and provided to the LLM. The retrieval quality directly affects the usefulness of the generated response. Two main strategies dominate this step: <strong>full-text search</strong> and <strong>vector search</strong>. Full-text search relies on keyword-based matching, using structures like inverted indexes to efficiently locate documents containing specific terms. Vector search, on the other hand, uses dense embeddings to capture semantic similarity, allowing it to retrieve relevant passages even when the wording differs significantly from the query. Many practical RAG implementations adopt <strong>hybrid retrieval</strong>, combining both strategies to leverage the precision of keyword matching and the flexibility of semantic search.</p>
+<p>RAG offers significant advantages. It improves factual accuracy, reduces hallucination, and enables rapid knowledge updates without retraining large models. It also allows organizations to integrate private or proprietary data securely into LLM workflows. However, RAG also introduces new challenges: retrieval errors can propagate into the final response, the system requires careful chunking and indexing, and combining retrieved information into a coherent prompt for the LLM can be complex. Additionally, retrieval adds computational overhead compared to purely generative systems. Overall, RAG represents a practical and scalable approach to making LLMs more <strong>knowledge-aware</strong> and <strong>contextually grounded</strong>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e4e9afe5-3e48-4385-953e-56fd9e4e8a53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

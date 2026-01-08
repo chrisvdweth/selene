@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>gradient_descent_basics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>positional_encodings_overview</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7515,18 +7515,7 @@ video {max-width: 100% !important; height: auto !important; }
 </style>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2834c4c2-0e68-49fe-989d-c305c8a09aa2">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">!!!WORK IN PROGRESS — TESTING ANIMATIONS!!!<a class="anchor-link" href="#!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79c8c281-f6f4-4fa9-88ac-4f5e2ab5a530">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5bcd9b03-d428-4658-868f-8414aa54b259">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7538,21 +7527,21 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08cf57e1-2b8a-4704-8a11-f0ba19109cd5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d22786ee-3e46-4d03-8bdf-cc8b27c15cb8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Gradient-Descent-%E2%80%94-The-Very-Basics">Gradient Descent — The Very Basics<a class="anchor-link" href="#Gradient-Descent-%E2%80%94-The-Very-Basics">¶</a></h1><p>Gradient Descent is an iterative optimization algorithm used to find the minimum of a function by repeatedly taking steps in the direction of the steepest decrease of that function. In the context of machine learning, this function is typically a <strong>loss function</strong> that measures how well a model's predictions match the data. By computing the gradient of the loss with respect to the model parameters, Gradient Descent tells us <em>how</em> and <em>in which direction</em> to adjust those parameters to reduce error. Conceptually, it can be thought of as navigating a landscape of error values, moving downhill step by step until a (local) minimum is reached.</p>
-<p>The general purpose of Gradient Descent is therefore <strong>parameter optimization</strong>. Most machine learning models (from linear regression to deep neural networks) are defined by a set of parameters (weights and biases) that determine their behavior. These parameters are not chosen analytically in closed form for complex models; instead, they are learned from data. Gradient Descent provides a systematic, scalable way to tune millions (or even billions) of parameters by relying only on local information: the gradient at the current point.</p>
-<p>Gradient Descent has become a cornerstone of machine learning and neural networks because it scales extremely well to high-dimensional problems and works hand-in-hand with <strong>backpropagation</strong>. Backpropagation efficiently computes gradients of the loss with respect to all parameters in a neural network, and Gradient Descent uses those gradients to update the parameters. This separation of concerns — gradient computation on one side, optimization on the other — makes the training of deep models both conceptually clean and computationally feasible.</p>
-<p>We need Gradient Descent because, for most realistic models, there is no direct mathematical solution for finding the optimal parameters. The loss surfaces of neural networks are highly non-linear, high-dimensional, and often non-convex. Gradient Descent offers a practical and flexible approach to navigating these complex landscapes, allowing models to improve gradually through incremental updates. Understanding Gradient Descent at a fundamental level is therefore essential: it reveals <em>how</em> learning actually happens inside a model and provides the foundation for more advanced optimization methods used in modern machine learning.</p>
+<h1 id="Positional-Encodings-%E2%80%94-Overview">Positional Encodings — Overview<a class="anchor-link" href="#Positional-Encodings-%E2%80%94-Overview">¶</a></h1><p><strong>Positional encodings</strong> (also <strong>positional embeddings</strong>) are a crucial component of the Transformer architecture, designed to inject information about the relative or absolute position of words in a sequence. Unlike recurrent neural networks (RNNs), which process words sequentially and inherently capture word order through their structure, Transformers process all words simultaneously (in parallel). This parallelism provides great efficiency but also means the model has no inherent sense of word order. To address this, positional encodings are vectors added to the input embeddings to give the model a sense of sequence order.</p>
+<p>Common types of positional embeddings include <strong>sinusoidal positional encodings</strong>, <strong>learned positional embeddings</strong>, and more recent innovations like <strong>rotary positional embeddings (RoPE)</strong> and <strong>relative positional encodings</strong>. The sinusoidal encoding, used in the original Transformer, assigns each position a vector based on sine and cosine functions at different frequencies. These encodings are fixed and not learned, allowing the model to extrapolate to sequences longer than those seen during training. Learned positional embeddings, on the other hand, treat position information as learnable vectors, just like word embeddings. Each position in the sequence has a dedicated embedding vector that is optimized during training, providing flexibility and potentially better performance on in-distribution data.</p>
+<p>Relative positional encodings and rotary positional embeddings take a different approach. Instead of encoding absolute positions, they encode the relative distances between words, which can be especially useful in tasks where relationships between words matter more than their absolute positions. Rotary embeddings (used in models like GPT-NeoX and LLaMA) integrate position into the self-attention mechanism by rotating query and key vectors based on their position, which improves the modeling of long-range dependencies and maintains efficiency.</p>
+<p>What these methods have in common is the goal of giving the model a sense of order and position within sequences—critical for understanding language. Where they differ is in how they represent this order: fixed vs. learned, absolute vs. relative, or external addition vs. internal integration into attention computations. Each approach makes trade-offs between generalization, flexibility, and computational cost. In this notebook, we first look into the general concept and requirements for positional encodings, and then provide an overview of popular methods.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e0581fd7-1104-40e6-ad85-52de61e118b2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f2e5d0e1-7926-4d39-82bd-d84fc85ce44d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7562,39 +7551,38 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=632ec98d-37d5-4e71-87f6-a2c4b76b9cba">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=bd04131a-c76a-4629-8e26-ea255445cbaa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.plotting.gd</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8d6d5cff-9324-4455-937a-a9d5437c3634">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85249e00-759a-4859-83d0-502e7d1fb1f3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=df47801d-a1c1-4614-a0da-07dc1fb8e685">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Preliminaries">Preliminaries<a class="anchor-link" href="#Preliminaries">¶</a></h4><p>Before delving into the inner works of attention and multi-head attention, there are a few preliminary comments to outline the scope of this notebook:</p>
+<ul>
+<li>Since we focus on the original Transformer, we assume text as input. To make all visualizations, examples, and descriptions easier to understand, we assume that any input text is tokenized into proper words. Note that practical Transformer-based models typically rely on subword-based tokenizers (e.g., Byte-Pair Encoding, WordPiece).</li>
+</ul>
+<p>With these clarifications out of the way, let's get started...</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ea83183b-6333-4b2d-a0c0-2fe975bc681e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7605,66 +7593,313 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e6de94a-7976-4b30-95af-44da21968a3c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e423ef43-2702-4fba-92ba-8704ed4c1a92">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b8041e6d-70d9-4751-9aa4-af076112c861">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<h2 id="Positional-Encodings:-Basic-Idea-&amp;-Requirements">Positional Encodings: Basic Idea &amp; Requirements<a class="anchor-link" href="#Positional-Encodings:-Basic-Idea-&amp;-Requirements">¶</a></h2><h3 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">¶</a></h3><p>Basically all of the roughly 7,000 spoken languages in the world today show some sensitivity to word order, but the degree to which it matters varies greatly depending on the language's grammar and structure. According to the <a href="https://wals.info/">World Atlas of Language Structures (WALS)</a>, about 80% of languages often rely on word order to clearly understand the meaning of a sentence. As a consequence, it is crucial for machine learning models to capture word order since the order of the words in a sentence directly affects its meaning. In English, for example, <em>"The dog chased the cat"</em> and <em>"The cat chased the dog"</em> use the same words, but the meaning changes completely based on the order. A model that ignores word order would treat both sentences as having the same meaning, which would lead to serious errors in tasks like translation, summarization, or sentiment analysis.</p>
+<p>Word order also helps models understand grammatical structure — identifying subjects, verbs, and objects. For instance, in the sentence <em>"She gave the book to her brother"</em>, switching the word order to <em>"Her brother gave the book to she"</em> not only changes the meaning but also introduces grammatical errors. Machine learning models, especially deep learning architectures like Recurrent Neural Networks RNNs and Transformers, are designed to learn these patterns so they can accurately capture relationships between words. Without an understanding of order, a model might misinterpret who is doing what to whom, leading to incorrect outputs across many natural language processing tasks.</p>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a0d4e3aa-915d-43d9-92d5-38c19244c97a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5474d2a8-8bb2-46d1-aebf-d3d3fbb281fc">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Why-do-we-need-Gradient-Descent?">Why do we need Gradient Descent?<a class="anchor-link" href="#Why-do-we-need-Gradient-Descent?">¶</a></h3><p>Let's assume we have a very simply function $f(x)$ which is define as:</p>
+<p><strong>Side note:</strong> There are some machine learning tasks involving text where word order matters very little or not at all, especially when the goal is to analyze content in a bag-of-words fashion. A good example is document classification based on topic. For instance, if you're training a model to classify news articles into categories like sports, politics, or technology, the presence of key words like <em>"election"</em>, <em>"vote"</em>, <em>"parliament"</em> or <em>"football"</em>, <em>"goal"</em>, <em>"team"</em> might be more important than the exact sequence they appear in. In such tasks, models like Naive Bayes or simple TF-IDF + Logistic Regression often perform well without considering word order. In short, when the overall content or word presence is more informative than sentence structure — such as in topic classification, spam filtering, or keyword spotting — models can afford to ignore word order and still perform effectively.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d2a9d07-b0f7-4b80-bf50-46eae9a18864">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=128c2fdd-4ebb-497f-9bdb-a811fc2f6f90">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>RNNs intrinsically capture word order because they process text <em>sequentially</em> — one word at a time — maintaining a hidden state that is updated at each step. This means that as each word is read, the RNN updates its internal memory based on both the current word and everything it has seen before. For example, when processing the sentence <em>"The dog chased the cat"</em>, the RNN starts with <em>"The"</em>, then updates its state with <em>"dog"</em>, and continues through the sentence. This sequential processing naturally captures the temporal order of the words, allowing the model to learn dependencies that are sensitive to word positioning.</p>
+<p>However, a major disadvantage of the sequential processing in RNNs is that it makes it difficult for the model to capture long-range dependencies in text. As RNNs read one word at a time and update their hidden state step by step, information from earlier in the sequence can fade or be overwritten as the text progresses. This problem, known as the vanishing gradient problem, means that RNNs often struggle to remember important details from the beginning of a long text by the time they reach the end. Additionally, because RNNs process text word-by-word, they are inherently slower to train and infer compared to models that can process data in parallel. This sequential nature limits their scalability, especially with long documents or when deployed in real-time applications.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1d85ca02-3dc5-48e2-8615-015f4d50c965">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In contrast, the Transformer architecture offers several key advantages over RNNs, particularly in terms of parallelism and long-range dependency modeling. Transformers use self-attention mechanisms that allow the model to consider all words in a sentence simultaneously. This means Transformers can process entire sequences in parallel, significantly speeding up both training and inference. This parallelism makes them much more efficient and scalable, especially when dealing with large datasets or long texts. Another major advantage is the Transformer's ability to capture long-range dependencies more effectively. While RNNs struggle to retain information across long sequences due to vanishing gradients, Transformers use attention layers that can directly link any word to any other word in the input, regardless of their position — including the distance between words in a text.</p>
+<p>However, the Transformer architecture does not intrinsically capture word order because, unlike RNNs, it does not process text sequentially. The attention mechanism treats the input as a set of words without any built-in sense of sequence. In self-attention, each word attends to all other words in the input simultaneously, but this mechanism alone doesn't distinguish whether a word came earlier or later in the sentence. As a result, without additional information, a Transformer has no way to know the position of each word in the sequence.</p>
+<p>To overcome this, Transformers use <strong>positional encodings</strong> (also <strong>positional embeddings</strong>). Positional encodings are vectors that are added to the input embeddings to inject information about each word's position in the sequence. These encodings can be learned or based on fixed mathematical patterns and help the model understand the position of each word. By combining these positional encodings with the word embeddings, the Transformer gains awareness of word order, allowing it to interpret sequences meaningfully. In essence, while the Transformer architecture is powerful in capturing relationships between words, it requires <em>explicit</em> positional information to understand sequence structure. There are generally two fundamental approach towards positional encodings:</p>
+<ul>
+<li><p><strong>Absolute positional encodings:</strong> Absolute positional encodings assign each position a unique vector, which is added to the corresponding word embedding. These vectors can either be fixed (i.e., calculated by a predefined formula depending on the position) are learned during training together with the rest of the model.</p>
+</li>
+<li><p><strong>Relative positional encodings:</strong> Relative positional encodings represent the positions of words not by their absolute location in a sequence, but by their positions relative to one another. Instead of assigning a unique vector to each position (as in absolute encoding), this method encodes the distance or offset between pairs of words. Relative positional encodings are always learned.</p>
+</li>
+</ul>
+<p>Beyond methods that fall in exactly one of these two basic approaches, there are methods such as Rotary Positional Encodings (RoPE) that combine both absolute and relative positional information. In the rest of this notebook, we give an overview to absolute and relative positional encodings, and outline their strengths and weaknesses.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69d8463d-5707-46e6-98d9-93052521c1c8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Basic-Requirements">Basic Requirements<a class="anchor-link" href="#Basic-Requirements">¶</a></h3><p>With positional encodings being "some vectors" capturing positional embeddings that are added to the embedding vectors of words (i.e., encodings capturing the meaning of words), the obvious questions what kind of vectors represent meaningful positional encodings and how do we get them. Before we cover some of the more common methods, let's first derive some basic characteristics positional encodings need to have. We can do this by looking at some naive approaches and discussing the problems and limitations. We use absolute positional encoding for this since it is generally the simpler approach.</p>
+<p>The figure below shows the most basic idea behind absolute positional encodings. In this figure, $\mathbf{w}_i$ represents the embedding vector of the word at the $i$-th position in the input sequence of length $L$; $\mathbf{p}_i$ is an embedding vector encoding position $i$ which is added to word embedding vector $\mathbf{w}_i$, forming the combined embedding vector $\mathbf{e}_i$. All resulting vectors $\mathbf{e}_{0}, \mathbf{e}_{1}, \mathbf{e}_{2}, ..., \mathbf{e}_{L\!-\!1}$ then form the input sequence for the Transformer model.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=58c433a4-0909-48df-ad4c-1d2f3563360c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Absolute Positional Encoding: Basic Idea" src="images/illustrations/posenc/posenc-absolute-basic-idea.png" style="margin:auto;max-width:600px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dbb9f8e2-1e78-4d02-890e-dedad7e7303a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Of course, we now need to find values for the positional encoding vectors $\mathbf{p}_{0}, \mathbf{p}_{1}, \mathbf{p}_{2}, ..., \mathbf{p}_{L\!-\!1}$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87fc05de-c9bd-4023-8d56-771f1e66ea55">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Naive-Methods">Naive Methods<a class="anchor-link" href="#Naive-Methods">¶</a></h4><p>The arguably most straightforward way to define the positional embedding vectors is to set all elements in the vector for encoding position $i$ to $i$ itself — that is, $\mathbf{p}_{ij} = i$, where $\mathbf{p}_{ij}$ is the $j$-th vector element of the positional embedding vector at position $i$. The figure below illustrates this method.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96d411f0-c1c8-42a7-bf12-35ad2db4f5db">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Absolute Positional Encoding: Naive Approach 1" src="images/illustrations/posenc/posenc-absolute-naive-approach-01.png" style="margin:auto;max-width:600px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=710bc357-0c7f-407f-965f-b772c9d9b21e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>These positional embedding vectors are suitable to the extent that they are <strong>unique</strong>. In other words, each position is represented by its own unique vector and there are no two positions encoded by the same embedding vector. However, notice that the absolute size of the values in the embedding vectors depends on the sequence length $L$. This means that for long(er) sequences, the positional encodings become larger and larger vectors. For example, for $L=100$ this means that $\mathbf{p}_{100} = [100, 100, 100, \dots, 100]^T$. Assuming that word embedding vectors are typically normalized (e.g., into the range $-1$ to $+1$ like shown in the example), the positional encodings $\mathbf{p}_{i}$ quickly start to dominate the final embedding vectors $\mathbf{e}_{i}$, more and more obfuscating the semantic information captured by the word embedding vectors $\mathbf{w}_{i}$.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2cd95c68-0ee6-44c8-ab15-137e5405642b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Since unbound embeddings are likely to cause problems in practice, we can try forcing them into a fixed range using normalization. For example, we can ensure that all positional embedding vectors using the previous approach are between $0$ and $+1$ by calculating $\mathbf{p}_{ij} = i/(L-1)$; see the figure below illustrating this normalization attempt.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8032177a-2b7f-4438-96e0-299776200f64">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Absolute Positional Encoding: Naive Approach 2" src="images/illustrations/posenc/posenc-absolute-naive-approach-02.png" style="margin:auto;max-width:600px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bdffb7b7-a14f-4c6d-9d83-09b7c5bc1b5f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>What we gained with this method is that the positional embeddings vectors no longer run the risk of dominating the word embedding vectors. Simply speaking, the values in the positional encodings are guaranteed to remain <strong>small</strong>. However, because the values do not depend on the sequence length $L$, the encodings are no longer unique. This means that the vector $\mathbf{p}_i$ will be different for two sequences that do not have the same length. However, in case of absolute positional encodings, $\mathbf{p}_{i}$ should always be the same vector encoding position $i$.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4821e5a3-256b-46d4-b036-812907f09dc1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Lastly, let's consider the alternative where we set the values of the positional embedding vectors randomly, e.g. from a uniform distribution: $\mathbf{p}_{ij} \sim U(-1, +1)$; see the example in the figure below.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8f9a494f-26da-4c10-af7d-d9968e8a08be">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Absolute Positional Encoding: Naive Approach 3" src="images/illustrations/posenc/posenc-absolute-naive-approach-03.png" style="margin:auto;max-width:600px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a355d1c4-3674-435f-882f-2c78f84925cf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Now all vectors $\mathbf{p}_{i}$ are unique but also guaranteed to be small. However, random vectors are unlikely to capture any systematic relationship between different positions. This means the model cannot learn patterns based on word order, such as the fact that position 3 comes after position 2 or is close to position 4. Also such vectors also fail to generalize to longer sequences. This is an issue in practice because models are trained with some fixed maximum input length, causing issues when working with longer inputs after training — we illustrate this in more detail when discussing the limitation of absolute positional encodings. Random vectors, being uncorrelated and fixed, offer no such continuity or pattern, so the model struggles with sequences longer than those seen during training.</p>
+<p>Note that the first issue of not capturing any systematic relationships between positions can be alleviated if the positional embedding vectors are not fixed but are learnable during the training process. In other words, the model now can learn relevant patterns to capture relationships between positions. Of course, this approach will increase the overall training time. It has also been shown that "smart" fixed absolute encodings perform equally well as learned encodings.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e152ca22-3869-4c81-bacc-de0fefbae91e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h4><p>Even from the simple examples shown above, we can see that there are better and worse ways to encode positional information using embedding vectors. While some requirements for positional encodings stem from the exact use case or domain (e.g., text, images, graphs), there is a set of general characteristics that good positional encodings should have:</p>
+<ul>
+<li><p><strong>Uniqueness and consistency:</strong> Each individual positional information — either an absolute position or a relative position — needs to be represented by a unique embedding vector. For example, in case of absolute positions, two positions should not be represented by the same vector. These vectors also need to be consistent, which means they should be the same for different sequence lengths.</p>
+</li>
+<li><p><strong>Order sensitivity:</strong> Positional encodings must capture <em>relative</em> and/or <em>absolute</em> order of words — this is why we introduce positional encodings after all. Particularly for text data and tasks like natural language understanding, good encodings have the ability to capture relative information. Even if absolute positions are used, the encoding scheme should implicitly or explicitly allow the model to infer relative distances between words.</p>
+</li>
+<li><p><strong>Extrapolability:</strong> Most Transformer models are trained using input sequences of some predefined maximum length. During inference, however, the model may receive longer sequences as inputs. A robust positional encoding scheme should be able to generalize to sequences longer than those encountered during training. This is critical for real-world applications where input lengths can vary significantly.</p>
+</li>
+<li><p><strong>"Small" values:</strong> The values of the positional embeddings vectors should be small so they do not dominate the semantic information captured by the word embedding vectors. This requirement is typically trivial to satisfy.</p>
+</li>
+<li><p><strong>Scalability:</strong> The encoding method should be computationally efficient, especially for very long sequences or large datasets.</p>
+</li>
+</ul>
+<p>Note that there is arguably no perfect encoding method that is guaranteed to work best for all cases since all methods have different strengths and weaknesses with respect to the proposed set of requirements. We will highlight some of those strengths and weaknesses when covering some of the basic approaches for positional encodings.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bb173247-64f3-4f96-9065-ab9ae3d8178d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65cdf89c-e76b-4d01-bc32-3c0401ef6f97">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Absolute-vs-Relative-Positional-Encodings">Absolute vs Relative Positional Encodings<a class="anchor-link" href="#Absolute-vs-Relative-Positional-Encodings">¶</a></h2><p>In Transformer-based models, two primary strategies for positional encodings have emerged: absolute and relative positional encodings. Absolute positional encodings assign a unique position vector to each word based on its location in the sequence. These encodings, whether fixed (like sinusoidal functions) or learned, help the model distinguish between words at different positions by explicitly encoding their absolute indices.</p>
+<p>In contrast, relative positional encodings focus on capturing the distance or offset between words, enabling the model to understand their contextual relationships regardless of their absolute position in the sequence. This approach is especially useful for modeling long-range dependencies and for tasks where relative structure is more meaningful than exact position. Each method has its strengths: absolute encodings provide global position awareness, while relative encodings offer flexibility and improved generalization in contexts with variable-length inputs.</p>
+<p>Let's look at both strategies in more detail.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=695a7ccd-bebc-4f7f-a758-0d2ece6fb1c6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Absolute-Positional-Encodings-(APEs)">Absolute Positional Encodings (APEs)<a class="anchor-link" href="#Absolute-Positional-Encodings-(APEs)">¶</a></h3><p>As the name suggests, absolute positional encodings (APEs) assign <strong>each position</strong> in the input sequence is assigned a unique encoding, typically a fixed vector. These encodings are added to the words embeddings <strong>before</strong> being fed into the transformer layers, allowing the model to distinguish between positions in the input. APEs encode positions independently of the context — they assign a static vector to each position (e.g., position 0, position 1, etc.) regardless of the surrounding words. The figure below illustrates this idea; for simplicity we assume that the maximum length of a sequence, i.e., the maximum size of the context window, is $L=10$.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f40ee966-5378-4c1a-a10c-d6279e46239c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><img alt="Absolute Positional Encoding: Generlized Setup" src="images/illustrations/posenc/posenc-absolute-generalized.png" style="margin:auto;max-width:600px;width:100%"/></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5b068a6b-90db-4ff5-b565-9f41423649c5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>When $L=0$, requires (at least) $L$ unique embedding vectors to encode each position. These vectores can either be learned as well as fixed — that is, calculated by some predefined function(s). Let's have a closer look at and compare both approaches.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=67541b7b-1a91-4e71-9cd6-5019f381f48c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Learned-APEs">Learned APEs<a class="anchor-link" href="#Learned-APEs">¶</a></h4><p>Learned APEs are very similar to learning word embeddings. Recall that a word encoding/embedding maps discrete word indices into continuous embedding vectors using a weight matrix $W_w$, typically called the embedding matrix. This matrix has a shape of $V\times D_w$, where $V$ is the vocabulary size and $D_w$ is the desired embedding dimension (e.g., 300). Each row of the matrix corresponds to a word in the vocabulary, and the row values represent the learned embedding vector for that word. When a word is input as an index (say, from a tokenized sentence), that index is used to select the corresponding row in the embedding matrix. This process is essentially a lookup operation: the model retrieves the row of weights corresponding to the input word index, giving its dense vector representation. During training, these embedding vectors (i.e., the weight matrix rows) are updated to capture semantic relationships between words based on their context in the training data.</p>
+<p>For encoding the absolute position of words, we can define a weight matrix $W_p$ that maps the discrete word positions $0$, $1$, $2$, ..., $L-1$ continuous embedding vectors as well. This weight matrix $W_p$ has a shape of $L\times D_p$, where $L$ is the maximum sequence length used during training and $D_p$ is the desired embedding dimensions. Here, each row in $W_p$ represents a position, the row values represent the learned embedding vector for that position. In practice, the size of positional embeddings is typically the same as for the word embeddings, i.e, $D_p = D_w$, so that both resulting vectors can directly be added to form the final embedding vector. Given an input sequence of length $l$ the model retrieves the rows from matrix $W_p$ that correspond to the vector representations for all positions $0$, $1$, $2$, ..., $l-1$. Like the word embeddings, the positional embeddings are updated during training.</p>
+<p>To give a practical example, let's look at a basic implementation of a positional embedding as its own PyTorch module. The class <code>LearnedAPE</code> in the code cell below implements a simple PyTorch module containing only one layer of type <code>nn.Embedding</code> to facilitate the lookup of positions to their respective vectors. In the <code>forward()</code> method, we assume that we get a tensor of shape $(batch\_size, seq\_len)$ as input, where <code>seq_len</code> is the length of all sequences in that batch. This we can first create an 1d auxiliary tensor</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8485f68d-7884-48a4-9356-b35769b20e05">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>$$\large
-f(x) = x^2 - 4x + 5
+\text{positions} = [0, 1, 2, 3, ..., seq\_len]
 $$</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b9e055e-9d60-4c23-ab72-f1c2308cc7bc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3e3b485d-7f2a-4364-bf29-a4b51f0592d9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We can also define this function as a Python method:</p>
+<p>which then serves as input for the embedding layer <code>self.embedding</code>.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=afea43ec-3008-4558-b2b0-057bd8303016">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=c5f72380-b004-4d63-8500-c51775e91252">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7672,25 +7907,36 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">LearnedAPE</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_seq_len</span><span class="p">,</span> <span class="n">embed_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># Embedding layer for position vectors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">embed_size</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c1"># x.shape = (batch_size, seq_len)</span>
+        <span class="c1"># Create vector position up to seq_len: [0, 1, 2, ..., seq_len]</span>
+        <span class="n">positions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">)</span>
+        <span class="c1"># Push position vector through embedding layer and return result</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e9dd820d-0e9b-4787-8b4c-de95495029b1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b95d175f-c70b-481b-98b4-0f682c5682db">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Using this method, we can plot the function</p>
+<p>The output of this layer (i.e., PyTorch module) will be a tensor with shape $(batch\_size, embed\_dim)$ containing the positional embedding vectors for each word in each sequence. Note that is a rather straightforward naive implementation, just to illustrate the idea. Since the positional embedding vector do not depend on the actual words, each sequence of the input batch will return the <em>same</em> sequence of positional embedding vectors. In other words, the output contains the same vectors $batch\_size$ times. While this can be optimized in practice, it does allow for direct use in any model.</p>
+<p>The code cell below shows a code snippet focusing only on the use of the <code>LearnedAPE</code> class in a complete model. This model has two embedding layers The one for the word embedding vectores uses an <code>nn.Embedding</code> layer since it directly receives the word indices from an input batch. The embedding layer for the positional embedding vectors uses the <code>LearnedAPI</code> class as it handles the extraction from the position indices. In the <code>forward()</code> method, both word and position embedding vectors are extracted via lookup operations and combined by adding them for the final embedding vectors.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a78c920b-c444-482c-b2f5-d9f0617b4b07">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5cbf5363-ff9f-49b2-b314-a3b498a69108">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7698,556 +7944,405 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ExampleModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">max_seq_len</span><span class="p">,</span> <span class="n">word_embed_size</span><span class="p">,</span> <span class="n">pos_embed_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># Embedding layer for word vectord</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">word_embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">word_embed_size</span><span class="p">)</span>
+        <span class="c1"># Embedding layer for position vectors</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">positional_embedding</span> <span class="o">=</span> <span class="n">LearnedAPE</span><span class="p">(</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">pos_embed_size</span><span class="p">)</span>
+        <span class="c1"># ...other layers and/ore model components...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="c1"># x.shape = (batch_size, seq_len)</span>
+        <span class="c1"># Get word and position embeddings</span>
+        <span class="n">word_embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">word_embedding</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">position_embeddings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">position_embedding</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="c1"># Add tensors to get final embeddings</span>
+        <span class="n">embeddings</span> <span class="o">=</span> <span class="n">word_embeddings</span> <span class="o">+</span> <span class="n">position_embeddings</span>
+        <span class="c1"># ...other processing steps...</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
-<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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mjQJgGOYfPXq1ZgxY4bYcOSxZFnGgw8+iMWLF2Pt2rVITU0VHcmj2O12WCwW0TEU58orr8TevXvPeO6uu+5CRkYGHn/8cRaPc6ivr8fRo0dx++23C3l/ryofHVFYWIiamhoUFhbCZrNh165dAIC0tDQEBweLDSfYI488gmnTpmHw4MEYOnQo5syZg4aGBtx1112ioylKfX39GT81HDt2DLt27UJYWBiSkpIEJlOe6dOnY8GCBVi6dCn0ej3KysoAAAaDAQEBAYLTKcsTTzyBsWPHIikpCXV1dViwYAHWrl2LlStXio6mOHq9/lfzhoKCghAeHs75RL/w6KOPYsKECUhOTkZpaSmeeeYZqNVq3HLLLWICiV5uI8q0adNkAL96rFmzRnQ0RXj99dflpKQkWafTyUOHDpW3bNkiOpLirFmz5qzfQ9OmTRMdTXHO9jkBkOfNmyc6muLcfffdcnJysqzT6eTIyEj5yiuvlL///nvRsTwGl9qe3c033yzHxsbKOp1Ojo+Pl2+++Wb5yJEjwvJIsizL7q88RERE5Ku8arULERERKR/LBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG51f8DdjbJ7xUsJgoAAAAASUVORK5CYII="/>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0dcf3e41-ecea-497d-b97b-4482d74afda1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=19e0c34a-cee2-419e-86a2-e4ccc114b6ee">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If we now assume that $f(x)$ is some kind of loss function where we want to find the value for $x$ thar minimizes this function. Of course, given the simple nature of $f(x)$ and just by looking at the plot above, we can see that $x=2$ minimizes $f(x)$ with $f(2) = 1$. Beyond eye-balling the solution, the systematic approach to find the minimum is using calculus by means of the first derivative $\frac{df}{dx}$. If $g(x)$ denotes the first derivative of $f(x)$, and using the derivation rules from calculus, we get:</p>
+<p>While learned APE are an intuitive way to implement positional encodings, they are not commonly used in practice. For one, they naturally introduce additional parameters that need to be learned during training. Learning positional embeddings vectors is typically also not required since the basic requirements are that these vectors are unique, content-independent, and have small values. These requirements can also be met using fixed APEs. Learned APEs also have other limitations which we discuss in more detail when motivating relative positional encodings.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c472ee70-b71b-4c29-a841-aa2a3bb334ab">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3d9cc494-4e88-4c97-96cf-66511b0eb08f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Fixed-APEs">Fixed APEs<a class="anchor-link" href="#Fixed-APEs">¶</a></h4><p>Fixed absolute positional encodings use a deterministic function; these encodings are fixed and <em>not</em> updated during training. When it comes to the requirements of unique and content-independent vectors with small value, the choice of possible functions is almost arbitrary. In fact, one could set the position embedding vectors even randomly.</p>
+<p>However, random or more naive functions to generate APEs typically do not generalize well. Generalization, in the context of APEs, refers to a model's ability to handle input sequences of lengths or patterns that differ from those seen during training. For positional encodings, this means correctly understanding and processing words at positions beyond the original training set or in new contexts. Generalization is crucial for absolute positional encodings because language and many real-world data types are inherently variable in length. If a model is trained with learned encodings on fixed-length inputs, it may struggle or completely fail to interpret words at unseen positions during inference. This can severely limit the model's utility, particularly in applications like translation, document summarization, or code analysis, where inputs can be unpredictably long.</p>
+<p>Common approaches for fixed APEs use the sine and cosine functions as they offer a smooth, continuous, and periodic way to represent positions in a sequence with a consistent structure. By encoding each position using sine and cosine waves of different frequencies, the model can distinguish between positions while also capturing relative distances in a mathematically meaningful way. This approach allows each position to be uniquely represented and ensures that the positional encoding space is smooth and generalizes well across different sequence lengths. For example, the original Transformer paper <a href="https://arxiv.org/abs/1706.03762"><em>"Attention is all you Need"</em></a> proposed the following set of functions:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b8cd888e-5d5e-4472-b3fc-6671657cf467">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>$$\large
-g(x) = \frac{df(x)}{dx} = 2x - 4
+\mathbf{p}_{ij} = 
+\begin{cases} 
+\sin \left( \frac{i}{10000^{2j/d_{model}}} \right) &amp; \text{if } j \text{ is even},\\[0.75em]
+\cos \left( \frac{i}{10000^{2(j-1)/d_{model}}} \right) &amp; \text{if } j \text{ is odd}
+\end{cases}
 $$</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c723379a-29b8-4886-bfc9-48e03707a46c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=674f4360-af12-416a-99ab-4f18aec22f45">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The first derivative tells us the <strong>rate of change</strong> of a function with respect to its input, including both the direction** and steepness of that change. Its sign indicates whether the function is increasing or decreasing, and points where it is zero identify <strong>critical points</strong> where the behavior of the function may change. Thus, to find $x$ that minimizes $f(x)$, we need to find $x$ where $g(x) = 0$. Again, given the very simple nature of $f(x)$ and thus $g(x)$, this is a very simple calculation.</p>
+<p>where $\mathbf{p}_{ij}$ again represents the $j$-th entry/element of the positional embedding vector for position $i$. In other words, a single vector value not only depends on the position but also if the corresponding index of the vector is an even or odd index.</p>
+<p>Other notebooks will cover this approach from the original Transformer paper as well as other implementations of fixed APEs in more detail.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0343bab7-8c3c-45f9-926d-f1a6c60b7cd7">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5462f30e-68a0-4dda-9bb8-61a800fc6afa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large 2x - 4\ &amp;\large= 0\\[0.25em]
-\large 2x\ &amp;\large= 4\\[0.25em]
-\large x\ &amp;\large= 2
-\end{align}
+<h4 id="Limitations-of-APEs">Limitations of APEs<a class="anchor-link" href="#Limitations-of-APEs">¶</a></h4><p>Particularly fixed APEs are easy to compute and require no training. Therefore no additional parameters need to be learned, which reduces the model's complexity. Each position in the sequence gets a distinct encoding in the form of a unique vector, allowing the model to identify absolute positions of words — important in tasks like sequence labeling or position-sensitive classification. However, absolute positional encodings also have several limitations:</p>
+<p><strong>Absolute vs. relative position.</strong> For many language understanding tasks (e.g., machine translation, questions answering, text summarization) the relative position between words is often more important than their absolute positions. While approaches such as sinusoidal encodings (see above) are theoretically able to infer relative positions, absolute positional encodings do not <em>explicitly</em> encode relative distances. This might force the model to work harder to learn these relationships, potentially leading to less efficient learning compared to strategies that directly incorporate relative positional biases. This may include that absolute positional encodings might provide an unnecessary strong signal for exact positions, potentially diverting attention from more crucial relative relationships.</p>
+<p>Consider the following example from the paper <a href="https://arxiv.org/abs/2210.12574"><em>The Curious Case of Absolute Position Embeddings</em></a>:</p>
+<ul>
+<li><em><ins>smoking kills</ins></em> (Positions 0-1)</li>
+<li><em>kim said <ins>smoking kills</ins></em> (Positions 2-3)</li>
+<li><em>it was commonly believed by most adult Americans in the 90s that <ins>smoking kills</ins></em> (Positions 12-13)</li>
+</ul>
+<p>Arguably, the absolute position of the phrase <em>smoking kills</em> should be less important to capture the overall meaning — at least given these three example sentences which generally have the same stance about the effects of smoking. Of course, absolute positional encodings will add different positional embedding vectors in all three cases, and it is not obvious how this will affect the model to learn. In fact, the paper shows that the overemphasis on absolute positions can have negative effects on a model's performance.</p>
+<p><strong>Limited Generalization to Unseen Sequence Lengths (Extrapolation).</strong> At least in principle, fixed APE such as sinusoidal encodings as proposed in the original Transformer paper allow for the deterministic calculation of positional encodings for arbitrary positions. However, while mathematically well defined, the model itself may not have learned to effectively interpret the positional information for distances or absolute positions far outside its training distribution. The sinusoidal patterns might become less distinct at very large positions, making it harder for the model to differentiate between distant words accurately. The model's ability to generalize relies on learning patterns from the positional information it has seen, and extrapolating these patterns to much larger scales is not guaranteed.</p>
+<p>Of course, this issue is even more pronounced for learned APEs as they do not provide any meaningful way to extrapolate to sequences longer than the sequences seen during training. Since fixed APEs also reduce a model's complexity by avoiding to learn any trainable parameters, fixed methods are typically the preferred choice when using absolute positional encodings — although certain domains or tasks might still perform better using learned APEs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=255e6767-1ce5-4466-b21a-2db81fef2a18">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Relative-Position-Encodings-(RPEs)">Relative Position Encodings (RPEs)<a class="anchor-link" href="#Relative-Position-Encodings-(RPEs)">¶</a></h3><p>Relative positional embeddings are a technique used in transformer models to incorporate information about the positions of words in a sequence relative to one another, rather than their absolute positions. This contrasts with traditional absolute positional embeddings, which assign a fixed position to each word. Relative embeddings allow models to focus on the relative distances between words, which can be especially useful in tasks where meaning depends more on word-to-word relationships than on fixed positions within the sequence.</p>
+<p>This approach has been shown to improve performance in various natural language processing tasks by providing greater flexibility and generalization, especially in handling variable-length inputs. It enhances the model's ability to recognize similar patterns regardless of their specific location in the sequence, which is particularly beneficial in settings like machine translation, document summarization, and long-context understanding — that is, tasks where the relationship between words reflected by there distance within a text is more important that their absolute distance in the sequence.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a11542b0-1e9a-487e-bb4e-e72912748fc2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The figure below shows the same example sequence of length $L=10$ from before. However, this time it illustrate the relative position of word embeddings $\mathbf{w}_1$ and $\mathbf{w}_8$ with respect to the word embedding vector $\mathbf{w}_6$. We can define the relative position of a word at position $j$ with respect to a word at position $4$ as</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0488a68c-c3f9-42e5-8338-e21b912cdafd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+r_{i,j} = j-i
 $$</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c096d3ac-9132-4631-be6d-66ff436267ff">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8a244c03-5527-4576-a922-72c126666d4e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Of course, we get the result that $x=2$ minimizes $f(x)$ as we spotted from the plot.</p>
-<p><strong>Important:</strong> The first derivative of a function allows us to identify critical points, where the slope is zero and the function has a horizontal tangent. These points are candidates for <strong>local minima, local maxima, or saddle points</strong>. However, the first derivative alone does not tell us which type of point we have found. To classify a critical point, we must perform an additional check—either by examining the second derivative (which reveals local curvature) or by evaluating the function slightly before and after the point to see whether the function value decreases, increases, or does both. In the context of <strong>loss functions</strong>, we typically do not need to explicitly distinguish between minima, maxima, and saddle points. This is because training is formulated as a <strong>pure minimization problem</strong>: we only ever move parameters in the direction that reduces the loss. Gradient-based optimization methods like Gradient Descent naturally move <em>away</em> from maxima and tend not to get stuck at saddle points in practice, especially in high-dimensional spaces where true saddle points are unstable. As a result, it is sufficient to follow the gradient and monitor whether the loss decreases, rather than classifying each stationary point mathematically.</p>
-<p>Now that we have seen an example for how we can find the minimum of a function, you may wonder what the big deal is, and why we cannot train machine learning models — not even Linear Regression let alone large neural networks — that way. Our example was easy to solve because $g(x)$, i.e., the derivative of $f(x)$, was such a simple function that allowed us to set $g(x) = 0$ and solve for $x$. In other words, we could find an analytically solution in terms of a closed-form expression that allowed is to find $x$ that minimized $f(x)$ directly.</p>
-<p>However, if $f(x)$ and particularly its first derivative, becomes more complex, this might no longer be possible. While we can still compute the derivative, and set the derivative to $0$, we fail to solve for $x$.</p>
+<p>with $r_{6,1} = 1-6 = 5$ and $r_{6,8} = 8-6 = 2$ as the two examples shown in the figure below.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31817523-24f0-4ee7-b21c-b269ddf13d8c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1e1aaf32-2612-44a2-bc9b-61cccfe27ae7">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large g(x)\ &amp;\large = 0\\[0.25em]
-\large\Downarrow\\[0.25em]
-\large x\ &amp;\large = {\color{red} \times} \\
-\end{align}
-$$</p>
+<p><img alt="Relative Positional Encoding: Generlized Setup" src="images/illustrations/posenc/posenc-relative-generalized.png" style="margin:auto;max-width:600px;width:100%"/></p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ebf2f9c-4bb8-46f5-8bb1-5265967e7372">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bbdaaf82-4ad1-4d0d-b15b-80f679b01a07">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>For most machine learning models (but especially neural networks), the loss function is highly non-linear, high-dimensional, and has millions of parameters, making such equations impossible to solve in closed form.
-In fact, basic Logistic Regression — which can crudely be considered a neural network with a single neuron — cannot be solve analytically. Additionally, real-world loss function are often <strong>non-convex</strong>, with many local minima and saddle points. Even if we could write down the equations, solving them exactly would be computationally intractable.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d09ee21b-e049-44de-8da2-c460ec5da776">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<p>If we calculate the $r_{i,j}$ values for all combinations of $i$ and $j$ with $i,j \in [1, 2, ..., 9]$, we get a matrix $\mathbf{R}$ with shape $L\times L \times D_p$, where $D_p$ is again the size of the positional embedding vectors. The figure below shows the resulting matrix $\mathbf{R}$ for our example sequence; note that this illustration represents the embedding vectors only as a label reflecting the relative distance. For example, the entry $-5$ represents the positional embedding vector for the relative distance of $-5$ (e.g., including $r_{6,1}$).</p>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3cd3a3ba-9744-4832-aa7d-4a24bf12dff6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6b6dea45-4fa5-472c-abee-d6294c5b3437">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">df</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e84eccfb-75e8-49fa-9eae-0603e1995ab4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9186a0d6-df55-47fd-8e37-bd964ebcac33">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Basic-Idea">Basic Idea<a class="anchor-link" href="#Basic-Idea">¶</a></h3>
+<p><img alt="Relative Positional Encoding: Position Matrix" src="images/illustrations/posenc/posenc-relative-position-matrix.png" style="margin:auto;max-width:500px;width:100%"/></p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4cac7485-6a3e-4026-b750-6dad47bbb4f9">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e5ed2140-5e5c-4564-a1ea-3194b35609f9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Although this matrix has $L^2$ entries, all entries with the same $r_{i,j}$ value represent the <em>same</em> positional encoding; we denote the actual embedding vector as $\mathbf{r}_{i,j}$. Thus, we do not have to capture $L^2$ positional encoding vectors but only $2L - 1$ vectors, as this is the number of unique values in $\mathbf{R}$. Practical implementation of relative positional encodings often implement <strong>clipping</strong>, i.e., limiting the maximum distance $k$ between words to be captured. The intuition is that at some point it does not really matter if two words are far or very far apart particularly in very long sequences. The figure below shows the same matrix from before but now after clipping with $k=7$; this means that the largest value in the matrix is now $7$.</p>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e0de9ef7-7284-463d-9902-ea9da5fa32aa">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1ca0125d-edc7-4da2-a824-034000ec49af">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">animate_gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">x0</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><img alt="Relative Positional Encoding: Position Matrix (Clipped)" src="images/illustrations/posenc/posenc-relative-position-matrix-clipped.png" style="margin:auto;max-width:500px;width:100%"/></p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a35f3249-41a6-4a5a-bfcb-687665fc98eb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<video autoplay="" controls="" height="500" width="800">
-<source src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAARoZtZGF0AAACrQYF//+p
-3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2MyByMzA2MCA1ZGI2YWE2IC0gSC4yNjQvTVBF
-Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMSAtIGh0dHA6Ly93d3cudmlkZW9sYW4u
-b3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFs
-eXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVk
-X3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBk
-ZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTkg
-bG9va2FoZWFkX3RocmVhZHM9MSBzbGljZWRfdGhyZWFkcz0wIG5yPTAgZGVjaW1hdGU9MSBpbnRl
-cmxhY2VkPTAgYmx1cmF5X2NvbXBhdD0wIGNvbnN0cmFpbmVkX2ludHJhPTAgYmZyYW1lcz0zIGJf
-cHlyYW1pZD0yIGJfYWRhcHQ9MSBiX2JpYXM9MCBkaXJlY3Q9MSB3ZWlnaHRiPTEgb3Blbl9nb3A9
-MCB3ZWlnaHRwPTIga2V5aW50PTI1MCBrZXlpbnRfbWluPTIgc2NlbmVjdXQ9NDAgaW50cmFfcmVm
-cmVzaD0wIHJjX2xvb2thaGVhZD00MCByYz1jcmYgbWJ0cmVlPTEgY3JmPTIzLjAgcWNvbXA9MC42
-MCBxcG1pbj0wIHFwbWF4PTY5IHFwc3RlcD00IGlwX3JhdGlvPTEuNDAgYXE9MToxLjAwAIAAAC//
-ZYiEABb//vfTP8yy6/c5teOo96KeJl9DdSUBm5bE7TqAAAADAAADAAADAA/hMFtS4RUJjBaAAAAD
-Ad9znfikcP4nMARaKgzEFM0W99LPRwFw2CeMH689n7aSUtb2hqT9c+l/N/eLqNMn0MFBXIHPbr6r
-4VO5jWriD8yErBoLE1QQHsvWmR4iwhaz1AkJwPY67HqnnD4myr5S2AcCAPfxj57k4s523P9Tj2qH
-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
-OC43Ni4xMDA=
-" type="video/mp4"/>
-  Your browser does not support the video tag.
-</video>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>As a result, the number of unique positional encodings required is now $2k-1$, with $k &lt; L$. Reducing the total number of required encodings in a meaningful way is useful in practice since relative positional encodings are usually learned and not fixed.</p>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f5b15353-a04f-48ad-82b8-8a0950aa037d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ed72a43a-94ee-4849-969b-3fbf48077f3d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In contrast to absolute positional encodings, a vector $\mathbf{r}_{i,j}$ representing a relative positional encoding is no longer associated with a single word but with a pair of words. As such, we can no longer simply add $\mathbf{p}_{i,j}$ to a word embedding vector $\mathbf{w}_{i}$ or $\mathbf{w}_{j}$ before feeding the combined embedding vector into the Transformer. Relative positional encodings are therefore integrated into the <strong>attention mechanism</strong> of the Transformer itself. On its own, the attention mechanism aims to capture the relationship between word pairs based on their word embeddings — strictly speaking between their projected embeddings into the query, key, and value space. How this is done in detail depends on the exact method and implementation which is beyond the scope here and will be covered in other notebooks. The key take-away message here is that using relative positional encodings combine the pairwise relationship between words with the pairwise relationship between their positions, with both types of relationships learned during training.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4242e0c6-8553-4df4-99f0-59ddf882e518">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Comparison">Comparison<a class="anchor-link" href="#Comparison">¶</a></h3><p>Just by covering the basic ideas and method behind absolute and relation positional encodings — and without looking into concrete implementations — we can see that both approaches are fundamentally quite different. The table below summarizes their key differences.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5ad394c9-22cc-4425-a6d4-96d5132a361c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Absolute Positional Encodings</th>
+<th>Relative Positional Encodings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Definition</strong></td>
+<td>Assigns a unique embedding to each <em>absolute</em> position in the sequence</td>
+<td>Encodes the <em>relative distance</em> between words</td>
+</tr>
+<tr>
+<td><strong>Position Referencing</strong></td>
+<td>Refers to the word's position in the entire sequence</td>
+<td>Refers to how far one word is from another</td>
+</tr>
+<tr>
+<td><strong>Learning Type</strong></td>
+<td>Can be fixed (e.g., sinusoidal) or learned</td>
+<td>Usually learned</td>
+</tr>
+<tr>
+<td><strong>Sequence generalization</strong></td>
+<td>Fixed types (e.g., sinusoidal) can extrapolate to longer sequences but effectiveness not very clear</td>
+<td>Can generalize better across sequence lengths</td>
+</tr>
+<tr>
+<td><strong>Sensitivity to word shifts</strong></td>
+<td>Sensitive — shifting words changes their positional meaning</td>
+<td>More robust — only relative distances matter</td>
+</tr>
+<tr>
+<td><strong>Use in attention mechanism</strong></td>
+<td>Position is added to the word embedding and used directly</td>
+<td>Position modifies attention scores between word pairs</td>
+</tr>
+<tr>
+<td><strong>Implementation Complexity</strong></td>
+<td>Simple to implement</td>
+<td>More complex — requires modification to attention mechanism</td>
+</tr>
+<tr>
+<td><strong>Context Awareness</strong></td>
+<td>Encodes position absolutely, without regard to neighboring words</td>
+<td>Better captures local context through relative distances</td>
+</tr>
+<tr>
+<td><strong>Examples of Use</strong></td>
+<td>Original Transformer (Vaswani et al., 2017)</td>
+<td>Transformer-XL, T5, DeBERTa, GPT-NeoX</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0bd75c7a-e235-4312-9f22-309474beb7f1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>As mentioned before, there is arguably no single best approach that should always be preferred. The main deciding factor is if a given task is likely to benefit more from explicitly capturing the absolute position of words (e.g., syntactic parsing, simple sentence classification, time series forecasting with fixed lags/features) or the relative position of words (e.g., machine translation, text summarization, question answering, language modelling). Also, there are also encoding methods that combine concepts from absolute and relative positional encodings to combine their strengths (see below).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d09ae6db-61d6-4832-81ac-86ca33eef2c5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=edf1e32f-de8a-433d-8597-f731fe54e715">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Discussion-%E2%80%94-What's-Next?">Discussion — What's Next?<a class="anchor-link" href="#Discussion-%E2%80%94-What's-Next?">¶</a></h2><p>In this notebook, we motivated the need for positional encodings for Transformer models, since they (generally) do not provide a built-in capacity to capture word order (assuming text as input). We then focused on the two main strategies for implementing positional encodings: absolute and relative positional encodings. However, a more detailed introduction to popular encoding methods is subject to dedicated notebooks. Apart from that, the topic of positional encodings includes further considerations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b1265a2a-e53c-4d2b-92c6-8ee992957605">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Alternative-Encoding-Strategies">Alternative Encoding Strategies<a class="anchor-link" href="#Alternative-Encoding-Strategies">¶</a></h3><p>Beyond the common absolute and relative positional encoding methods, other alternative strategies are continued to be explored, often utilizing more sophisticated ways to inject sequence order information into Transformer models. These methods often aim to improve generalization to longer sequences, reduce computational overhead, or better capture specific types of positional dependencies. Notable examples include:</p>
+<ul>
+<li><p><strong>Rotary Positional Embeddings (RoPE):</strong> Instead of directly adding or biasing attention scores, RoPE applies a rotation to the query and key vectors in the self-attention mechanism. This rotation is dependent on the token's position, and when two rotated vectors are dot-producted, the result implicitly encodes their relative distance. RoPE has excellent theoretical properties, including the ability to generalize to arbitrary sequence lengths and a natural decaying inter-token dependency with increasing relative distances. It has become a very popular choice in many large language models (LLMs) like Llama.</p>
+</li>
+<li><p><strong>Attention with Linear Biases (ALiBi):</strong> ALiBi entirely dispenses with explicit position embeddings. Instead, it directly modifies the attention scores (pre-softmax logits) by adding a linear bias that is proportional to the distance between the query and key tokens. This bias is negative and grows with distance, effectively penalizing attention to distant tokens. Each attention head can have a different slope for this linear bias. ALiBi has shown strong extrapolation capabilities to sequences much longer than those seen during training, making it attractive for training efficient LLMs.</p>
+</li>
+<li><p><strong>Learnable Positional Encodings (Beyond Simple Addition):</strong> While the original Transformer used fixed sinusoidal absolute positional encodings, many subsequent models (like BERT) adopted learnable absolute positional embeddings. However, this is distinct from methods that learn how positional information is integrated or transformed. Some approaches propose learning the positional encoding function itself, or using small MLPs to generate biases based on relative distances, allowing for more flexible and adaptive encoding. Examples include FIRE (Functional Interpolation for Relative Positional Encoding) which learns biases via an MLP, unifying and generalizing over other RPEs.</p>
+</li>
+<li><p><strong>Convolution-based Positional Encodings (CPEs):</strong> CPEs attempt to leverage Convolutional Neural Networks (CNNs) to enhance the positional understanding of Transformers. CNNs are designed with local receptive fields and weight sharing, making them excellent at extracting local features and recognizing patterns that are spatially invariant. The core idea behind convolution-based positional encodings is to use convolutional layers to generate or modify positional information, often by processing the input embeddings or learned positional embeddings.  While not a drop-in replacement for all transformer tasks, they can be particularly effective in hybrid models, multimodal applications, and tasks emphasizing local structure, and serve as a compelling alternative to traditional positional embeddings.</p>
+</li>
+<li><p><strong>No Positional Encoding (NoPE):</strong> Surprisingly, some research suggests that in certain decoder-only Transformer setups (like GPT-style LLMs), and especially for length generalization, explicit positional encodings might not be strictly necessary, or that simpler implicit mechanisms are at play. While this is a more controversial area, it highlights that the causal masking itself in decoder-only models already introduces some form of positional information. However, empirical studies often show that with proper positional encoding, performance and generalization are significantly better.</p>
+</li>
+</ul>
+<p>These methods represent a continuous effort to improve how Transformers handle sequential data, offering different trade-offs in terms of computational efficiency, generalization, and interpretability. RoPE and ALiBi, in particular, have gained significant traction due to their ability to enable models to process much longer contexts than they were trained on. Other notebooks will cover concrete encoding methods in much greater detail.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2a641af8-a837-47eb-9195-f6fbadaa26b2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Modifying-Word-Embeddings:-Any-Harm?">Modifying Word Embeddings: Any Harm?<a class="anchor-link" href="#Modifying-Word-Embeddings:-Any-Harm?">¶</a></h3><p>We saw that incorporating positional encodings comes down to adding positional embedding vectors to the word embedding vectors — either to the initial word embeddings or to the query, key, or values vectors as part of the attention mechanisms. However, it is not obvious why this is a good idea. After all, word embeddings are supposed to capture the semantic meanings of words which are now potentially modified by the positional encodings. In practice, this does generally not cause any issue for two main reasons:</p>
+<ul>
+<li><p><strong>Only minor changes:</strong> Recall that we assume that positional ecodings do not feature values that dominate the values in the word embedding vectors. This means that the changes to the word embedding vectors by adding the positional encodings are generally small and are unlikely to fundamentally change the meaning of the word as captured by its word embedding. The idea is that this perturbation shifts the word's embedding vector slightly in the embedding space based on its position, but crucially, it does so in a way that the original semantic information of the word is largely preserved. It's like adding a small, consistent "directional signal" to each word's base meaning.</p>
+</li>
+<li><p><strong>High-dimensional and orthogonal embedding subspaces:</strong> Word embeddings — and therefore positional embeddings — live in high-dimensional spaces (e.g., 768, 1024, 2048 dimensions). In high-dimensional spaces, randomly chosen vectors tend to be approximately orthogonal. This means that their dot product, which measures the angle between them, is often very small, approaching zero. In general, there is no reason to assume that the word vectors and position encoding vectors are related in any way. If the word embeddings form a smaller dimensional subspace and the positional encodings form another smaller dimensional subspace, it is very likely that these two subspaces themselves are approximately orthogonal, so presumably these subspaces can be transformed almost independently through the same  transformations. This in turn allows the Transformer model to learn to disentangle these combined features.</p>
+</li>
+</ul>
+<p>That being said, different encoding methods show different performances for different tasks, and due to the models' complexities, it is not always straightforward to pinpoint the causes for certain (good or bad) behaviors. For example, there is not obvious rule that states when positional encodings are "large enough" to have a meaningful effect but also "small enough" to not modify the word embedding vectors too much.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=012c27ec-3720-43ab-906d-c319b6bd139d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=957f75c9-7479-4bb5-8bf7-1a20a9ed429e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><p>Positional embeddings are a critical component in transformer architectures, which, unlike recurrent neural networks (RNNs), process sequences in parallel and thus lack an inherent notion of order. To capture the sequential nature of input data — such as the order of words in a sentence — transformers require an additional mechanism to provide position-related information. Positional embeddings serve this role by injecting information about the positions of tokens into the model, enabling it to learn order-dependent representations.</p>
+<p>The two most common approaches to positional encoding are absolute and relative positional embeddings. Absolute positional embeddings assign each position in the input sequence a unique vector, often using sinusoidal functions or learned embeddings. These encodings are added to the token embeddings and are fixed across different sequences, giving the model a global sense of position. This method works well in tasks where the position of a token in the sequence carries semantic importance, such as in autoregressive language modeling or structured data generation.</p>
+<p>Relative positional embeddings, in contrast, focus on the distance between tokens rather than their fixed locations in a sequence. This approach allows the model to consider how close or far apart two tokens are, regardless of their absolute positions. This is particularly effective for tasks where local context and token-to-token relationships matter more than their global positions — such as machine translation or document-level question answering — leading to improved generalization and robustness, especially with variable-length inputs.</p>
+<p>Beyond these two, alternative strategies have also emerged. Some models use rotary positional encodings (RoPE), which encode positions through rotation in the embedding space, enabling more efficient and scalable modeling of relative positions. Others integrate convolutional layers, attention biases, or even learned recurrence to capture sequential patterns.</p>
+<p>In summary, positional embeddings are essential for enabling transformers to understand sequence order. Absolute encodings provide a global position reference, while relative encodings emphasize inter-token distances, with each approach suiting different task types. As the field advances, hybrid and novel methods continue to push the boundaries of how positional information can be effectively modeled.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8c4117a0-7d24-484a-9657-bfab4eb0f0fa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

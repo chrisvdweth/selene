@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>gradient_descent_basics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>masking_sequence_models</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7515,18 +7515,7 @@ video {max-width: 100% !important; height: auto !important; }
 </style>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2834c4c2-0e68-49fe-989d-c305c8a09aa2">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">!!!WORK IN PROGRESS — TESTING ANIMATIONS!!!<a class="anchor-link" href="#!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79c8c281-f6f4-4fa9-88ac-4f5e2ab5a530">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43c0d2e9-d761-4d81-9296-a6aed6744274">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7538,21 +7527,21 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08cf57e1-2b8a-4704-8a11-f0ba19109cd5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=173cea86-3123-4cbc-9237-17fd276e9116">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Gradient-Descent-%E2%80%94-The-Very-Basics">Gradient Descent — The Very Basics<a class="anchor-link" href="#Gradient-Descent-%E2%80%94-The-Very-Basics">¶</a></h1><p>Gradient Descent is an iterative optimization algorithm used to find the minimum of a function by repeatedly taking steps in the direction of the steepest decrease of that function. In the context of machine learning, this function is typically a <strong>loss function</strong> that measures how well a model's predictions match the data. By computing the gradient of the loss with respect to the model parameters, Gradient Descent tells us <em>how</em> and <em>in which direction</em> to adjust those parameters to reduce error. Conceptually, it can be thought of as navigating a landscape of error values, moving downhill step by step until a (local) minimum is reached.</p>
-<p>The general purpose of Gradient Descent is therefore <strong>parameter optimization</strong>. Most machine learning models (from linear regression to deep neural networks) are defined by a set of parameters (weights and biases) that determine their behavior. These parameters are not chosen analytically in closed form for complex models; instead, they are learned from data. Gradient Descent provides a systematic, scalable way to tune millions (or even billions) of parameters by relying only on local information: the gradient at the current point.</p>
-<p>Gradient Descent has become a cornerstone of machine learning and neural networks because it scales extremely well to high-dimensional problems and works hand-in-hand with <strong>backpropagation</strong>. Backpropagation efficiently computes gradients of the loss with respect to all parameters in a neural network, and Gradient Descent uses those gradients to update the parameters. This separation of concerns — gradient computation on one side, optimization on the other — makes the training of deep models both conceptually clean and computationally feasible.</p>
-<p>We need Gradient Descent because, for most realistic models, there is no direct mathematical solution for finding the optimal parameters. The loss surfaces of neural networks are highly non-linear, high-dimensional, and often non-convex. Gradient Descent offers a practical and flexible approach to navigating these complex landscapes, allowing models to improve gradually through incremental updates. Understanding Gradient Descent at a fundamental level is therefore essential: it reveals <em>how</em> learning actually happens inside a model and provides the foundation for more advanced optimization methods used in modern machine learning.</p>
+<h1 id="Masking-in-Sequence-Models">Masking in Sequence Models<a class="anchor-link" href="#Masking-in-Sequence-Models">¶</a></h1><p>Masking is a vital technique in sequence models like Recurrent Neural Networks (RNNs) and Transformers, where the input data often comes in the form of ordered sequences such as text, audio, or time-series signals. These models are designed to process and learn from sequential data, but in real-world scenarios, sequences frequently vary in length or contain missing, irrelevant, or future data points that should not influence the model's predictions. Masking provides a mechanism to control the flow of information within the model, ensuring that only valid and appropriate parts of the input are used during training and inference.</p>
+<p>One of the primary reasons for the necessity of masking stems from the inherent nature of sequential data, such as text or time series. When training models on sentences of varying lengths, for instance, <strong>padding</strong> is often introduced to create uniform input sizes for batch processing. Masking becomes indispensable here to differentiate between actual data and the artificial padding, ensuring that the model doesn't process or learn from these meaningless padded tokens. Beyond handling variable lengths, masking is also vital for tasks like <strong>self-supervised learning</strong>, where parts of the input are intentionally masked and the model is trained to predict the hidden portions. This forces the model to learn contextual relationships and deeper understandings of the data.</p>
+<p>Furthermore, masking techniques are critical for <strong>preventing information leakage</strong> and enabling more effective training paradigms. In NLP, for example, the concept of "attention masks" is widely used in Transformer architectures. These masks prevent the attention mechanism from attending to future tokens during training for tasks like language modeling, simulating a more realistic inference scenario where future information is unavailable.</p>
+<p>Understanding and correctly implementing masking is essential for anyone working with sequence models. Improper masking can lead to information leakage, skewed training signals, or suboptimal attention behavior. As models like Transformers continue to dominate fields such as NLP and even expand into vision and multimodal tasks, mastering the use of masking is increasingly important. It ensures that models learn from data in a structured, meaningful way, preserving the temporal and logical integrity of the sequence data they are designed to process.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e0581fd7-1104-40e6-ad85-52de61e118b2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=267e4f8d-b7d4-438f-915a-b32975a8674d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7562,7 +7551,7 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=632ec98d-37d5-4e71-87f6-a2c4b76b9cba">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ac5bd6f0-2e2f-4ad0-916b-f982abcd27b5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7570,31 +7559,80 @@ video {max-width: 100% !important; height: auto !important; }
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.plotting.gd</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn.utils.rnn</span><span class="w"> </span><span class="kn">import</span> <span class="n">pad_sequence</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8d6d5cff-9324-4455-937a-a9d5437c3634">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4da83417-af01-414f-b5cf-e3d4a9847102">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Preliminaries">Preliminaries<a class="anchor-link" href="#Preliminaries">¶</a></h4><p>Before delving into masking, there are a few preliminary comments to outline the scope of this notebook:</p>
+<ul>
+<li><p>This notebook assumes that you are familiar with the concept of attention and multi-head attention. If not, we recommend that you first cover this topic before continuing.</p>
+</li>
+<li><p>Masking is a general concept deployed for a wide range of different neural network models and tasks. In this notebook, we focus on models such as Recurrent Neural Networks (RNNs) and Transformers handling sequential data (mainly text).</p>
+</li>
+<li><p>To make all visualizations, examples, and descriptions easier to understand, we assume that any input text is tokenized into proper words. Note that practical RNN and Transformer-based models typically rely on subword-based tokenizers (e.g., Byte-Pair Encoding, WordPiece).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e1369c67-498e-42af-8554-bc882ec497c5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Running-Example">Running Example<a class="anchor-link" href="#Running-Example">¶</a></h4><p>Throughout this notebook, we use the same running example to illustrate the different masking strategies and involved computations. Given our context of sequence models, we assume the following toy batch of sentences:</p>
+<ul>
+<li><em>"The cat ate"</em></li>
+<li><em>"The cat ate fish pie"</em></li>
+<li><em>"The cat ate fish"</em></li>
+</ul>
+<p>Let's also assume we have the following vocabulary that maps between words and their word indices: {<em>"The"</em>: 1, <em>"cat"</em>: 2, <em>"ate"</em>: 3, <em>"fish"</em>: 4, <em>"pie"</em>: 5, ...}. Notice that the vocabulary contains more words as we will add additional words later on. With this vocabulary, we can encode our batch of sentences as a batch of sequences containing the indices of the respective words as follows:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=1965e248-ac08-43dd-89a4-707030e0f629">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">sequences</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+<span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85249e00-759a-4859-83d0-502e7d1fb1f3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b86fa101-86be-41ca-92f4-96c02752422b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>As simple as this example might look, it will help us to understand all masking strategies.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bc9b1058-b15f-4094-b084-924313e755af">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7605,92 +7643,31 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e6de94a-7976-4b30-95af-44da21968a3c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e91f9ded-298f-482b-92b4-b7870b2e614d">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b8041e6d-70d9-4751-9aa4-af076112c861">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
+<h2 id="Loss-Masking">Loss Masking<a class="anchor-link" href="#Loss-Masking">¶</a></h2><p>Loss masking is a technique used in machine learning, especially in models that process sequences like text, to control which parts of the output contribute to the training loss. When a model makes predictions over a sequence — such as words in a sentence — not every position may contain meaningful information for learning. Loss masking ensures that only the relevant positions are considered during loss computation, while the rest (like padding tokens or ignored tokens) are excluded.</p>
+<p>The most common use of loss masking is to ignore <strong>padding tokens</strong> that are added to make sequences in a batch the same length. Without masking, the model might learn to predict these meaningless tokens, which can degrade performance. Loss masking is also important in tasks like <strong>masked language modeling</strong>, where only specific tokens are meant to be predicted, and the loss is computed solely at those positions. Overall, loss masking helps models focus on meaningful supervision and avoid learning from irrelevant or misleading parts of the input.</p>
+<p>In terms of the involved computations, loss masking simply means turning off the loss for some positions in the output so that the model ignores them during training. This means that, although very important for a proper model training, loss masking is generally very easy to implement as it does not affect the model itself — loss masking is model-independent. Let's look at some of the most common reasons to apply loss masking in sequence models.</p>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a0d4e3aa-915d-43d9-92d5-38c19244c97a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ad36f39-6a14-41a0-b528-a3982ccae3ae">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Why-do-we-need-Gradient-Descent?">Why do we need Gradient Descent?<a class="anchor-link" href="#Why-do-we-need-Gradient-Descent?">¶</a></h3><p>Let's assume we have a very simply function $f(x)$ which is define as:</p>
+<h3 id="Padding-Masking">Padding Masking<a class="anchor-link" href="#Padding-Masking">¶</a></h3><p>Sequence models like Recurrent Neural Networks (RNNs) and Transformers — but also Convolutional Neural Networks (CNNs) used for sequence data — require <strong>padding</strong> to handle batches of variable-length sequences efficiently. In natural language processing tasks, input sentences or sequences often vary in length — see our example batch. However, for parallel processing and efficient use of GPU acceleration, it is essential to organize input data into fixed-size tensors. Padding involves appending special "padding" tokens (usually zeros or a designated symbol) to shorter sequences so that all sequences in a batch have the same length. This allows the model to process the batch in a single forward pass without dynamically adjusting for different input lengths.</p>
+<p>For example, if you try to run the code cell below to convert our example batch into a PyTorch tensor, you would get an error. PyTorch Tensors are required to be "full" with respect to all their dimensions. However, our example batch is currently not full with respect to the sequence length dimension since all three sentences have a different length.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d2a9d07-b0f7-4b80-bf50-46eae9a18864">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$\large
-f(x) = x^2 - 4x + 5
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b9e055e-9d60-4c23-ab72-f1c2308cc7bc">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We can also define this function as a Python method:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=afea43ec-3008-4558-b2b0-057bd8303016">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e9dd820d-0e9b-4787-8b4c-de95495029b1">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Using this method, we can plot the function</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a78c920b-c444-482c-b2f5-d9f0617b4b07">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=dd96ee9e-721c-4412-859c-f332dddccab2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7698,11 +7675,67 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#sequences = torch.LongTensor(sequences) # This will throw an error!!!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4a5be914-97c3-4249-a820-308d20cf97ba">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In principle, RNNs and Transformers can intrinsically handle variable lengths but only if (a) if they process all sequences one by one (i.e., batch size of 1), or (b) if all sequences within at least the same batch have the same length. Training with a batch size of 1 is always possible but typically results in a much lower training speed as the training does not benefit from parallel processing compared to using larger batch sizes.</p>
+<p>Ensuring that a batch contains only sequences of the same length can be a useful alternative from some use cases but it does require additional data preparation steps. It also prohibits that the training data can be randomly shuffled between epochs. Training data are often shuffled between epochs to prevent the model from learning spurious patterns or order-specific dependencies that don't generalize. Shuffling helps ensure that each mini-batch contains a diverse mix of samples, leading to more stable and generalized updates to the model’s parameters. This randomness improves convergence and reduces the risk of overfitting to the order of the data.</p>
+<p>Thus, padding is a practical solution that enables efficient training and inference on sequence data with varying lengths. So let's pad our example batch and convert it into a proper PyTorch tensor. First we need to decide on the special word/token and its respective index. While not required, it is very common to set the index of the word representing the padding to $0$ — and we will see in a bit that this makes handling padding often quite convenient. The word/token can be basically any string, but it should be of course a string that is unique and does not already appear as another word/token in the dataset; here we go with <em>"[PAD]"</em>:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=9d4b99a5-7a64-4c39-85e6-af677b1bb4b3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">PAD_IDX</span>  <span class="o">=</span> <span class="mi">0</span>
+<span class="n">PAD_WORD</span> <span class="o">=</span> <span class="s2">"[PAD]"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=60c46f64-a091-45ea-a5ed-fb3a829ebb44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In other words, we extend our vocabulary by the new entry <em>"[PAD]"</em>: 1. With these definitions in place, we can pad our example batch accordingly. First convert all <em>individual</em> sequences in the batch to tensors to serve as valued input to the built-in method <code>pad_sequence()</code> provided by PyTorch. The <code>pad_sequence()</code> method is a utility function that takes a list of variable-length tensors (typically representing sequences like sentences) and pads them so they all have the same length. It returns a single tensor where shorter sequences are padded with specified value to match the length of the longest sequence. Naturally, we use <code>PAD_IDX</code> as the passing value.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=db661654-837e-4016-8a15-e893d8a1f348">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Convert all sequences into tnesors</span>
+<span class="n">sequences</span> <span class="o">=</span> <span class="p">[</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sequences</span> <span class="p">]</span>
+
+<span class="c1"># Pad tensor with value 0</span>
+<span class="n">batch</span> <span class="o">=</span> <span class="n">pad_sequence</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padding_value</span><span class="o">=</span><span class="n">PAD_IDX</span><span class="p">)</span>
+
+<span class="c1"># Show padded batch tensor</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7714,176 +7747,27 @@ $$</p>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
-<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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mjQJgGOYfPXq1ZgxY4bYcOSxZFnGgw8+iMWLF2Pt2rVITU0VHcmj2O12WCwW0TEU58orr8TevXvPeO6uu+5CRkYGHn/8cRaPc6ivr8fRo0dx++23C3l/ryofHVFYWIiamhoUFhbCZrNh165dAIC0tDQEBweLDSfYI488gmnTpmHw4MEYOnQo5syZg4aGBtx1112ioylKfX39GT81HDt2DLt27UJYWBiSkpIEJlOe6dOnY8GCBVi6dCn0ej3KysoAAAaDAQEBAYLTKcsTTzyBsWPHIikpCXV1dViwYAHWrl2LlStXio6mOHq9/lfzhoKCghAeHs75RL/w6KOPYsKECUhOTkZpaSmeeeYZqNVq3HLLLWICiV5uI8q0adNkAL96rFmzRnQ0RXj99dflpKQkWafTyUOHDpW3bNkiOpLirFmz5qzfQ9OmTRMdTXHO9jkBkOfNmyc6muLcfffdcnJysqzT6eTIyEj5yiuvlL///nvRsTwGl9qe3c033yzHxsbKOp1Ojo+Pl2+++Wb5yJEjwvJIsizL7q88RERE5Ku8arULERERKR/LBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG51f8DdjbJ7xUsJgoAAAAASUVORK5CYII="/>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[1, 2, 3, 0, 0],
+        [1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 0]])
+</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0dcf3e41-ecea-497d-b97b-4482d74afda1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4de7bbb4-af22-4d9f-933c-720abbba9f82">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If we now assume that $f(x)$ is some kind of loss function where we want to find the value for $x$ thar minimizes this function. Of course, given the simple nature of $f(x)$ and just by looking at the plot above, we can see that $x=2$ minimizes $f(x)$ with $f(2) = 1$. Beyond eye-balling the solution, the systematic approach to find the minimum is using calculus by means of the first derivative $\frac{df}{dx}$. If $g(x)$ denotes the first derivative of $f(x)$, and using the derivation rules from calculus, we get:</p>
+<p><code>batch</code> is not a proper PyTorch tensor that can serve as input for a model for training or inferences. As such, we can also, for example, inspect the shape of the tensor:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c472ee70-b71b-4c29-a841-aa2a3bb334ab">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$\large
-g(x) = \frac{df(x)}{dx} = 2x - 4
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c723379a-29b8-4886-bfc9-48e03707a46c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The first derivative tells us the <strong>rate of change</strong> of a function with respect to its input, including both the direction** and steepness of that change. Its sign indicates whether the function is increasing or decreasing, and points where it is zero identify <strong>critical points</strong> where the behavior of the function may change. Thus, to find $x$ that minimizes $f(x)$, we need to find $x$ where $g(x) = 0$. Again, given the very simple nature of $f(x)$ and thus $g(x)$, this is a very simple calculation.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0343bab7-8c3c-45f9-926d-f1a6c60b7cd7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large 2x - 4\ &amp;\large= 0\\[0.25em]
-\large 2x\ &amp;\large= 4\\[0.25em]
-\large x\ &amp;\large= 2
-\end{align}
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c096d3ac-9132-4631-be6d-66ff436267ff">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Of course, we get the result that $x=2$ minimizes $f(x)$ as we spotted from the plot.</p>
-<p><strong>Important:</strong> The first derivative of a function allows us to identify critical points, where the slope is zero and the function has a horizontal tangent. These points are candidates for <strong>local minima, local maxima, or saddle points</strong>. However, the first derivative alone does not tell us which type of point we have found. To classify a critical point, we must perform an additional check—either by examining the second derivative (which reveals local curvature) or by evaluating the function slightly before and after the point to see whether the function value decreases, increases, or does both. In the context of <strong>loss functions</strong>, we typically do not need to explicitly distinguish between minima, maxima, and saddle points. This is because training is formulated as a <strong>pure minimization problem</strong>: we only ever move parameters in the direction that reduces the loss. Gradient-based optimization methods like Gradient Descent naturally move <em>away</em> from maxima and tend not to get stuck at saddle points in practice, especially in high-dimensional spaces where true saddle points are unstable. As a result, it is sufficient to follow the gradient and monitor whether the loss decreases, rather than classifying each stationary point mathematically.</p>
-<p>Now that we have seen an example for how we can find the minimum of a function, you may wonder what the big deal is, and why we cannot train machine learning models — not even Linear Regression let alone large neural networks — that way. Our example was easy to solve because $g(x)$, i.e., the derivative of $f(x)$, was such a simple function that allowed us to set $g(x) = 0$ and solve for $x$. In other words, we could find an analytically solution in terms of a closed-form expression that allowed is to find $x$ that minimized $f(x)$ directly.</p>
-<p>However, if $f(x)$ and particularly its first derivative, becomes more complex, this might no longer be possible. While we can still compute the derivative, and set the derivative to $0$, we fail to solve for $x$.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31817523-24f0-4ee7-b21c-b269ddf13d8c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large g(x)\ &amp;\large = 0\\[0.25em]
-\large\Downarrow\\[0.25em]
-\large x\ &amp;\large = {\color{red} \times} \\
-\end{align}
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ebf2f9c-4bb8-46f5-8bb1-5265967e7372">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>For most machine learning models (but especially neural networks), the loss function is highly non-linear, high-dimensional, and has millions of parameters, making such equations impossible to solve in closed form.
-In fact, basic Logistic Regression — which can crudely be considered a neural network with a single neuron — cannot be solve analytically. Additionally, real-world loss function are often <strong>non-convex</strong>, with many local minima and saddle points. Even if we could write down the equations, solving them exactly would be computationally intractable.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d09ee21b-e049-44de-8da2-c460ec5da776">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3cd3a3ba-9744-4832-aa7d-4a24bf12dff6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6b6dea45-4fa5-472c-abee-d6294c5b3437">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">df</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e84eccfb-75e8-49fa-9eae-0603e1995ab4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Basic-Idea">Basic Idea<a class="anchor-link" href="#Basic-Idea">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4cac7485-6a3e-4026-b750-6dad47bbb4f9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e0de9ef7-7284-463d-9902-ea9da5fa32aa">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bfd37bea-35f2-44ba-9a48-52878f8f1386">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7891,7 +7775,7 @@ In fact, basic Logistic Regression — which can crudely be considered a neural 
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">animate_gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">x0</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Shape of batch tensor: </span><span class="si">{</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7901,353 +7785,1179 @@ In fact, basic Logistic Regression — which can crudely be considered a neural 
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<video autoplay="" controls="" height="500" width="800">
-<source src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAARoZtZGF0AAACrQYF//+p
-3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2MyByMzA2MCA1ZGI2YWE2IC0gSC4yNjQvTVBF
-Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMSAtIGh0dHA6Ly93d3cudmlkZW9sYW4u
-b3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFs
-eXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVk
-X3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBk
-ZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTkg
-bG9va2FoZWFkX3RocmVhZHM9MSBzbGljZWRfdGhyZWFkcz0wIG5yPTAgZGVjaW1hdGU9MSBpbnRl
-cmxhY2VkPTAgYmx1cmF5X2NvbXBhdD0wIGNvbnN0cmFpbmVkX2ludHJhPTAgYmZyYW1lcz0zIGJf
-cHlyYW1pZD0yIGJfYWRhcHQ9MSBiX2JpYXM9MCBkaXJlY3Q9MSB3ZWlnaHRiPTEgb3Blbl9nb3A9
-MCB3ZWlnaHRwPTIga2V5aW50PTI1MCBrZXlpbnRfbWluPTIgc2NlbmVjdXQ9NDAgaW50cmFfcmVm
-cmVzaD0wIHJjX2xvb2thaGVhZD00MCByYz1jcmYgbWJ0cmVlPTEgY3JmPTIzLjAgcWNvbXA9MC42
-MCBxcG1pbj0wIHFwbWF4PTY5IHFwc3RlcD00IGlwX3JhdGlvPTEuNDAgYXE9MToxLjAwAIAAAC//
-ZYiEABb//vfTP8yy6/c5teOo96KeJl9DdSUBm5bE7TqAAAADAAADAAADAA/hMFtS4RUJjBaAAAAD
-Ad9znfikcP4nMARaKgzEFM0W99LPRwFw2CeMH689n7aSUtb2hqT9c+l/N/eLqNMn0MFBXIHPbr6r
-4VO5jWriD8yErBoLE1QQHsvWmR4iwhaz1AkJwPY67HqnnD4myr5S2AcCAPfxj57k4s523P9Tj2qH
-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
-OC43Ni4xMDA=
-" type="video/mp4"/>
-  Your browser does not support the video tag.
-</video>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Shape of batch tensor: torch.Size([3, 5])
+</pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f5b15353-a04f-48ad-82b8-8a0950aa037d">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd2b1f90-12bb-4aea-b32b-f32f37466c83">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The shape of <code>batch</code> reflects our example data containing $3$ sequences and the longest sequences containing $5$ words. All initially shorter sequences have now been padded — extended by padding index $0$ to the same maximum length of $5$.</p>
+<p>Of course, we now have to consider that the padding tokens do not carry any useful meaning themselves. As such, we have to ensure that during model training, these padding tokens are ignored. For example, assume we want to train RNN-based classifier to predict of a given sentence talks about topics such as <em>"FOOD"</em>, <em>"BEHAVIOR"</em>, <em>"GROOMING"</em>, <em>"HEALTH"</em>, etc. If we give this RNN our padded example batch, it will iterate over all five words, including the padding tokens if present. The figure below illustrates the idea for the first sentence <em>"the cate ate"</em>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2653d067-1d45-4919-b415-3a1918db9bdd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Padding Mask: RNN for Classification" src="images/illustrations/masking/masking-padding-rnn-many2one.png" style="margin:auto;max-width:400px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1f3eba04-d53b-4e56-acb0-171a73a43e30">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We obviously want to ignore the output of the last two time steps associated with the padding tokens. Instead, we want to consider the output after the last proper word (here: <em>"ate"</em> at Index $2$) to calculate the loss during training. To find all the correct indices for all three sentences, we can simply count the number of non-zero elements for each sequence and subtract $1$ (since all arrays are zero-indexed). In the code cell below, we simply use the built-in method <a href="https://docs.pytorch.org/docs/stable/generated/torch.count_nonzero.html"><code>count_nonzero()</code></a> to accomplish that.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=c7b11f7e-05e5-4abc-a00e-db8919984ac0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Count the number of non-zero elements for each sequence in the batch</span>
+<span class="n">batch_nonzero_indicies</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="c1"># Show indices</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">batch_nonzero_indicies</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([2, 4, 3])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=11b32666-2855-407b-b3c3-2fee1b4dedef">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In other words, we want to calculate the loss at Index $2$ for the first sequence, at Index $4$ for the second sequence, and Index $3$ for the third sequence. Keep in mind that this assumes that we have performed right-padding, i.e., we added the padding tokens to the right side when extending the sequences. Also note how using $0$ as the padding index makes this step using the method <a href="https://docs.pytorch.org/docs/stable/generated/torch.count_nonzero.html"><code>count_nonzero()</code></a> very easy.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=05e20571-7151-4dc0-ac37-fb69db3b06f1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Side note:</strong> Since this is such a common scenario, PyTorch provides the <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.utils.rnn.PackedSequence.html"><code>PackedSequence</code></a> class for an easier and more efficient implementation. A <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.utils.rnn.PackedSequence.html"><code>PackedSequence</code></a> in PyTorch is a data structure used to efficiently represent sequences of varying lengths, typically for use with RNNs. When dealing with batches of sequences (e.g., sentences of different lengths), padding is usually added to make them the same length. However, this padding can be wasteful and may negatively affect model performance. <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.utils.rnn.PackedSequence.html"><code>PackedSequence</code></a> solves this by storing only the non-padded elements along with metadata (like sequence lengths) that allows PyTorch to keep track of the original batch structure. Using a <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.utils.rnn.PackedSequence.html"><code>PackedSequence</code></a> allows RNNs to skip over padded elements during computation, leading to faster training and better handling of variable-length inputs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f272cf36-87e1-48e5-8302-75c541df657f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Let's consider another application where we want to use our example batch to train an RNN-based Part-of-Speech tagger. The figure below illustrate this training setup based on the first sentence <em>"the cat ate"</em>. Again, since this 3-word sentence is parted if the padded batch where all sequences are of length $5$, by default (i.e., without using <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.utils.rnn.PackedSequence.html"><code>PackedSequence</code></a>) the RNN will iterate over all five words and produce five outputs — and again, we want to ignore the last two outputs for the first sentence.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4115b9f4-607e-4220-9c6b-4559fd03c606">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Padding Mask: RNN for PoS Tagging" src="images/illustrations/masking/masking-padding-rnn-many2many.png" style="margin:auto;max-width:400px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ee0dac70-e09d-41f8-b83f-6b81e5d37f67">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In simple terms, we are now interested in all indices of non-zero entries for each sequence. The code cell below creates a Boolean tensor with the same shape as <code>batch</code> with <code>True</code> in positions where there is a non-zero entry in <code>batch</code>; and <code>False</code> otherwise.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9202fd4e-b87d-47e6-aab4-7f2b913fa607">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a mask for non-zero elements</span>
+<span class="n">padding_loss_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">batch</span> <span class="o">!=</span> <span class="n">PAD_IDX</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+
+<span class="c1"># Show binary mask</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">padding_loss_mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[1., 1., 1., 0., 0.],
+        [1., 1., 1., 1., 1.],
+        [1., 1., 1., 1., 0.]])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50704dd9-9b6c-410b-b954-e8c2f6f3c628">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We can now use this mask to ignore the losses for all outputs of padding tokens. To sketch this idea, let's define a random tensor that contains all $5$ losses (with respect to all five words) and all $3$ sequences. This means that the tensor holding all the losses has the same shape as our padded batch.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=632cc509-f52d-417e-8ef9-5f765126b7a1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a random tensor with values between 0-1 to represent loss values</span>
+<span class="n">batch_losses</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand_like</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">float</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">batch_losses</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[0.5135, 0.5513, 0.9017, 0.4005, 0.0784],
+        [0.4215, 0.5581, 0.8376, 0.8771, 0.9324],
+        [0.2851, 0.7234, 0.5639, 0.6350, 0.9162]])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ce12024f-440c-4da7-a362-280b30528e3a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>To get the final aggregated loss, we can not multiply the tensor <code>losses</code> containing all losses with the padding mask; this will set the losses for padding positions to $0$. Lastly, we can sum up all losses and divide by the number of non-zero losses to calculate the mean. The mean loss is typically calculated for each batch to ensure that the learning signal remains consistent regardless of batch size or sequence length. Moreover, using the mean loss ensures comparability across different training iterations and facilitates learning rate tuning, since the magnitude of the loss (and gradients) remains within a predictable range.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2463c3f1-1b1f-43c9-96dc-2c9156e5b732">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate mean loss over all non-pad positions</span>
+<span class="n">batch_loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">batch_losses</span> <span class="o">*</span> <span class="n">padding_loss_mask</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">padding_loss_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The mean loss for the example batch is: </span><span class="si">{</span><span class="n">batch_loss</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>The mean loss for the example batch is: 0.650
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=082db087-0af3-4d75-b6e1-4d5f756a78cc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Side note:</strong> Again, in practice, PyTorch supports this step out of the box. The <code>ignore_index</code> argument in PyTorch loss functions, such as <code>nn.CrossEntropyLoss</code>, allows you to specify a target value that should be excluded from the loss computation. This is particularly useful when dealing with padded sequences in tasks like sequence modeling, where padding tokens are added to ensure uniform sequence length but do not represent meaningful data. By setting <code>ignore_index</code> to the padding token's value, you ensure that the model is not penalized for predictions made at those positions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=70a1abb4-5184-4f50-b2a6-09b0c44de6c2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Masked-Language-Modeling">Masked Language Modeling<a class="anchor-link" href="#Masked-Language-Modeling">¶</a></h3><p>Masked Language Modeling (MLM) is a self-supervised learning task used to train language models to understand the structure and meaning of language. In MLM, some tokens in an input sentence are randomly replaced with a special token (e.g., <em>"[MASK]"</em>), and the model is trained to predict the original tokens based on the surrounding context. This encourages the model to learn deep bidirectional representations, as it must consider both the left and right context to make accurate predictions.</p>
+<p>For example, given the sentence <em>"the cat [MASK] fish pie"</em>, the model learns to predict the missing word <em>"ate"</em>. This task is most famously used in models like <a href="https://en.wikipedia.org/wiki/BERT_(language_model">BERT</a>), where MLM allows the model to develop a strong understanding of word relationships, syntax, and semantics without needing labeled data. By training on large corpora with this objective, the model can later be fine-tuned for downstream tasks such as question answering, text classification, or named entity recognition.</p>
+<p>To give an example, let's create another training batch that contains only the longest sentence for our initial example batch — simply to avoid for padding here — but replace some of the words with <em>"[MASK]"</em>. For example, the original BERT model replaced ~15% of all words with <em>"[MASK]"</em>:</p>
+<ul>
+<li><em>"the [MASK] ate fish [MASK]"</em></li>
+<li><em>"[MASK] cat [MASK] fish pie"</em></li>
+<li><em>"the cat ate [MASK] pie"</em></li>
+</ul>
+<p>The figure below shows the basic learning setup using BERT with the Masked Language Model objective with respect to the first sentence <em>"the [MASK] ate fish [MASK]"</em>, where the task is to predict the missing words <em>"cat"</em> and <em>"pie"</em>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f0903e39-578b-4f50-a428-357409751f94">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="MLM Masking: BERT Example" src="images/illustrations/masking/masking-mlm-bert-example.png" style="margin:auto;max-width:400px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=537bd033-7efd-4af0-b2cd-58153a8f34bd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The BERT model (and its variants) is based on the Transformer architecture and therefore returns an output for each input word. However, since we only care about the outputs at indices $1$ and $4$, we again need to apply loss masking. To illustrate this, let's first encode the masked example sentences from above into a tensor by introducing <em>[MASK]</em> as a new token to our vocabulary and assigning it the unique index $999$ (completely arbitrarily chosen):</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70b55535-539c-4767-92b1-ba92d9e435ae">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">MASK_IDX</span>  <span class="o">=</span> <span class="mi">999</span>
+<span class="n">MASK_WORD</span> <span class="o">=</span> <span class="s2">"[MASK]"</span>
+
+<span class="n">mlm_batch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">999</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">999</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">999</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">999</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">999</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">mlm_batch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[  1, 999,   3,   4, 999],
+        [999,   2, 999,   4,   5],
+        [  1,   2,   3, 999,   5]])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=efcef61c-f805-4761-8dff-751d6e5655ea">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This batch tensor now allows us to derive the corresponding loss mask, which is again another tensor of the same shape <code>mlm_batch</code>. In this case we are interested in finding all positions where the word index is $999$ and therefore representing a masked word:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bb578859-f4f1-446f-9922-6a928eb86746">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Create a mask for non-zero elements</span>
+<span class="n">mlm_loss_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">mlm_batch</span> <span class="o">==</span> <span class="n">MASK_IDX</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+
+<span class="c1"># Show binary mask</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mlm_loss_mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[0., 1., 0., 0., 1.],
+        [1., 0., 1., 0., 0.],
+        [0., 0., 0., 1., 0.]])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a38c37c3-893b-418a-8ade-834be97aaca6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>With this binary mask, we can now perform the same steps we have already seen to consider only the losses for the masked tokens as part of the calculation of the final loss for this batch:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e0691e5a-590e-4fe2-91a1-715966d6e6de">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate mean loss over all non-pad positions</span>
+<span class="n">mlm_batch_loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">batch_losses</span> <span class="o">*</span> <span class="n">mlm_loss_mask</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">mlm_loss_mask</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># Mean loss over non-pad positions</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The mean loss for the MLM example batch is: </span><span class="si">{</span><span class="n">mlm_batch_loss</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>The mean loss for the MLM example batch is: 0.505
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=38f7227b-43ea-4b29-8a0c-4e7e5928e4de">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Of course, in practice, when using the implementations of loss functions provided by PyTorch, we could use the <code>ignore_index</code> argument to handle all the selective loss calculations under the hood. This keeps the code cleaner, easier to maintain, and reduces the risk of introducing implementation errors.</p>
+<p><strong>Side note:</strong> Apart from the Masked Language Model (MLM) objective, BERT also implements a Next Sentence Prediction (NSP) objective for the model training. This objective helps the model understand the relationship between pairs of sentences, which is important for downstream tasks like question answering and natural language inference. During training, BERT is fed pairs of sentences: in 50% of the cases, the second sentence is the actual next sentence that follows the first one in the original text ("Is Next"), and in the other 50%, it is a randomly chosen sentence from the corpus ("Not Next"). The model is trained to predict which of these two cases applies. However, we have ignored the NSP object for our example as it does not add anything to our discussion about masking.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2549db4f-fec6-4741-9c6a-2368f8cfecee">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Custom-Loss-Masking">Custom Loss Masking<a class="anchor-link" href="#Custom-Loss-Masking">¶</a></h3><p>Padding masking and Masked Language Modeling (MLM) are both common and standard reasons for loss masking. Also, both applications apply loss masking to completely ignore certain losses by using binary mask — that is, the mask contains only $1$s and $0$s. However, the mask may also contain numerical values that can be interpreted as weights to increase or decrease the importance of a certain loss at a certain position. The list below outlines so example for other use cases of loss masking:</p>
+<ul>
+<li><p><strong>Missing data labels:</strong> An annotated dataset might accidentally or purposefully miss individual data items or labels. For example, a dataset for training a Part-of-Speech tagger might not come with tags/labels for numbers or other non-standard words. While we can introduce a default label (e.g., <em>"OTHER"</em>), we can also mask all the outputs for words or tokens that do not have a label. Sequence data might also miss complete items. Maybe the items where not (properly) recorded (e.g., when Optical Character Recognition (OCR) failed to recognize or word), or items where redacted (e.g., for privacy preservations).</p>
+</li>
+<li><p><strong>Noisy or uncertain labels:</strong> Annotations may come with additional information how certain or uncertain a label is (e.g., expressed as a percentage from 0% to 100% certainty). For example, our Part-of-Speech dataset might have been labeled by 10 different annotators. Thus, for words where not all 10 annotators agree on the same PoS tag, we can decrease the importance of the losses for those based on the level of agreement: instead of multiplying the initial losses by $0$ we multiply them by values between $0$ and $1$.</p>
+</li>
+<li><p><strong>Curriculum Learning:</strong> Loss masking for curriculum learning involves selectively including or excluding parts of a sequence from contributing to the loss based on their difficulty or relevance at a given stage of training. Instead of feeding easier examples first (as in traditional curriculum learning), this approach presents full sequences but masks out harder tokens initially, gradually unmasking them as the model improves. This allows the model to focus on learning simpler components first while still seeing the full input context. For example, in a sequence labeling task like Named Entity Recognition (NER), you might initially compute the loss only for easily recognizable entities like <em>"John"</em> or <em>"London"</em>, masking out rare or ambiguous tokens like <em>"Apple"</em> (which could be a company or a fruit).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ab055499-2b18-4432-b05b-db478d69d2d9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91ba781b-1e7e-44d3-8799-167ccd935b10">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Attention-Masking-(Transformers)">Attention Masking (Transformers)<a class="anchor-link" href="#Attention-Masking-(Transformers)">¶</a></h2><p>So far, masking did not affect the inner workings of a model itself as loss masking is only concerned about which outputs should be considered for the training. While Recurrent Neural Networks (RNNs) may be trained more efficiently utilizing masking information — potentially performing less operations for sequences shorter than the longest sequence in a batch — this is not a required step as it does not affect the underlying training setup and objective.</p>
+<p>However, the characteristics of the Transformer architecture requires that certain types of masking are part of the model itself. The main reason for this is that the attention mechanism,  by default, computes the attention weights between all pairs of words in parallel — in contrast to RNNs that process sequences indeed sequentially. There are various reasons why adding masking to the attention mechanism is required. In the following, we focus on the two most common ones: <strong>padding</strong> (again) and <strong>autoregressive sequence generation</strong> (e.g., text generation in case of words as outputs).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8604a87d-def3-49e2-bc58-f02ae703b9af">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Padding-Masking-%E2%80%94-Attention-Blocking">Padding Masking — Attention Blocking<a class="anchor-link" href="#Padding-Masking-%E2%80%94-Attention-Blocking">¶</a></h3><p>The motivate the problem of working with padded batches as input for the Transformer architecture, let's have another quick look at our example batch:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f18b80c6-57ab-4558-9d42-de06631b90dc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[1, 2, 3, 0, 0],
+        [1, 2, 3, 4, 5],
+        [1, 2, 3, 4, 0]])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fac1bc7e-218c-4c3d-a0ce-5909d20d55b5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Recall the $0$ represents the padding token that we only added to create a proper PyTorch tensor, but does not carry any semantic information on its own. If we input this batch into a Transformer, the attention mechanism computes the attention scores between <em>all</em> pairs of words for each sequence, including the padding tokens. Recall that attention is calculated as</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26842dd2-9853-4b15-9ccb-ca5563b4f724">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}} \right) V
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4d46d120-3601-4e33-95c8-1017c089cae1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>where $Q$, $K$, and $V$ contain word embedding vectors projected into the query, key, and value space. Since the padding token is also represented by some embedding vector, this vector also gets projected before the attention calculation. The figure below, shows the calculation of the attention scores $QK^T/d_k$ for the first sentence in the batch (<em>"The cat ate [PAD] [PAD]"</em>). The embedding vectors representing the padding token <em>"[PAD]"</em> are greyed out to indicate that these vectors do not carry any useful semantics. The resulting values of the attention score are just arbitrary for this purpose of this example.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ff410990-61cc-4f55-9b78-391a56031f69">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Padding Mask: Calculating Attention Scores" src="images/illustrations/masking/masking-padding-attn-score-calc.png" style="margin:auto;max-width:750px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4ef9e708-6760-462b-a247-6bd886af4453">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The resulting matrix $A^{(0)}_{scores}$ containing the attention scores is of size $L\times L$ with respect to the first sequence, where $L$ is the length of the sequences in the batch (with or without padding). However, $A^{(0)}_{scores}$ contains scores that we want to ignore. More specifically, we want to ignore all attention scores that are the result of a dot product that involved at least one vectors representing padding token <em>"[PAD]"</em>. Thus, intuitively, we seem to want an attention mask $A^{(0)}_{pad}$ that looks as follows:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0949cb9c-b559-4fbe-8581-1777018d2258">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+A^{(0)}_{pad} = 
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+-\infty &amp; -\infty &amp; -\infty &amp; -\infty &amp; -\infty  \\
+-\infty &amp; -\infty &amp; -\infty &amp; -\infty &amp; -\infty  \\
+\end{bmatrix}
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c0115d10-fed4-4481-81fb-6a3a0fbceac5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>While this mask could be used in practice, it turns out — and we will provide the reason for this later — that we only need to capture the padding tokens in the columns. This means that we typically use the following attention mask for our example sentence <em>"The cat ate [PAD] [PAD]"</em>:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d92f17e8-a2ae-478f-8d0f-82af94accaf7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+A^{(0)}_{pad} = 
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+\end{bmatrix}
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7a0b1155-ae2d-4864-9001-75abc61a3c85">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Before we continue and actually apply the mask, let's see how we could actually implement the calculation of the mask. For this, we first define the auxiliary method <code>create_padding_mask()</code> which creates a tensor of the same shape as the input batch but with $0$s at positions of non-padding words in the batch and with $-\infty$ at padded positions.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5b24ec7c-91bd-4e5e-956b-601cf51a0014">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_padding_mask</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">pad_value</span><span class="o">=</span><span class="n">PAD_IDX</span><span class="p">):</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">batch</span> <span class="o">==</span> <span class="n">pad_value</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'-inf'</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">mask</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=89d29a4d-fc8a-4720-8368-4afac72b4c45">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Let's apply this method to our example batch.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d05bb5df-6f9c-4e21-a086-799fbcf57ac5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">padding_mask</span> <span class="o">=</span> <span class="n">create_padding_mask</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">padding_mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[0., 0., 0., -inf, -inf],
+        [0., 0., 0., 0., 0.],
+        [0., 0., 0., 0., -inf]])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1ea53623-5515-4b11-a7a6-3bf5b28b04db">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>As expected this mask shows that, for example, the first sequences contains three proper words and two padding tokens, again reflecting the first sentence in the batch (<em>"The cat ate [PAD] [PAD]"</em>). In fact, this <code>padding_mask</code> tensor is typically the mask you would pass a Transformer implementation provided by a library, which handles all involved computations transparently under the hood.</p>
+<p>Of course, you will have noticed that <code>padding_mask</code> does not look like $A_{pad}$ since the latter is the actual mask to be used as part of the attention mechanism.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=46965d3d-fd2f-4e25-9cc7-c4166aaee5a4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">A0_pad</span> <span class="o">=</span> <span class="n">padding_mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">A0_pad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[0., 0., 0., -inf, -inf],
+        [0., 0., 0., -inf, -inf],
+        [0., 0., 0., -inf, -inf],
+        [0., 0., 0., -inf, -inf],
+        [0., 0., 0., -inf, -inf]])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=65eda426-bda7-4bbb-b770-291962a33bd6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Keep in mind that $A^{(0)}_{pad}$ only represents the attention mask with respect to the first sequence. Since our example batch contains three sequences we have three attention matrices $A^{(i)}_{pad}$ with $i\in \{0,1,2\}$, which are shown below.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=78ee99b7-6f66-490b-a8a7-771c30ec31de">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+A^{(0)}_{pad} = 
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+\end{bmatrix},\quad
+A^{(1)}_{pad} = 
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+\end{bmatrix},\quad
+A^{(2)}_{pad} = 
+\begin{bmatrix}
+0 &amp; 0 &amp; 0 &amp; 0 &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; -\infty  \\
+\end{bmatrix}
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4eb55028-a782-4435-8b06-cb62fae0650a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This means the the full attention mask $A_{pad}$ is a tensor of size $B\times L\times L$, where $B$ is the batch size (here: $3$), containing all $A^{(i)}_{pad}$:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c76c4179-773f-4525-898d-29e0bfc2dcc7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+A_{pad} = [A^{(0)}_{pad}, A^{(1)}_{pad}, A^{(2)}_{pad}]
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7aff7245-ed4b-4532-b51a-8719716fcf51">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>For simplicity, let's again focus on the attention mask $A^{(0)}_{pad}$ for the first sequence only. As before, applying a mask means adding the mask to the tensor with the attention scores, i.e., $A^{(0)}_{masked} = A^{(0)}_{scores} + A^{(0)}_{pad}$; the figure below illustrates this step.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1bf2e554-84f3-4c5c-8dac-06eb6c9a2b8b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Padding Mask: Attention Score Masking" src="images/illustrations/masking/masking-padding-attn-score-masking.png" style="margin:auto;max-width:700px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e4b5d15b-eeda-4b15-9f8a-ad3551b57164">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Again, it might seem a bit strange that $A^{(0)}_{masked}$ contains some non-masked entries for attention scores involving thing the padding tokens <em>"[PAD]"</em>. I minor and more pragmatic reason for this is that it won't cause any issues when calculating the actual attention weights using the <em>softmax</em> function. Recall that we applies the <em>softmax</em> to matrix $A^{(0)}_{masked}$ containing the attention scores to normalize the matrix so that all rows sum up to $1$. This is to ensure that the final matrix multiplication with $V$ yields output embedding vectors of the same magnitude as in input vectors.</p>
+<p>If the the last two rows in our matrix $A^{(0)}_{masked}$ would all be $-\infty$, the result of the <em>softmax</em> function would be undefined for both these rows — of course, in practice, we could handle this corner case by simply setting all values for those rows to $0$. However, since no row has only $-\infty$ values, we can can apply <em>softmax</em> without any special considerations. The figure below illustrations this operation; let $A^{(0)}_{weights}$ be the output matrix containing all attention weights — again, appreciate that all row values sum up to $1$:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b5f7fc4-a597-4f83-b491-8ebb5081fe8b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Padding Mask: Attention Weights Calculation" src="images/illustrations/masking/masking-padding-attn-weights-calc.png" style="margin:auto;max-width:650px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b516690a-0776-4204-aeff-b2c4b035af35">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Thus, the last operation to calculate $Attention(Q,K,V)$ for the first sequence according to the formula (see above), is to multiply the attention weights matrix $A^{(0)}_{weights}$ with matrix $V$ containing the value vectors of the first sequence, i.e., $A^{(0)}_{weights}\times V$, as illustrated in the figure below. Again, the grey matrix cells in $A^{(0)}_{weights}$ and $V$ reflect the embedding vectors for the padding token.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5c085a8e-656d-4bba-a1ed-4d37b1da09cb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Padding Mask: Calculation of Output" src="images/illustrations/masking/masking-padding-attn-out-calc.png" style="margin:auto;max-width:800px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4854b1f2-1126-4af4-a9bc-6461a320ab72">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Strictly speaking, we do update the embedding vectors of the padding token, and thus treat them like proper words. However, the important observation is that these <strong>padding embedding vectors never affect the attention scores of the proper words!</strong> For one, every subsequent transformer block with its own attention layer will equally ignore those vectors the same we just did in our worked example. And even after the last transformer block, although the final output will still contain "some" embedding vectors for each padding token, we will still apply loss masking to ignore those outputs.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=50e6b329-ae2f-469a-8d4e-ee0251325152">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Side note:</strong> It seems that we perform a lot of unnecessary computations by dragging the padding embedding vectors through all transformer blocks (including their attention layers). And in some sense, this is certainly true. However, recall why we introduced padding in the first place: to benefit from parallel processing (on GPUs) when working with batches instead of individual sequences. In other words, trying to minimize the total number of operations by treating each sequence individually, would again deprive us from the efficient use of GPU acceleration. It also keeps the required code much leaner.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6cbe05c8-b722-40e5-8e05-889b8dc7371f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Causal-or-Autoregressive-Masking">Causal or Autoregressive Masking<a class="anchor-link" href="#Causal-or-Autoregressive-Masking">¶</a></h3><p>The overall Transformer architecture has to main components: the <em>encoder</em> and the <em>decoder</em>. The common purpose of the decoder in the Transformer architecture is to generate sequences, typically in a step-by-step, <strong>autoregressive</strong> manner. In the context of text generation, this auto-regressive nature means that each generated token is conditioned on all previously generated tokens, ensuring coherence and grammatical correctness in the output. Essentially, the decoder acts as a powerful conditional language model.</p>
+<h4 id="Encoder-Decoder-vs-Decoder-Only">Encoder-Decoder vs Decoder-Only<a class="anchor-link" href="#Encoder-Decoder-vs-Decoder-Only">¶</a></h4><p>Transformer architectures use both encoder and decoder when the task requires understanding an input sequence and then generating a corresponding output — a common setup for sequence-to-sequence tasks. For example, in machine translation (e.g., translating English to French), the encoder processes the source sentence to capture its meaning, and the decoder generates the translated output. Architectures like the original Transformer from Vaswani et al. (2017) and T5 (Text-to-Text Transfer Transformer) use this encoder-decoder structure to handle such tasks effectively by separating input comprehension and output generation.</p>
+<p>On the other hand, <strong>decoder-only</strong> architectures are used when the model's goal is to generate text based on a prompt or context, without requiring a separate encoded input. These models treat text generation as a language modeling problem, predicting the next word based on previous ones. Basically all popular Large Language Models (LLMs) — GPT (OpenAI), LLaMA (Meta), Gemini (Google), Claude (Anthropic), Mistral, etc, — are examples of decoder-only architectures. They are efficient for tasks like story generation, code completion, or question answering, where the context is part of the same sequence being generated rather than a separate input.</p>
+<p>Independent from the exact architecture, the generation of sequences such as text requires the decoder. Let's first try to understand why we need a special masking strategy to facilitate autoregression (i.e., step-by-step) sequence generation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c9cb0402-ab35-4715-84b5-9f633e6c1b9a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Decoder:-Inference-vs-Training">Decoder: Inference vs Training<a class="anchor-link" href="#Decoder:-Inference-vs-Training">¶</a></h4><p>During inferencing, the decoder receives the first $t$ words $w_0, w_1, \dots, w_t$ as input to predict the next word $w_{t+1}$ at position $t+1$. In other words, the prediction of $w_{t+1}$ only depends on the previous words $w_0, w_1, \dots, w_t$. In the next step, $w_{t+1}$ is added to the sequence and the new sequence $w_0, w_1, \dots, w_t, w_{t+1}$ is given to the decoder to predict the next word $w_{t+2}$, and so on — until the decoder predicts an end-of-sequence token or some other stopping criteria is fulfilled (e.g., maximum sequence length).</p>
+<p>During training, however, the decoder receives the <em>complete</em> sequence. And as for padding, without any considerations, the attention mechanism would compute <em>all</em> pairwise attention scores. This means that the output of the decoder at position $t$ would depend on all previous words as well as all subsequent words. In simple terms, during training, the decoder would be able to "look into the future". This we have to ensure that each word only attends to previous words but not to subsequent words. We can accomplish this once more through masking, more commonly called <strong>causal masking</strong> because the mask enforces a cause-and-effect relationship in the sequence: each token can only "see" (i.e., attend to) previous tokens, not future ones. This preserves the causal structure necessary for autoregressive generation, where each output depends only on what has come before — not what comes after.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4803b8d0-9c57-42b9-97b9-b745be5740d4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Causal-Masking:-%22Do-not-Look-Ahead%22">Causal Masking: "Do not Look Ahead"<a class="anchor-link" href="#Causal-Masking:-%22Do-not-Look-Ahead%22">¶</a></h4><p>Let's go through a complete example by looking at the self-attention component of the Transformer decoder using our example sentence <em>"The cat ate fish pie"</em>. We use this sentence here for a better illustration and to not be bothered by padding — in practice, padding masking and causal masking can be easily combined, though.</p>
+<p>Like we have seen before, we assume that we have $Q$, $K$, and $V$ containing the word embedding vectors projected into the query, key, and value space to calculate $Attention(Q, K, V)$. To get the attention scores, we again first have to calculate $QK^T/d_k$. Let's denote the matrix with the attention scores as $A^{(1)}_{scores}$ since we now consider the sequence at position $1$ in our example batch.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a8f010ed-e6a6-470b-9542-265daefb4c56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Causal Mask: Calculating Attention Scores" src="images/illustrations/masking/masking-causal-attn-score-calc.png" style="margin:auto;max-width:750px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0d6e9374-dffe-42c7-8efe-a2d0b0ad555a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$A^{(1)}_{scores}$ contains now all pairwise attention scores including the one between a word and all its subsequent words. We now have to ensure that each word $w_q$ in $Q$ ("orange matrix") only attends to words in $K$ ("blue matrix") that come before $w_q$ in the sequence. For example, if $w_q = \text{\textit{"}}ate\text{\textit{"}}$ we only want this word to attend to <em>"The"</em>, <em>"cat"</em>, and <em>"ate"</em> itself. Extending this restriction to all words in $Q$, what we need is therefore mask $A_{causal}$ that looks as follows:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7f0e71e4-6bbf-4e94-99de-cc35684a1ae0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+A_{causal} = 
+\begin{bmatrix}
+0 &amp; -\infty &amp; -\infty &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; -\infty &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+\end{bmatrix}
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0e842f0f-75bb-406c-b92c-eadea24e9bcd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Of course, like $A^{(1)}_{scores}$, the padding matrix $A_{causal}$ has a size of $L\times L$. Notice that $A_{causal}$ has no superscript since this mask is the same for all the sequences (with or without padding). Also, appreciate again, the diagonal is not masked out with $-\infty$ since each word can attend to itself.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49305e94-e2ce-47c0-948e-3fad8ed9f29f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Implementing this mask is also very straightforward using libraries such as PyTorch. First, we can use the <code>full()</code> method to create a tensor of a specified shape (here: $L\times L$) filled with a constant value (here: $-\infty$). Then, with the <code>triu()</code> method, we set all elements below a specified diagonal to zero. Since we do not want to mask the main diagonal, we need to set <code>diagonal=1</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e24ae01c-9f16-4d86-9104-25e92e66fa11">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define L as the maximum sequence length in the batch</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># Create L x L tensors filled if -inf</span>
+<span class="n">A_causal</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">L</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s1">'-inf'</span><span class="p">))</span>
+<span class="c1"># Set main diagonal and all entries below to 0</span>
+<span class="n">A_causal</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">A_causal</span><span class="p">,</span> <span class="n">diagonal</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Show causal matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_causal</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>tensor([[0., -inf, -inf, -inf, -inf],
+        [0., 0., -inf, -inf, -inf],
+        [0., 0., 0., -inf, -inf],
+        [0., 0., 0., 0., -inf],
+        [0., 0., 0., 0., 0.]])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=226302e6-2bd7-474f-b55a-7250b1fde699">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Applying this causal mask just means to add the attention scores on the mask, i.e., $A^{(1)}_{masked} = A^{(1)}_{scores} + A_{causal}$, as illustrated in the figure below.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ec0790e2-b696-4980-9fe9-caf0149bc099">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Causal Mask: Attention Score Masking" src="images/illustrations/masking/masking-causal-attn-score-masking.png" style="margin:auto;max-width:700px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4dfdc9e2-bb6c-425e-9ee7-9f9520599f47">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Once we have the masked attention scores $A^{(1)}_{masked}$, the rest of the attention calculation continues as usual. This requires next to apply the <em>softmax</em> function to $A^{(1)}_{masked}$ to yield the attention weights $A^{(1)}_{scores}$, with all row values in $A^{(1)}_{scores}$ summing up to $1$.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=49dfe008-68f7-4ff9-9678-c5a69bbb407e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Causal Mask: Attention Weights Calculation" src="images/illustrations/masking/masking-causal-attn-weights-calc.png" style="margin:auto;max-width:650px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0deee988-8782-47aa-8a5a-258004c209ff">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>And the last step to get the final output of the attention mechanism is to multiply the attention weights $A^{(1)}_{scores}$ with the word embedding vectors in the value space represented by $V$. Given the figure below, it is easy to see that the output vector of, say, the word <em>"ate"</em> derives from the weights sum of the value vectors for <em>"The"</em>, <em>"cat"</em>, and <em>"ate"</em> itself — which was of course the whole purpose of applying the cause mask to the attention scores.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dfa78af9-990c-43e0-9d49-ba4992569bcc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Causal Mask: Calculation of Output" src="images/illustrations/masking/masking-causal-attn-out-calc.png" style="margin:auto;max-width:800px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e83fa281-e642-4a21-8a2b-70fb4fd36ffa">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Causal masking during training ensures that the training mimics the autoregressive nature of the text generation task.</p>
+<p><strong>Important:</strong> Causal masking is also performed during inference, even if there are no obvious future words to attend to. This is required to ensure that inference is consistent with training. If causal masking were removed during inference, the model would be operating in a different mode than it was trained for, potentially leading to performance degradation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c76f1a40-1a4f-44e6-ab02-87804db886cc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Combining-Padding-and-Causal-Masking">Combining Padding and Causal Masking<a class="anchor-link" href="#Combining-Padding-and-Causal-Masking">¶</a></h4><p>To illustrate the idea of causal masking, we used the longest sequence in our example batch to avoid dealing with padding. However, combining padding and causal masking is very straightforward as it only requires adding the corresponding mask. For example, we can add padding mask $A^{(0)}_{pad}$ for the first sequence with the causal mask A_{causal} to get the final mask for the first sequence, assuming it serves as input for the decoder during training:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a1465d19-a254-4d64-b8c8-b65911e644c3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+A^{(0)}_{pad} + A_{causal} = 
+\begin{bmatrix}
+0 &amp; -\infty &amp; -\infty &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; -\infty &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+0 &amp; 0 &amp; 0 &amp; -\infty &amp; -\infty  \\
+\end{bmatrix}
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d768e7a4-7e4c-4ee9-ac8a-c7c9f30a7ae6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>All the other steps of the attention calculation remain exactly the same.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fca8c0b9-d67f-4a68-bf34-3c5c2e2a2224">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><p>Masking in sequence models refers to techniques used to control which parts of the input or output sequences are considered during training or inference. It plays a crucial role in ensuring that models handle sequences of variable lengths correctly, avoid learning from irrelevant data (like padding), and maintain the correct flow of information (such as preventing a token from attending to future tokens during generation). Masking is essential in both RNN-based and Transformer-based architectures, although the way it is implemented can differ significantly.</p>
+<p>The first type, <strong>loss masking</strong>, is architecture-independent and is applied after the model’s forward pass. It is commonly used to ignore padding tokens in variable-length sequences during loss computation. For instance, when training on batches with padded sequences, loss masking ensures that the loss function only considers actual tokens (not padding) by applying a binary mask to the loss output. This helps the model focus its learning on meaningful parts of the data and is typically implemented by element-wise multiplying the loss with a mask tensor before computing the final loss value (e.g., via masked_loss = loss * mask).</p>
+<p>In contrast, <strong>attention block masking</strong> is architecture-dependent and is particularly relevant in models that use attention mechanisms, like Transformers. This kind of masking modifies how tokens interact during self-attention. One example is causal masking — used in autoregressive models like GPT, LLaMA, Gemini, Claude, etc. — where each token is only allowed to attend to previous tokens to preserve the left-to-right nature of generation. Another example is padding masking, where attention scores to padded (irrelevant) tokens are masked out to prevent them from influencing the context representation. These masks are often added before the <em>softmax</em> in the attention mechanism to zero out or heavily down-weight unwanted attention.</p>
+<p>In summary, masking in sequence models ensures correct and efficient training by handling variable sequence lengths and enforcing logical constraints on information flow. Loss masking operates independently of the model’s internals and focuses on making the loss computation accurate. Attention masking, however, requires deliberate design changes within the model's architecture and is crucial for guiding how attention is distributed across a sequence. Both are vital tools for building robust and effective sequence models.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=63ea2289-ac98-4a1b-bef8-28413e76478e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

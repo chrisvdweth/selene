@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>gradient_descent_basics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>recurrent_neural_networks_basics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7515,18 +7515,7 @@ video {max-width: 100% !important; height: auto !important; }
 </style>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2834c4c2-0e68-49fe-989d-c305c8a09aa2">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">!!!WORK IN PROGRESS — TESTING ANIMATIONS!!!<a class="anchor-link" href="#!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79c8c281-f6f4-4fa9-88ac-4f5e2ab5a530">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a5f42e33-e50a-406c-84cd-210aa1549328">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7538,21 +7527,21 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08cf57e1-2b8a-4704-8a11-f0ba19109cd5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cc6072d5-1120-4b5c-b390-f7c10eae4028">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Gradient-Descent-%E2%80%94-The-Very-Basics">Gradient Descent — The Very Basics<a class="anchor-link" href="#Gradient-Descent-%E2%80%94-The-Very-Basics">¶</a></h1><p>Gradient Descent is an iterative optimization algorithm used to find the minimum of a function by repeatedly taking steps in the direction of the steepest decrease of that function. In the context of machine learning, this function is typically a <strong>loss function</strong> that measures how well a model's predictions match the data. By computing the gradient of the loss with respect to the model parameters, Gradient Descent tells us <em>how</em> and <em>in which direction</em> to adjust those parameters to reduce error. Conceptually, it can be thought of as navigating a landscape of error values, moving downhill step by step until a (local) minimum is reached.</p>
-<p>The general purpose of Gradient Descent is therefore <strong>parameter optimization</strong>. Most machine learning models (from linear regression to deep neural networks) are defined by a set of parameters (weights and biases) that determine their behavior. These parameters are not chosen analytically in closed form for complex models; instead, they are learned from data. Gradient Descent provides a systematic, scalable way to tune millions (or even billions) of parameters by relying only on local information: the gradient at the current point.</p>
-<p>Gradient Descent has become a cornerstone of machine learning and neural networks because it scales extremely well to high-dimensional problems and works hand-in-hand with <strong>backpropagation</strong>. Backpropagation efficiently computes gradients of the loss with respect to all parameters in a neural network, and Gradient Descent uses those gradients to update the parameters. This separation of concerns — gradient computation on one side, optimization on the other — makes the training of deep models both conceptually clean and computationally feasible.</p>
-<p>We need Gradient Descent because, for most realistic models, there is no direct mathematical solution for finding the optimal parameters. The loss surfaces of neural networks are highly non-linear, high-dimensional, and often non-convex. Gradient Descent offers a practical and flexible approach to navigating these complex landscapes, allowing models to improve gradually through incremental updates. Understanding Gradient Descent at a fundamental level is therefore essential: it reveals <em>how</em> learning actually happens inside a model and provides the foundation for more advanced optimization methods used in modern machine learning.</p>
+<h1 id="Recurrent-Neural-Networks-%E2%80%94-An-Introduction">Recurrent Neural Networks — An Introduction<a class="anchor-link" href="#Recurrent-Neural-Networks-%E2%80%94-An-Introduction">¶</a></h1><p>Recurrent Neural Networks (RNNs) are a class of artificial neural networks designed for sequential data processing. Unlike traditional feedforward neural networks, RNNs have connections that allow information to persist, making them well-suited for tasks where previous inputs influence future outputs. This unique structure enables RNNs to recognize patterns in time-series data, natural language, and other sequences, making them essential for applications like speech recognition, language modeling, and financial forecasting.</p>
+<p>What makes RNNs special is their ability to maintain a form of memory through hidden states, allowing them to process sequential information efficiently. Standard neural networks process inputs independently, while RNNs consider past inputs through their recurrent connections. This characteristic makes them powerful for applications requiring context awareness, such as machine translation, where understanding previous words is crucial to predicting the next. However, traditional RNNs suffer from limitations like vanishing gradients, which make it difficult for them to remember long-term dependencies. To address these challenges, advanced architectures like Long Short-Term Memory (LSTM) and Gated Recurrent Units (GRU) have been developed.</p>
+<p>Learning about RNNs is important because they are foundational to many modern AI advancements. Many real-world applications, including chatbots, predictive text, and automated translation services, rely on RNNs or their improved variants. Understanding how RNNs work helps in developing more efficient and intelligent systems for processing sequential data. Additionally, knowledge of RNNs provides insight into how AI models can be optimized for better performance, ensuring that they function effectively in complex real-world scenarios.</p>
+<p>Furthermore, mastering RNNs opens doors to research and innovation in artificial intelligence. With the rise of deep learning and natural language processing, many cutting-edge technologies, such as transformers and generative AI models, have evolved from RNN-based concepts. By studying RNNs, one can appreciate the evolution of AI models and gain the necessary skills to contribute to future developments in machine learning. Thus, RNNs serve as a crucial stepping stone for anyone interested in advancing their expertise in artificial intelligence.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e0581fd7-1104-40e6-ad85-52de61e118b2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=caf5d965-47ca-4a51-9df4-5d1c5cf96a8c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7562,7 +7551,7 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=632ec98d-37d5-4e71-87f6-a2c4b76b9cba">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0fff26cf-35f7-4805-93d1-387fa4620a5e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7570,31 +7559,15 @@ video {max-width: 100% !important; height: auto !important; }
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.plotting.gd</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8d6d5cff-9324-4455-937a-a9d5437c3634">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85249e00-759a-4859-83d0-502e7d1fb1f3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61d24ab1-4ff3-40cd-9a19-1c291e8fcccb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7605,66 +7578,397 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e6de94a-7976-4b30-95af-44da21968a3c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8c9d4020-b704-4d2a-9b53-9d194ca1c316">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">¶</a></h2>
+<h2 id="What-is-Sequential-Data">What is Sequential Data<a class="anchor-link" href="#What-is-Sequential-Data">¶</a></h2><p>Sequential data is data where the order of elements matters because it contains an inherent structure over time or position. Each data point depends on the previous ones, making sequence relationships crucial for analysis. Common examples for sequential data include:</p>
+<ul>
+<li><p><strong>Time Series Data:</strong> Time-series data consists of observations recorded at successive time intervals, making the order of data points crucial for analysis. Common examples include financial data, such as stock prices, exchange rates, and cryptocurrency values, where past trends influence future predictions. Weather data, like temperature, humidity, and precipitation levels over time, is another example where sequential dependencies help forecast future conditions. In healthcare, patient monitoring data, such as heart rate and blood pressure readings over time, must be treated sequentially to detect abnormalities and predict potential health risks. Other important examples include sensor data from IoT devices, such as electricity usage in smart grids or vibration data from industrial machines, where analyzing past patterns helps predict failures or optimize performance. In transportation, GPS tracking data from vehicles is used for traffic prediction and route optimization.</p>
+</li>
+<li><p><strong>Natural Language Text:</strong> Natural language is considered sequential data because the meaning of words and sentences depends on their order. In a sentence, words appear in a structured sequence, where changing the order can alter or completely distort the intended meaning. For example, <em>"The cat chased the mouse"</em> has a different meaning than <em>"The mouse chased the cat."</em> This sequential dependency makes language processing tasks, such as machine translation, speech recognition, and text generation, highly reliant on models that can understand word relationships over time. Additionally, linguistic structures like grammar, syntax, and context require maintaining a memory of previous words to correctly interpret the next ones. For instance, in a long sentence or paragraph, understanding a pronoun like <em>"it"</em> depends on recognizing the noun it refers to earlier in the text.</p>
+</li>
+<li><p><strong>Speech and Audio Data:</strong> Speech and audio data are considered sequential because they consist of continuous signals that evolve over time, where the order of sound waves or digital samples is essential for understanding meaning. In speech, phonemes (the smallest units of sound) must follow a structured sequence to form words and sentences. If the order is altered, the meaning of spoken language can change entirely or become unintelligible. For example, in speech recognition, the phrase <em>"open the door"</em> must be processed in the correct sequence to distinguish it from a similar-sounding but different phrase like <em>"the door open</em>". Beyond speech, other forms of audio data, such as music or environmental sounds, also rely on sequential relationships. In music, for instance, notes and rhythms must follow a specific order to create a melody, and a disruption in this sequence alters the musical structure. Similarly, in sound classification tasks, the progression of audio events—such as footsteps followed by a door creaking—provides context for interpretation. Audio models often use spectrogram representations, where time is one axis and frequency is another, preserving the sequential nature of sound. Because understanding speech and audio depends on recognizing patterns over time, treating them as sequential data is crucial for accurate processing in AI applications.</p>
+</li>
+<li><p><strong>Video Data:</strong> Video data is considered sequential because it consists of a series of frames displayed in a specific order over time, where each frame is dependent on the ones before and after it. Unlike static images, which can be analyzed independently, videos capture motion, making temporal relationships crucial for understanding actions, events, and transitions. For example, in action recognition, distinguishing between a person standing up and sitting down requires analyzing how their position changes across multiple frames. If the frames were shuffled or analyzed separately, the sequence of movement would be lost, leading to incorrect interpretations. Moreover, many video-based AI applications, such as object tracking, gesture recognition, and video captioning, rely on understanding changes in the scene over time. In self-driving cars, for instance, video from cameras is used to track moving objects like pedestrians and other vehicles, where sequential processing helps predict future positions.</p>
+</li>
+<li><p><strong>Biological Sequences:</strong> Biological sequences, such as DNA, RNA, and protein sequences, are considered sequential data because their structure and function depend on the specific order of their components. In DNA and RNA, nucleotides (A, T, C, G for DNA; A, U, C, G for RNA) are arranged in a precise sequence that encodes genetic information. Any change in this order, such as a mutation, can alter gene expression and potentially lead to biological changes or diseases. Since the meaning of a sequence depends on the position and arrangement of nucleotides, analyzing them as sequential data is essential for tasks like gene prediction, mutation detection, and evolutionary analysis. Similarly, protein sequences consist of amino acids arranged in a linear chain, where the sequence determines the protein's structure and function. Protein folding, interactions, and biological activity all depend on the correct ordering of amino acids.</p>
+</li>
+<li><p><strong>Event Sequences:</strong> Event sequences are ordered lists of events that occur over time, where the sequence of occurrences holds meaningful patterns and dependencies. These events can represent various real-world activities, such as user interactions on a website, medical records of patient visits, or system logs in cybersecurity. The order in which events happen is crucial for understanding behavior, predicting future actions, and detecting anomalies. For example, in customer behavior analysis, tracking the sequence of clicks, purchases, and cart abandonments helps businesses personalize recommendations and improve user experience. Event sequences are considered sequential data because their meaning and interpretation depend on temporal ordering. Changing the order of events can alter their significance or lead to incorrect predictions. In fraud detection, for instance, a sudden sequence of high-value transactions followed by an account login from a different country might indicate fraudulent activity.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b8041e6d-70d9-4751-9aa4-af076112c861">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a0d4e3aa-915d-43d9-92d5-38c19244c97a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=86805b4a-77a4-49a2-84ed-b5ff4150d4b5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Why-do-we-need-Gradient-Descent?">Why do we need Gradient Descent?<a class="anchor-link" href="#Why-do-we-need-Gradient-Descent?">¶</a></h3><p>Let's assume we have a very simply function $f(x)$ which is define as:</p>
+<p>To capture the sequential nature of the data, we need to use a suitable representation to describe a data sample $\mathbf{x}$. The most common and straightforward way is describe a sample of sequential data as a list of the sequence elements:</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d2a9d07-b0f7-4b80-bf50-46eae9a18864">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d1122b7d-abd5-4b87-9daf-ef24612592c6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>$$\large
-f(x) = x^2 - 4x + 5
+\mathbf{x} = [\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_3, \dots \mathbf{x}_t, \mathbf{x}_{t+1}, \dots, \mathbf{x}_{T-1}, \mathbf{x}_T ]
 $$</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b9e055e-9d60-4c23-ab72-f1c2308cc7bc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=35ca0226-27ac-45b9-831f-cec5682fc1aa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We can also define this function as a Python method:</p>
+<p>Here we assume that each element is a feature vector — for example, the feature vector for time series data, word embedding vectors in case of text, image frames in case of video data, and so on (of course, each $\mathbf{x}_t$ can be a vector with a single element so that the each feature vector collapses to a scalar feature values). Note that in practice, this sequence of vectors is typically implemented as a matrix (or a tensor in case of additional dimensions). In this representation, $T$ marks the length of the sequence, and $\mathbf{x}_t$ marks the feature vector at time stamp $t$ — the notion of a time step is commonly used even for non-time series data such as words in a text or frame in a video.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=afea43ec-3008-4558-b2b0-057bd8303016">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5e2f03db-b681-42a4-953e-868915e33fdd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Throughout this notebook, we will consider natural language text as example data to motivate and introduce Recurrent Neural Networks. RNNs gained widespread popularity in machine learning precisely because of their success in processing natural language data. Common tasks where RNNs are used include text generation, sentiment analysis, and machine translation. Before the rise of Transformer-based models, RNNs and their variants, such as Long Short-Term Memory (LSTM) networks and Gated Recurrent Units (GRUs), were the backbone of many state-of-the-art language models. By using text as an example, we can illustrate how RNNs handle sequential dependencies, predict the next word in a sentence, and generate meaningful text based on prior inputs. In short, in the following, $\mathbf{x}$ denotes a single sentence, and $\mathbf{x}_t$ is a word embedding vector (e.g., a pretrained embedding vectors based on Word2Vec, GloVe, FastText, etc.).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90bc67b0-95e0-4da9-aecc-209e702a8378">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ba487975-73e2-4269-87c5-040a3310f55b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="From-FFNs-to-RNNs">From FFNs to RNNs<a class="anchor-link" href="#From-FFNs-to-RNNs">¶</a></h2><p>A good way to understand the basic idea behind Recurrent Neural Networks is first understand the limitations of Feed-Forward Neural Networks and what RNNs add to the FFN architecture to address these limitations. So let's do this in this section step by step.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c6522a60-5e43-4db3-8bc7-4ec89a79f0f0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Quick-Refresher:-FFNs">Quick Refresher: FFNs<a class="anchor-link" href="#Quick-Refresher:-FFNs">¶</a></h3><p>Feed-Forward Neural Networks (FNNs) are one of the most fundamental types of artificial neural networks, designed for mapping input data to output predictions. They consist of an input layer, one or more hidden layers, and an output layer, where information flows in one direction — from input to output — without any cycles or loops. Each neuron in a layer is connected to neurons in the next layer, and these connections have weights that adjust during training to optimize performance. The network learns patterns from data using activation functions and backpropagation, a process that updates weights based on error minimization. FNNs are widely used for tasks such as image recognition, classification, and regression due to their simplicity and effectiveness. They serve as the foundation for more advanced deep learning models and are especially useful when working with structured, non-sequential data.</p>
+<h4 id="A-Simple-FFN-Example">A Simple FFN Example<a class="anchor-link" href="#A-Simple-FFN-Example">¶</a></h4><p>To given an example, the image below shows the architecture of a very simply FNN consisting of</p>
+<ul>
+<li>an input layer with 3 features</li>
+<li>a single hidden layer with 4 neurons, and</li>
+<li>an output layer with to neuron (e.g., for a binary classification task)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4e0d03b9-d52e-4650-8b5a-8f526eebcc98">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Basic Feed-Forward Neural Network" src="images/illustrations/rnn/basic-ann.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=46a0ac1b-060c-4165-81f1-b58d694fbbe1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Again, just from looking at the architecture image, appreciate that the information flows in one direction from the input to the output — that is, the inputs are used to calculate the output of the hidden layer, and these results are used to calculate the final output of the output layer. If $\mathbf{x} = (x_1, x_2, x_3)^T$ denotes the input vector, $\mathbf{h} = (h_1, h_2, h_3, h_4)^T$ denotes the output vector of the hidden layer, and $\mathbf{y} = (y_1, y_2)^T$ denotes the output vector of the output layer, we can express the calculations done by the example FNNs using the following equations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bcf17f44-f5c7-4b2b-a26b-0db773ef49c9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$
+\begin{align}
+\large \mathbf{h} &amp;= \large f_{h}(\mathbf{W}_{xh}\mathbf{x} + \mathbf{b}_h)\ , \quad \text{with}\ \mathbf{W}_{xh} \in \mathbb{R}^{4\times 3},\ \mathbf{b}_h \in \mathbb{R}^{4\times1}\\[1.5em]
+\large \mathbf{y} &amp;= \large f_{y}(\mathbf{W}_{hy}\mathbf{h} + \mathbf{b}_y)\ , \quad \text{with}\ \mathbf{W}_{hy} \in \mathbb{R}^{2\times 4},\ \mathbf{b}_y \in \mathbb{R}^{2\times1}
+\end{align}
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=687f214a-825b-47bb-b262-d919244149ea">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Where $\mathbf{W}_{xh}$ and $\mathbf{W}_{hy}$ are the weight matrices of the hidden layer and the output layer, respectively; $\mathbf{b}_{h}$ and $\mathbf{b}_{y}$ are the corresponding biases. Functions $f_h$ and $f_y$ are suitable activation functions. For example, assuming a binary classification task the function of choice for $f_y$ is the Softmax function to ensure that the outputs can be interpreted as probabilities. Since $f_h$ is the activation of this hidden layer, we have more choices for its exact implementation. Common choices include ReLU, Tanh, Sigmoid, and others.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5664eb62-49d4-44e0-a889-fcd92d4157ed">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Limitations-of-FFNs">Limitations of FFNs<a class="anchor-link" href="#Limitations-of-FFNs">¶</a></h4><p>In principle, Feed-Forward Neural Networks (FNNs) can be effectively used for text classification (e.g., spam detection, sentiment analysis, and topic classification) by transforming textual data into numerical representations, such as Term Frequency-Inverse Document Frequency (TF-IDF) vectors based on the Vector Space Model. Here, the TF-IDF vector representing a document forms the input vector $\mathbf{x}$. However, document vectors based on the Vector Space Model (with TF-IDF or alternative weights) have several limitations:</p>
+<ul>
+<li><p><strong>Loss of word order and context.</strong> TF-IDF treats each word as an independent feature, disregarding the order in which words appear. This means that two sentences with the same words but different structures (e.g., <em>"The cat chased the dog"</em> vs. <em>"The dog chased the cat"</em>) will have identical TF-IDF representations. Since FNNs process these vectors without considering word order, they fail to understand contextual meaning.</p>
+</li>
+<li><p><strong>Lack of semantic understanding.</strong> TF-IDF assigns importance based purely on word frequency, without capturing the actual meaning of words. For example, synonyms like <em>"happy"</em> and <em>"joyful"</em> will have different vector representations even though they convey the same sentiment. This limitation prevents FNNs from generalizing well in text classification tasks that require semantic understanding. In contrast, word embeddings (e.g., Word2Vec, GloVe) to represent individual words and not whole documents provide more meaningful representations by considering word relationships.</p>
+</li>
+<li><p><strong>Sparse and high-dimensional features.</strong> Since TF-IDF vectors are typically very large (with one dimension per word in the vocabulary), they create sparse representations, where most values are zero. This sparsity can make learning inefficient in FNNs, as neural networks perform better with dense and meaningful representations. High-dimensional inputs also increase computational complexity and the risk of overfitting, especially when training on limited data.</p>
+</li>
+<li><p><strong>Difficulty in capturing long-term dependencies.</strong> TF-IDF does not retain any information about long-range dependencies between words. For instance, in sentiment analysis, words expressing sentiment (<em>"not bad"</em> vs. <em>"very bad"</em>) may be far apart in a sentence, but TF-IDF treats them as independent features. Since FNNs process inputs in a static way, they cannot capture these dependencies. While including bigrams, trigrams, etc. address word dependencies to some extent, they also increase the total number of features.</p>
+</li>
+</ul>
+<p>In short, using FFNs to train, say, a text classification model using TF-IDF document vectors is typically only meaningful if the predictions are very likely depend on the presence and absence of words (or more generally: n-grams) alone. However, text is first and foremost sequential data, and many important semantics are captured by the word order and (long-term) dependencies between words in a document. FFNs are generally not capable of capturing these types of information underlying a phrase, sentence, paragraph, or document. Of course, assuming sequential data of the form:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e253da0c-8ed5-475b-941b-ed4bd81b2ab8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+\mathbf{x} = [\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_3, \dots \mathbf{x}_t, \mathbf{x}_{t+1}, \dots, \mathbf{x}_{T-1}, \mathbf{x}_T ]
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7b5eba60-ee64-4ac9-8d45-8ce87579e128">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>we could give each word embedding vector to $\mathbf{x}_t$ to and FFN one by one during training. However, the FFN would not be able to capture any relationships between the words of the input sentence. We therefore need some way for the network to "remember" some previous result from inputs $\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_{t-1}$ when processing $\mathbf{x}_t$. This brings us to the idea of the hidden state and recurrence.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f848acee-f725-42d1-8383-42f3c86b1111">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="The-Heart-of-RNNs:-The-Hidden-State-&amp;-Recurrence">The Heart of RNNs: The Hidden State &amp; Recurrence<a class="anchor-link" href="#The-Heart-of-RNNs:-The-Hidden-State-&amp;-Recurrence">¶</a></h3><p>To better understand the core idea of RNNs, let's have a last look at our initial example FFN architecture. The image below shows an abstraction of the FNN by combining all inputs and neurons of the same layer into a single node. In other words, each node in the image below represents a complete layer containing all the inputs and neurons of that layer.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4c17f525-76c4-40ec-9e39-4f3a3f74b489">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Abstraction of FFN" src="images/illustrations/rnn/basic-ann-abstraction-labeled.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c5a845df-438e-4d0a-8fb2-044433598b6a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Of course, this simplified representation does not change the models behavior: it takes a single vector $\mathbf{x}$ is input (e.g., a TF-IDF document vector), uses $\mathbf{x}$ to calculate the output $\mathbf{h}$ of the hidden layer, and finally uses $\mathbf{h}$ to calculate the single output vector $\mathbf{y}$. Based on this representation, we will see in a moment how RNNs support the processing of sequential data such as text.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d4010306-a997-4c67-a8e1-b33199d6e7a8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>As mentioned before, we could replace a single document vector $\mathbf{x}$ with a sequence of word embedding vectors $\mathbf{x} = [\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_3, \dots ]$ and give the FFN each word embedding vector $\mathbf{x}_t$ as input and use all $T$ outputs to somehow make a final prediction. Still, we would not be able to capture any relationship between the words using this approach.</p>
+<p>To accomplish this, RNNs introduce the concept of a <strong>hidden state</strong>. The hidden state is an additional vector incorporated into the network that commonly holds the output $\mathbf{h}$ of the hidden layer — although the hidden state can be arbitrarily further manipulated. As such, the size of the hidden state is typically simply the size of the hidden layer. With this hidden state the RNNs retains information from previous time steps, allowing the model to capture dependencies in sequential data. Mathematically, the hidden state at time step $t$ can be expressed using the following recurrent formula:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6d9e6923-f71e-4976-bce9-5815c517777c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+\mathbf{h}_t = f_{\mathbf{W}}(\mathbf{h}_{t-1}, \mathbf{x}_t)
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7ac4ddaa-22ee-40ac-8fad-eea4389cd0ab">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In other words, the hidden state $\mathbf{h}_t$ at time step $t$ is some function of the hidden state $\mathbf{h}_{t-1}$ from previous timestamp $(t-1)$ and of the input feature vector $\mathbf{x}_t$ (e.g., a word embedding vector) at time step $t$. There are different common ways to actually implement the function $f_{\mathbf{W}}$ which yield different RNN variants; as we will see later. We can visualize this recurrent formula using out abstract representation of a neural network by adding adding a loop (blue edge) reflecting that the inputs of the hidden layers are now both the <em>current</em> input $\mathbf{x}_t$ and the <em>previous</em> output of the hidden layer retained by the hidden state.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cd9fcb59-9dcb-40d7-8204-a0a0e14522ce">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Abstraction of RNN" src="images/illustrations/rnn/basic-rnn-abstraction-labeled.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e6c2f2d-e7d8-427c-854f-e74f99839fc2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>When looking at the recurrent formula for $\mathbf{h}_t$, the natural questions about $\mathbf{h}_0$ arises. After all, even for the first input vector $\mathbf{x}_1$ to calculate $\mathbf{h}_1$ the formula expects $\mathbf{h}_0$ as input. Initializing the hidden state of a Recurrent Neural Network (RNN) is crucial for ensuring stable training and good model performance. There are several common approaches to initializing the hidden state:</p>
+<ul>
+<li><p><strong>Zero Initialization:</strong> The most common and straightforward approach is to initialize the hidden state as a vector of zeros. This ensures consistency and does not introduce any bias at the beginning of training. While this is often sufficient, it may slow down convergence in some cases, especially for deep RNNs with many layers.</p>
+</li>
+<li><p><strong>Random Initialization:</strong> Instead of using zeros, the hidden state can be initialized with small random values, typically sampled from a normal or uniform distribution. This can help break symmetry and encourage diverse learning patterns. However, improper scaling of random initialization may lead to instability in training.</p>
+</li>
+<li><p><strong>Learnable Parameters:</strong> Some architectures treat the initial hidden state as a set of trainable parameters that are learned during training. This allows the network to optimize the starting point for each sequence and can improve performance, particularly in tasks where the initial state carries meaningful information.</p>
+</li>
+<li><p><strong>Using a Separate Network or Prior Knowledge:</strong> In some advanced applications, such as language modeling or reinforcement learning, the initial hidden state can be derived from another network, pre-trained embeddings, or external knowledge about the data. For example, in sequence-to-sequence models, the encoder's final hidden state is often used to initialize the decoder's hidden state.</p>
+</li>
+</ul>
+<p>The choice of initialization depends on the specific task and model architecture. While zero initialization works well in many cases, learnable or task-specific initializations can lead to better performance in more complex settings. To better visualize the importance of initial hidden state $\mathbf{h}_0$ and the evolution of the hidden state across all time steps, we can "unroll" our network architecture, to show the network at each time step and which inputs the hidden layer receives at each time step.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b31c329d-aa64-46c1-b23f-ec07db5b8ffe">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Unrolled RNN" src="images/illustrations/rnn/basic-rnn-unrolled.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=94f3f826-5d73-4f37-a0d5-d18dbf7f4298">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Again, note that hidden and output layer at each time step represent the <em>same</em> network.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f3ae4f6a-04c5-49df-9b31-ff9ea0559e1f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Vanilla-RNN-Implementation">Vanilla RNN Implementation<a class="anchor-link" href="#Vanilla-RNN-Implementation">¶</a></h3><p>So far, we only considered the general form of the recurrent for $h_t = f_{\mathbf{W}}(\mathbf{h}_{t-1}, \mathbf{x}_t)$. We still need to define how to implement function $f_{\mathbf{W}}$. The simplest form of $f_{\mathbf{W}}$ that is commonly used in practice — therefore often also called <em>Vanilla RNN</em> — is implemented using the following function for $\mathbf{h}_t$ (function $f_y$ remains unchanged):</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2d7d7a41-d2e0-49f2-96f2-f8229196e514">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$
+\begin{align}
+\large \mathbf{h}_t &amp;= \large \tanh{\left( \mathbf{W}_{hh}h_{t-1} + \mathbf{W}_{xh}x_{t}  + \mathbf{b}_h \right)}\\[1.5em]
+\large \mathbf{y}_t &amp;= \large f_{y}(\mathbf{W}_{hy}\mathbf{h}_t + \mathbf{b}_y)
+\end{align}
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d0e052d6-37c7-4a32-8a9a-06a7a21a3302">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This means that the hidden layer now has 2 weight matrices $\mathbf{W}_{hh}$ and $\mathbf{W}_{xh}$ to first transform the previous hidden state $\mathbf{h}_{t-1}$ and the current input vector $\mathbf{x}_t$, respectively. These weight matrices (and the bias vector $\mathbf{b}_h$) contain all trainable parameters of the hidden layer. Apart from increasing the capacity for the model to learn complex relationships, having both weight matrices also makes it easy to ensure that the results of $\mathbf{W}_{hh}h_{t-1}$ and $\mathbf{W}_{xh}x_{t}$ have the same size and can therefore be added — typically the size of the hidden states $\mathbf{h}_t$ is different from the size of the input vectors $\mathbf{x}_t$. This simple implementation of the recurrent formula is typically depicted using the following abstract visualization.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=813107d7-c9cf-4048-95b5-0c0bd99ea161">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Vanilla RNN Cell" src="images/illustrations/rnn/rnn-full.png" style="margin:auto;max-width:550px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=09c03e66-58c3-4c65-b3fc-fd5551c08635">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>While this visualization may not look very exciting, it will later helps to better appreciate the more complex implementations of the recurrent formula, which will bring to the more sophisticated RRN variants  Long Short-Term Memory (LSTM) networks and Gated Recurrent Units (GRUs).</p>
+<p><strong>Side note:</strong> this component of the network that implement the recurrent formula is often called the <strong>cell</strong>; for example, the basic implementation above would be called the Vanilla RNN cell. Conceptually, the cell is just the modified/extended hidden layer. However, since this step involves not more than a simple linear transformation — particularly in the case of LSTMs and GRUs — the term cell is commonly used to distinguish it from a normal hidden layer and to emphasize the connections to RNNs.</p>
+<p>To make this idea of a Recurrent Neural Network more tangible, let's actually implement a toy RNN using PyTorch. For this, the code below shows the implementation of the Vanilla RNN cell. Of course, using input arguments for the constructor, we need to tell the network module the size of the input vector and the size of the hidden state — again, they do not have to have the same size. The module defines the two weight matrices $\mathbf{W}_{hh}$ and $\mathbf{W}_{xh}$ using standard <code>nn.Linear</code> layers. Notice that the output size of both linear layers is the size of the hidden state to ensure that after both transformations the sizes do match. The <code>forward()</code> method directly implements the basic recurrent formula for the current hidden state $\mathbf{h}_t$ and returns it.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=63a981a5-378d-4bf4-94b9-79d3b24b2426">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7672,25 +7976,33 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">VanillaRNNCell</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Wxh</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Whh</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">hidden</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Wxh</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Whh</span><span class="p">(</span><span class="n">hidden</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e9dd820d-0e9b-4787-8b4c-de95495029b1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cd346de2-6b09-44cd-b74a-6353dcb364d8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Using this method, we can plot the function</p>
+<p>Notice how this implementation slightly differs from the recurrent formula: Since we are using two <code>nn.Linear</code> layers, each of them comes with its own bias vector $\mathbf{b}$. This means that the cell has two bias vectors $\mathbf{b}_{xh}$ and $\mathbf{b}_{hh}$ instead of just a single bias vector $\mathbf{b}_{h}$ (cf. the definition of the recurrent formula above). However, this generally does not affect the overall capacity of the network. While the implementation could be changed to exactly match the recurrent formula, it removes some of the simplicity of the code.</p>
+<p>Now let's actually define a Vanilla RNN cell that we can use. For this we assume word embedding vectors as input. A common size of pretrained word embedding vectors is $300$, so let's use this value as our input size. Similarly, a common size of the hidden state, i.e., the output of the hidden layer, is 512. Of course, you can change these values to see the effects. However, for the following discussion we assume the default values of 300 and 512 for the size of the word embedding vectors and the hidden state, respectively.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a78c920b-c444-482c-b2f5-d9f0617b4b07">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f8e25030-966f-4752-9378-605c481bfe93">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7698,11 +8010,14 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define the sizes of the input vectors and of the hidden state</span>
+<span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">512</span>
+
+<span class="c1"># Define Vanilla RNN cell based on given vector sizes</span>
+<span class="n">vanilla_rnn_cell</span> <span class="o">=</span> <span class="n">VanillaRNNCell</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+
+<span class="c1"># Print cell (which is a PyTorch nn.Module)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vanilla_rnn_cell</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7714,136 +8029,28 @@ $$</p>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
-<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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mjQJgGOYfPXq1ZgxY4bYcOSxZFnGgw8+iMWLF2Pt2rVITU0VHcmj2O12WCwW0TEU58orr8TevXvPeO6uu+5CRkYGHn/8cRaPc6ivr8fRo0dx++23C3l/ryofHVFYWIiamhoUFhbCZrNh165dAIC0tDQEBweLDSfYI488gmnTpmHw4MEYOnQo5syZg4aGBtx1112ioylKfX39GT81HDt2DLt27UJYWBiSkpIEJlOe6dOnY8GCBVi6dCn0ej3KysoAAAaDAQEBAYLTKcsTTzyBsWPHIikpCXV1dViwYAHWrl2LlStXio6mOHq9/lfzhoKCghAeHs75RL/w6KOPYsKECUhOTkZpaSmeeeYZqNVq3HLLLWICiV5uI8q0adNkAL96rFmzRnQ0RXj99dflpKQkWafTyUOHDpW3bNkiOpLirFmz5qzfQ9OmTRMdTXHO9jkBkOfNmyc6muLcfffdcnJysqzT6eTIyEj5yiuvlL///nvRsTwGl9qe3c033yzHxsbKOp1Ojo+Pl2+++Wb5yJEjwvJIsizL7q88RERE5Ku8arULERERKR/LBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG51f8DdjbJ7xUsJgoAAAAASUVORK5CYII="/>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>VanillaRNNCell(
+  (Wxh): Linear(in_features=300, out_features=512, bias=True)
+  (Whh): Linear(in_features=512, out_features=512, bias=True)
+)
+</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0dcf3e41-ecea-497d-b97b-4482d74afda1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=06ffd40d-96ac-4927-971c-74baa621412e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If we now assume that $f(x)$ is some kind of loss function where we want to find the value for $x$ thar minimizes this function. Of course, given the simple nature of $f(x)$ and just by looking at the plot above, we can see that $x=2$ minimizes $f(x)$ with $f(2) = 1$. Beyond eye-balling the solution, the systematic approach to find the minimum is using calculus by means of the first derivative $\frac{df}{dx}$. If $g(x)$ denotes the first derivative of $f(x)$, and using the derivation rules from calculus, we get:</p>
+<p>We can also "run" the RNN cell by giving it some random input and observing the output. To this end, in the code cell below, we first create some random batch of feature vectors. Using the the default values — of course, you can change those if you want — we create a batch of size 4 containing all first elements $\mathbf{x}_1$ in the 4 sequences; the size of the input vectors is taken from above (by default: 64). At the end, we only have a look at the shapes of the batch and the hidden state; since the batch and the hidden state were initialized randomly, looking at the actuals value is not really meaningful.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c472ee70-b71b-4c29-a841-aa2a3bb334ab">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$\large
-g(x) = \frac{df(x)}{dx} = 2x - 4
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c723379a-29b8-4886-bfc9-48e03707a46c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The first derivative tells us the <strong>rate of change</strong> of a function with respect to its input, including both the direction** and steepness of that change. Its sign indicates whether the function is increasing or decreasing, and points where it is zero identify <strong>critical points</strong> where the behavior of the function may change. Thus, to find $x$ that minimizes $f(x)$, we need to find $x$ where $g(x) = 0$. Again, given the very simple nature of $f(x)$ and thus $g(x)$, this is a very simple calculation.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0343bab7-8c3c-45f9-926d-f1a6c60b7cd7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large 2x - 4\ &amp;\large= 0\\[0.25em]
-\large 2x\ &amp;\large= 4\\[0.25em]
-\large x\ &amp;\large= 2
-\end{align}
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c096d3ac-9132-4631-be6d-66ff436267ff">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Of course, we get the result that $x=2$ minimizes $f(x)$ as we spotted from the plot.</p>
-<p><strong>Important:</strong> The first derivative of a function allows us to identify critical points, where the slope is zero and the function has a horizontal tangent. These points are candidates for <strong>local minima, local maxima, or saddle points</strong>. However, the first derivative alone does not tell us which type of point we have found. To classify a critical point, we must perform an additional check—either by examining the second derivative (which reveals local curvature) or by evaluating the function slightly before and after the point to see whether the function value decreases, increases, or does both. In the context of <strong>loss functions</strong>, we typically do not need to explicitly distinguish between minima, maxima, and saddle points. This is because training is formulated as a <strong>pure minimization problem</strong>: we only ever move parameters in the direction that reduces the loss. Gradient-based optimization methods like Gradient Descent naturally move <em>away</em> from maxima and tend not to get stuck at saddle points in practice, especially in high-dimensional spaces where true saddle points are unstable. As a result, it is sufficient to follow the gradient and monitor whether the loss decreases, rather than classifying each stationary point mathematically.</p>
-<p>Now that we have seen an example for how we can find the minimum of a function, you may wonder what the big deal is, and why we cannot train machine learning models — not even Linear Regression let alone large neural networks — that way. Our example was easy to solve because $g(x)$, i.e., the derivative of $f(x)$, was such a simple function that allowed us to set $g(x) = 0$ and solve for $x$. In other words, we could find an analytically solution in terms of a closed-form expression that allowed is to find $x$ that minimized $f(x)$ directly.</p>
-<p>However, if $f(x)$ and particularly its first derivative, becomes more complex, this might no longer be possible. While we can still compute the derivative, and set the derivative to $0$, we fail to solve for $x$.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31817523-24f0-4ee7-b21c-b269ddf13d8c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large g(x)\ &amp;\large = 0\\[0.25em]
-\large\Downarrow\\[0.25em]
-\large x\ &amp;\large = {\color{red} \times} \\
-\end{align}
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ebf2f9c-4bb8-46f5-8bb1-5265967e7372">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>For most machine learning models (but especially neural networks), the loss function is highly non-linear, high-dimensional, and has millions of parameters, making such equations impossible to solve in closed form.
-In fact, basic Logistic Regression — which can crudely be considered a neural network with a single neuron — cannot be solve analytically. Additionally, real-world loss function are often <strong>non-convex</strong>, with many local minima and saddle points. Even if we could write down the equations, solving them exactly would be computationally intractable.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d09ee21b-e049-44de-8da2-c460ec5da776">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3cd3a3ba-9744-4832-aa7d-4a24bf12dff6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6b6dea45-4fa5-472c-abee-d6294c5b3437">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e21693c6-361f-4509-ba27-080d512ec299">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7851,47 +8058,17 @@ In fact, basic Logistic Regression — which can crudely be considered a neural 
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">df</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e84eccfb-75e8-49fa-9eae-0603e1995ab4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Basic-Idea">Basic Idea<a class="anchor-link" href="#Basic-Idea">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4cac7485-6a3e-4026-b750-6dad47bbb4f9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e0de9ef7-7284-463d-9902-ea9da5fa32aa">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">animate_gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">x0</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define size of input batch</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span>
+
+<span class="c1"># Create a random first input batch</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">input_size</span><span class="p">))</span>
+
+<span class="c1">#Initialize hidden state h0 using basic zero initialization</span>
+<span class="n">h0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Shape of input batch x1:  </span><span class="si">{</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Shape of hidden state h0: </span><span class="si">{</span><span class="n">h0</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7901,353 +8078,654 @@ In fact, basic Logistic Regression — which can crudely be considered a neural 
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<video autoplay="" controls="" height="500" width="800">
-<source src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAARoZtZGF0AAACrQYF//+p
-3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2MyByMzA2MCA1ZGI2YWE2IC0gSC4yNjQvTVBF
-Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMSAtIGh0dHA6Ly93d3cudmlkZW9sYW4u
-b3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFs
-eXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVk
-X3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBk
-ZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTkg
-bG9va2FoZWFkX3RocmVhZHM9MSBzbGljZWRfdGhyZWFkcz0wIG5yPTAgZGVjaW1hdGU9MSBpbnRl
-cmxhY2VkPTAgYmx1cmF5X2NvbXBhdD0wIGNvbnN0cmFpbmVkX2ludHJhPTAgYmZyYW1lcz0zIGJf
-cHlyYW1pZD0yIGJfYWRhcHQ9MSBiX2JpYXM9MCBkaXJlY3Q9MSB3ZWlnaHRiPTEgb3Blbl9nb3A9
-MCB3ZWlnaHRwPTIga2V5aW50PTI1MCBrZXlpbnRfbWluPTIgc2NlbmVjdXQ9NDAgaW50cmFfcmVm
-cmVzaD0wIHJjX2xvb2thaGVhZD00MCByYz1jcmYgbWJ0cmVlPTEgY3JmPTIzLjAgcWNvbXA9MC42
-MCBxcG1pbj0wIHFwbWF4PTY5IHFwc3RlcD00IGlwX3JhdGlvPTEuNDAgYXE9MToxLjAwAIAAAC//
-ZYiEABb//vfTP8yy6/c5teOo96KeJl9DdSUBm5bE7TqAAAADAAADAAADAA/hMFtS4RUJjBaAAAAD
-Ad9znfikcP4nMARaKgzEFM0W99LPRwFw2CeMH689n7aSUtb2hqT9c+l/N/eLqNMn0MFBXIHPbr6r
-4VO5jWriD8yErBoLE1QQHsvWmR4iwhaz1AkJwPY67HqnnD4myr5S2AcCAPfxj57k4s523P9Tj2qH
-WtF1RzYSpln5RBrC//krKumukEBFgqB1nBTHsanL0i4tlBixdhO55ZoxgjsTRS3Sk9sD70nWWPSZ
-XZoj4s/zbTTXLkSmGNh1qahOWK7stW8pv5ydUPftjLqFXWFT48voxfZmX75AdOJT9D5392eBBhe8
-hNLueu51Fx7mfd7O7F6/CSCoyUvB26E48jgF3Fvl9aTAYpnH81ky99sUs6rhpEreiuFolzW/QqY2
-lOWARt2eS8c3d/+ZvLtbvcdfrA6M4XCoZYKAFdTtTshJKux95sXIa9/YBzzOM5UYcPekliNU/5g2
-HhezZljRh1aErDZ9oTucmCsFIZSL04yJ6gr4xooBQhNOxbOh6oD/ewvFMxY8aJnLLRYeUmadSAD6
-vSnTHMXREpxQoH04O1NgVOfWvF6+bkk3KuCfzoNzGyn0UgsfYR3E1YzdyUqFrj4+ekr+kecyDaW7
-ncTOSCO/gjWNfU6pcRHbilJ2Jcv0B04eUeqlCta8I/3Dic6C1KsfgDkt+Pvt28AMFWRbwAkcO2Fc
-TwQgUlscL4/cdkPM0hhEiMf45D4g6LKCBLTl78XAiULo/oHQJbwD//BAhjGHzKKx0bzFnGJcSLQo
-DjDPVgW/YnQUTNRSzDZ5XdZHPweDGTYggDUe3Bp7ogCvu1z7tcZ1KvV6X5iVHQhgqQP9tHFr2QTZ
-XdEU9pxbY6EzsMx/inysigHqxTa4/oXEEvpGMuaAbKgP7XgcbMaMXnyRgFyYTJA2E0J3oJaJK+dt
-kiQqXRTdJW8YUx7zy1RFSgYFic2a5TQQgWuAeqfLlfFijW3zxMbWOOC5o2MHvzHKeFerazG99RO0
-5E79Mkz9W6t4oAZn49eOhJe/eR2Aja35fxfwOoRPdulrro3zlXjd9Jf+AL0T+cpV2YiGfsqydCyn
-UT7jV3oXfn31w6HQTv5OWt6fbZxQe1GMzdDeWEASXDcEI6gXllYCdF6Qt5646ggOUGVD03MnVAg2
-1cDRUHINZh4WUUflW3/RRHcoQgii6+Bg6qxpRJBHx+jPwPNXAjdfNvDGCJiGv09OP2Bk3T/7ElR7
-RZupsUW5SilQxIGeWTWgR07ikAe5Ny+gN+1vhomwvi/A4PJHbaUGp0teHPWj5BpC+I7/v13QbKy7
-iGEO2euRZAi4A3fCCbKvNacpSL1JCFspNBcM9NR5abmoXcZb15Yv4wEgpMtQR9XFZMPyZrYBCvXj
-Hf2zq6cjpgzXcAaFVo6JJ0ZNvYj0WO7prP/P8fvW0cz+69jv9FrCvrTJVcTLCZhefQo2f1fcvWMI
-EvNYqdHkVTYahGrVIUEbuI//7rcWgJaQxo1FtfgGyIEHH45LGIhiE/d8x9hHNCxcFRJ6TWHH/19b
-F7W6FLckzYtHuk5xBFqIQ6e2cG0rC1UA7Rvh3IDtJdk19EQtaF9TzzHuDPZ1r8tKrTK76F7mxIT+
-Ua4fBPA7MAlCL6YylR5Kcs8EnvvYAuSvRcZaFdLvuLWhnuwj0Hqzl/rtqAsiA9ncxtdlF7Flpfln
-tgTsenyWUD98VgfyGGEC6jdOvONwM6KgQNWHmWuy3gyV57/njT33yo0Q6mwymgXpzk0ifpvxPuIS
-Lg/KZJI3zuuZI0QJLyr6L6Bi/ljideeaBssWoHrN9J4pgannUO8Y/OxVKSKRAjnkZrZ0Bv6Gfw9S
-xuGX+64tnAkmIbMoHHa0hjfK5nCm9Zqqtd455fm7AQ+BfssaMxynArSjeFldAEDDiBczu9YdJEzr
-uEhlI/9kVlY6t89khcnQpWzcR/cP4X3ugNCTD6+ATq92yzBPv6XIhJxcFsidhNyEl/1PLh5LKkBy
-vhDAduvWjBeKGO5x59Pj8lO3YFgqI5CGYMP9+Lr1tK4azTdsgJuw/6ScFSH9vhWD/C8hbqZKd1iO
-KyF+F+q/TluH1jGvDDbZHcUZiiiEL1TWOfgejV0UaH6+NRmOx3pAbe1Cur1NjC9ctp4JFTn2ouMv
-GV4024DQPyAJoRqxi1ioz6tFgZ9WEgIVa4phGbMFkggYyuG4401wSNOow203dIcp8Zv/yjz49jnF
-/5rZL126ngyjnJp719/1iNev+55iKNl5h6EOA9n7+JpKpuF9nZXFftrNRBmjaocKmKszRfDNd7hq
-nmDSSoybHE24YyMg9B1cNN0FTOtqaOyikx5ieZAku5TSr9IXfl/7OpL7Mm8+C8YdlBmCiUEg89cn
-E92mN0StvwssKDTxThQZy+sRRrex33k73DoszMP2ePur22/CLQC5uSMTq+gRkfRSvirZi0diiM+R
-R0mCKKEv9SSR8P8BCFIaBKMn2ObSGn0SJo6+HSPNIt0pv0LDvueim1aJjoXAXOpBX+LbMiDzk5kj
-ta+uqcZWZ5Aox3dTyHGERi6XYSxTU6gkiuZ33P1CGxm4taMhYI8o33hWXMCJh44+Hjn9SWH2D4Pb
-cO/1q2909taZSwtPrM/htdGxA2/bymP+2UsL1g1xxv6HeJnR6FXzuTjHKdblNQyqZtMJAoblAsJ1
-XWRS7ru9KS59r/GYN2EwtHhGYWiEnaF4vj3ahQmmrkYLFhOQMKmfObGBv65SK4rQyK2q8idEMNyH
-zq8ua2U7JdVIM8evEG2dmCCTqeX9eltkfwfHNgyxA5HWRLWbggDjy5196KoyqcuWEmf8p9/xxWJB
-jtpF7KouNAOwmkq8NJte0X8+tEFf13C1blMVe/i6sqlci8iMV6HALhl+Y6ZeN8ef///innvfQIbs
-2F5yfcY/tkrQGyqjjn5tl/w5esf6gaX/cdWMzmotKLKMlJENaevijSNeGKCrKtSlFR9rd3KHMhNu
-ACliYJOzXcCRQxO5hyoobn2JR6wCdM/6MMVwO6XRIMYHSGAsSsEuuoD9tVnQUUNgEK+73Kv/t/95
-YhqBMEd9MIGjyDVaVD8IDDPe/jygh2kXd52HrM0MvYKA5BqtxuCuiB2V6RYn/3jfFY/2tw3uULvD
-KbLK0Kx65fIwsUht75umbaWubvFKn40SNhHCY2j5VSOeaLIhGhYvCobXGsslrhzHqn5OY+IfBcx/
-8ti2LUWmYppvIhDJSeEY9Xp+B2FG0VQx+8H+mGymdsX/2r1c7XSxGG49mJkj6gb2muRtT+H0xMoc
-1vSs8+PIzSkc4zmfLNl2GRppDPoI89jorCyASwZk/6VD5Kr8J22MEKb6EguznV+pDMi1239FmpIB
-9eH5aVFnZmvSM7wQvUB8Rdz7PeDHoZMgS5it4pSGkm79FokIoFZiVM/NWsIny5MzoORZ9K54d4wM
-Y24y/jFge49wvEpgw7dTXv4CvUDpCiHtnQkFLqTK73AVtCgUdAHCG1dajpW+urVRduP4PYRmy8H2
-Yv6vD7ViVmTwWORTQiZ2oz7sNDqLX0I8L9NWnKrwlZwqOXtAcR/30MyLzAuD4rkPK/cHsWP6segO
-RaFvPwOxQjWocl8UzjkmgDWhqRXe3q22YZWLWTEBoE4QDM2hCjGc0JttNMTmiGyCiYORLj2M6m2C
-jxp97Dauz1SA7XVff+5Q6rV+MPUh4kWZ539psdHV4lv8jg2BOy+b/0sttvmsus5ItwEijXrBf22v
-WeaOULLhaEbnGf3HJRBdZJinr/C6AAAgUvt4rydu/3BfcbjToyRCQUQ5frlGlrJNBGYNFMB/Q58b
-0DZb/9WQI6h6sh37TH44r/BQxzDm8l1wOB7Z3q0Q/ly8cfdHp8cLXXlIxfSWbxeK6+mzpQJnaaBg
-pU77KfcphBh939fCGvmLsZ98KmrDFoZqNxh6+yHmh5f/Aq/2mvTILSH1zW7iv4+6Ss/QCEJOd+VO
-lSSosHzYYjufemlJcfboczoJ4hZZw26S59QMlHLitUY4XIiS1Payq+pAKo6eEssUFj2WtjFX++0S
-vcQzJ0CjITRHQxSP1fz4cn+ujSewXQLP8sJNrpKug5l2FnEP6rH9D6ifYA5x90vLmwlE9T9nPLvv
-jKELP4Lto1Fe+9xm1OSPhZKkYW+hlR7wVubxzNjnqo4sSWB07KGzrojPu4j7fdWO5BIRasCGxwuX
-BX30rkVimKoGURmB+UDPOjH3QwuitZDj7mSszB8gVqqwXRHqUoMp+jJer3ptszT4/1BTOS1iN4Jv
-ju/3sRm4elGR0417vVHnsTKMpc9yGWZPTws28j5lgGYJCfsL3SqhftprDmkB2VBRk+8Ucehl/cpQ
-rrPcuazfi4/Q2xifjK6Ju3jZkJuy8BU/Y/F6CaTI5fPX6m6oL5iSCoHYBtDqg8E+UVo1xdik9+3b
-x9lTpWdInKvjW+hEEidIJeScDZTl24y2e3fZgKD9SbKTA7CVhuVCrR4dnikBPavzuzMkKBm7vdYJ
-xRGU+Y4lUf18s6IS4jUOuNGe5fadkvrCnhaxsMNgqXQDryvVV/ifmEoJVkz/4M+TqxgvM2ueEklK
-etWAs2DJNseJ4AQYVvfvRI/npvF9caPffeS3i/LEG1PKkAfMgfzDvBqS+c4tuZ/xjtW8SQxijWgr
-c7p/22eDSx4qIzK++i1xf9qlTQuQIFpqthUAOW06oc8GWUZSzsAe7+l2UgUfbcO1EazoEWvlLZlc
-cEKWhsCEs4/sLLPwCdwSaInfiXh/vFDm11r9/8e/kFwtVppA5FU45iiMnxtU9Y7xkCG9GFM5kxJ0
-RJ/7C2JkQrCS+GKQJKlQUrHY7E2d/FZhLZLCj4/m0q2ve6A2jRBTcoq6MVFI8wgXCnKjONe5kapm
-JkcJivu+G/APxL2DgdEqHn+83i0Glqjne3IAwSTyAKUOMkABEP41nzkiS0Cse7u+fCW1ID1ofNNJ
-J7RC3yXCCzGY5dOX5uTu4ENbC9PTDj9sPp+5oDgyHCpJmOAsgKfE84tVxYa4VactNvSngT0kv6v5
-osdQPbs1gXP44eV2EqO66j60HYNyoOEayqc+j1vC+8UdQZe7tqQHKGDM6DWKiJbxcz5twpkYV3QE
-WDCAZ4maSU16fBaq0aD7QCrV5p7M0r8y22Rnya15g4r2O+cSDeVPA8QiOJSNcQo1UwsZvj+58lw6
-+gj1pYh2UJbrvGXCRzrZsMzjejkjlMnDb9QU0IcFL2JH17zF9dLq3dtXwlAHPl2f7HtthL/4IAtJ
-VefsL41jyb7A+8mhm4s/D3uSfi7wfwG7+X18+tSHb7EnwRCgJPKmX0w7Pc8WruWnZIsOL+MP46Vn
-7lcfa4o88gE6OQaL1z0GC29bdISvfFhvwF9dhIc7rlixM2ZRMZlQYjx9EoODv196j7FbvIPUqefP
-WnF+ySRMYjwxtKPEGZnP6ocjlTcJJzL/X8Me5MRKBVHA/ru4BvdE22pXRB7EeDgzcrZ+wf9TD3Vc
-g7RCyXRygATj1Bqg9omGxm/llvZBpFCdfkBHifMZxOHkuJU/3/L3ox9G4m+Tl44MEOMy/bQnhl7x
-uXkP1F0WJrUK9z5gveSuOAAPO67RLtFLmAGMdvWfraKS/edZr9R+/ucJA7n4s5wjMFePxPzcjzH9
-M+gVhnqxwzghNR3PNPqhnYDaqrgNUciXR+6iEhj2uSZ6MNsfAyagJtCyrrlbo8ALNVZ4lcwQyfPe
-xst7vTQ9Rrx1bu/aRWUgbp9VW/bAJV4dLKYg34q7naAJXvUXTbBSoB8QHJTW/JbZOz2QgMdJnezY
-NSvUmLBe36SKXsVnf7iruffxf39lU6LO5tGCTWSgdwor9l0b+Z+MQ20n3Jkja7o1HJwLVHpDXq91
-/O95Y6MrYFtQj7yTUvp1ABF2UO/k39KpOigoD5fb02pWy47UsSKEhANvug/CD+f5voPYa8F4EUg1
-f0iB8hoDmFyGe1/MjZtQxgA8lMq3d24dIQFMGRhcqh+QdhNipRecxfs6/ABcMUH0bpdKXU3WbJKz
-2Uy+dEEwP0cA4zPqFedLFNdZ3vL5GPWFCZMYziAawEcxwcBR91tc+DLo2NHqdT71ms7f9I0Ra3tD
-Gktc82y5Deo85arZTdGguT6Q2323DFPcbXeQ6g4mw9Xc6ZXuY+a9KUxAcuM62Yp8p11SUO/yBt3B
-Rj7SMjGXQYw770vzamJmsDsOkfrSqjUFyfdZSvyyK1awYsIXy/LEGbVivXabCefdOPxzHnrgbLFj
-Vtti2vdL7MJonQjD1J3ZKwoyx1YO4Cq+tj8dZ4fzJxUP1icJmpJAnqBdpQhfuWuFlQlJo0J9/nna
-ezevqOo8vXbfBvsPI3yxXaaNd7e8KS7dntxUHvKCnzLEwT4ubyfMg6sHfAs3mY0U/PiQZyra5Rc7
-prgGhDbdcpugDgE1S+L7Fum3xgpEaQBRhFKURtGy1OPwiH/K+WsvAu3vILRcErHKvqbakUCt3fs8
-zCoJ0k/TWi4GikihJdq8+pROvEz2D+fiRO2XPUEcuOrZIQu2DQnnUN2lC5S5uhIy0v77Rg0dOJbD
-O2mcXrneE8qf8ZRNBeivv8EXKU6B8tYfXWrgFCAtGeW7sbOknmdvyMgyDk3tHWRlhMr1NHNrnpnQ
-Wbzx33Uc6auxgHpa/bZ3E+Ks2/VeSfEfmgLiyIugeA3dGlV6WARonAM1H+jNpr2hWBNG3ZXqiEJG
-+aT18Up7Ki/jj8tj/baEIDjHIoeprRDeLnQMZ2Zp0XxR2s8JqERjAqeYzbAAg6u/DWoCUEkHHfdp
-SouwcavswA8dpUDgq/WPOxrvL10MQ0KtgPpPT42jmsDlf+IloQ4DWg+TtYKABHDeYhbi9qxk4qf3
-ZCnkdvceMyWCFcjuq3DX6SUfbm652OEms8f4xK8j51VQkKZtSkZvw+TXRjkKMKyGOlWnVSOQjTsG
-4z4oSOmK4YPcQGkT11gegwaIWSNlNNYsPX2fvWJMuEPUA/iyGpqqhHNOGsbn4AJp3brCM7UD4MVi
-syG46AerDRiEKGfdAn2tiN4M+7XYsQV3EqPeBPxDBE73VHRJl2L71E8L2hFnCvhha5ikUCEAQimh
-QGDavIoYWci3VoHkYxmZXsv4f1aKblxRDJ4abFUbQpyHdujnLW4w0TfaK1ol2nFNyr6ktpXRcZeM
-+NmUI1OqqOLDII887P3CWwzWxf5jhaJzRN6lgB9CNfUOLFOteniKEQeiwYgGwc66ocvOwBMEfw+g
-w0V6VSDs/pZabTViOzrJc/zkKP6wt5l0pVt7bWFmfG+XwYnXqbRhuDq7aX306GrqeVuxLoXN78pS
-BImO0BMTZXtkVu/Euvwd1RcS4P3j4qgrvsEmxv9KOkPdBf++tbds7kVc8beurZw40LFyhmtSaOhd
-kuI/KyyuiHvXPdxhtoALSZcqglQnP8dGsRTYelJ1knKh6leoSBXjJDIS76A2DcDziHCL9wdojjlY
-op5/UBnOvDha43yYSfgRZfcBkNEFgiMTTjZ9vZQN74eOi2hQlpcYdXwv3Is2S+M/UuyutcpzlqmZ
-R99cf14Xw6chmAqmvYsdEXdqrkR3ue2n/QYwNCMDLlzt9ENF9E84lIe6gRZ9VHHSaktrUzVnsIz5
-B2/gLLB17wbwhyXUorvmNOACxKfyKGoII4fqt83l+7a185BsC0HIKHDGws0rsxVBSHDZReNMP1Yj
-9b/pImPqqWLCpk+3CtWNYS87rqD94Td/5CwzJRZtoddouNv3/X9Pzq8goA/8v3qVzVkY2XfSZbMA
-Mw4zTzGgDkSRU7jLTeBX4t1ICrPPY649H8d60RDIM0Wz17yf7h9wVJSGpABtenJfEuXdeehNEDxI
-v5zeyuJqufrA2M7TYnfjYUo4nAOFyZU9NvP7f2nGm88Wry8s1IB7xjp6bja2s/D37vyU6ykXX6Lo
-6tc6ANRbhDvilioR7fzqmY2lf7BC7KNwKZgqBllNoQNn98eqNLkhNMqCZIxFo6PYgZ3xm84bC0Lw
-JN5xF4iWu63CEBVYU9avXM5/+4CaXL0emBMlWAxsCGYL0qIDG2tJeBk8d3XW8rjl8Yu1XP8BFj9w
-RJ9YF6UDczJhPXSUMamtRJwV8y5rh0JAP6SQG86fQ9J2uIqLnAN8HNPQyrldiaDsJrBH+OcEP/0Q
-/8QvuMiaKDG7ulenJbE0Pr7rCW/XrgmzuMM4QYgmZh/s9RsDBzsgRk0tXfKkj18JPiVcUQlCx9GZ
-KzzVxTb/2PtmMpphAyXtl6Cv57MOpjJd8ikX76ii3t0aaVOFLR7CBdYjs042GLIfb0UgwrWWxdn9
-6x0te8YzqgIvfwPMPjm3Iu4hLftvlh98OYJH/jTasuIF9ZPcowxDQd6PEvLWsDZfnLl5EItNQqIt
-d04u5lx5EYQ4N/3yIjWQDFTekESbE9xX5VvN9EZNx2WuX4Um/5eJjN5x+YAHqJmbEBP/WfEnK9EG
-otcbIqV73hUlgSVjNrlkbrLBvbtuiyxgwIbxW4eITgqi04QCFJZXV7dV0HxeVWEBD0gyO1LYNBam
-U+ZtqivV/q2n/vH6yz1F3kUnr1bEQo4ulV9hUTWSdCJWw+XwA7r3hdLRC5zs2AQl4QgI+z76JAAA
-AwMfZMK9eA0VGL3c3adHoseixd8Z7pt31/ce4LPYp/m4sdL+jlj6fbE/KLzwUtsTd++taLpQ4ZyY
-pjbo1OIdFQaf1ngKSI10wSf9DPe8cuM2CPZ2YEiW43d3ZbFQAE97wqBLsEeJBJQbUo6aqrNDtLP/
-cxLq1T2RTYmu+f3OMsNQnFsxQPq7+N1Rgf/BJRMuCNaTOMWWXEGhWodHNqy6wjkq5wdHmGWBhoOz
-m0qkQ1j1Q8bhanGvdsRy/S9sBW6Q2EOvOjY93oqYH7suaB2Y5YVmisetTjktPQXn9pwFdcl2sjq2
-ee98w5bFLFB9bthTuJfAal5t1L+61sTUPry1LAyIMvEqFNfIxLP4/I4K5pPwr6aJ73B8fnDVdigq
-RRiUp0o/HcOYhP1efX3Fmz3Y3dH6QgMcfcA4YBLQvZv2eBewOZRsNHMe32ggh95XwZk/zZsJF0C1
-10sAAz8mClUx2rcpeVHOefxeSs4FO15x8k2BxSe71kFv9VYAN3ZxVA1Whtc+hlK9N4QpiQUvfH42
-zcBUUQPr4mRZJt6EjpFhvnuy/gb5UgOhzLGdDuMjcGIu4xCIiywum3W0Rk3M3pf/K82NhXMhHQ5e
-gx7NYYdXugTfN5au2prmlbJJ7NHxs2DcUM8ggqdnNatT81mJCZQc4dO/sYa8aN8d/IbmsO5agBM3
-mF1ys4DTxMw7JSnu+yulhcVgIN2pU7XBT2u8SqC7TPAxrMrvB1/efnulLX3pQ0djqoWbg5kOEnzg
-a1GaoLHyCaaoQzsMuUx2yQGSd8PT9l/iHrp547c0CIEFCyB4xNtIBzeNUGD6ZmdhPf9+lrJGmZLk
-fPrQfxVVAzvp9Bh2mANWwSkDitqNO9HchAPQUoLLFK0yiZxyjZjdgTKjQqnE4AmcRtRuBNDkFccq
-v6L7OAGAJmgDbIV9iTL2CiFgE6deivuZBKPipWvXBnhbLMwtTMYS5MvZnhb+/Mlz0tjVFu71B5uC
-aOnrvtDsqOMJMOTBi4/X1LmO9Oxtd3nCIVqMvTHiaz0ZL5yH1/uKmVfxnISweUieLyX8BxoGs4ev
-kLjAIIUJleNDbfGLQW3ED5bRE6TvU7ME7ONfvHa0tYyrxP1IgDCG7YgdQt28bIgTWSH4XmjZLKxP
-egmTick86WWxFQx8DEb7i4ZLNmWMnst4dpCLWFYeeay++cnXsol1s5exyvWiYQx8ni4I223hZ830
-PpHmmaNYg3BrUFhM9/uZ5Tcvyd02NRkcIwfaXTko7lmmdTKZ6YAa1z7s5JY9/dcCZsBa2cdUsGFH
-FeTx3jex2WM9ftJcxETDCxx7pUeAQuNP1xMBKYpaZZIV5Oiwf8scTE7rAc97Xk/ry5D5SOviDbsR
-VL2LXwRbPT6Cb8CfLC7Xosk24chjDDZsIG+0bf1wY8z7/rUILDgLMfGjMLw3G0LyvjBOsjJM0Vve
-mRHmo2Q6M4V+UXFWgz6V5VY/QvpDfQTSJ4uazh1em2QJw9Jm/1NdchLRI57zit/i/+ljmfEGaoTD
-Nz9rTRYOXGPDAel5L4dG2fTsFphmQTzWTOtERCcPMIWa+EUlRCn+DYraAC+Z+d3hb+AjRji6El4Z
-Xsqcuw8AqNQuSC2bD/hwsZxlAH6rHsBgy+FyqTmSuDaldieu7woHMYTVux+pIPeiJWnmZgjiby9w
-CVmsWmhDyQNuGLrb6X5D5ei+5/Irm56LAsHRGHNxXHpaeRRo7NrdSCN+CTFj/7Evy7qJBa47sgFp
-5jI1To07ajCa7A9aFwKm1y21PNLVREQ+lW0F4lIoAAe1viorjDDpbmOPMPBHP1AygnsO9XF0M7AP
-4Fio7kAOoK84v6aHT5jpydmOiNz5aeAasjNnZ04Cl56bHWvRAqOU3OgUUVooEvLW5DGe7VO5Alqw
-+tiOPVemw/jW5R9VufvCC58fmUugs/LwqMhvdyJrgZmXyjtP1WQdtGrl+eEQYRzOdSnpB9lZtU7w
-ps1N4DMVTegT2IsdVHl4nToXIiIaNZKLhFAQnzzslMoRyplGItIhe8PH/iWwfgaBGmnIHLqfj9AK
-4QoJt2BmWmBwpMwSNgU6NXZm6Cgg0IFK3Q43pQzqdFLPiup4iInNYQfPiZH5qa8oGcZ4cvASpzMh
-epAUfJK5tL0vmfGDk1zgSy+w3yr60QWRvBvy8IFnw6jYOGqNneQPVIvbJppD2Wxj6BYBJguoD7en
-2PQasU/fbi08zzcx3Al6cxOyOrnj2DW3JxgiLEPEfbooLG+GqwK0zaVoN2HZBJA9/sBc5TghYlBo
-8UevHtJHrwmICWfsskr66RqL1NhTzvr73SNe0ebCqDZtA9/HFG6hssjYZ4TiBTyDXpdWjMhWhuoq
-AldrJWMJSnsL2+WBwYMuyD4kOC3U3I403YaX6FKqLRoK2Dgwup182ScuYAmAUB/xNc293kQa70F9
-1aj7yqXZpbnex+AbBX1PtNZfd5ARE96IG68dIfThsXqcJFVuCuXEHiFAZeDkmOlApa9LrI/vOZqv
-40+K+bfmwDhBCi5tb+PJPu7fvJuk+CbNjG0vmtQNH7bjXSYfjrG2atNjKEuda3eRZLEAM/iuMuVQ
-RMWAPcTNOJU2XHcDuDpa4bvAq10xdd76duDTdnyAD4kBve2DoYOn37shgYX69cnRDone7LzZxmGB
-cBZd6TukOOKeffo5Xv0WzRb5LXh7tmDleD+Bcz2xs8IgBWIrhlyv5wYg0Y+HRr0iY++jh0lWl4TK
-Oj9LTLJp7aTZtRPvgI4WW5eyChQzRMEF3WuNU4nGKYraOHc43HMFOlUCpemfzyaRyzOhij6RHc+h
-C9rdTlRs/vPGnAnf9u08bdMOO+Nxrtm4nGCxi6d9Gvk6tzMjgFR5rjeRlWPw80O/xNQ7nESBXkfd
-3tVCOr0aAcbTrSk8iNWEyOUsVaYatJ0M2YOEp1AA0DXkILoK5KGWWxBIVrBnyUvxtBR5fD3A3mRj
-+oHJb6Kqw0dMF+8NPgvPAM5zBj8NscHBL8DKYCGSrXr/waFpWzLhsXH5bYk8rvzgocT0IhPIxDlz
-Pf2E+T5TpCom3qHY50yLVKN4hR15CDPsoQw6IKoKqOtjm8c3Dl1vr6xYAEuRSnoDZFTl5wokoceK
-ZovOBK/ePzA4WgVNw8xdqE2qkvr1+A18WLT7FympZTBWU68GziPq4CCjSgPWr2oqMydZCfVWtVzn
-6FXQNE1q5HzbfjDyfa8LZgumZboM7hYLb6FGfqkH1upgol5FZiEDRVEI8XlPh/bqccN74PYtwk6W
-dUjoQc7dzH0LZY2Fvp0hRFNUlqQ17EmKiDhOFr0bkYuY1RdcUHP5TJZdqbgYQCcoeeAO/+IGFq/O
-YH1m8eoewU2Ntewr9iIqc/59sU/hlQui81zjyRp2SBWdNZdS5jw7MMx3MblnDswfSy3ZWArdssQK
-+0O4XrjsyxTgnr+ywRzNjlzmZpF6QthkmVv6YMgvpgAqT3wjHwDL+hVhFv1qmO359l2gIp1zXSsR
-9PAKb8ozhapiXNtbIMIhCEHH8DLUjduwCURpSSZX5dIMdesuCU2mqjF1o0fbcd5ntavRdyOEMo4r
-X5u7SisWSXbNzYAqHTbCOa8s2hvqoLC8pXCJcYLZjCMG9TapVREkyTCVWCeceTexrURLP0Q5QIQs
-HWlBUtnY0H8X7w8muZV2yWPE8jC2W8kqXQmn2kYtk+ANoVcnhmv17Z1yyX+Ioa90H+xt3lkSl4H9
-e7sjYlEq5Krh5MZLavOFt0wkGxCO27Hsk9Wdb4hIEfzQSo/XUGNRgvWA1Ac0AcetYUULzHpHkvoB
-in1ie2DDurUD0uMIBvVHddqws92Ikvw8r/vx8lUEHQ+5cIyHjfaMQ4WWRzw7NWTxJnCm7u266WpM
-LpgqMEZqD+8z1/BbzfWSUMfbqTaZf/B67KYT1ZMU4dzLIfnztf9Hhkdp2Lx9Wlw7PiApAoeQi2+A
-chYGzubU+i4J8uDCkXWJROOcTgUaP6q92nTBzEO4TAYAllfibR79GWQFwjKRqUSvVoMgDVynMAEQ
-VWvOriln8OK4QnWOCcBGTzqEEPMAmSmAhuFZn3CCpH7K2Zl9AK2QqdLz7kLEL7Ce1Pp1FyPb0O9f
-EGhN/jKQYvit6pfEUJEMf5p68VvRxR7mm/OD0LXnlcH+BdNbFIspd6Qmas6xCpM9qGzo5aa4uCLM
-QKwNxIFywJ8V+t932SdDbNjl3djT+I4yiMsSQ15TeRQ3+I3tXxotJW2LNKh9u4wBt0P9EdCZWsMr
-kErMi7D08a8lKI0YdAfchAFkRprq+zM9tIq+e0GrB6bWuzKjND+VJif62jlvbnlUflQhhT2dH4Iy
-TG/9GIHQbfofTmPetVW1D+DmhJYMZKMq0sICuLC5vmSCDOvkndQcR/mTgKqNrgm0IqS594P2+3cL
-p/3DiNYQk6AOktK4uhSvaKd1AZghLvYOZ4fqp/hr+vBH+FAOfzKnLfyuQiHd+8rwdr8Rh94mk111
-qDX3x3ZcozXos1FYMOVVsBPd5wLyx+rsGP/N7JshpMH05NqS6veow/L2J6Hftq5Mn+aEZYe8Tgpn
-nhHpQyTZs9TVCet/Qs3V6+w5ytaEvoFLt2kAXAsnlcGf27AiLi21DKDA3CxfvTPAQeBjzPcM+Uk1
-WWJ2pSTlCDNYeW/DEGM5CqlCUIswyCxE44mjbZ+mvq/g67jf3dosBVKOGNuz3N8tzpNUpN4MOmGU
-bAkeBY9aCoTPO9nJrXOl1hBcPWVkugEtdTzN/h+XWQX21//uBZDuoUB53Buy0FjALE5v0yv8gHWN
-3hlBvnW27cMqMg8SoUF8MmUj0dA7Z2I0zzwpWkbzkF3MX31qsY1809Rh6lgYTekfvqSCnjGZ7ENq
-HaDU+qM9c5AM+23576r3lmVuxXBh7B4s+PJzCzeTBPXTBAi2Y9CP6zXKgMm09Lt5QEWVNSgbR6P+
-k/5/VK9adTGs/5cHsgIuhiJWyM/dxaRixKu3k9wApB1K9qPtFDwsop/ya0WSDz6B4XzbZo4RhmEw
-ztaevXB3C7mzbi5eIQyOFmcEMaJGfCWOItPJqXbNfhbLZopCHcwIboKYw+KVig3XuH4CnYFCsAFK
-TPwSdRb/8Livpb5TdbZFHuTOR8bvNz9v7n5dPnuhzn4cIkoMxcxcDoGNGosi+9K72hTY3qezjWTc
-iC9MSGrwNylfIa8gV6xmcsdP3gDEqy2NYzLH/YCtgalQVpU3//Hi4IRsQS1CwGNwyDmwd+nUnjs2
-3ibhg/6GfeX3GybSXYssdJB9m1sMaqXwwgbVL2YvuDpaOT6T7rdp3LKmVbIzTuqLzBnsi3Er6rfO
-on1YvyJ8j14CzuspsqdUc2A+F3hpvsGUKWj4ewf9rwal5DMZ7ZPIxOs4lZGGyT+9WrlgbM5gpxDC
-HtIos6eRKw1zZDu3ytAbcZWPBPKkiXWxCadTiK5he6ymBavkE47zTCt1LwUTMBSIEjbPXqpX0KZh
-ywsFndCzniTuHE7YczRIfp5oso3fFd3XYCWRq2/gbaIOzJ5qpebwoa3htXNJA9XkUXowFsd8wJP0
-QCBvqTq5GsZnbsq6fVqlNgujCAhUL878EnsNCGDWR8XDL1tfeUgyD/ajKQTf5gLBy/p7/1qXmNRT
-bFEIBh5yiZVJnF1sgpBOvE7SJ9y9yT+AbuBZCh/yQ8OoXveLkHv1TGWG9RWy2sdvpP9bpNoWmgQU
-fOGk8gU8SJTIJK49HbaT5JbO0QIGGrOgSIWzm73zgeSrUhb+creNA7VYlasWdWyqwOS4Bln68xqT
-CubREV2Avl9Syl8pwoO/gpNTths1U844GDX+lKsyYb9RQj3XmXbPD2y95/Lf9UYLTYeoaod8xmDu
-BI72VKPXuu+3hlIpauYV4ZVfnrEgUXLMp13C9IC4bzNHIg5flhnPAb0mQAlmIFU9no+QD7Zpib+m
-VhM1kvjf2nKX8LLw0/An/KHSXC2JbFKA0waoV2dMj+bkKvzsU5udnVtxv7rb/kBEXeNo4mSIgYbt
-sAVSTG1Jq/A+vhW5Ys/1rIo30g/1FyrbPvir5qQ7UkqqYeUki6jtOzhp3ePkIFwFNOHmFkozcd4t
-X1a/D6VE8KV8NhhY0iHOE6xnzaPKN2AiE4ed/nhAqm7E8hYI4b2r1+oJ6/nW+Y4wn+dC2vv9P+EV
-5t9imVKJE6ZfqHJz2KA76pnxW55viIGoQEdotfGIO4ELxZCzWNqpiba6qmIrTJvFD/Ym/F4vfPJf
-GiiP3ioW6Kglr9kmjFrtIeuQBCacdvjhgUIYt0ZXd6Pq2R99Z8r1F/eq3RXKAPrdRES8Cpi+c1ER
-9595FJ1QKSH8m4GdWnP+yJauTMuWlzRNIkCE6Cbi+amcsStnNmxrXFhWWM6fKcQ2VIg2ZWS6RJVR
-/RWboP8Ii+rDyZIXO1Ui9t6Rl3Jiv41qNsB0EZd3klge2pASYfcTuiH4Ii42naNp5MhuYy6RCeUq
-r3+JHSoo6A2s3OvvA0Fno/p5enAKl2X5+oulkOFAGcrb9Qlp5Mtdd8xEK95rk5uGC2kVBak94pCs
-KkqkU76mSu1byNO0bUFAH4lfUiPGhhyyPuDoiu/Pdf/h6MP7Evtn2zdQHBXFnvIKm86kG1HTHTo/
-ShA/hIGe35wKrrDc24kWxEGkFEOv4ZWVI/rlzf1uCMB9T+t1kqDfjloWmCeMAGFtdbRmtH3gQN0u
-KLPhsX4LiqJ+bBcYVp89Kxj+6iAV0dkMbMHxHGEg9nO1y6Y7225812aq4p5hFgdUMvflrHYnlanS
-WA9RPUo6EVpeCG2t/P97e2c/Z+YCZ39sluuEAeJ9s96HOpw/lN8ApqOZHFH1LZX054tzm74aRgmE
-jShyoL3b3uS8ZzGALRQuSTvwxK3Yw3VzDKUp5t9JadaDhkWKtiUWhQ7F+DPu/gGouQ6fqzuN8sRb
-VabydSbnIwWQ58ADYDlUr0slUVjT3ky53zJOxHQEnabn1YFFpZ/XxZ0Zu9ytFPismB7FOqeeo+Aq
-7D1PPRijhqMWZGqkG0C6dTD0CpLANvz6b3IyS0ewzht6qTSxz16RJNBvcTiWOYikulGmkOe3AgMD
-Z/d3xGlFZti0nB/UFWdNCIHnopFJwQ5H7Ms/JqR3PF8cLpxsuYMqHR7tGyiXVB1AMu9PqQganksB
-YsX//88NYtG1OuockIr0mL1hF6p7gDO7T1Ry5miYw7mStVW3Az2VS/b9A5UilvabSGTSY0tZaRCU
-xoJ0nbsw2R8ZvgyXqEY43kftl90itZ9xuZYANYc5rOf3sk6SCZWvIqcsn8tuIkOz4frSe1XFpECt
-DUWl8LLa222hB06WwD6QPMx0cMsUWSdNGn2xx0WxM8ACiR5sExwSis7KXNuy6g8UGYYv7BUWsUgh
-BSthAcKQQrASaYxjjB335zRpFgZEELSooIVv7mqNhnLF/7PT7M3gtq8mqgEH3bnEfhkTi3il5sg6
-z4k1/Dl/NiwfrlN4jCn3LIAEISeSRh0voeOt1ydTn33/qJYNY+mKQdcWRhdwNYkivPG8BxanTSrt
-uzmuLZP1GAz1Njq6ERzep4HprCdDFH2Ay81SjT32zxB8LS/bt0lM0QgZZ39RZjUl7HWNh2nW9aJj
-T5FxFn+qNIfQ4B6jL+ImFHFfpPM60QgTdjqQ1IJfiwHvHgDEL+PXc3hkTvgUjQrA3HUo/7wS0qPf
-rdVqXl2Ylw5PoHlFtoTP6xNDDz4Ynkp5WMGlTEn8s10AAAk+QZokbEFv/talUACglvQAAlq+BWae
-SR7or+Z2PTk2/lULAA9FKBtnKRCIFHe38rUpQiRln+0S8F7Io/wVYLyq27mFwZo2sh+lNkXjvhPg
-WfhItvUaDkcGyuaESD+9Wg/TmhytAx/4mg20X58Vf5nWMqa+mflGWXWOeMUDIe6U8tbfmzQTwi6p
-bJw88xa5L1SoAYByC7ILF8bADyT28tSWTMpGHWuBVHpwQVes0PrgHRyy3owpMdx3VBe5dO0YVYyz
-lp4D7g4RGEwOSIt4s5IcfhTCMNH01KjNNDzMtjMB2qjVcLAEglXGHITuDFmAZK4JYrke05Br1dSx
-pzUHi57o/SVFuyyDO69s6EroAlNHNUADmYwgOKbMl+3oLVCERC71db4gqcDOcXAnLAQ0KA5E7pOy
-eext/iVHPPAq23aojpyJ/27JYRtIyTR6W8OUTGWVb8edc15GUgH6eSA66itV4vKheuhSW0TlB5t8
-ihEPNWqvpjC7w89D09Ibsvx3rAF6MYz6ZjIrZvjwW4GZGlT1yZzvdMyVVFOCY/QpjVpGDjhbngyn
-+0EQ13O7Y60RrW6SzGmx1VpcSZdLRF3gvW6XvijMqg01nNKwS197Tu1a1ShRhPsYfhIIy1Wk+/8H
-4o+JKloET3WvjXiMoSZbyhCdp7v/Mvkhh8mfzm50DK3ACZtPgOtl3xUe+LrZuImkY0ThOj+BXj1w
-Kx6Lpsw+rLPBZKWgyqnZEMYld1pAnIiK8V2s3vEOcC+vwE9iV/zhOoLuIVSHz1qZZ7lhfIsTKP/8
-kKS0gDf3lAjGj2tu+TMJ1QK58VGKOW4o6HGrNK+f3qhpJ5FyLQAvdh/J50lsgmHTkrHOMqmSpipf
-K+Dxm7TjDzZJaEpA5N2AjkGR72bUW9bHh8EUgbmK6tWyKt0vfnbgOWtsvAWsQHpcgbILIWm0QoTG
-gpbLo5ybm9sY0viaj6VjKzwRtLSRM3BZ/qZn0+W327oijcScFx13GKRDsGR4RuUyx0j9NAa9WveC
-uat8WyHxFrI8XetfRPBUrgJ/mHNhpNyZfnzzJRXbrsVPyYOif0aED8iOb5aKQbkR0/RLQ117relY
-23d9kgC7K5TcWijalzRoBycqoukyL/is1qLTRR5sFdPmtXJ6CINevVpVVeYyw5W6TNA5IYoWOkQC
-l9UzfwpEpalvH1fX3o82kn19N60DEJ/wVphq66/0OgRk0kOchbo3KIYGyS8yRJo/AE/0Kfk/d48e
-3jWtkaBrCPRzy+PPrQQ8jmrpO8lTv0gTyEX0lWd6HUfQGKFGDhMxvC3Uw0aTqaIpRaRk+tkDArym
-ZaLc32bGfl09d18ZcQucWlSq56obHVjbqVGkKm90EIleTQFvPEqL9tygQrK1uT1QzX1CWsZ/Fmhf
-/N8H6t1Dc41Y61FQp/94ghs4zq/JulM8KpHtVTie6Py1AC3WxLcCgytDJFhtC8YFnGMqFiChWfd5
-F2VjNs2MlvBPMxUS5e5Qv3H64ul1uq3e7BwqfeBYxuQU9Xtk9Pk8bL2nHgFQq+rRAaAZb6QnFmHZ
-lX6Y4uAibVcYIadvViWYL5n9cJJvs9p+9SsIf5YgJ/vYOZ/RNDCxm39uv6VEHqjCkFM3NlBWMiHo
-Nrfn2qgM0WSROPsjexRaBRcYKn/n6YE2YJxRjkN3upGj24PgzFneXw/GOCcGdhlO0J4WUpgLrLj1
-OGNZQTjU7K6yBAZnY01ayklWbdNB/anfg+qrpGqKR1Q+hpZgXbCQGDDSumNKyTseJMWIPG3cXJu8
-oQYXvgO+QuYkGhaWFEdlNCeKgeeCiuWxyhCFPmxdQUPCQzso7C23KQm8Ix2Y4JJiKmJ0by/33gAq
-1IUmwx1QWWCs+7ZeP1Tkb3f9firwCbfH6sO7jNKMDTSH19zRA7PaKV2lsXngOh6iBt/RPhCerTid
-pif6IG/Zd8IMZTJsAlbcnzvRddQ1hLsqO4E2mqsBMMSA+kS3oJVrB5j3cFtLwHkipb9b8jfosn1u
-i0S9a6+PnzE/73neAfllNr51x62GEjfEKrL6bAH2HuJN+93ZT16pepFGAQtfGNkUKYW8cNB45ken
-/0V2/A5y1GpGCsKvzg3o1AzrY9UwdCslUZK4QeHqnI3Yzvph6kfDZEK7OJJY8bpdooh/uheneWHu
-q9oLb+4KlXgcn/rCQu52jd347OJyqtVczbneoOQE52Je6BEmrBAdo0Yd29NNlM4eyUb2EIkDGjyP
-wIuWjVwC35kjATaNERKIlQXFmafwpDCwto7/rXSEoG2QVtOrSWSWvz/IhEGNUPkJtBIXldZBcwUJ
-nWnqP/hmpdsHcklbM/VN4zGA4h+LZ+T4rveBsgPcrge13h4dJ9ZnGp44fvu9mDySRFgHXiL3ep5Q
-cVzg2Xeu9+FoKge+IJg9fsfp2J4Cq8liiUXX8sO+aLpJgH+aWuh9WkuvtJhEcRwzwoBrvcJbYQ3R
-PSJ7bDLTr04f+b4Jgb85NF25x71kYH1Tls01P0oq8nkE1IGdoE90BM7QA/FY2uHk2OImXxVjYFpi
-ahXMAKmXuaC4G68nxMUf6Zd3SgaMsasXik+Zd52Pe6cRaXCL2XHG29KdagLP9B8FfzsukSDBvUTY
-OOJifLq63aHNUN5ngtnGxXIsmZNEDo7Ni6p0FkeR1BDKc7X5VcVLNbJ9tdRgpkzmNnHVMghJolHf
-rgoUeH09tBxbcaYHufA2Hnxdc6ibGjJi9JmsgEdXjpnUvnLMVWWjrU1O0ivdp15gdhnICdFW8/oR
-5vdPYk6jisVJHx1NLLmawH4eOFJGfl1b58tZhQM+NqC1zzOPxjszN2E/U5ZeXdmvbZ0mwC+XBrxa
-VPGJn5jClCQCkzJ5YMTrpvzuTkaeNyRlanmW1aTAys03FV8FLaZEEFeS+vUE0sPjK6dlvZHRFrvO
-2yXQi/pmlnON51lAJ8CWESmOoZc8pKmeZdNWDmCi6mvwndahiBfmu5XGnWG4MuATjQMU4fZ7xt8x
-VAkuuOUGxPDglNG8FiRCqvLYvKK1vT3LN1VqtFdaqyUdKMQHRLyJCNRXcpYgEIAR/5NIRlp6XffU
-Z99uArLfNxK5wL/b7ca73wIU1D/Pe4Ak8bY4SYlFqI05cYIz9hvytQjm4gGIYQA69tOAvDWLDjYR
-Mm1VvvuGGVAAAADkQZ5CeIKfAADcZCNm7cB6DNRgAAIUXy8/lbJ09Tk7v8xjfTl1k+lcYrTPxyBZ
-27czdW/wzsmZ9w9wrpOrQCFfDCwV1ga1xuOFuRiW09+M3z4PX9TG0nfiRc7/iOKgUn39WTmvWHw4
-wMXXxAsjuGFimnto0ySnNi/rqIQpJZhHER4aiDYqy5o6pXS/OnGBE0YIxVVZ3BYn81VisnBmXIIz
-/io43Iz058VfpI4u5Q0aAoOaWpjNE3Qz7pZDXNNs8+KcodsfTjxxnsEXUoN2j19WcZuIWOFrfX+r
-fR3vP4kCJnfH2Im5AAAAsgGeYXRBLwAB7/XIZ2TAB/ITidq9UlSL6aciGXFlqbl/3QlafwUipDHi
-fGiiRz3lS2StlQ8tStrljAQ1Pa3FCXwVJSDOV0eyTzwkIetXiMsqzRHaRlVfdvf1N+P1isGztIoG
-V2hvL87PwTitWmjdH9MNpMYNW3svPO/S+SsWIA4OaS4ZmQcKRFLU32N5aSTbLmdiN5Y1/DBsAEUH
-RiZCwT5X3WAm9wUbWfjvgvzjB8kQAScAAACwAZ5jakEvAAHq+52+m2YWCF3THAB+g3/nC7pUObUR
-1OGsrDRM9LzFHJkhteP6miDN6HVJikb6c8OBMCDLfv9p3wURgUvz830Rn2I8fuaTlxAypDhqzgXb
-qUnYk/BDdFNU3ubOx1EE536TjZkwA891jkXTtY0ZT6YA/4EfSkbryYnDeU3JaLIuHbGEaO4HuC6F
-47tMU4IEEq3DSDKEUaYp/uf3lOz+5IzqekN1TrrHARcAAAM3QZpoSahBaJlMCCn//taMsAEBZIbJ
-B9ABtW9tc9WyQlwsbX767Atox3j66bNfRDL32zQDj9gG2EnzEr/OY5HpzTIybod6ZXhbC7IXzz3d
-Nbgqp/3yc2wcU3JGEtT4PLCS0jxAbXBgMNU5aE0Cc8qAACjTVLkrScq+jXocgu8AXOHAZirV2yZk
-QaQCgZRyw50irUMoweAPTqIE4tXP72Ur3mJp+j7/Gy6Jo5ruqJSBONfNdWQ02mSM+eVgV8PN9AkY
-fFoLeX+kd6AR+9J205BLfVO/HFUchMLlYp7wQdyaCPekIVzXxKCwYAUF4cuzm+y9c8hOZ6V2Eupo
-XQ5O/rc+5dGvMkH8jADSXt+EsjTn+GrD59DY94rB7oSiwFQuZ/dmIjg5qxBpizyf7p7jyiEg7NJW
-F75VyCoeOgHCcdV+Tsk48QBElfTHV6JAmrzfsYJqQQkoXsilRIM/3WhNCWSYDgHc2GuzVUVbHs1M
-ddq+eT9x0EsEW8O1bSXuDshEGUs/hWP6t/qAjZyolb7l8uZqBNkJx+/aCDi7ttFDoiB+IQxBRf8Q
-LNfEmCyavqem55IkdkDZhgUOjXO8KSDl7ojmeKVyDfYGT//tX2jlAnMG1M9ePSFRNLyb2gofHzaa
-30+3772zUxMLbdJodicRTo4xJAkri7W206cvyZhYh8HiT3qnoFXzcyNugf3aTImK+d0xeQmlx5yj
-J0eoQjlf2o54qVF+2D7Xyf8HeMKeCn7O5SCCZOCzwcmpzk/TPRzgkrZr3XGKIe4sWK0WIweAS2+x
-8GPmV+zOPLa1TaJpjIRca+lxbYyvzQ1BhYPg+S7CSal7vByF6glC3vLMIrV5ZQcaYouC05nK6TGa
-R3j4w0NNaI2XTMGSBtfrFFwkcZXZknUPxJgm62tWyTIVoUGoE4wGNffWX8kAjH8tBKMUtMF3azfT
-JvOkipcpathQyEeAt2AJTirF21kG/Pc+z3LCqJxNKn9y4LWqDnuvCnNzrkUrvwRtQP+xNnRCOqn9
-r8zAJTpianIieStZ6LswEBrhnE/IA+CXyLUK0HLdaPY+zva5VRxbLD8lRORkIAFwi94lMLPDhr3S
-4/5kbQAAAMxBnoZFESwU/wAAs1u6ZIQhGAeJDcADZjbmm4k1hOjM+EiCsfMwlkNgK2RMqfUaM0WB
-HdnP6uhBmi7Xw9d1ZFa9rreBC/xwYy3x9/QrFNvemvmjDeCv4ADtQviwJwwmZv54pAuRNKUwQBhs
-iTbIqckQCeXy+EHRorOtbQhOgTwXbyQwSD205e2y7+Bj0VkMu2MvwR4nacLAYzTIizll/dOQyYx+
-I85b0bfa4VSNi5ZgPiutzNWPExhRZmIPOnfbi9Z2ro6+mY5YIAkIBN0AAADQAZ6ldEEvAAHrCK7/
-RNMlFOyACd1GiTCxTtvJRD81aTrOuZcpQ5GcQZp0mFMaqHw0cmnYOqFfgcBH8ULg2tcc+4og5Tny
-zIqtyl0ErfeVNOZX66VEGrMlS+hmLqF26lJD1gGXVyPM5zEUSBRGofYsSjO7UAkDlOlC6jir/H6N
-8N8pZOFk/nOoAc0PLx18nGkNFV5UHOMhx2di6FOQ7+lqYrVZYhH2g8iJaaKBgZwnmkHm8VJiujve
-ZO1+gSTkh8Ieg/4rqCZhFNl22tasRwAQcQAAAK4BnqdqQS8AAesIJtSgoh7x9+z9UgAndSS/AMHf
-oVOQLSbHi5X8LoJ+AUpG/HkEyoup3KhlDUzTfX6qb08xWeEb1uNI4iT1T/c6WVh+JOsWPrPM5/mB
-iE+ViMPqtH4Iuqc5r4BbG5BqjAoIAKNi7E9FffHPPoqL8MLaU8f2h98vm1g1HckD6zXgYzbfvlrK
-0EzNLGAcnwYHrP7psjQbiKXAP2VcdgJoyS9Wp38ANSAAAAHQQZqqSahBbJlMFEwS//61KoAGUzod
-wVP7xlLDznM+i5cx+jBY2gVybF32u4iI7wPApQnO/d8AEtbw1w0sFCnuSWV4JL6xZplY8ngvTmjn
-gvlW3mhdL1SmKo/DofjqYd9pRhVc0U9sTv70ef3AZej4VQ96fC9E/Sb5BRDUVlGJrctvBNU/r5sY
-34wmsUZF0xjWwLuvbisiRj6n73YQwW0J4sFIt/TszSMjyEIneUoo7vsdUWdJ+vXoWKWWu7/vBozx
-TjEy+csdLJ9Lpfh4sDtAlsh8jd+L1zRirxcsJE2vfewSpBgKHD9xgYsR+92pOkjFuFPrhX8s85T9
-Fmv644GUPg0IKMJV/f24Gzs5WfrkaV8xoIUuDW+Nf4EtmlbpZvlZ3Sbc/rHaHiCwOHQi7HJawmhv
-xfEAx7inG+McaZycQpqNQ7nhX50W06n4YJljSQexmEeEafE1wxnJbmyGm4ONAf/4mbyOfcJSFeFV
-uExGaSv0QpQsvNgsrtTBXCBoWjG+ZBGMli8q4AtO4JeXAMfSyrBvzHICZ4/cj5f94RVS+Or6l2PT
-UwF+BFWhfm2yivK4wGfrLzVxbN6oEAowDqzNqPYLHZUdjmtP1uwYC/tADjgAAADNAZ7JakEvAAMi
-5lAPorYU6Y3gXg0YAAOa/GMigVRDJax6zIoANqv3wvcMcACJB5RlUe3chG/LO46bP/popA+hCrmV
-YKAKln5HzehPlwvixTb2s/j2MNTAI921TVTNCXblRpsLBSsjp85zx/MqXOdX1qQMcoPD8UQyNcgL
-S21GvlG3HZOqU8gUWgonPxQSGEIduZnLcv0ZAilrywT36UN5QhBCrTJewmmamIj1SAAXT5emI8Rc
-TWaDhCOEDXUFlzIUnp7sYZ3FMif2/TgA/wAAA7htb292AAAAbG12aGQAAAAAAAAAAAAAAAAAAAPo
-AAAVfAABAAABAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAC4nRyYWsAAABcdGtoZAAAAAMAAAAAAAAAAAAA
-AAEAAAAAAAAVfAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA
-AEAAAAADIAAAAfQAAAAAACRlZHRzAAAAHGVsc3QAAAAAAAAAAQAAFXwAAEAAAAEAAAAAAlptZGlh
-AAAAIG1kaGQAAAAAAAAAAAAAAAAAAEAAAAFgAFXEAAAAAAAtaGRscgAAAAAAAAAAdmlkZQAAAAAA
-AAAAAAAAAFZpZGVvSGFuZGxlcgAAAAIFbWluZgAAABR2bWhkAAAAAQAAAAAAAAAAAAAAJGRpbmYA
-AAAcZHJlZgAAAAAAAAABAAAADHVybCAAAAABAAABxXN0YmwAAAC5c3RzZAAAAAAAAAABAAAAqWF2
-YzEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAADIAH0AEgAAABIAAAAAAAAAAEAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAY//8AAAA3YXZjQwFkABb/4QAaZ2QAFqzZQMgQfnhAAAADAEAA
-AAMBA8WLZYABAAZo6+PLIsD9+PgAAAAAHHV1aWRraEDyXyRPxbo5pRvPAyPzAAAAAAAAABhzdHRz
-AAAAAAAAAAEAAAALAAAgAAAAABRzdHNzAAAAAAAAAAEAAAABAAAAaGN0dHMAAAAAAAAACwAAAAEA
-AEAAAAAAAQAAoAAAAAABAABAAAAAAAEAAAAAAAAAAQAAIAAAAAABAACgAAAAAAEAAEAAAAAAAQAA
-AAAAAAABAAAgAAAAAAEAAGAAAAAAAQAAIAAAAAAcc3RzYwAAAAAAAAABAAAAAQAAAAsAAAABAAAA
-QHN0c3oAAAAAAAAAAAAAAAsAADK0AAAJQgAAAOgAAAC2AAAAtAAAAzsAAADQAAAA1AAAALIAAAHU
-AAAA0QAAABRzdGNvAAAAAAAAAAEAAAAwAAAAYnVkdGEAAABabWV0YQAAAAAAAAAhaGRscgAAAAAA
-AAAAbWRpcmFwcGwAAAAAAAAAAAAAAAAtaWxzdAAAACWpdG9vAAAAHWRhdGEAAAABAAAAAExhdmY1
-OC43Ni4xMDA=
-" type="video/mp4"/>
-  Your browser does not support the video tag.
-</video>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Shape of input batch x1:  torch.Size([64, 300])
+Shape of hidden state h0: torch.Size([64, 512])
+</pre>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f5b15353-a04f-48ad-82b8-8a0950aa037d">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8d19db14-d08e-46ff-94f0-a79c922c19e7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>With $\mathbf{x}_1$, $\mathbf{h}_0$, and the RNN cell defined, we can now calculate $\mathbf{h}_1$. The only difference compared to our conceptual introduction of the hidden state and the recurrent formula is that we now work with batches of sequences and not individual sequences — and we typically try to work with batches in practice for performance reasons. However, this is completely handled under the hood by PyTorch.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1749d91d-ffd7-43ae-9cf2-931227c5d03e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">h1</span> <span class="o">=</span> <span class="n">vanilla_rnn_cell</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">h0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Shape of output: </span><span class="si">{</span><span class="n">h1</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>Shape of output: torch.Size([64, 512])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87ee660d-0371-4bfb-bc40-38e1ba520d08">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Unsurprisingly, each output vector of the RNN cell (i.e., the hidden layer) of size $512$ for each of our 64 input vectors.</p>
+<p>The RNN cell is only a component of the network. Most importantly, we also need an output layer to generate the final output $\mathbf{y}_t$. But with our implementation of <code>VanillaRNNCell</code>, we can now implement the complete network model as the class <code>VanillaRNN</code> as shown in the code cell below. Apart from the Vanilla RNN cell, this class also defines the weight matrix $\mathbf{W}_{hy}$ to transform the hidden state to the output. Assuming this network implements some classification task, we can also include the Softmax function as the final layer. The <code>forward()</code> method calculates the current hidden state $\mathbf{h}_t$ and the final output $\mathbf{y}_t$ and returns them both.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0a54906b-4de2-4b48-8629-4419a03b0710">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">VanillaRNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span> <span class="o">=</span> <span class="n">VanillaRNNCell</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Why</span>  <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out</span>  <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">hidden</span><span class="p">):</span>
+        <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Why</span><span class="p">(</span><span class="n">hidden</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">hidden</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=724218dd-f447-4468-a345-fe679d44b238">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>To create an example network, let's assume we consider classification tasks with $10$ class labels. This means that the number of neurons in the output layer will also be $10$. Together with the previous choice for the size of the input vectors and the size of the hidden layer, we have all required arguments to define out <code>VanillaRNN</code> model; see the the code cell below.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8022a812-c71c-4bb7-a461-b7558c26af95">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Define size of the ouput (default: 10-class classification task)</span>
+<span class="n">output_size</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Define complete Vanilla RNN Network</span>
+<span class="n">vanilla_rnn</span> <span class="o">=</span> <span class="n">VanillaRNN</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">)</span>
+
+<span class="c1"># Print cell (which is a PyTorch nn.Module)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">vanilla_rnn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>VanillaRNN(
+  (cell): VanillaRNNCell(
+    (Wxh): Linear(in_features=300, out_features=512, bias=True)
+    (Whh): Linear(in_features=512, out_features=512, bias=True)
+  )
+  (Why): Linear(in_features=512, out_features=10, bias=True)
+  (out): Softmax(dim=1)
+)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b0680b0f-b506-44be-a974-d30b1ef9b291">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Finally, we can give our model a batch of sequences as input. Using the default value in the code cell below, we assume that all sequences in the example batch have a length of $20$. After creating our random input batch <code>x</code> we also need to initialize our first hidden state vector $\mathbf{h}_0$; again, here we do this just randomly. The loop then iterates through all sequences in the batch, fetches the $t$-th input vector from each sequence. Notice that the shape of the batch <code>x</code> is <code>(batch_size, seq_len, hidden_size)</code>, indicating that the 2nd dimension of the batch is the sequence length dimension. When can give the current input vector $\mathbf{x}_t$ and the previous hidden state $\mathbf{f}_{t-1}$ to our <code>VanillaRNN</code> instance to get the output $\mathbf{y}_t$ and the new hidden state $\mathbf{h}_t$ — note that we just call the hidden state <code>h</code> since we simple overwrite it in each iterations.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=620b7210-9cdb-4ba5-8562-d0429e0a9ee8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Specify length of all sequences in the batch</span>
+<span class="n">seq_len</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># Create a randon input batch of size batch_size with sequences of length sew_len</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">input_size</span><span class="p">))</span>
+
+<span class="c1">#Initialize hidden state h0 using basic zero initialization</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="c1"># Get input batch for time step t</span>
+    <span class="n">xt</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span>
+    <span class="c1"># Calculate output based current input and previous hidden state (and overwrite hidden state for next iteration)</span>
+    <span class="n">yt</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">vanilla_rnn</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="c1"># ... do something meaningful with the output ...</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d3b86a86-6d59-44e4-84e5-4236a1946c56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Clearly, this code cell does nothing meaningful, let alone any training. The purpose of the example code was merely to illustrate the sequential processing of a batch of input sequences. If we would train this model, we would need to calculate the loss with respect to the predictions and some ground truth class labels based on some training dataset. But that already goes beyond this introductory notebook and will be covered in other notebooks. Of course, Neural Network libraries such as PyTorch, Tensorflow, and others provide configurable implementations of Recurrent Networks that handle this iterative process under the hood.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9b3ba34b-c8f2-4d33-a73f-1d4b4723b494">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a41559fe-70dc-4a8e-9919-d19eea4376fe">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Common-Sequence-Task-for-RNNs">Common Sequence Task for RNNs<a class="anchor-link" href="#Common-Sequence-Task-for-RNNs">¶</a></h2><p>Recurrent Neural Networks are very versatile neural network architecture that can be used to solve a wide range of sequence-based tasks. In the following we briefly discuss the four basic types of sequence-based tasks and illustrate their basic implementation using RNNs. While the examples below focus on natural language data, the same ideas apply for other types of sequence data.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=edfde6ad-7018-48a9-875c-cc69a6fe14ac">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Many-to-One">Many-to-One<a class="anchor-link" href="#Many-to-One">¶</a></h3><p>A many-to-one sequence task in machine learning refers to a problem where a model processes a sequence of inputs and produces a single output. A classic example of a many-to-one task is sentiment analysis, where an RNN processes an entire sentence or paragraph and predicts whether the sentiment is positive or negative (assuming a binary classification). Here the input, i.e., each word/token in a sentence, is processed step by step until the last word/token at time step $T$, and the hidden state gets updated along the way. Then, the last hidden state $\mathbf{h}_T$ is used as input for one or more additional layers to get the final output. The image below illustrates the idea using the unrolled representation of an RNN for a sentiment analysis use case.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b7df11ec-421c-416b-a224-f3bd4bd4dffa">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Many-to-One RNN Model" src="images/illustrations/rnn/rnn-model-many2one.png" style="margin:auto;max-width:550px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0020e427-492d-47b0-929f-27f229821368">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="One-to-Many">One-to-Many<a class="anchor-link" href="#One-to-Many">¶</a></h3><p>A one-to-many sequence task in machine learning involves a scenario where the model receives a single input and generates a sequence of outputs. This setup is particularly common in generative tasks, where the initial input serves as a seed or context, and the model must produce a series of related elements. For example, in image captioning, a model might take a single image as input and then generate a descriptive sentence word by word. Similarly, in music generation, a model might start with a specific motif or chord and then generate a sequence of notes that form a complete melody. By sequentially producing each element based on the initial input and the previously generated outputs, the model ensures that the final output sequence is contextually relevant and well-structured. This approach is widely used in natural language processing, creative content generation, and various other domains where producing an ordered sequence of outputs is essential.</p>
+<p>The image below shows the basic setup of using RNN for image captioning. Here, we assume that the image has been somehow encoded — typically using a Convolutional Neural Network or similar architecture to serve as the initial hidden state $\mathbf{h}_0$ of the RNN. A special word/token (here: <em>"&lt;SOS&gt;"</em>) that serves as initial input for the RNN is used to kick-start the generation of the sequence of words/tokens to form the image caption.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e16f25e5-8c7f-4bce-895f-52b928d4224f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="One-to-Many RNN Model" src="images/illustrations/rnn/rnn-model-one2many.png" style="margin:auto;max-width:650px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5ebcceda-7e48-4f3d-8310-d243227df65f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Many-to-Many:-Sequence-Labeling">Many-to-Many: Sequence Labeling<a class="anchor-link" href="#Many-to-Many:-Sequence-Labeling">¶</a></h3><p>A many-to-many sequence task for labeling sequences in machine learning involves processing an input sequence and generating an output sequence typically the same length — although the length may differ for certain use cases — where each input element is assigned a corresponding label. This type of task is commonly used in applications where every time step in the input sequence requires a classification or annotation. For instance, in Named Entity Recognition (NER), each word in a sentence is labeled as a proper noun, location, organization, or other entity type. Similarly, in Part-of-Speech (POS) tagging, each word is classified as a noun (NOUN), verb (VERB), adjective (ADJ), adverb (ADV), determiner (DET), etc., making it a crucial component of natural language processing (NLP). The image below shows how an RNN can be used to solve a POS tagging task using a simple example sentence.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3c8b6e61-1b90-4277-9afc-188b87bb2ae5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Many-to-Many RNN Model: Sequence Labeling" src="images/illustrations/rnn/rnn-model-many2many-labeling.png" style="margin:auto;max-width:550px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dfbf347b-8cf2-464b-8020-09cc74d0d5e1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Many-to-Many:-Encoder-Decoder-Architecture">Many-to-Many: Encoder-Decoder Architecture<a class="anchor-link" href="#Many-to-Many:-Encoder-Decoder-Architecture">¶</a></h3><p>A many-to-many sequence task for text generation using an encoder-decoder architecture involves processing an input sequence and generating an output sequence, where both sequences may have different lengths. This approach is commonly used in tasks like machine translation, where an entire sentence in one language (e.g., German) is taken as input, encoded into a latent representation, and then decoded into a sentence in another language (e.g., German). The encoder compresses the input sequence into a context vector, capturing its meaning, while the decoder generates the output sequence step by step, maintaining coherence and structure. This encoder-decoder structure allows models to generate fluent, context-aware sequences, making it a cornerstone of modern natural language processing (NLP) tasks.</p>
+<p>The image below illustrates encoder-decoder architecture using two Recurrent Neural Networks for a machine translation task (German to English). The encoder RNN reads in the input sentence in the source language (here: German) resulting in the last hidden state $\mathbf{h}^{enc}_T$ of the decoder. This hidden state is then used to initialize the hidden state for the decoder RNN, i.e., $\mathbf{h}^{dec}_o = \mathbf{h}^{enc}_T$. Again, we use some special word/token (here: <em>"&lt;SOS&gt;"</em>) to start the generation of the text in the target language (here: English) by the decoder RNN.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=91085d81-4498-43a7-b314-7feb8566f554">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Many-to-Many RNN Model: Encoder-Decoder" src="images/illustrations/rnn/rnn-model-many2many-encdec.png" style="margin:auto;max-width:750px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=23686a8b-90fb-4667-b458-fb45d9a75bec">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The purpose of the previous examples was to illustrate on a fairly high level how RNNs can be used for different types of sequence-based tasks. Their different challenges and practical examples will be the subject of separate notebooks. The main take-away message here is the versatility of Recurrent Neural Networks for machine learning given sequential data.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=636b6114-6b72-44fe-be4a-96703fed983f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=246507ce-de35-4b26-b468-d5dba464a6e9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="RNN-Variants-&amp;-Extensions">RNN Variants &amp; Extensions<a class="anchor-link" href="#RNN-Variants-&amp;-Extensions">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=589d5c84-c184-4ba4-bc6b-8ce98757f2eb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="RNN-Variants">RNN Variants<a class="anchor-link" href="#RNN-Variants">¶</a></h3><p>Recall that the basic concept of a Recurrent Neural Network is reflected in the recurrent formula</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f26fcf04-b703-48e5-8efd-bd42ff9d391d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>$$\large
+h_t = f_{\mathbf{W}}(\mathbf{h}_{t-1}, \mathbf{x}_t)
+$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=adbea963-f148-47b2-800e-f8f8846b39eb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We also saw the most basic implementation of that formula that gives us the Vanilla RNN cell. Just as a reminder, the image below shows the visualization of the Vanilla RNN cell.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=26be2de6-5eeb-4d00-939e-3d1896113f07">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Vanilla RNN Cell" src="images/illustrations/rnn/rnn-full.png" style="margin:auto;max-width:550px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2d4bcba8-cdbd-4817-a69d-11b31b4bc164">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The main problem with the Vanilla RNN cell is the vanishing and exploding gradient problem, which makes training deep or long-sequence models difficult. Since RNNs update their hidden states at each time step using backpropagation through time (BPTT), gradients are repeatedly multiplied as they propagate backward through the network. If these gradients are small (less than 1), they shrink exponentially, causing the model to forget long-term dependencies — this is known as the vanishing gradient problem. Conversely, if gradients are large (greater than 1), they grow exponentially, leading to instability in training — this is called the exploding gradient problem.</p>
+<p>Due to the vanishing gradient problem, Vanilla RNNs struggle to learn dependencies over long sequences, as older time steps have little to no influence on the final output. This limits their ability to model tasks requiring long-range context, such as language translation or speech recognition. The exploding gradient problem, on the other hand, causes large weight updates that make training unstable, though it can be controlled using gradient clipping. To address these limitations, advanced RNN architectures like Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU) were introduced, as they use gating mechanisms to better retain and manage long-term dependencies. Let's have a brief and high-level look at LSTMs and GRUs to appreciate their added complexity and their differences.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8095d82f-303f-4ba4-9b67-a8284593d932">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Long-Short-Term-Memory-(LSTM)">Long Short-Term Memory (LSTM)<a class="anchor-link" href="#Long-Short-Term-Memory-(LSTM)">¶</a></h4><p>Long Short-Term Memory (LSTM) networks were first proposed in 1997 by Sepp Hochreiter and Jürgen Schmidhuber in their paper titled <em>"Long Short-Term Memory"</em>. The key difference between a Vanilla RNN cell and an LSTM cell lies in how they handle long-term dependencies in sequential data. A Vanilla RNN cell is the simplest form of a recurrent unit that maintains a single hidden state, which gets updated at each time step using the current input and the previous hidden state. While this design allows RNNs to capture short-term dependencies, they struggle with long sequences due to the vanishing gradient problem, where gradients become too small to effectively update earlier layers during backpropagation.</p>
+<p>The LSTM cell, on the other hand, is specifically designed to overcome this issue by introducing a more complex memory structure. Instead of a single hidden state, an LSTM maintains two key states: the cell state and the hidden state. The cell state serves as a long-term memory that can carry information across many time steps, while the hidden state represents the current output at each step. LSTMs use gates (input gate, forget gate, and output gate) to regulate the flow of information, deciding what to keep, update, or discard at each step. This gated mechanism helps LSTMs retain relevant information over longer sequences while preventing unnecessary accumulation of past data.</p>
+<p>Another major distinction is that the LSTM's gates help mitigate the vanishing gradient problem, enabling it to learn dependencies over long sequences more effectively than a Vanilla RNN. Because the cell state allows gradients to flow with minimal decay, LSTMs excel in tasks like language modeling, machine translation, and speech recognition, where long-term context is crucial. Without going into the mathematical defintion of the recurrent formula for the LSTM cell, the corresponding visualization of the cell looks as follows:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=43499836-8aa9-473f-ae82-abcb1c9534fa">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="LSTM Cell" src="images/illustrations/rnn/lstm-full.png" style="margin:auto;max-width:550px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=db87d1bd-4186-4bdf-b8f2-ca663ccd1b69">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Again, here it is enough to appreciate the recurrence is based on more sophisticated series operations compared to the Vanilla RNN cell. A more detailed introduction into LSTMs is its own topic and beyond the scope of this notebook.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0af8dd2b-70d4-423f-836a-56861289b9a5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Gated-Recurrent-Unit-(GRU)">Gated Recurrent Unit (GRU)<a class="anchor-link" href="#Gated-Recurrent-Unit-(GRU)">¶</a></h4><p>Gated Recurrent Unit (GRU) networks were first proposed in 2014 by Kyunghyun Cho, Bart van Merriënboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, and Yoshua Bengio in their paper titled <em>"Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation"</em>. GRUs were introduced as a simpler alternative to Long Short-Term Memory (LSTM) networks, aiming to retain the benefits of long-term dependency learning while reducing computational complexity. While LSTMs use three gates (input gate, forget gate, and output gate) along with a cell state and hidden state, GRUs simplify this mechanism by using only two gates (reset gate and update gate) and maintaining a single hidden state.</p>
+<p>The GRU’s reset gate determines how much past information should be forgotten, while the update gate decides how much of the new input should be incorporated into the hidden state. In contrast, LSTMs explicitly separate short-term and long-term memory using a cell state that allows information to flow through many time steps with minimal modification. This extra layer of control in LSTMs makes them more powerful but also computationally more expensive compared to GRUs. Because GRUs have fewer gates and no separate cell state, they are computationally faster and require fewer parameters than LSTMs. This makes GRUs a good choice for real-time applications and when working with limited computational resources. However, LSTMs can sometimes perform better on tasks requiring very long-term dependencies due to their more structured memory management.</p>
+<p>For comparison, let's again have a look at visualization of the GRU cell — compared to the LSTM cell and the Vanilla RNN cell.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7321a919-7a6e-4cf8-bfb8-f8fa4955076b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="GRU Cell" src="images/illustrations/rnn/gru-full.png" style="margin:auto;max-width:550px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b0c0a85a-9556-4972-9e6e-2281fa5e7c0d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Just from eye-balling this visualization of the GRU cell you can already see the reduced complexity compared to the LSTM cell. However, like for LSTMs, a deeper discussion of GRUs is beyond this notebook's scope but will be covered as its own topic. In conclusion, in practice, LSTMs or GRUs are generally always preferred over Vanilla RNNs given their clear advantages when dealing sequential data.</p>
+<p>LSTM cells and GRU cells are not the only variants that have been proposed, but they are the two most popular ones.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fa76a1b6-ab47-4fd7-b199-e68126f38dc6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Extensions">Extensions<a class="anchor-link" href="#Extensions">¶</a></h3><p>Apart from the concrete implementation of the recurrent formula in terms of the Vanilla RNN Cell, the LSTM cell, and the GRU cell, Recurrent Neural Networks can also be extended with respect to their over setup. So far we only considered a single hidden layer and the processing of the input sequences from the first input vector to the last input vector in the sequence. Hence, two common extensions refer to the use of multiple hidden layers and the processing of a sequence in both directions to further give the model more capacity to learn. Let's look at the fundamental idea of those two extensions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83014901-2ba5-494e-9173-f458096922c4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Multilayer-RNNs">Multilayer RNNs<a class="anchor-link" href="#Multilayer-RNNs">¶</a></h4><p>A Multilayer Recurrent Neural Network (RNN) is an extension of a standard RNN where multiple RNN layers are stacked on top of each other. In a standard RNN, there is only a single recurrent layer that processes the input sequence and passes hidden states over time. In contrast, a multilayer RNN has multiple layers of recurrent units, where each layer's output serves as the input to the next layer. This deeper structure allows the model to capture more complex patterns in sequential data by learning hierarchical representations. While more layers add to the model's capacity to learn, stacking multiple layers also increases computational complexity and training difficulty, often requiring techniques like dropout or batch normalization to prevent overfitting. The image below shows an unrolled representation of a 2-layer RNN.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69608b57-7ee8-488b-a812-146db3945748">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="GRU Cell" src="images/illustrations/rnn/rnn-2layer-unrolled.png" style="margin:auto;max-width:750px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b2a6829a-6329-45b3-9ddb-07cafc57dfdc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Here, $\mathbf{W}^{(k)}$ denotes to the $k$-th layer, and $\mathbf{h}^{k}_{t}$ denotes the hidden state of the $k$-the layer at time step $t$. In practice, the number of layers in a multilayer RNN typically ranges from 2 to 4 layers, though it depends on the complexity of the task and available computational resources. For simpler tasks like basic text classification or small-scale time-series forecasting, 2 layers are often sufficient — or simply just a single recurrent layer. More complex applications, such as speech recognition or machine translation, may use 3 to 4 layers to capture deeper sequential dependencies. However, beyond 4 layers, improvements often diminish due to increasing training difficulty, vanishing gradients, and computational overhead.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=184975a4-7e74-4e10-952d-0915cef1ef89">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Bidirectional-RNNs">Bidirectional RNNs<a class="anchor-link" href="#Bidirectional-RNNs">¶</a></h4><p>A Bidirectional Recurrent Neural Network (BiRNN) is a type of RNN that processes input sequences in both forward and backward directions. Unlike a standard RNN, which only has a single hidden state that moves forward in time, a BiRNN consists of two RNN layers — one that processes the sequence from start to end (forward direction) and another that processes it from end to start (backward direction). The outputs of these two layers are then combined, typically through concatenation or summation, to provide a more comprehensive representation of the input sequence. The key advantage of a BiRNN over a standard RNN is its ability to capture both past and future context at each time step. In a standard RNN, predictions at a given time step depend only on past information, which can be limiting in tasks where future context is also important. For example, in speech recognition or language modeling, understanding a word's meaning may depend on both previous and upcoming words in a sentence. However, the trade-off is that BiRNNs require more computation and memory since they process the input twice — once forward and once backward — making them less efficient for real-time applications. The image below illustrates this the concept of a BiRNN using the unrolled representation of the network.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=41a679f6-cd17-4757-9600-3a68e9fca291">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="GRU Cell" src="images/illustrations/rnn/rnn-bidirectional-unrolled.png" style="margin:auto;max-width:750px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6a9d8639-1b9b-4078-a968-896573b2c639">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Here, $\mathbf{W}_f$ $\mathbf{W}_b$ denote the weight matrices representing the hidden layer of the forward direction and the backward direction, respectively. Analogously, $\mathbf{h}^{f}$ and $\mathbf{h}^{b}$ denote a hidden state of for the forward direction and the backward direction, respectively. However, note that the time step index $t$ for the backward direction is now reversed compared to the forward direction.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3bfcdba6-350b-443b-8019-a0aeaf07b6bb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="GRU Cell" src="images/illustrations/rnn/rnn-2layer-bidirectional-unrolled.png" style="margin:auto;max-width:750px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96dcaa85-f772-4899-92dd-e4218f2c02af">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f05bafce-0add-4d4a-b03d-f2bf174c786c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Discussion-&amp;-Limitations">Discussion &amp; Limitations<a class="anchor-link" href="#Discussion-&amp;-Limitations">¶</a></h2><p>While Recurrent Neural Networks represent a powerful extension to basic Feed-Forward Neural Networks to support the processing of sequences, they also introduce new challenges. In a nutshell, these challenges more or less all derive from the sequential nature of Recurrent Neural Networks, particularly when dealing with long sequences.</p>
+<h3 id="Performance-Consideration">Performance Consideration<a class="anchor-link" href="#Performance-Consideration">¶</a></h3><p>Recurrent Neural Networks (RNNs) process input data sequentially, meaning that each step depends on the computation of the previous step. This strict sequential processing creates a significant bottleneck in terms of performance, especially when dealing with long sequences. Unlike feedforward neural networks, where computations can be parallelized, RNNs must process each time step one after another, making them inherently slower, particularly for long sequences in tasks like natural language processing (NLP) or time-series analysis.</p>
+<p>One major issue with this sequential dependency is that it prevents efficient parallelization on modern hardware, such as GPUs and TPUs, which thrive on executing multiple operations simultaneously. In contrast, architectures like Transformers leverage mechanisms such as self-attention, allowing computations to be performed in parallel, greatly improving efficiency. Because of this limitation, RNNs are often significantly slower in training and inference compared to newer deep learning architectures.</p>
+<h3 id="Training-Challenges">Training Challenges<a class="anchor-link" href="#Training-Challenges">¶</a></h3><p>The problem with long-term dependencies in training RNNS arises from the difficulty of propagating information across many time steps. Ideally, RNNs should be able to capture patterns and relationships in sequences, even when important information appears far back in the input. However, due to the way gradients during training, long-range dependencies are often lost or distorted:</p>
+<ul>
+<li><p>One major issue is the <strong>vanishing gradient problem</strong>, where gradients become extremely small as they are propagated backward through many time steps. When this happens, earlier layers receive almost no updates, making it difficult for the model to learn relationships between distant time steps. As a result, the network becomes biased toward recent inputs and struggles to remember important information from the past, which is crucial for tasks like speech recognition, machine translation, and time-series forecasting.</p>
+</li>
+<li><p>Conversely, RNNs can also suffer from the <strong>exploding gradient problem</strong>, where gradients grow exponentially large, causing instability in training. This can lead to wildly fluctuating weight updates, making it difficult for the network to converge. While techniques like gradient clipping can help control exploding gradients, the vanishing gradient problem remains a more persistent challenge for capturing long-term dependencies.</p>
+</li>
+</ul>
+<p>To address these issues, architectures like Long Short-Term Memory (LSTM) networks and Gated Recurrent Units (GRUs) were developed. These models introduce gating mechanisms that regulate how information is stored, forgotten, and passed forward through time, helping preserve long-term dependencies. However, even with these improvements, RNNs still struggle with long sequences, which is why attention-based models like Transformers have largely replaced them in many applications.</p>
+<h3 id="Information-Bottleneck">Information Bottleneck<a class="anchor-link" href="#Information-Bottleneck">¶</a></h3><p>Recall the basic encoder-decoder setup used for tasks such as machine translation where we use an encoder RNN to process the an sequence in the source language and use the final hidden state of the encoder RNN to initialize the hidden state of the decoder RNN:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c0e25b0f-832d-49e8-b21a-0b54dc5f6504">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Many-to-Many RNN Model: Encoder-Decoder" src="images/illustrations/rnn/rnn-model-many2many-encdec.png" style="margin:auto;max-width:750px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c498e7eb-22fd-444b-8da7-ac6e77cd9789">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In simple terms, this setup assumes that the last hidden state of the encoder RNN has sufficiently captured the meaning of the input sentence — otherwise we could not meaningfully expect the decoder RNN to generate the appropriate translation in the target language. This means that the encoder processes the input sequence one step at a time and condenses all the information into a single vector, often called the context vector or bottleneck vector. The decoder then relies entirely on this vector to generate the output sequence. This design creates several challenges, particularly when dealing with long or complex sentences:</p>
+<ul>
+<li><p>Firstly, compressing all the relevant information into a single vector can lead to information loss. If the input sentence is long or contains multiple important details, the encoder may struggle to retain all necessary information, causing the decoder to generate inaccurate or incomplete translations. This is especially problematic for languages with different word orders or complex grammatical structures, as the decoder might lack sufficient context to reconstruct a coherent output.</p>
+</li>
+<li><p>Secondly, long-range dependencies become harder to capture. Since RNNs already struggle with vanishing gradients when processing long sequences, the encoder may fail to retain information from the beginning of a long sentence, making it difficult for the decoder to correctly interpret or generate a response based on earlier words.</p>
+</li>
+</ul>
+<p>To overcome these limitations, <strong>attention</strong> mechanisms were introduced. Instead of relying on a single context vector, attention allows the decoder to access different parts of the encoder's hidden states at each time step, dynamically focusing on relevant words. This improvement has led to significant advancements in machine translation, ultimately paving the way for models like the Transformer, which entirely replace RNNs with more efficient self-attention mechanisms.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e80daba9-4050-46b7-9060-bc39afd55501">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a77d5a9d-57bc-45a1-99fd-cd244afa2fbf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Summary-&amp;-What's-Next?">Summary &amp; What's Next?<a class="anchor-link" href="#Summary-&amp;-What's-Next?">¶</a></h2><p>Recurrent Neural Networks (RNNs) are a class of artificial neural networks designed to process sequential data by maintaining a memory of previous inputs. Unlike traditional feedforward neural networks, which treat each input independently, RNNs introduce a recurrent connection that allows information to persist across time steps. This makes them well-suited for tasks involving sequences, such as natural language processing (NLP), speech recognition, and time-series forecasting.</p>
+<p>The core concept of an RNN lies in its hidden state, which acts as a form of memory that carries information from previous time steps to the current computation. At each step, the RNN updates its hidden state based on both the current input and the previous hidden state. However, standard RNNs struggle with long-term dependencies due to the vanishing gradient problem, which makes it difficult for the network to retain information over long sequences. To address these challenges, advanced RNN architectures such as Long Short-Term Memory (LSTM) networks and Gated Recurrent Units (GRUs) were developed. These models introduce gating mechanisms that help regulate information flow, allowing them to retain important information for longer periods. As a result, LSTMs and GRUs have significantly improved the performance of AI applications in areas like machine translation, sentiment analysis, and speech synthesis.</p>
+<p>RNNs play a crucial role in AI and machine learning by enabling models to understand and generate sequential data, making them essential for human-computer interaction and automation. While more recent models like Transformers have gained popularity due to their efficiency in handling long sequences, RNNs remain foundational in the study of deep learning for sequential tasks. Their ability to model time-dependent patterns continues to make them valuable in fields such as healthcare, finance, and robotics.</p>
+<p>In this notebook, we covered the basic idea behind Recurrent Neural Network by extending basic Feed-Forward Neural Neural giving the network a "memory" represented by the hidden state. We see how the introduction of this hidden state and the recurrent formula to update the hidden change now allows the processing of sequential data such as natural language texts, time series data, or audio and video data. Other notebooks will delve deeper into the implementation and training of RNNs; important topics include:</p>
+<ul>
+<li><p><strong>Backpropagation Through Time (BPTT).</strong> In principle, RNNs are trained using backpropagation like most other neural network architectures. However, the involved recurrence adds complexity to this task. BPTT is the adaptation of the standard backpropagation algorithm for training Recurrent Neural Networks (RNNs). Since RNNs process sequential data, they have connections that span multiple time steps. Unlike Feed-Forward Neural Networks (FNNs), where information flows in one direction and errors are backpropagated layer by layer, RNNs unroll across time steps, and errors are backpropagated through each time step sequentially. This means that during training, BPTT computes gradients not only across layers (as in standard backpropagation) but also across time, making the process computationally more intensive.</p>
+</li>
+<li><p><strong>RNNs with Attention.</strong> The idea of attention in Recurrent Neural Networks is to allow the model to focus on different parts of the input sequence dynamically, rather than relying on a single fixed-length context vector. Traditional RNN-based encoder-decoder models for tasks like machine translation compress all input information into a single context vector, which can become a bottleneck, especially for long sentences. Attention mechanisms solve this problem by enabling the decoder to selectively "attend" to different parts of the input sequence at each decoding step. The attention mechanism works by computing a set of weights that determine how much focus should be given to each encoder hidden state when generating each output token. Instead of relying on a single compressed representation, the decoder can look at different parts of the input sequence as needed. This significantly improves performance in tasks where understanding long-range dependencies is important, such as machine translation, speech recognition, and text summarization.</p>
+</li>
+<li><p><strong>Practical Applications.</strong> In this notebook, we have introduced Recurrent Neural Networks on a fairly high level, focusing on their core ideas and how RNNs are — at least, in principle — are capable of handling a wide range of sequence tasks. As such, this notebook alone is unlikely to help much when it comes to actually training RNNs on real-world datasets. Actually training RNNs also helps to actually appreciate the challenges when working with RNNs. These challenges include not only those outlined above, but also very pragmatic challenges. For example, when working with batches, most implementations of RNNs assume that all sequences in a batch have the same length. Assuming our input are natural language sentences, our input sequences are likely to have different lengths. We need to see how such constraints are commonly met in practice.</p>
+</li>
+</ul>
+<p>All the topics and techniques will be covered in detail in separate notebooks.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4ef85945-aad4-4593-ac97-60106bb09550">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

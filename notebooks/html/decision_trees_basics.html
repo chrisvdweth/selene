@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>gradient_descent_basics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>decision_trees_basics</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7515,18 +7515,7 @@ video {max-width: 100% !important; height: auto !important; }
 </style>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2834c4c2-0e68-49fe-989d-c305c8a09aa2">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">!!!WORK IN PROGRESS — TESTING ANIMATIONS!!!<a class="anchor-link" href="#!!!WORK-IN-PROGRESS-%E2%80%94-TESTING-ANIMATIONS!!!">¶</a></h2>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=79c8c281-f6f4-4fa9-88ac-4f5e2ab5a530">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c0c9b630-db3e-49a7-8af1-f50c95056120">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7538,21 +7527,19 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=08cf57e1-2b8a-4704-8a11-f0ba19109cd5">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ab079cdb-482b-40cf-984a-ae8d31d9d52f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Gradient-Descent-%E2%80%94-The-Very-Basics">Gradient Descent — The Very Basics<a class="anchor-link" href="#Gradient-Descent-%E2%80%94-The-Very-Basics">¶</a></h1><p>Gradient Descent is an iterative optimization algorithm used to find the minimum of a function by repeatedly taking steps in the direction of the steepest decrease of that function. In the context of machine learning, this function is typically a <strong>loss function</strong> that measures how well a model's predictions match the data. By computing the gradient of the loss with respect to the model parameters, Gradient Descent tells us <em>how</em> and <em>in which direction</em> to adjust those parameters to reduce error. Conceptually, it can be thought of as navigating a landscape of error values, moving downhill step by step until a (local) minimum is reached.</p>
-<p>The general purpose of Gradient Descent is therefore <strong>parameter optimization</strong>. Most machine learning models (from linear regression to deep neural networks) are defined by a set of parameters (weights and biases) that determine their behavior. These parameters are not chosen analytically in closed form for complex models; instead, they are learned from data. Gradient Descent provides a systematic, scalable way to tune millions (or even billions) of parameters by relying only on local information: the gradient at the current point.</p>
-<p>Gradient Descent has become a cornerstone of machine learning and neural networks because it scales extremely well to high-dimensional problems and works hand-in-hand with <strong>backpropagation</strong>. Backpropagation efficiently computes gradients of the loss with respect to all parameters in a neural network, and Gradient Descent uses those gradients to update the parameters. This separation of concerns — gradient computation on one side, optimization on the other — makes the training of deep models both conceptually clean and computationally feasible.</p>
-<p>We need Gradient Descent because, for most realistic models, there is no direct mathematical solution for finding the optimal parameters. The loss surfaces of neural networks are highly non-linear, high-dimensional, and often non-convex. Gradient Descent offers a practical and flexible approach to navigating these complex landscapes, allowing models to improve gradually through incremental updates. Understanding Gradient Descent at a fundamental level is therefore essential: it reveals <em>how</em> learning actually happens inside a model and provides the foundation for more advanced optimization methods used in modern machine learning.</p>
+<h1 id="Decision-Trees">Decision Trees<a class="anchor-link" href="#Decision-Trees">¶</a></h1><p>Decision Trees are one of the most intuitive and widely used machine learning algorithms for both classification and regression tasks. At their core, decision trees represent a flowchart-like structure, where data is split recursively based on certain conditions until a final decision or prediction is made. Each internal node of the tree corresponds to a decision or test on a feature, each branch represents the outcome of the test, and each leaf node signifies a final prediction or category. Their hierarchical nature makes decision trees easy to visualize and interpret, making them highly suitable for both beginners in machine learning and professionals seeking explainable AI models. The versatility of decision trees allows them to excel in a range of applications, including but not limited to, medical diagnosis, customer segmentation, fraud detection, and predictive maintenance. For example, a decision tree might help a doctor determine whether a patient has a particular disease by analyzing their symptoms step-by-step. Similarly, businesses use decision trees to classify customer behavior and tailor marketing strategies. Their ability to handle both categorical and continuous data makes them a robust choice for solving real-world problems.</p>
+<p>Learning about decision trees is crucial for several reasons. First, they provide a foundational understanding of how data-driven decisions are made, which is essential for grasping more advanced algorithms like Random Forests and Gradient Boosting Machines. Second, decision trees are inherently interpretable, making them ideal for scenarios where transparency is necessary, such as in healthcare or legal domains. Finally, their simplicity and efficiency in handling both small and large datasets make them a fundamental tool in any data scientist's toolbox. In addition, decision trees play a pivotal role in ensemble learning methods, where multiple decision trees are combined to create more robust and accurate models. Algorithms like Random Forests and XGBoost rely on decision trees as their building blocks, showcasing their importance even in advanced machine learning techniques. By understanding the principles of decision trees, one can better comprehend and implement these powerful ensemble methods.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e0581fd7-1104-40e6-ad85-52de61e118b2">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5b75587e-eaef-425d-966e-79e8bb10305c">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7562,7 +7549,7 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=632ec98d-37d5-4e71-87f6-a2c4b76b9cba">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=52800b0c-d2a8-492c-918b-487015dacfe0">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7570,101 +7557,25 @@ video {max-width: 100% !important; height: auto !important; }
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.plotting.gd</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8d6d5cff-9324-4455-937a-a9d5437c3634">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">src.utils.data.files</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85249e00-759a-4859-83d0-502e7d1fb1f3">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=287960b0-459c-4000-b318-b117100906f4">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<hr/>
+<h4 id="Download-Required-Data">Download Required Data<a class="anchor-link" href="#Download-Required-Data">¶</a></h4><p>Some code examples in this notebook use data that first need to be downloaded by running the code cell below. If this code cell throws any error, please check the configuration file <code>config.yaml</code> if the URL for downloading datasets is up to date and matches the one on Github. If not, simply download or pull the latest version from Github.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9e6de94a-7976-4b30-95af-44da21968a3c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b8041e6d-70d9-4751-9aa4-af076112c861">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a0d4e3aa-915d-43d9-92d5-38c19244c97a">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Why-do-we-need-Gradient-Descent?">Why do we need Gradient Descent?<a class="anchor-link" href="#Why-do-we-need-Gradient-Descent?">¶</a></h3><p>Let's assume we have a very simply function $f(x)$ which is define as:</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d2a9d07-b0f7-4b80-bf50-46eae9a18864">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$\large
-f(x) = x^2 - 4x + 5
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3b9e055e-9d60-4c23-ab72-f1c2308cc7bc">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We can also define this function as a Python method:</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=afea43ec-3008-4558-b2b0-057bd8303016">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b2d011f6-db89-4a87-82c1-d04ec0edcf6f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7672,37 +7583,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e9dd820d-0e9b-4787-8b4c-de95495029b1">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Using this method, we can plot the function</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=a78c920b-c444-482c-b2f5-d9f0617b4b07">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">bank_data</span> <span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">download_dataset</span><span class="p">(</span><span class="s2">"tabular/classification/example-credit-default-data.csv"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7714,184 +7595,48 @@ $$</p>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
-<img alt="No description has been provided for this image" class="" src="data:image/png;base64,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mjQJgGOYfPXq1ZgxY4bYcOSxZFnGgw8+iMWLF2Pt2rVITU0VHcmj2O12WCwW0TEU58orr8TevXvPeO6uu+5CRkYGHn/8cRaPc6ivr8fRo0dx++23C3l/ryofHVFYWIiamhoUFhbCZrNh165dAIC0tDQEBweLDSfYI488gmnTpmHw4MEYOnQo5syZg4aGBtx1112ioylKfX39GT81HDt2DLt27UJYWBiSkpIEJlOe6dOnY8GCBVi6dCn0ej3KysoAAAaDAQEBAYLTKcsTTzyBsWPHIikpCXV1dViwYAHWrl2LlStXio6mOHq9/lfzhoKCghAeHs75RL/w6KOPYsKECUhOTkZpaSmeeeYZqNVq3HLLLWICiV5uI8q0adNkAL96rFmzRnQ0RXj99dflpKQkWafTyUOHDpW3bNkiOpLirFmz5qzfQ9OmTRMdTXHO9jkBkOfNmyc6muLcfffdcnJysqzT6eTIyEj5yiuvlL///nvRsTwGl9qe3c033yzHxsbKOp1Ojo+Pl2+++Wb5yJEjwvJIsizL7q88RERE5Ku8arULERERKR/LBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG5FcsHERERuRXLBxEREbkVywcRERG51f8DdjbJ7xUsJgoAAAAASUVORK5CYII="/>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>File 'data/datasets/tabular/classification/example-credit-default-data.csv' already exists (use 'overwrite=True' to overwrite it).
+</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0dcf3e41-ecea-497d-b97b-4482d74afda1">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3d14f860-266a-46cc-8f2a-4b8909810ab2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If we now assume that $f(x)$ is some kind of loss function where we want to find the value for $x$ thar minimizes this function. Of course, given the simple nature of $f(x)$ and just by looking at the plot above, we can see that $x=2$ minimizes $f(x)$ with $f(2) = 1$. Beyond eye-balling the solution, the systematic approach to find the minimum is using calculus by means of the first derivative $\frac{df}{dx}$. If $g(x)$ denotes the first derivative of $f(x)$, and using the derivation rules from calculus, we get:</p>
+<hr/>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c472ee70-b71b-4c29-a841-aa2a3bb334ab">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a2a82978-d95f-4a70-85bc-5147485e6ed1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$\large
-g(x) = \frac{df(x)}{dx} = 2x - 4
-$$</p>
+<h2 id="Basic-Idea">Basic Idea<a class="anchor-link" href="#Basic-Idea">¶</a></h2><h3 id="Example-Application">Example Application<a class="anchor-link" href="#Example-Application">¶</a></h3><p>Banks give out credit as a fundamental part of their business model to earn profits and facilitate economic activity. By extending credit in the form of loans, mortgages, or credit cards, banks generate revenue through the interest charged on the borrowed amount. This interest is a primary source of income for banks, enabling them to cover operational costs, pay interest to depositors, and provide returns to shareholders. Offering credit also helps banks attract customers and build long-term relationships, which can lead to cross-selling of other financial products like insurance, investment services, or savings accounts. Issues arise when a bank customer "defaults" on their credit, which means they have failed to meet the repayment obligations outlined in their credit agreement. Consequences for the bank include not only financial losses but also operation costs (costs are associated with attempting to collect the debt or writing it off), and increased risk reserves (the bank must allocate more capital to cover potential future losses, which affects its profitability and lending capacity).</p>
+<p>Therefore, banks try to predict whether a customer will default on their credit to manage risks effectively and ensure financial stability. Predicting defaults allows banks to identify high-risk customers in advance and take preventive measures, such as adjusting credit limits, requiring collateral, or offering stricter terms for repayment. This risk assessment ensures that the bank minimizes potential losses while continuing to lend profitably. Moreover, predicting credit defaults is crucial for compliance with regulatory requirements. Financial institutions are often required to maintain adequate capital reserves to cover potential losses from defaults. By accurately predicting which customers are likely to default, banks can allocate these reserves more effectively and ensure they meet regulatory standards. This not only helps maintain trust in the banking system but also contributes to overall economic stability. Predicting defaults also enhances customer management, as banks can proactively engage with at-risk customers to explore solutions like debt restructuring or financial counseling, benefiting both parties.</p>
+<p>In the following, we play the bank and use a very simple example dataset of customers' information and whether they defaulted on their credit or not. The dataset contains the credit application record for only nine customers, with each customer describe by four attributes: <em>Age</em>, <em>Education</em> (Bachelor, Masters, or PhD), <em>Martial_Status</em> (Single or Married), and <em>Annual_Income</em>. The attribute <em>Credit_Default</em> (Yes or No) indicates if the customer defaulted on their credit or not. Let's load the data from the file into a pandas DataFrame and have a look:</p>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c723379a-29b8-4886-bfc9-48e03707a46c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>The first derivative tells us the <strong>rate of change</strong> of a function with respect to its input, including both the direction** and steepness of that change. Its sign indicates whether the function is increasing or decreasing, and points where it is zero identify <strong>critical points</strong> where the behavior of the function may change. Thus, to find $x$ that minimizes $f(x)$, we need to find $x$ where $g(x) = 0$. Again, given the very simple nature of $f(x)$ and thus $g(x)$, this is a very simple calculation.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0343bab7-8c3c-45f9-926d-f1a6c60b7cd7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large 2x - 4\ &amp;\large= 0\\[0.25em]
-\large 2x\ &amp;\large= 4\\[0.25em]
-\large x\ &amp;\large= 2
-\end{align}
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c096d3ac-9132-4631-be6d-66ff436267ff">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Of course, we get the result that $x=2$ minimizes $f(x)$ as we spotted from the plot.</p>
-<p><strong>Important:</strong> The first derivative of a function allows us to identify critical points, where the slope is zero and the function has a horizontal tangent. These points are candidates for <strong>local minima, local maxima, or saddle points</strong>. However, the first derivative alone does not tell us which type of point we have found. To classify a critical point, we must perform an additional check—either by examining the second derivative (which reveals local curvature) or by evaluating the function slightly before and after the point to see whether the function value decreases, increases, or does both. In the context of <strong>loss functions</strong>, we typically do not need to explicitly distinguish between minima, maxima, and saddle points. This is because training is formulated as a <strong>pure minimization problem</strong>: we only ever move parameters in the direction that reduces the loss. Gradient-based optimization methods like Gradient Descent naturally move <em>away</em> from maxima and tend not to get stuck at saddle points in practice, especially in high-dimensional spaces where true saddle points are unstable. As a result, it is sufficient to follow the gradient and monitor whether the loss decreases, rather than classifying each stationary point mathematically.</p>
-<p>Now that we have seen an example for how we can find the minimum of a function, you may wonder what the big deal is, and why we cannot train machine learning models — not even Linear Regression let alone large neural networks — that way. Our example was easy to solve because $g(x)$, i.e., the derivative of $f(x)$, was such a simple function that allowed us to set $g(x) = 0$ and solve for $x$. In other words, we could find an analytically solution in terms of a closed-form expression that allowed is to find $x$ that minimized $f(x)$ directly.</p>
-<p>However, if $f(x)$ and particularly its first derivative, becomes more complex, this might no longer be possible. While we can still compute the derivative, and set the derivative to $0$, we fail to solve for $x$.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=31817523-24f0-4ee7-b21c-b269ddf13d8c">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>$$
-\begin{align}
-\large g(x)\ &amp;\large = 0\\[0.25em]
-\large\Downarrow\\[0.25em]
-\large x\ &amp;\large = {\color{red} \times} \\
-\end{align}
-$$</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0ebf2f9c-4bb8-46f5-8bb1-5265967e7372">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>For most machine learning models (but especially neural networks), the loss function is highly non-linear, high-dimensional, and has millions of parameters, making such equations impossible to solve in closed form.
-In fact, basic Logistic Regression — which can crudely be considered a neural network with a single neuron — cannot be solve analytically. Additionally, real-world loss function are often <strong>non-convex</strong>, with many local minima and saddle points. Even if we could write down the equations, solving them exactly would be computationally intractable.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d09ee21b-e049-44de-8da2-c460ec5da776">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=8d39ef12-acae-49f1-b503-d1ae41e7dc95">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=3cd3a3ba-9744-4832-aa7d-4a24bf12dff6">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6b6dea45-4fa5-472c-abee-d6294c5b3437">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">df</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e84eccfb-75e8-49fa-9eae-0603e1995ab4">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Basic-Idea">Basic Idea<a class="anchor-link" href="#Basic-Idea">¶</a></h3>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4cac7485-6a3e-4026-b750-6dad47bbb4f9">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e0de9ef7-7284-463d-9902-ea9da5fa32aa">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">animate_gradient_descent</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">x0</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df_bank</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">bank_data</span><span class="p">)</span>
+
+<span class="n">df_bank</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7902,352 +7647,939 @@ In fact, basic Logistic Regression — which can crudely be considered a neural 
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<video autoplay="" controls="" height="500" width="800">
-<source src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAARoZtZGF0AAACrQYF//+p
-3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2MyByMzA2MCA1ZGI2YWE2IC0gSC4yNjQvTVBF
-Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMSAtIGh0dHA6Ly93d3cudmlkZW9sYW4u
-b3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFs
-eXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVk
-X3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBk
-ZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTkg
-bG9va2FoZWFkX3RocmVhZHM9MSBzbGljZWRfdGhyZWFkcz0wIG5yPTAgZGVjaW1hdGU9MSBpbnRl
-cmxhY2VkPTAgYmx1cmF5X2NvbXBhdD0wIGNvbnN0cmFpbmVkX2ludHJhPTAgYmZyYW1lcz0zIGJf
-cHlyYW1pZD0yIGJfYWRhcHQ9MSBiX2JpYXM9MCBkaXJlY3Q9MSB3ZWlnaHRiPTEgb3Blbl9nb3A9
-MCB3ZWlnaHRwPTIga2V5aW50PTI1MCBrZXlpbnRfbWluPTIgc2NlbmVjdXQ9NDAgaW50cmFfcmVm
-cmVzaD0wIHJjX2xvb2thaGVhZD00MCByYz1jcmYgbWJ0cmVlPTEgY3JmPTIzLjAgcWNvbXA9MC42
-MCBxcG1pbj0wIHFwbWF4PTY5IHFwc3RlcD00IGlwX3JhdGlvPTEuNDAgYXE9MToxLjAwAIAAAC//
-ZYiEABb//vfTP8yy6/c5teOo96KeJl9DdSUBm5bE7TqAAAADAAADAAADAA/hMFtS4RUJjBaAAAAD
-Ad9znfikcP4nMARaKgzEFM0W99LPRwFw2CeMH689n7aSUtb2hqT9c+l/N/eLqNMn0MFBXIHPbr6r
-4VO5jWriD8yErBoLE1QQHsvWmR4iwhaz1AkJwPY67HqnnD4myr5S2AcCAPfxj57k4s523P9Tj2qH
-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
-OC43Ni4xMDA=
-" type="video/mp4"/>
-  Your browser does not support the video tag.
-</video>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>ID</th>
+<th>Age</th>
+<th>Education</th>
+<th>Marital_Status</th>
+<th>Annual_Income</th>
+<th>Credit_Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1</td>
+<td>23</td>
+<td>Masters</td>
+<td>Single</td>
+<td>75000</td>
+<td>NO</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2</td>
+<td>35</td>
+<td>Bachelor</td>
+<td>Married</td>
+<td>50000</td>
+<td>YES</td>
+</tr>
+<tr>
+<th>2</th>
+<td>3</td>
+<td>26</td>
+<td>Masters</td>
+<td>Single</td>
+<td>70000</td>
+<td>NO</td>
+</tr>
+<tr>
+<th>3</th>
+<td>4</td>
+<td>41</td>
+<td>PhD</td>
+<td>Single</td>
+<td>95000</td>
+<td>NO</td>
+</tr>
+<tr>
+<th>4</th>
+<td>5</td>
+<td>18</td>
+<td>Bachelor</td>
+<td>Single</td>
+<td>40000</td>
+<td>YES</td>
+</tr>
+<tr>
+<th>5</th>
+<td>6</td>
+<td>55</td>
+<td>Masters</td>
+<td>Married</td>
+<td>85000</td>
+<td>YES</td>
+</tr>
+<tr>
+<th>6</th>
+<td>7</td>
+<td>30</td>
+<td>Bachelor</td>
+<td>Single</td>
+<td>60000</td>
+<td>YES</td>
+</tr>
+<tr>
+<th>7</th>
+<td>8</td>
+<td>35</td>
+<td>PhD</td>
+<td>Married</td>
+<td>60000</td>
+<td>NO</td>
+</tr>
+<tr>
+<th>8</th>
+<td>9</td>
+<td>28</td>
+<td>PhD</td>
+<td>Married</td>
+<td>60000</td>
+<td>NO</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f5b15353-a04f-48ad-82b8-8a0950aa037d">
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0cbcc91a-01ab-45ca-9f61-58380ba8a1b1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>For example, the customer with ID 1 was 23 years of age, had a Master's degree, was single, had an annual income of $75,000, and did not default on their credit.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6f8c0e1e-30b1-496c-bfaf-e4ee691bc411">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Rule-Based-Classification">Rule-Based Classification<a class="anchor-link" href="#Rule-Based-Classification">¶</a></h4><p>Now assume we want to find some rules that could tell us if new customers are likely to default on their credit based on this historical dataset. If the result would say <em>"YES"</em> then we might consider not approving their credit (or adjusting credit limits, requiring collateral, or offering stricter terms for repayment). Just by looking at this data set, you might notice some patterns, for example:</p>
+<ul>
+<li>All customers that were single and earned more than $S65k did not default on their credit</li>
+<li>All customers with a Master's degree and older than 50 did default on their credit</li>
+<li>...</li>
+</ul>
+<p>The goal is to find a rule set that correctly captures all customers in our dataset. If we would take some time and try different combinations of conditions, we might come up with the following rule set in pseudo code:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bf66e35b-b76f-461a-b3b0-56acf38ffc91">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<pre><code>IF Marital_Status IS "Single" THEN
+    IF Annual_Income &lt; 65000 THEN
+        RETURN "YES"
+    ELSE
+        RETURN "NO"
+    END IF
+ELSE
+    IF Education IS "PhD" THEN
+        RETURN "NO"
+    ELSE
+        RETURN "YES"
+    END IF
+END IF
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=17fa139b-6124-4336-9301-dd87f4349974">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>You can try each customer in the dataset to convince yourself that the rule set indeed matches a customer to the recorded output. In fact, we can quickly implement this rule set by transforming the previous pseudo code into a Python method that takes the four relevant attributes as input and returns either <em>"YES"</em> or <em>"NO"</em>  for the predicted <em>Credit_Default</em> attribute. Notice that we call the method <code>predict_default_v1()</code> since we will later implement a second predict method accomplishing the same task.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=21c51492-5857-4a5f-88e8-fed22322e398">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predict_default_v1</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">education</span><span class="p">,</span> <span class="n">marital_status</span><span class="p">,</span> <span class="n">annual_income</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">marital_status</span> <span class="o">==</span> <span class="s2">"Single"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">annual_income</span> <span class="o">&lt;</span> <span class="mi">65000</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"YES"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"NO"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">education</span> <span class="o">==</span> <span class="s2">"PhD"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"NO"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"YES"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5603ffae-5686-4b15-a2ec-85766c336c4d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We can now iterate over all entries in our customer dataset to predict if the customer would default on their credit using the methods <code>predict_default_v1()</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0a0b4c53-67c0-43cf-bf6b-004fbd3d0d53">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_bank</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">predict_default_v1</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Age"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Education"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Marital_Status"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Annual_Income"</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[ID </span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[ID 1] NO
+[ID 2] YES
+[ID 3] NO
+[ID 4] NO
+[ID 5] YES
+[ID 6] YES
+[ID 7] YES
+[ID 8] NO
+[ID 9] NO
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7743c58f-0895-42de-9588-486304cdbc44">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The predicted results should match the values in the <em>Credit_Default</em> column in the original dataset.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57d0491e-c950-4531-afc8-2c6e4e3e582a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Decision-Tree">Decision Tree<a class="anchor-link" href="#Decision-Tree">¶</a></h3><p>If you look at the pseudo or Python code, you will notice that the rule set is implemented using nested if...else statements with each condition introducing a conditional branch. Such a branching structure can be graphically represented by a tree, giving us our basic idea of a Decision Tree. The figure below shows the Decision Tree reflecting the rule set we defined above.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=721a3cc2-0371-4982-8550-3e86eb022eef">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Decision Tree for Banking Example" src="images/illustrations/decision-trees/dt-banking-example-01.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=acab20a5-7c12-48a6-be84-dc12d241fb9a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>A Decision Tree has three main components:</p>
+<ul>
+<li><p><strong>Internal nodes:</strong> An internal node in a Decision Tree — a blue box in the figure above — refers to a node that represents a decision point where the data is split based on a certain feature's value. Each internal node typically contains (a) a condition based on a feature's threshold (e.g., <em>Annual_Income &lt; 65,000?</em>), (b) the number of $samples$ from the training that have reached that node, and (c) the distribution of class labels</p>
+</li>
+<li><p><strong>Branches:</strong> a branch represents outcome of a condition of an internal node and corresponds to a feature (e.g., <em>Education ="PhD"</em>) value or range of values (e.g., <em>Annual_Income &lt; 65,000?</em>). Depending on the condition of an internal node, the inner node may have two or more outgoing branches. In the example Decision Tree above, each internal node yields only two branches; however, this is not a fundamental requirement.</p>
+</li>
+<li><p><strong>Leaf nodes:</strong> A leaf node in a Decision Tree  — a green box in the figure above — represents the end point of a decision path, where no further splitting occurs. It contains the final output or prediction for the data that reaches it. In classification tasks, a leaf node typically holds the most common class label of the data points that have traversed the path to that node. In regression tasks, it stores the average or mean value of the target variable for the data that reaches the leaf. In the example above, each leaf only contains samples from a single class; again, this is not a fundamental requirement.</p>
+</li>
+</ul>
+<p>Once we have such a Decision Tree, we can use it to make predictions on new unseen data. For example, consider a new customer (50, PhD, Single, $70,000) applying for a credit. Based on our training data of historical information, do we believe this customer will default on their credit? According to the root not of the Decision Tree, we first need to check if the customer is <em>Single</em> or <em>Married</em>. Since the customer's marital status is <em>Single</em>, we follow the left branch of the root node. This brings us to the internal node requiring us to check if the customer's annual income is below $65,000. This is not the case, so we follow the right branch. This brings us to a leaf node which means we can make our prediction. As the majority class label — and in fact the only class label — in this leaf node is <em>"NO"</em>, we predict that the customer will not default on their credit. We can confirm this using our <code>method predict_default_v1()</code> that implements this simple series of tests:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7fee82ad-0c6a-4938-a7c7-f19ffcec29dd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">predict_default_v1</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="s2">"PhD"</span><span class="p">,</span> <span class="s2">"Single"</span><span class="p">,</span> <span class="mi">70000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>NO
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=526a234a-82f8-447a-831f-f8974583a0fc">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Training-Decision-Trees">Training Decision Trees<a class="anchor-link" href="#Training-Decision-Trees">¶</a></h3><p>The example banking dataset containing information if customers have defaulted on their credit was small and simple enough — only nine samples and four attributes — that we could find a working Decision Tree just looking "long and hard" enough at data. Of course, in practice, training datasets are much larger containing hundreds of thousands data samples and maybe hundreds of attributes. We therefore need an automated way to learn a Decision Tree from data. Before we delve deeper into different Decision Tree learning algorithms, it is important to highlight two observations.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2a39ca59-7fac-4aee-89af-7f44b2eadb96">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Multiple-Possible-Decision-Trees">Multiple Possible Decision Trees<a class="anchor-link" href="#Multiple-Possible-Decision-Trees">¶</a></h4><p>For any given training dataset, there is generally never a single Decision Tree that maps each sample to its output (class label or regression value) based on the sample's attributes. Particularly if the number of tests — the internal nodes in the Decision Tree or the <code>if...else</code> statements in a naive implementation does not matter — it is easy to convince yourself that one can always come up with more fine-grained rules. This is particularly true for large datasets, but also for small datasets there are typically multiple Decision Trees that match a given training dataset. For example, for out bank dataset, the following Decision Tree also maps each customer record to the correct label <em>"YES"</em> or <em>"NO"</em>:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=be71018b-c057-4377-8de0-04f904c592da">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Decision Tree for Banking Example" src="images/illustrations/decision-trees/dt-banking-example-02.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c9ff3dad-42b5-443e-bc6c-c922291b962c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Naturally, we can directly implement this code as another prediction method, this time called <code>predict_default_v2()</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=98c3de6f-ecb0-4a36-820b-ad423a78e8e5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predict_default_v2</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="n">education</span><span class="p">,</span> <span class="n">marital_status</span><span class="p">,</span> <span class="n">annual_income</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">education</span> <span class="o">==</span> <span class="s2">"Bachelor"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">"YES"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"NO"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"YES"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=90781a58-4f2f-43b4-a177-db2bc1f37e4d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>And we can double-check again if this method works correctly by predicting the class label for each training sample.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=628b7d12-eabd-4041-bb4f-0e342bbf2ae4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_bank</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">predict_default_v2</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">"Age"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Education"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Marital_Status"</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Annual_Income"</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[ID </span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">prediction</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[ID 1] NO
+[ID 2] YES
+[ID 3] NO
+[ID 4] NO
+[ID 5] YES
+[ID 6] YES
+[ID 7] YES
+[ID 8] NO
+[ID 9] NO
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d627fad4-c349-4ea9-8ce2-60ac8ba21859">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Once again, we get the expected prediction as given by the training data. This means that both <code>predict_default_v1()</code> and <code>predict_default_v2()</code> make the same prediction with respect to the training data. This, in turn, means that both Decision Trees are possible solutions for our training data. While the two trees — and there are more! — look different, the important observation is that different trees may yield different predictions for unseen data. For example, consider the same new customer (50, PhD, Single, $70,000) applying for a credit. We can now use both auxiliary methods the implement our Decision Tree to make a prediction:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0a954336-00f0-425a-aa31-aebdfd62b03c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">predict_default_v1</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="s2">"PhD"</span><span class="p">,</span> <span class="s2">"Single"</span><span class="p">,</span> <span class="mi">70000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">predict_default_v2</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="s2">"PhD"</span><span class="p">,</span> <span class="s2">"Single"</span><span class="p">,</span> <span class="mi">70000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>NO
+YES
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a3942965-321c-4dc0-b254-d3e0cf7a1929">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>For this customer, both Decision Trees make different predictions. Or more generally, two Decision Trees that perform the same on the training dataset, may perform very differently on a test dataset. This implies that some Decision Trees are better than others with respect to some test data. In other words, we are not looking for only <em>a</em> Decision Tree but ideally for the <em>best</em> Decision Tree for a particular task and dataset.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1c1094cb-adcf-4391-bf57-29df2fb6c9b3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Complexity-of-Problem">Complexity of Problem<a class="anchor-link" href="#Complexity-of-Problem">¶</a></h4><p>Although we would like to find the best Decision Tree, it turns out that this problem is in fact <em>NP-hard</em>. In simple terms, a problem is NP-hard if there is no efficient algorithm — that is, an algorithm with a polynomial runtime — that will solve that problem. The problem of finding the best Decision Tree for a dataset is NP-hard because it involves searching through an exponentially large space of possible trees to identify the one that best fits the test data. The key reasons are:</p>
+<ul>
+<li><p><strong>Exponential search space:</strong> For a given dataset, there are numerous ways to split the data at each internal node based on different features and thresholds. At each level of the tree, the algorithm must evaluate many possible feature thresholds and split points, which leads to an exponential growth in the number of possible Decision Trees as the dataset size and number of features increase.</p>
+</li>
+<li><p><strong>Combinatorial nature:</strong> The Decision Tree construction process requires selecting the best feature and threshold at each node, and this decision impacts the structure of the tree. To evaluate all possible combinations of splits across all nodes and features requires checking an enormous number of configurations, which is inherently combinatorial. As a result, no known algorithm can solve this problem in polynomial time, thus making it NP-hard.</p>
+</li>
+</ul>
+<p>Summing up, this observation makes exhaustive search impractical for large datasets, which is why any practical implementations of Decision Tree learning algorithms rely on heuristics and greedy algorithms, as they provide near-optimal solutions in much less time. While the resulting Decision Trees are very likely to be good solutions, we have to keep in mind that they are not guaranteed to be the best solutions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4686fe20-0154-48c6-81bc-f4147f17aef9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c9965f35-85d1-4207-8bbe-0fecb45768c1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Building-a-Decision-Tree-%E2%80%94-Core-Concepts">Building a Decision Tree — Core Concepts<a class="anchor-link" href="#Building-a-Decision-Tree-%E2%80%94-Core-Concepts">¶</a></h2><p>There are several important learning algorithms for Decision Trees — and we cover the most popular ones later — but they all share fundamental concepts that derive from the tree structure of the model. In the following, we go through the concepts on an abstract level and outline how different Decision Learning algorithms handle them.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5e4cecfe-6e48-458b-8c42-918db87e0acf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Basic-Construction-Process">Basic Construction Process<a class="anchor-link" href="#Basic-Construction-Process">¶</a></h3><p>All Decision Tree learning algorithms follow a top-down approach. When building a Decision Tree, we start with a single root node which contains the entire dataset. For our banking dataset, the root node looks as follows:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f54ec85d-f8da-491f-a1e9-0ee93cb639af">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Decision Tree for Banking Example" src="images/illustrations/decision-trees/dt-banking-example-02a.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ad4acc29-f184-4573-a66d-74b3915aa748">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Since we do not test any condition that would lead to any branching, our single root node is a leaf node. In principle, we could stop here and use this "tree" to make predictions. In case a leaf node contains samples from multiple classes, the majority class is commonly used as the prediction. In other words, we would always predict <em>"NO"</em> for any training or test sample, independent from its feature values. This is arguably not a very useful model. To make more meaningful predictions that take the features of samples into account, we need to start splitting nodes.</p>
+<p>Splitting a current leaf node means that the algorithm selects the best feature and threshold (based on some criterion) to split the dataset into smaller subsets. How the best split is determined depends on the specific Decision Tree learning algorithm. For now, let's assume that we have some oracle that tells how to split a leaf node. For example, for our banking dataset, let's assume that the oracle tells us that we should split the root node by check <em>Education</em> of a customer is <em>"Bachelor"</em> or not. This will result in the following split:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3f144b95-d855-4e8f-b5b3-461e298d051a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Decision Tree for Banking Example" src="images/illustrations/decision-trees/dt-banking-example-02b.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=76c2ef96-9543-4946-8e4f-fa3f421f65f4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Our root node has now become an internal node as it contains a test on a feature resulting in two branches ending in two new leaf nodes. In our small dataset, there are customers with a <em>"Bachelor"</em> degree. For these three customers, the split condition is true. Thus, the corresponding three data samples move to the left child node (the "True" branch); all remaining six samples (with a <em>"Masters"</em> or <em>"PhD"</em> degree) move to the right child node (the "False" branch).</p>
+<p>If we would stop the construction process here, our Decision Tree would already perform fairly well. Assuming we always use the majority class label to make predictions, we would only misclassify only one sample from our training dataset. More specifically, we would misclassify the sample with ID 6 representing the customer (55, Masters, Married, $85,000). This customer has defaulted on their credit but we would predict <em>"NO"</em> with the Decision Tree above. However, this is not necessarily a bad thing. Maybe this sample is an outlier we should ignore. This idea will later bring us to the concept of pruning and similar strategies to handle the risk of overfitting with Decision Trees. Right now, let's assume we want to find a tree where all leaves contain only samples of a single class label.</p>
+<p>When looking at our current Decision Tree, we can see that we have already achieved this goal for the left leaf node. All three samples contained in this leaf node have the same class label <em>"NO"</em>. There is therefore no need for further splitting this node. In contrast, the right leaf node still contains samples of both classes. Hence, we recursively continue the same splitting process by finding the best split for this leaf node. As before, we ask our oracle and it tells us that we should now check if the <em>Age</em> if the customer was below $50$ or not. Splitting the leaf node based on this condition will again turn this node into an internal node with to branches pointing two new leaf nodes:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=51e6f3c3-de31-41d3-8347-253fef1f3456">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Decision Tree for Banking Example" src="images/illustrations/decision-trees/dt-banking-example-02c.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8a680e5b-1f0f-4e51-8c33-5f61f1e48e31">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In short, Decision Trees grow by recursively checking all leaf nodes if a split is required and, if so, perform the split. By default, we can stop splitting a leaf node if it only contains samples of the same class label — or just a single data sample, which is just a special case of the former condition. In practice, the process of splitting may stop before these bases cases if some other predefined stopping criteria is satisfied. For example, we may want to specify that a Decision Tree should not exceed a maximum depth, or that a leaf node has to contain a minimum number of samples. Again, a deeper discussion of such criteria and their purpose is beyond the scope here.</p>
+<p>If we check both new leaf nodes that were added after the last split, we can see that both satisfy the default stop condition, since both leaf nodes only contain samples of the same class — only <em>"NO"</em> in the left child node and only <em>"YES"</em> in the right child node. Thus, the learning algorithm stops and we have trained our final Decision Tree. Of course, for large datasets, the resulting Decision Tree is likely to be much larger with many more internal and leaf nodes. However, the process of recursively splitting leaf nodes until some stopping criterion is satisfied remains exactly the same.</p>
+<p>As long as the training data does not contain ambiguous data, we can also construct a Decision Tree where each leaf contains only samples of the same class. Ambiguous data refers to the situation where two or samples have the same feature values but different class labels, for example:</p>
+<table>
+<thead>
+<tr>
+<th><strong>ID</strong></th>
+<th><strong>Age</strong></th>
+<th><strong>Education</strong></th>
+<th><strong>Marital_Status</strong></th>
+<th><strong>Annual_Income</strong></th>
+<th><strong>Credit Default</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>6</td>
+<td>55</td>
+<td>Masters</td>
+<td>Married</td>
+<td>85,000</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>102</td>
+<td>55</td>
+<td>Masters</td>
+<td>Married</td>
+<td>85,000</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p>In general, this means the available features themselves are insufficient to distinguish between classes, which can be quite common in many applications. For example, in our banking use case, it is not unlikely that two customers may have the same features, but one has defaulted in their credit while the other has not. Such label conflicts will prevent achieving a pure split, leaving leaf nodes with mixed class labels. However, label conflicts due to ambiguous data are a general challenge and not limited to Decision Trees but affect all machine learning models.</p>
+<p>All popular Decision Tree learning algorithms follow this top-down strategy of starting with a single root node and recursively splitting leaf nodes. The key advantages of strategy are:</p>
+<ul>
+<li><p><strong>Simplicity and intuitiveness:</strong> The top-down approach mirrors how humans often solve problems: starting broadly and refining decisions step-by-step. It provides a straightforward, systematic method for tree construction.</p>
+</li>
+<li><p><strong>Greedy optimization:</strong> The algorithm uses a greedy approach at each node, choosing the split that optimizes a specific criterion (discussed later) for that step. This localized optimization is computationally efficient and reduces the need for complex global optimization techniques.</p>
+</li>
+<li><p><strong>Efficiency and scalability:</strong> The top-down approach is computationally efficient, as it processes one level at a time. Since it does not require backtracking, it avoids the overhead of revisiting earlier splits to check their validity or improve them. It can handle large datasets effectively because it progressively reduces the size of subsets at each level. Each split reduces the number of data points considered for the next level, making the process manageable.</p>
+</li>
+<li><p><strong>Modularity:</strong> The recursive nature of the top-down approach allows for modular implementation. Each node can be treated as an independent problem, enabling easier debugging and parallelization in some cases.</p>
+</li>
+<li><p><strong>Interpretability:</strong> The decisions made at each step are based on well-defined criteria (e.g., splitting on the most informative feature). This step-by-step logic makes the resulting decision tree easy to interpret and explain.</p>
+</li>
+<li><p><strong>Adaptability:</strong> The algorithm can adapt to different problems and datasets by tweaking the splitting criteria or stopping conditions (e.g., maximum depth, minimum samples per leaf). Different types of top-down decision tree algorithms can be tailored to suit specific tasks, such as classification or regression.</p>
+</li>
+<li><p><strong>Compatibility with pruning:</strong> A tree generated using a top-down approach can be pruned afterward to improve generalization and prevent overfitting. Pruning methods like reduced-error pruning or cost-complexity pruning complement the top-down construction process.</p>
+</li>
+</ul>
+<p>While the top-down approach has many advantages, it also has limitations. Most importantly, it may not find the globally optimal tree because it makes greedy decisions at each step without considering the overall structure. It can overfit noisy or imbalanced data if stopping criteria or pruning are not applied effectively. Despite these limitations, the top-down approach remains one of the most practical and widely used methods for decision tree learning.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7052ba7c-ae1d-40ad-a946-51e92a272f4f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Finding-the-Best-Split">Finding the Best Split<a class="anchor-link" href="#Finding-the-Best-Split">¶</a></h3><p>When covering the basic top-down strategy for constructing a Decision Tree, we skipped over the task of how to split a leaf node (if necessary). So far, we assumed to have some oracle that tells which condition to use to split the dataset into child nodes. Of course, in practice, such an oracle is not available. Therefore, a Decision Tree learning algorithm has to programmatically find the most suitable condition to split a node. While this is a task where most learning algorithms differ from each other with respect to the exact implementation, the general criterion is the same. Recall that, by default, we stop training a Decision Tree if all leaf nodes contain only samples of the same class. Intuitively, this means that we prefer splits that better separate data samples with respect to their class labels.</p>
+<p>To illustrate this, let's look again at the root node of our banking dataset:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e88d20bd-1c25-43fb-802d-4382648725e4">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Decision Tree for Banking Example" src="images/illustrations/decision-trees/dt-banking-example-02a.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d9f5192b-b982-465e-9d1b-0ee628d3de16">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>For splitting this node, we not only to choose between any of the four inputs features (<em>Age</em>, <em>Education</em>, <em>Martial_Status</em>, <em>Annual_Income</em>), but for the selected feature we also have to choose a threshold — or more since, in general, a split may yield more than two branches. From all those possible, let's just look at two of them. In fact, there are the to roots splits we saw in the previous example:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=03d8dfd3-25b5-49a1-8a1c-dbd13de5965a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Split Alternative 1" src="images/illustrations/decision-trees/dt-banking-example-split02.png" style="margin:auto;"/>
+<br/><br/>
+<img alt="Split Alternative 1" src="images/illustrations/decision-trees/dt-banking-example-split01.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=347e986a-aa78-4498-a851-9c021a37f9bf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We saw that both root split yield Decision Trees mapping the samples from the training data to their respective class labels with respect to the samples' feature values. So the question is: Which split do we consider the preferred choice? The rationale of all Decision Trees is that they prefer splits that result in a better separation of the data samples according to their classes. Before the split, we start with a leaf node with a fairly mixed set of class labels (5 <em>"NO"</em> and 4 <em>"YES"</em>). Splitting this node based on condition if the <em>Marital_Status</em> of a customer is <em>"Single"</em>, we end up with to child nodes where the class labels are still very much mixed (3 <em>"NO"</em> and 2 <em>"YES"</em> in the left child node; 2 <em>"NO"</em> and 2 <em>"YES"</em> in the right child node). In simple terms, we didn't really make much progress.</p>
+<p>In contrast, when splitting based on the condition of a customer has a <em>"Bachelor"</em> degree, the class labels in the child nodes are much more separated. In fact, the left child node contains only samples of class <em>"NO"</em>, so no further splitting required here. But also the right child node is already quite separated with only 1 <em>"YES"</em> beside 5 <em>"NO"</em>. This means, given these two choices to split the root node, we prefer the second split based on customers <em>"Education"</em>. For any practical implementation of a Decision Tree Learning algorithm, we need a way to quantify if a split yields a better or worse separation of class labels. And different learning algorithms use different metrics.</p>
+<p>Still, keep in mind that this approach is only a heuristic since the decision which split is preferred is a "local" decision that only depends on the current leaf node in question. This decision does not incorporate any future splits. For example, splitting our root nodes based on customers <em>"Martial_Status"</em> might seem suboptimal when it comes to separating the class labels, but subsequent split may result in a final Decision Tree that performs better than the one using <em>"Education"</em> for the split condition in the root node.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0c9463bc-f995-4cdb-8654-6a11f3c2908f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=96fbf725-625f-40b5-a174-026e59277d6e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Learning-Algorithms-for-Decision-Trees-%E2%80%94-Overview">Learning Algorithms for Decision Trees — Overview<a class="anchor-link" href="#Learning-Algorithms-for-Decision-Trees-%E2%80%94-Overview">¶</a></h2><p>We now have a basic understanding of what Decision Trees are and how we can train them for a given dataset. However, the exact process of training a Decision tree depends on the task (classification or regression), the type of data (numerical or categorical), the splitting criteria, and other characteristics. As such, there are a range of popular Decision Tree learning algorithms that differ in their application to accommodate different tasks and types of data, support different splitting criteria, may handle missing values, and so on. To wrap up this introductory notebook, we briefly discuss the main characteristics and provide a brief outline of the most popular Decision tree learning algorithms.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=250b6264-8127-4290-b5a6-4a34890bdc60">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Characteristics">Characteristics<a class="anchor-link" href="#Characteristics">¶</a></h3><h4 id="Support-Tasks">Support Tasks<a class="anchor-link" href="#Support-Tasks">¶</a></h4><p>Decision Trees supervised machine learning models. However, not all Decision Tree learning algorithms can be used for all tasks. Among the most popular learning algorithms ID3, C4.5/C5.0, and CHAID are suitable for classification tasks. In contrast, M5 can only be applied to regression tasks. CART can be used for both classification and regression tasks.</p>
+<h4 id="Type-of-Data">Type of Data<a class="anchor-link" href="#Type-of-Data">¶</a></h4><p>In principle, Decision Trees can be trained using numerical and/or categorical data; as we have seen in our small banking use case. However, not all learning algorithms actually support both types of data. For example, the native implementations of CART and M5 assume numerical data, while the native implementations of ID3 and CHAID assume categorical data. Of course, we can preprocess the data using</p>
+<ul>
+<li><strong>Encoding (or continuization)</strong> to transform categorical data into numerical data</li>
+<li><strong>Discretization</strong> to transform numerical data into categorical data.</li>
+</ul>
+<p>Such steps are particularly important if a dataset contains both numerical and categorical features, just like our banking dataset. For example, without first somehow encoding <em>Education</em> and <em>Marital_Status</em> as numerical features, we would not be able to directly use the Decision Tree implementation of the scikit-learn library, since this implementation is based on the CART learning algorithm. For example, we could use binary encoding the converted the values for <em>Martial_Status</em> from <em>"Single"</em> and <em>"Married"</em> to $0$ and $1$. If we assume the the values for <em>"Education"</em> have a natural order, we can use ordinal encoding to convert the values as follows: <em>"Bachelor"</em> $\rightarrow 0$, <em>"Masters"</em> $\rightarrow 1$, and <em>"Bachelor"</em> $\rightarrow 1$. After those transformation steps all four customer features are numerical allowing to train a Decision Tree using the, for example, CART learning algorithm.</p>
+<h4 id="Splitting-Criteria">Splitting Criteria<a class="anchor-link" href="#Splitting-Criteria">¶</a></h4><p>As mentioned previously, all Decision Tree Learning algorithms split a node to effectively separate the class labels (in case of classification task). In other words, the overall goal is to find splits that minimize the "impurity" of the child nodes, where impurity reflects how many samples of different classes a node contains. For example, a node is considered "pure" if all samples in the node are of the same class. In contrast, if all classes appear equally frequent the node is very "impure". In a nutshell, different algorithms use different means to measure the impurity of nodes and/or the decrease of impurity caused by a split to find the best split. Without going into detail here, the most common metrics are:</p>
+<ul>
+<li>Entropy and entropy-based criteria</li>
+<li>Gini impurity</li>
+<li>Variance reduction (for regression tasks)</li>
+</ul>
+<p>While the formula behind the different metrics might vary, their effects can be very similar; after all, they all have the same overall goal. For example, the CART algorithm works with both Entropy and Gini Impurity, and it has been shown that it makes no difference in almost all cases.</p>
+<h4 id="Handling-Missing-Data">Handling Missing Data<a class="anchor-link" href="#Handling-Missing-Data">¶</a></h4><p>So far, we assume that the dataset for training a Decision Trees has no missing values. Unfortunately, missing values are common in real-world data. For example, in our banking dataset, we might not have the Education level for all customers, or unemployed customers cannot report an annual income. In general, handling missing values is a common data preprocessing step since most machine learning algorithms cannot handle missing values and will throw errors. Without going into details common strategies include to simply remove data samples with missing values, or imputation techniques to fill missing values with meaningful estimates.</p>
+<p>Despite commonly treating the handling of missing values a dedicated preprocessing step, Decision Tree learning algorithms allow for some inherent means to work with missing values without throwing errors. Some common approaches include:</p>
+<ul>
+<li><p><strong>Fallback rules:</strong> When splitting a node, the calculation of the best split is done always but only based on the samples without missing values for a chosen feature. After the split all samples that have missing values for that feature are moved to any of the child nodes based on predefined rules. A very simple rule may be to always move such samples to the left/first child node. Another common rule is to move such samples to a child node containing the most samples. The intuition is that a sample with a missing value would more likely to be in the "bigger" child node if the value would be available.</p>
+</li>
+<li><p><strong>Missing values as a new category:</strong> Particularly suitable for categorical features, missing values treated a separate and distinct value (e.g., <em>"Single"</em>, <em>"Married"</em>, and <em>"Unknown"</em> for <em>Marital_Status</em>). This way, one can include the records with missing values in the training data, and split them based on the presence or absence of values. This approach can help capture the information and meaning of missing values, and avoid the noise and uncertainty of imputation. However, this approach can also increase the complexity and size of the decision tree, and create spurious and irrelevant splits. Furthermore, this approach can be problematic if the missing values are not random or informative, but rather due to errors or inconsistencies in the data collection or processing.</p>
+</li>
+<li><p><strong>Surrogate splits:</strong> Surrogate splits are based on the idea that some variables are highly correlated or similar to each other, and can therefore substitute each other in the splitting process. This approach can help reduce the complexity and size of the decision tree, and avoid the bias and distortion of ignoring missing values. However, this approach also depends on the availability and quality of surrogate variables, and introduces some error and inconsistency in the splitting process. Moreover, this approach can be difficult to interpret and explain, especially if the surrogate variables are not intuitive or logical.</p>
+</li>
+</ul>
+<p>None of those basic strategies is intrinsically better than the other. All make certain assumptions, and they all have their pros and cons. In practice, missing values are handled as its own preprocessing step for two main reasons. Firstly, when finding a best classification or regression model, other models beyond Decision Trees are also considered, and most of them cannot deal with missing values. And secondly, handling missing values allows for more control and more sophisticated strategies (e.g., data imputation techniques).</p>
+<h4 id="Counter-Measures-to-Overfitting">Counter-Measures to Overfitting<a class="anchor-link" href="#Counter-Measures-to-Overfitting">¶</a></h4><p>Decision trees are particularly prone to overfitting because they are highly flexible and can grow very complex, capturing even the smallest details of the training data. A decision tree splits the data recursively at each node based on the feature that best separates the data at that point. Without constraints, the tree continues to grow until it perfectly classifies the training data, often resulting in deep trees with many branches. These deep trees can learn patterns that are specific to the training data, including noise and outliers, rather than capturing generalizable trends.</p>
+<p>Another reason for their susceptibility to overfitting is their greedy nature in selecting splits. At each step, a decision tree chooses the best possible split based on a local criterion (e.g., Gini impurity or information gain), without considering the broader picture or the potential for overfitting. This can lead to overly complex trees that perform well on the training set but fail to generalize to new, unseen data. Additionally, decision trees can become sensitive to small changes in the data, as a minor variation can lead to entirely different splits, further reducing their robustness.</p>
+<p>Since overfitting in Decisions is typically a result of deep and complex trees, counter-measures to lower the risk of overfitting therefore focus on reducing the complexity of a tree. This is can be done in two main ways:</p>
+<ul>
+<li><strong>Early stopping (pre-pruning):</strong> When growing a Decision Tree by recursively splitting leaf nodes, early stopping or pre-pruning means that the learning algorithm will not split a node if a certain condition is satisfied — of course, beyond the default condition that the leaf node is pure, i.e., it contains only samples of the same class. Common such conditions are:<ul>
+<li><em>Maximum depth:</em> a leaf node is no longer split if the path to the root node exceeds a predefined threshold</li>
+<li><em>Minimum sample size</em>: a leaf node is no longer split if the number of sample the node contains is below a predefined threshold</li>
+<li><em>Minimum improvement</em>: a leaf node is no longer split if the split does no result in a sufficiently better separation of the class labels in the child nodes</li>
+</ul>
+</li>
+<li><strong>Post-pruning:</strong> Post-pruning a decision tree means growing the tree fully during training and then removing unnecessary branches afterward to simplify the model. The goal is to strike a balance between capturing the structure of the data and avoiding overfitting. After the tree is fully grown, post-pruning evaluates each branch and removes those that do not significantly improve the tree's performance on a validation dataset. Pruning decisions are typically based on metrics like accuracy, error rate, or a cost-complexity tradeoff. For example, a branch might be pruned if its removal reduces the complexity of the tree without significantly increasing the error rate.</li>
+</ul>
+<p>Both pre-pruning and post-pruning rely on validation data and strategies such as cross validation to find the best values for the maximum depth, the minimum samples, etc., as well as to decide whether a branch should be removed from the tree.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=74362f7a-d772-4467-a91d-d1dc5f31a199">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Common-Algorithms">Common Algorithms<a class="anchor-link" href="#Common-Algorithms">¶</a></h3><p>Let's have a brief look at some of the most popular Decision Tree learning algorithms. A deep dive into their inner workings are the topics on their own and covered in separate notebooks. We also focus on the original/native implementations of the algorithms. Their implementations available in libraries or toolkits may be slightly modified towards further improvement. For while a native implementation of an algorithm cannot handle missing values, an improved version of that algorithm might be able to.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a83373c9-dc41-4300-bbca-c50f5782a717">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="ID3-(Iterative-Dichotomiser-3)">ID3 (Iterative Dichotomiser 3)<a class="anchor-link" href="#ID3-(Iterative-Dichotomiser-3)">¶</a></h4><p>The ID3 algorithm is primarily designed for categorical data; features with (continuous) numerical features need to be discretized (e.g., converting the dollar values of <em>Annual_Income</em> to <em>"low"</em>, <em>"mid"</em>, and <em>"high"</em>). ID3 splits nodes by creating a new branch and child node for each possible value for the selected features. For example, ID3 would split a node using <em>Education</em> into three child nodes for <em>"Bachelor"</em>, <em>"Masters"</em>, and <em>"PhD"</em>; see below:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=397047d3-ba29-4b9d-8c3d-d87ac148c42f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<img alt="Decision Tree ID3 Example Split" src="images/illustrations/decision-trees/dt-banking-example-id3.png" style="margin:auto;"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=238277dd-dd3e-43a4-a80a-e2f52ff53758">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This means that, along the path from a leaf node to the root node, each feature will only be used once for a split. For example, given the example split above, when we want to further split the leaf node for the <em>"Masters"</em> branch, there is no need to consider <em>"Education"</em> anymore — after all we know that all samples in this leaf node have the same value for <em>"Education"</em>. Other Decision Tree Learning algorithms may use the same feature for splits along the path from a leaf to the root node.</p>
+<p>To find the best feature to be used for splitting a leaf node, ID3 uses information gain as a criterion. It measures how well a particular attribute separates the data into distinct classes — note that we do not need to consider any additional threshold here. Information gain is based on a concept from information theory called entropy, which measures the uncertainty or randomness in a dataset. By selecting the attribute that reduces entropy the most (i.e., provides the highest information gain), the ID3 algorithm ensures that each split improves the tree's ability to make accurate predictions.</p>
+<p>One major advantage of the ID3 learning algorithm is its simplicity and ease of implementation, which makes it an excellent introduction to decision tree algorithms. Additionally, it is computationally efficient for small to medium-sized datasets with categorical attributes, making it practical for many real-world applications. However, ID3 also has notable limitations. A key drawback is its tendency to overfit the data, especially when there are attributes with many unique values or when the tree becomes too complex. It does not inherently include mechanisms like pruning to simplify the tree and prevent overfitting. Furthermore, ID3 struggles with continuous numerical data, as it only handles categorical attributes directly. Converting numerical data into categories can result in a loss of information. It also does not account for missing values in the dataset, which can lead to inaccuracies in model training and predictions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0eb2591b-69a0-4528-a3b9-13835edb8fea">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="C4.5/C5.0">C4.5/C5.0<a class="anchor-link" href="#C4.5/C5.0">¶</a></h4><p>The C4.5 (and its successor, C5.0) decision tree algorithms are advanced methods for building decision trees and are improvements over the earlier ID3 algorithm. They are primarily used for classification tasks. Unlike ID3, which uses information gain, C4.5 introduces the gain ratio to address a common issue where attributes with many unique values tend to dominate splits. The gain ratio normalizes the information gain by the "split information," ensuring that the algorithm selects attributes that are truly meaningful and not just overly specific.</p>
+<p>C4.5 also stands out because it can handle both categorical and numerical attributes. For numerical data, it finds the best threshold to split the data, which makes it more versatile than ID3. Additionally, C4.5 can handle datasets with missing values by estimating the most probable values based on the existing data. This feature makes it more robust when working with real-world data, where missing values are common. Another significant improvement in C4.5 is its ability to prune the tree after it is built to address overfitting issues. The later version, C5.0, further improves on C4.5 by being faster, more memory-efficient, and better at handling large datasets.</p>
+<p>However, there are some limitations to these algorithms. C4.5 can be computationally intensive for very large datasets, especially when dealing with numerous features or attributes. While C5.0 addresses some of these efficiency issues, the complexity of tuning hyperparameters (e.g., pruning thresholds or boosting settings) can still be a challenge. Additionally, decision trees built with these algorithms are sensitive to noisy data, as even small variations can lead to different splits, which may affect the model’s stability.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9b8245e7-2958-4ee1-9789-4c08329eec7f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="CART-(Classification-&amp;-Regression-Trees)">CART (Classification &amp; Regression Trees)<a class="anchor-link" href="#CART-(Classification-&amp;-Regression-Trees)">¶</a></h4><p>The CART learning algorithm is used for both classification tasks (where the goal is to predict categories) and regression tasks (where the goal is to predict numerical values). Unlike ID3, it builds binary trees, meaning every split in the tree divides the data into exactly two parts. Most implementations of CART, including the one provided by the popular scitkit-learn library also assume that all features are numerical, potentially requiring the encoding/continuization of categorical features.</p>
+<p>For classification problems, CART typically uses a metric called Gini impurity to choose the best attribute to split the data. Gini impurity measures how "mixed" the data is in terms of different classes; the goal is to reduce this impurity as much as possible with each split. For regression problems, CART uses the mean squared error (MSE) to determine splits, focusing on minimizing the difference between predicted and actual values.</p>
+<p>Beyond its versatility to be used for classification and regression tasks, the CART algorithms also built-in mechanisms to support pruning to tackle overfitting, as well as handling missing values. However, CART also has limitations. Binary splits can sometimes lead to deeper trees compared to algorithms that allow multi-way splits, potentially increasing computational cost and complexity. While CART is less prone to overfitting than some other algorithms due to pruning, it still requires careful tuning of parameters like tree depth and minimum samples per split. Additionally, CART may struggle with very imbalanced datasets, where one class dominates, as it does not inherently include methods to handle such cases.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=82925bc6-17c5-4d53-ae41-617720e98c73">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="CHAID-(Chi-Square-Automatic-Interaction-Detection)">CHAID (Chi-Square Automatic Interaction Detection)<a class="anchor-link" href="#CHAID-(Chi-Square-Automatic-Interaction-Detection)">¶</a></h4><p>The CHAID Decision Tree learning algorithm is a statistical technique used for classification and prediction. It is unique because it relies heavily on statistical tests to determine how to split data at each step, rather than using measures like information gain or Gini impurity, as other decision tree algorithms do. Specifically, CHAID uses the chi-squared test (for categorical variables), the F-test (for continuous dependent variables), or the Bonferroni adjustment to find the most statistically significant splits.</p>
+<p>One of the most distinctive features of CHAID is its ability to perform multi-way splits at each node, rather than just binary splits. This means that instead of dividing data into only two groups, CHAID can create multiple branches based on the number of significant categories in the data. For example, if an attribute has four categories and all are statistically relevant, CHAID might create four branches at a single node. This results in shallower trees that are easier to interpret compared to algorithms that create deep binary trees.</p>
+<p>Another unique aspect of CHAID is that it handles categorical and ordinal data particularly well, making it popular in fields like marketing and social sciences. It evaluates all potential splits and merges categories with similar statistical properties, simplifying the tree while retaining meaningful distinctions in the data. Additionally, CHAID can handle missing values by treating them as a separate category or by using statistical estimates.</p>
+<p>As a downside, CHAID assumes that the data relationships are adequately represented by the statistical tests it performs, which might not always capture complex patterns. Additionally, because CHAID heavily relies on statistical significance, it can be sensitive to small sample sizes or noisy data. These limitations mean that CHAID is most effective when used with clean, well-prepared datasets and when the goal is interpretability rather than high predictive accuracy.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ba4400db-bf12-43b4-bf3b-75792ba6a33d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7354bfd4-4d6f-472c-8777-0dbfbc14cf9e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><p>A decision tree is a type of machine learning model that mimics human decision-making by representing decisions and their possible consequences in a tree-like structure. Each internal node in the tree represents a question or decision point based on an attribute, each branch represents a possible outcome of that decision, and each leaf node represents a final prediction or outcome. The basic idea is to split the dataset into smaller, more homogenous groups at each step, making it easier to classify data or make predictions.</p>
+<p>One of the key reasons decision trees are important is their interpretability. Unlike many complex machine learning models, decision trees are easy to visualize and understand. They provide clear rules for how predictions are made, which is valuable in fields like healthcare, finance, or any domain where understanding the reasoning behind predictions is critical. This interpretability makes them especially useful for communicating results to non-technical stakeholders.</p>
+<p>Decision trees are also versatile. They can handle both classification tasks, such as determining if an email is spam or not, and regression tasks, like predicting house prices. Additionally, they work well with both categorical and numerical data. Many advanced machine learning techniques, like random forests and gradient boosting machines, are built on the foundation of decision trees, making them a crucial concept to understand for anyone studying machine learning.</p>
+<p>However, decision trees are not without limitations. They are prone to overfitting, where the model becomes too complex and captures noise in the training data instead of general patterns. Techniques like pruning and ensemble methods (combining multiple trees) help address this issue. Despite these challenges, decision trees remain a foundational and widely used tool in the machine learning toolbox. In short, decision trees are essential because of their simplicity, interpretability, and versatility. They serve as a starting point for understanding more complex models and play a crucial role in the development of many advanced machine learning methods.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0f7dc74a-7f6d-4de1-b3a6-8b4a3dcfdbf9">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
