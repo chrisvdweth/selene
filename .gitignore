@@ -5,8 +5,8 @@
 !index.html
 
 # Allow the html folder and its contents
-!html/
-!html/**
+!notebooks/html/
+!notebooks/html/**
 
 # (Optional) Keep the .gitignore itself tracked
 !.gitignore
