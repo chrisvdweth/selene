@@ -5,6 +5,7 @@
 !index.html
 
 # Allow the html folder and its contents
+!notebooks/
 !notebooks/html/
 !notebooks/html/**
 
