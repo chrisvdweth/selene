@@ -197,26 +197,26 @@ def plot_multivariate_function(f, resolution=100):
 
 
 
-def gd_multivar(f, df, x1, x2, eta, n_steps):
-    xs = [(x1, x2)]
-    for _ in range(n_steps):
-        g1, g2 = df(x1, x2)
-        x1, x2 = x1 - eta*g1, x2 - eta*g2
-        xs.append((x1, x2))
-    return np.asarray(xs)
+#def gd_multivar(f, df, x1, x2, eta, n_steps):
+#    xs = [(x1, x2)]
+#    for _ in range(n_steps):
+#        g1, g2 = df(x1, x2)
+#        x1, x2 = x1 - eta*g1, x2 - eta*g2
+#        xs.append((x1, x2))
+#    return np.asarray(xs)
 
 
-def plot_gradient_descent_multivariate(f, df, x0=(0, 0), eta=0.1, n_steps=20, repeat=False, show_step=None):
+def plot_gradient_descent_2d(f, xs, eta=0.01, repeat=False, show_step=None):
     fig, ax = plt.subplots(figsize=(8, 6))
 
-    ax.set_ylim(0, 12)
-    ax.set_xlim(-1.5, 5.5)
+    #ax.set_ylim(0, 12)
+    #ax.set_xlim(-1.5, 5.5)
     ax.set_xlabel("x$_1$", fontsize=18)
     ax.set_ylabel("x$_2$", fontsize=18)
     ax.tick_params(axis='x', labelsize=14)
     ax.tick_params(axis='y', labelsize=14)
     
-    x_vals = gd_multivar(f, df, x0[0], x0[1], eta, n_steps)
+    n_steps = len(xs)
     
     # Contours
     x1s = np.linspace(-10, 10, 400)
@@ -226,11 +226,11 @@ def plot_gradient_descent_multivariate(f, df, x0=(0, 0), eta=0.1, n_steps=20, re
     ax.contour(X1, X2, Y, levels=30, cmap='Blues')
 
     # Initial black dot
-    ax.plot(x_vals[0, 0], x_vals[0, 1], 'ko', label="Start")
+    ax.plot(xs[0, 0], xs[0, 1], 'ko', label="Start")
 
     # Red dot + path line
     point, = ax.plot([], [], 'ro', markersize=3)
-    path, = ax.plot([], [], 'r-', linewidth=0.7)
+    path, = ax.plot([], [], 'r-', linewidth=2)
 
     ax.set_xlim(-10, 10)
     ax.set_ylim(-4, 4)
@@ -238,13 +238,12 @@ def plot_gradient_descent_multivariate(f, df, x0=(0, 0), eta=0.1, n_steps=20, re
     #ax.set_title(f"SGD with η = {eta}", fontsize=14)
 
     def update(frame):
-        #ax.plot(x_vals[frame, 0], x_vals[frame, 1], 'ko', label="Start")
-        path.set_data([x_vals[:frame+1, 0]], [x_vals[:frame+1, 1]])
-        point.set_data([x_vals[frame, 0]], [x_vals[frame, 1]])
+        path.set_data([xs[:frame+1, 0]], [xs[:frame+1, 1]])
+        point.set_data([xs[frame, 0]], [xs[frame, 1]])
         ax.set_title(f"Gradient Descent (η = {eta}), Step: {frame}")
 
     if show_step is None:
-        anim = animation.FuncAnimation(fig, update, frames=len(x_vals), interval=100, repeat=False)
+        anim = animation.FuncAnimation(fig, update, frames=len(xs), interval=100, repeat=False)
         plt.close()
         return HTML(anim.to_html5_video())
     else:
