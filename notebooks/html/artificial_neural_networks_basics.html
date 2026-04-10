@@ -7647,7 +7647,7 @@ video {max-width: 100% !important; height: auto !important; }
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 $$\large
-y = \sigma(z) = \frac{1}{1 + e^{-\mathbf{w}^T\mathbf{x}}}
+\hat{y} = \sigma(z) = \frac{1}{1 + e^{-\mathbf{w}^T\mathbf{x}}}
 $$
 </div>
 </div>
@@ -8164,7 +8164,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Using the notation for denoting the output of a layer, we can see that the output $\mathbf{y}$ of a network is the output of the last layer, i.e., layer $L$. This means that $\mathbf{y} = \mathbf{a}^{[L]}$, and using the equation above, we can calculate the output $\mathbf{y}$ as:</p>
+<p>Using the notation for denoting the output of a layer, we can see that the output $\mathbf{\hat{y}}$ of a network is the output of the last layer, i.e., layer $L$. This means that $\mathbf{\hat{y}} = \mathbf{a}^{[L]}$, and using the equation above, we can calculate the output $\mathbf{\hat{y}}$ as:</p>
 </div>
 </div>
 </div>
@@ -8177,7 +8177,7 @@ $$
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 $$
 \begin{align}
-\large \mathbf{y} &amp;= \large \mathbf{a}^{[L]} \\[0.5em]
+\large \mathbf{\hat{y}} &amp;= \large \mathbf{a}^{[L]} \\[0.5em]
 &amp;= \large f^{[L]} \left( \mathbf{W}^{[L]}\mathbf{a}^{[L-1]} + \mathbf{b}^{[L]}  \right)
 \end{align}
 $$
@@ -8204,7 +8204,7 @@ $$
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 $$
 \begin{align}
-\large \mathbf{y} &amp;= \large \mathbf{a}^{[L]} \\[0.5em]
+\large \mathbf{\hat{y}} &amp;= \large \mathbf{a}^{[L]} \\[0.5em]
 &amp;= \large f^{[L]} \left( \mathbf{W}^{[L]}\mathbf{a}^{[L-1]} + \mathbf{b}^{[L]}  \right) \\[0.5em]
 &amp;= \large f^{[L]} \left( \mathbf{W}^{[L]} \left[ f^{[L-1]} \left( \mathbf{W}^{[L-1]}\mathbf{a}^{[L-2]} + \mathbf{b}^{[L-1]}  \right)   \right]	+ \mathbf{b}^{[L]}  \right) \\[0.5em]
 &amp;= \large f^{[L]} \left( \mathbf{W}^{[L]} \left[ f^{[L-1]} \left( \mathbf{W}^{[L-1]} \left[ f^{[L-2]} \left( \mathbf{W}^{[L-2]}\mathbf{a}^{[L-3]} + \mathbf{b}^{[L-2]}  \right)   \right] + \mathbf{b}^{[L-1]}  \right)   \right]	+ \mathbf{b}^{[L]}  \right) \\[0.5em]
@@ -8221,7 +8221,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This equation illustrates the layer-wise computation of the network output, where the input $\mathbf{x}$ is transformed by each hidden layer and finally the output layer to yield $\mathbf{y}$.</p>
+<p>This equation illustrates the layer-wise computation of the network output, where the input $\mathbf{x}$ is transformed by each hidden layer and finally the output layer to yield $\mathbf{\hat{y}}$.</p>
 </div>
 </div>
 </div>
@@ -8338,7 +8338,7 @@ $$
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 $$
 \begin{align}
-\large \mathbf{y} = \mathbf{a}^{[2]} &amp;= \large \sigma \left( \mathbf{W}^{[2]}\mathbf{a}^{[1]} + \mathbf{b}^{[2]}  \right)\\[1.0em]
+\large \mathbf{\hat{y}} = \mathbf{a}^{[2]} &amp;= \large \sigma \left( \mathbf{W}^{[2]}\mathbf{a}^{[1]} + \mathbf{b}^{[2]}  \right)\\[1.0em]
 &amp;= \large \sigma \left(
 \begin{bmatrix}
     0.48 &amp; -0.12 &amp; -0.68
@@ -8635,7 +8635,7 @@ $$
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Summary-&amp;-What's-Next?">Summary &amp; What's Next?<a class="anchor-link" href="#Summary-&amp;-What's-Next?">¶</a></h2><p>In this notebook, we covered the basic architecture of Artificial Neural Network, how it can be seen as an "evolution" of Logistic Regression. The architecture consists of layers of interconnected neurons, on a high level mimicking the way biological neurons process information. An ANN typically has three types of layers: the <em>input layer</em>, which receives data; one or more <em>hidden layers</em>, where computations and transformations occur; and the output layer, which provides the final prediction.</p>
 <p>Logistic regression can be seen as a simple neural network with no hidden layers, where a single output neuron uses the Sigmoid activation function to predict probabilities for binary classification. In this sense, logistic regression serves as the foundation for ANNs, and extending it with additional layers and neurons allows ANNs to handle more complex, non-linear relationships in data. Thus, ANNs generalize the principles of Logistic Regression, making them highly versatile for various machine learning tasks.</p>
-<p>While we have seen how the output of an ANN is generated through layer-wise calculations using matrix and vector operations, we so far skipped the actual training of a network; which will walk about in a separate notebook. However, assuming you are familiar with training or fitting a Logistic Regression model, training an ANN involves the exact same principle steps. Appreciate that whether having a single neuron (i.e., Logistic Regression) or many neurons organized in many stacked layers, a neural network can always bees as as some function, commonly denoted as $\mathbf{y} = h_{\mathbf{w}}(\mathbf{x})$ that maps some input $\mathbf{x}$ to some output $\mathbf{x}$ based in some internal parameters or weights $\mathbf{w}$. As such, the training of an ANN comes down to the same two steps as for Logistic Regression:</p>
+<p>While we have seen how the output of an ANN is generated through layer-wise calculations using matrix and vector operations, we so far skipped the actual training of a network; which will walk about in a separate notebook. However, assuming you are familiar with training or fitting a Logistic Regression model, training an ANN involves the exact same principle steps. Appreciate that whether having a single neuron (i.e., Logistic Regression) or many neurons organized in many stacked layers, a neural network can always bees as as some function, commonly denoted as $\mathbf{\hat{y}} = h_{\mathbf{w}}(\mathbf{x})$ that maps some input $\mathbf{x}$ to some output $\mathbf{x}$ based in some internal parameters or weights $\mathbf{w}$. As such, the training of an ANN comes down to the same two steps as for Logistic Regression:</p>
 <ul>
 <li><p>Definition of a suitable loss function $L(\hat{\mathbf{y}}, \mathbf{y})$ to quantify the difference between the predicted and the true class labels with respect to a current set of weights $\mathbf{w}$ to assess how well a network performs on a classification or predictions task.</p>
 </li>

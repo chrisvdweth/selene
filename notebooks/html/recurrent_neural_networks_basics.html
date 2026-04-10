@@ -7670,7 +7670,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Again, just from looking at the architecture image, appreciate that the information flows in one direction from the input to the output — that is, the inputs are used to calculate the output of the hidden layer, and these results are used to calculate the final output of the output layer. If $\mathbf{x} = (x_1, x_2, x_3)^T$ denotes the input vector, $\mathbf{h} = (h_1, h_2, h_3, h_4)^T$ denotes the output vector of the hidden layer, and $\mathbf{y} = (y_1, y_2)^T$ denotes the output vector of the output layer, we can express the calculations done by the example FNNs using the following equations.</p>
+<p>Again, just from looking at the architecture image, appreciate that the information flows in one direction from the input to the output — that is, the inputs are used to calculate the output of the hidden layer, and these results are used to calculate the final output of the output layer. If $\mathbf{x} = (x_1, x_2, x_3)^T$ denotes the input vector, $\mathbf{h} = (h_1, h_2, h_3, h_4)^T$ denotes the output vector of the hidden layer, and $\mathbf{\hat{y}} = (\hat{y}_1, \hat{y}_2)^T$ denotes the output vector of the output layer, we can express the calculations done by the example FNNs using the following equations.</p>
 </div>
 </div>
 </div>
@@ -7684,7 +7684,7 @@ $$
 $$
 \begin{align}
 \large \mathbf{h} &amp;= \large f_{h}(\mathbf{W}_{xh}\mathbf{x} + \mathbf{b}_h)\ , \quad \text{with}\ \mathbf{W}_{xh} \in \mathbb{R}^{4\times 3},\ \mathbf{b}_h \in \mathbb{R}^{4\times1}\\[1.5em]
-\large \mathbf{y} &amp;= \large f_{y}(\mathbf{W}_{hy}\mathbf{h} + \mathbf{b}_y)\ , \quad \text{with}\ \mathbf{W}_{hy} \in \mathbb{R}^{2\times 4},\ \mathbf{b}_y \in \mathbb{R}^{2\times1}
+\large \mathbf{\hat{y}} &amp;= \large f_{y}(\mathbf{W}_{hy}\mathbf{h} + \mathbf{b}_y)\ , \quad \text{with}\ \mathbf{W}_{hy} \in \mathbb{R}^{2\times 4},\ \mathbf{b}_y \in \mathbb{R}^{2\times1}
 \end{align}
 $$
 </div>
@@ -7846,6 +7846,7 @@ $$
 </li>
 </ul>
 <p>The choice of initialization depends on the specific task and model architecture. While zero initialization works well in many cases, learnable or task-specific initializations can lead to better performance in more complex settings. To better visualize the importance of initial hidden state $\mathbf{h}_0$ and the evolution of the hidden state across all time steps, we can "unroll" our network architecture, to show the network at each time step and which inputs the hidden layer receives at each time step.</p>
+<br/>
 </div>
 </div>
 </div>
@@ -7856,7 +7857,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/basic-rnn-unrolled.png" style="margin:auto;"/>
+<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/basic-rnn-unrolled.png" style="margin:auto;max-width:850px;width:100%"/>
 </div>
 </div>
 </div>
@@ -7867,6 +7868,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<br/>
 <p>Again, note that hidden and output layer at each time step represent the <em>same</em> network.</p>
 </div>
 </div>
@@ -7891,8 +7893,8 @@ $$
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 $$
 \begin{align}
-\large \mathbf{h}_t &amp;= \large \tanh{\left( \mathbf{W}_{hh}h_{t-1} + \mathbf{W}_{xh}x_{t}  + \mathbf{b}_h \right)}\\[1.5em]
-\large \mathbf{y}_t &amp;= \large f_{y}(\mathbf{W}_{hy}\mathbf{h}_t + \mathbf{b}_y)
+\large \mathbf{h}_t &amp;= \large \tanh{\left( \mathbf{W}_{hh}\mathbf{h}_{t-1} + \mathbf{W}_{xh}\mathbf{x}_{t}  + \mathbf{b}_h \right)}\\[0.5em]
+\large \mathbf{\hat{y}}_t &amp;= \large f_{y}(\mathbf{W}_{hy}\mathbf{h}_t + \mathbf{b}_y)
 \end{align}
 $$
 </div>
@@ -7905,7 +7907,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This means that the hidden layer now has 2 weight matrices $\mathbf{W}_{hh}$ and $\mathbf{W}_{xh}$ to first transform the previous hidden state $\mathbf{h}_{t-1}$ and the current input vector $\mathbf{x}_t$, respectively. These weight matrices (and the bias vector $\mathbf{b}_h$) contain all trainable parameters of the hidden layer. Apart from increasing the capacity for the model to learn complex relationships, having both weight matrices also makes it easy to ensure that the results of $\mathbf{W}_{hh}h_{t-1}$ and $\mathbf{W}_{xh}x_{t}$ have the same size and can therefore be added — typically the size of the hidden states $\mathbf{h}_t$ is different from the size of the input vectors $\mathbf{x}_t$. This simple implementation of the recurrent formula is typically depicted using the following abstract visualization.</p>
+<p>This means that the hidden layer now has 2 weight matrices $\mathbf{W}_{hh}$ and $\mathbf{W}_{xh}$ to first transform the previous hidden state $\mathbf{h}_{t-1}$ and the current input vector $\mathbf{x}_t$, respectively. These weight matrices (and the bias vector $\mathbf{b}_h$) contain all trainable parameters of the hidden layer. Apart from increasing the capacity for the model to learn complex relationships, having both weight matrices also makes it easy to ensure that the results of $\mathbf{W}_{hh}\mathbf{h}_{t-1}$ and $\mathbf{W}_{xh}\mathbf{x}_{t}$ have the same size and can therefore be added — typically the size of the hidden states $\mathbf{h}_t$ is different from the size of the input vectors $\mathbf{x}_t$. This simple implementation of the recurrent formula is typically depicted using the following abstract visualization.</p>
 </div>
 </div>
 </div>
@@ -7927,6 +7929,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<br/>
 <p>While this visualization may not look very exciting, it will later helps to better appreciate the more complex implementations of the recurrent formula, which will bring to the more sophisticated RRN variants  Long Short-Term Memory (LSTM) networks and Gated Recurrent Units (GRUs).</p>
 <p><strong>Side note:</strong> this component of the network that implement the recurrent formula is often called the <strong>cell</strong>; for example, the basic implementation above would be called the Vanilla RNN cell. Conceptually, the cell is just the modified/extended hidden layer. However, since this step involves not more than a simple linear transformation — particularly in the case of LSTMs and GRUs — the term cell is commonly used to distinguish it from a normal hidden layer and to emphasize the connections to RNNs.</p>
 <p>To make this idea of a Recurrent Neural Network more tangible, let's actually implement a toy RNN using PyTorch. For this, the code below shows the implementation of the Vanilla RNN cell. Of course, using input arguments for the constructor, we need to tell the network module the size of the input vector and the size of the hidden state — again, they do not have to have the same size. The module defines the two weight matrices $\mathbf{W}_{hh}$ and $\mathbf{W}_{xh}$ using standard <code>nn.Linear</code> layers. Notice that the output size of both linear layers is the size of the hidden state to ensure that after both transformations the sizes do match. The <code>forward()</code> method directly implements the basic recurrent formula for the current hidden state $\mathbf{h}_t$ and returns it.</p>
@@ -8430,6 +8433,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<br/>
 <p>The main problem with the Vanilla RNN cell is the vanishing and exploding gradient problem, which makes training deep or long-sequence models difficult. Since RNNs update their hidden states at each time step using backpropagation through time (BPTT), gradients are repeatedly multiplied as they propagate backward through the network. If these gradients are small (less than 1), they shrink exponentially, causing the model to forget long-term dependencies — this is known as the vanishing gradient problem. Conversely, if gradients are large (greater than 1), they grow exponentially, leading to instability in training — this is called the exploding gradient problem.</p>
 <p>Due to the vanishing gradient problem, Vanilla RNNs struggle to learn dependencies over long sequences, as older time steps have little to no influence on the final output. This limits their ability to model tasks requiring long-range context, such as language translation or speech recognition. The exploding gradient problem, on the other hand, causes large weight updates that make training unstable, though it can be controlled using gradient clipping. To address these limitations, advanced RNN architectures like Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU) were introduced, as they use gating mechanisms to better retain and manage long-term dependencies. Let's have a brief and high-level look at LSTMs and GRUs to appreciate their added complexity and their differences.</p>
 </div>
@@ -8466,6 +8470,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<br/>
 <p>Again, here it is enough to appreciate the recurrence is based on more sophisticated series operations compared to the Vanilla RNN cell. A more detailed introduction into LSTMs is its own topic and beyond the scope of this notebook.</p>
 </div>
 </div>
@@ -8501,6 +8506,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<br/>
 <p>Just from eye-balling this visualization of the GRU cell you can already see the reduced complexity compared to the LSTM cell. However, like for LSTMs, a deeper discussion of GRUs is beyond this notebook's scope but will be covered as its own topic. In conclusion, in practice, LSTMs or GRUs are generally always preferred over Vanilla RNNs given their clear advantages when dealing sequential data.</p>
 <p>LSTM cells and GRU cells are not the only variants that have been proposed, but they are the two most popular ones.</p>
 </div>
@@ -8535,7 +8541,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-2layer-unrolled.png" style="margin:auto;max-width:750px;width:100%"/>
+<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-2layer-unrolled.png" style="margin:auto;max-width:800px;width:100%"/>
 </div>
 </div>
 </div>
@@ -8546,7 +8552,36 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Here, $\mathbf{W}^{(k)}$ denotes to the $k$-th layer, and $\mathbf{h}^{k}_{t}$ denotes the hidden state of the $k$-the layer at time step $t$. In practice, the number of layers in a multilayer RNN typically ranges from 2 to 4 layers, though it depends on the complexity of the task and available computational resources. For simpler tasks like basic text classification or small-scale time-series forecasting, 2 layers are often sufficient — or simply just a single recurrent layer. More complex applications, such as speech recognition or machine translation, may use 3 to 4 layers to capture deeper sequential dependencies. However, beyond 4 layers, improvements often diminish due to increasing training difficulty, vanishing gradients, and computational overhead.</p>
+<br/>
+<p>Here, $\mathbf{W}^{(k)}$ denotes to the $k$-th layer, and $\mathbf{h}^{k}_{t}$ denotes the hidden state of the $k$-the layer at time step $t$. In practice, the number of layers in a multilayer RNN typically ranges from $2$ to $4$ layers, though it depends on the complexity of the task and available computational resources. For simpler tasks like basic text classification or small-scale time-series forecasting, $2$ layers are often sufficient — or simply just a single recurrent layer. More complex applications, such as speech recognition or machine translation, may use  $3$ to $4$ layers to capture deeper sequential dependencies. However, beyond $4$ layers, improvements often diminish due to increasing training difficulty, vanishing gradients, and computational overhead.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=83719178-d4e6-4f5f-9a66-a234fc75de8b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+$$
+\begin{align}
+\large \mathbf{h}^{(1)}_t &amp;= \large \tanh{\left( \mathbf{W}^{(1)}_{hh}\mathbf{h}^{(1)}_{t-1} + \mathbf{W}^{(1)}_{xh}\mathbf{x}_{t}  + \mathbf{b}^{(1)}_h \right)}\\[0.5em]
+\large \mathbf{h}^{(2)}_t &amp;= \large \tanh{\left( \mathbf{W}^{(2)}_{hh}\mathbf{h}^{(2)}_{t-1} + \mathbf{W}^{(2)}_{xh}\mathbf{h}^{(1)}_{t} + \mathbf{b}^{(2)}_h \right)}\\[0.5em]
+\large \mathbf{\hat{y}}_t &amp;= \large f_{y}\left(\mathbf{W}_{hy}\mathbf{h}^{(2)}_t + \mathbf{b}_y \right)
+\end{align}
+$$
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9cd00c18-58ae-498c-b904-f188b682877d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Of course, more than $2$ layers can be stacked upon each other.</p>
 </div>
 </div>
 </div>
@@ -8557,7 +8592,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h4 id="Bidirectional-RNNs">Bidirectional RNNs<a class="anchor-link" href="#Bidirectional-RNNs">¶</a></h4><p>A Bidirectional Recurrent Neural Network (BiRNN) is a type of RNN that processes input sequences in both forward and backward directions. Unlike a standard RNN, which only has a single hidden state that moves forward in time, a BiRNN consists of two RNN layers — one that processes the sequence from start to end (forward direction) and another that processes it from end to start (backward direction). The outputs of these two layers are then combined, typically through concatenation or summation, to provide a more comprehensive representation of the input sequence. The key advantage of a BiRNN over a standard RNN is its ability to capture both past and future context at each time step. In a standard RNN, predictions at a given time step depend only on past information, which can be limiting in tasks where future context is also important. For example, in speech recognition or language modeling, understanding a word's meaning may depend on both previous and upcoming words in a sentence. However, the trade-off is that BiRNNs require more computation and memory since they process the input twice — once forward and once backward — making them less efficient for real-time applications. The image below illustrates this the concept of a BiRNN using the unrolled representation of the network.</p>
+<h4 id="Bidirectional-RNNs">Bidirectional RNNs<a class="anchor-link" href="#Bidirectional-RNNs">¶</a></h4><p>A Bidirectional Recurrent Neural Network (BiRNN) is a type of RNN that processes input sequences in both forward and backward directions. Unlike a standard RNN, which only has a single hidden state that moves forward in time, a BiRNN consists of two RNN layers — one that processes the sequence from start to end (forward direction) and another that processes it from end to start (backward direction). The outputs of these two layers are then combined, typically through concatenation or summation, to provide a more comprehensive representation of the input sequence. The key advantage of a BiRNN over a standard RNN is its ability to capture both past and future context at each time step. In a standard RNN, predictions at a given time step depend only on past information, which can be limiting in tasks where future context is also important. For example, in speech recognition or language modeling, understanding a word's meaning may depend on both previous and upcoming words in a sentence. However, the trade-off is that BiRNNs require more computation and memory since they process the input twice — once forward and once backward — making them less efficient for real-time applications. The image below illustrates this concept of a BiRNN using the unrolled representation of the network.</p>
 </div>
 </div>
 </div>
@@ -8568,7 +8603,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-bidirectional-unrolled.png" style="margin:auto;max-width:750px;width:100%"/>
+<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-bidirectional-unrolled.png" style="margin:auto;max-width:900px;width:100%"/>
 </div>
 </div>
 </div>
@@ -8579,7 +8614,48 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Here, $\mathbf{W}_f$ $\mathbf{W}_b$ denote the weight matrices representing the hidden layer of the forward direction and the backward direction, respectively. Analogously, $\mathbf{h}^{f}$ and $\mathbf{h}^{b}$ denote a hidden state of for the forward direction and the backward direction, respectively. However, note that the time step index $t$ for the backward direction is now reversed compared to the forward direction.</p>
+<br/>
+<p>Both directions have their own weight matrices for the input — $\mathbf{W}^{(f)}_{xh}$ and $\mathbf{W}^{(b)}_{xh}$ — as well as for the hidden states — $\mathbf{W}^{(f)}_{hh}$ and $\mathbf{W}^{(b)}_{hh}$; the same is true for the bias vectors $\mathbf{b}^{(f)}_y$ and $\mathbf{b}^{(b)}_h$. Note that $\mathbf{h}^{(b)}_{T+1}$ denotes that initiall hidden state of the backward pass. Each hidden state $\mathbf{h}_t$ is derived from the concatenation of $\mathbf{h}^{(f)}_{t}$ and $\mathbf{h}^{(b)}_{t}$. Using the same recurrent formula as for a Vanilla RNN, the Vanilla BiRNN is therefore implemented as:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd2aa473-1dd0-45f3-a5ee-0c10c05f364b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+$$
+\begin{align}
+\large \mathbf{h}^{(f)}_t &amp;= \large \tanh{\left( \mathbf{W}^{(f)}_{hh}\mathbf{h}^{(f)}_{t-1} + \mathbf{W}^{(f)}_{xh}\mathbf{x}_{t}  + \mathbf{b}^{(f)}_h \right)}\\[0.5em]
+\large \mathbf{h}^{(b)}_t &amp;= \large \tanh{\left( \mathbf{W}^{(b)}_{hh}\mathbf{h}^{(b)}_{t+1} + \mathbf{W}^{(b)}_{xh}\mathbf{x}_{t}  + \mathbf{b}^{(b)}_h \right)}\\[0.5em]
+\large \mathbf{h}_t &amp;= \large \left[\mathbf{h}^{(f)}_t ; \mathbf{h}^{(b)}_t \right]\\[0.5em]
+\large \mathbf{\hat{y}}_t &amp;= \large f_{y}\left(\mathbf{W}_{hy}\mathbf{h}_t + \mathbf{b}_y \right)
+\end{align}
+$$
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d7744298-b22e-460f-aa6a-03100032ee0b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Notice that the computation of the hidden state for the backward pass $\mathbf{h}^{(b)}_t$ now relies on $\mathbf{h}^{(b)}_{t+1}$ — instead of $\mathbf{h}^{(b)}_{t-1}$ like for the forward pass. Hence, the notion of $\mathbf{h}^{(b)}_{T+1}$ for the initial hidden state for the backward pass.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4209a2ed-09f0-46d4-acc7-e9555a2b162a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Multilayer-Bidirectional-RNNs">Multilayer Bidirectional RNNs<a class="anchor-link" href="#Multilayer-Bidirectional-RNNs">¶</a></h4><p>Lastly, we can also combine the idea of multiple layers and the consideration of both directions within the same architecture, where each layer implements both the forward and backward directions. The figure below illustrates the architecture of a $2$-layer BiRNN. Unlike in previous figures the edges are not labeled with the corresponding weight matrices to ease presentation.</p>
 </div>
 </div>
 </div>
@@ -8590,7 +8666,102 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-2layer-bidirectional-unrolled.png" style="margin:auto;max-width:750px;width:100%"/>
+<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-2layer-bidirectional-unrolled.png" style="margin:auto;max-width:850px;width:100%"/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0f0961fb-4899-496a-a96e-a79ed79c6390">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<br/>
+<p>When implementing this $2$-layer BiRNN, we now have to distinguish between both the layer and the direction for each hidden state, weight matrix, and bias vector. The first bidirectional layer is therefore implemented as follows; again, we get the final output of the first layer $\mathbf{h}^{(1)}_t$ by concatenating the individual outputs for both directions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c822af9c-75cc-41ea-b488-d6415a7e2f6f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+$$
+\begin{align}
+\large \mathbf{h}^{(1,f)}_t &amp;= \large \tanh{\left( \mathbf{W}^{(1,f)}_{hh}\mathbf{h}^{(1,f)}_{t-1} + \mathbf{W}^{(1,f)}_{xh}\mathbf{x}_{t}  + \mathbf{b}^{(1,f)}_h \right)}\\[0.5em]
+\large \mathbf{h}^{(1,b)}_t &amp;= \large \tanh{\left( \mathbf{W}^{(1,b)}_{hh}\mathbf{h}^{(1,b)}_{t+1} + \mathbf{W}^{(1,b)}_{xh}\mathbf{x}_{t}  + \mathbf{b}^{(1,b)}_h \right)}\\[0.5em]
+\large \mathbf{h}^{(1)}_t &amp;= \large \left[\mathbf{h}^{(1,f)}_t ; \mathbf{h}^{(1,b)}_t \right]
+\end{align}
+$$
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=56cfdf41-f08e-43d5-a84c-b1497011c9a8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The second layer is implemented exactly the same, only taking $\mathbf{h}^{(1)}_t$ as its input.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f89f7ded-c068-40f9-845d-6135c7909442">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+$$
+\begin{align}
+\large \mathbf{h}^{(2,f)}_t &amp;= \large \tanh{\left( \mathbf{W}^{(2,f)}_{hh}\mathbf{h}^{(2,f)}_{t-1} + \mathbf{W}^{(2,f)}_{xh}\mathbf{h}^{(1)}_t + \mathbf{b}^{(2,f)}_h \right)}\\[0.5em]
+\large \mathbf{h}^{(2,b)}_t &amp;= \large \tanh{\left( \mathbf{W}^{(2,b)}_{hh}\mathbf{h}^{(2,b)}_{t+1} + \mathbf{W}^{(2,b)}_{xh}\mathbf{h}^{(1)}_t + \mathbf{b}^{(2,b)}_h \right)}\\[0.5em]
+\large \mathbf{h}^{(2)}_t &amp;= \large \left[\mathbf{h}^{(2,f)}_t ; \mathbf{h}^{(2,b)}_t \right]
+\end{align}
+$$
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=053592e7-37e6-4d51-85f2-86578730ad23">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>And as before, we get the final output $\mathbf{\hat{y}}_t$ as</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f2481f0f-b255-4791-a3e7-103216fd92e9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+$$
+\begin{align}
+\large \mathbf{\hat{y}}_t &amp;= \large f_{y}\left(\mathbf{W}_{hy}\mathbf{h}^{(2)}_t + \mathbf{b}_y \right)
+\end{align}
+$$
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=adae79d9-1a23-4d10-925c-33b4f27db0d9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Like for unidirectional RNNs, it is easy to see how this implementation can be extended to more than $2$ layers. In general, stacking multiple recurrent layers in an RNN increases the model's capacity to learn complex patterns in sequential data. In both unidirectional and bidirectional RNNs, deeper architectures enable the model to capture richer temporal dependencies and interactions within the data.</p>
+<p>However, increasing the number of layers also increases the overall complexity of the model. Each additional recurrent layer introduces new parameters and additional computations during both the forward pass and backpropagation through time. This raises the computational cost and memory requirements, and can make training more difficult due to issues such as vanishing or exploding gradients. As a result, deeper RNN architectures can become harder to optimize and more prone to overfitting if not carefully regularized. In practice, adding many recurrent layers often yields only limited performance improvements. While a small number of stacked layers can help the model learn more expressive sequence representations, the marginal benefit typically diminishes as depth increases. Consequently, many practical RNN architectures use only a few recurrent layers, balancing representational power with computational efficiency and training stability.</p>
 </div>
 </div>
 </div>
