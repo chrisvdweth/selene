@@ -206,7 +206,7 @@ def plot_multivariate_function(f, resolution=100):
 #    return np.asarray(xs)
 
 
-def plot_gradient_descent_2d(f, xs, eta=0.01, repeat=False, show_step=None):
+def plot_gradient_descent_2d(f, xs, eta=0.01, repeat=False, show_step=None, title=""):
     fig, ax = plt.subplots(figsize=(8, 6))
 
     #ax.set_ylim(0, 12)
@@ -240,7 +240,7 @@ def plot_gradient_descent_2d(f, xs, eta=0.01, repeat=False, show_step=None):
     def update(frame):
         path.set_data([xs[:frame+1, 0]], [xs[:frame+1, 1]])
         point.set_data([xs[frame, 0]], [xs[frame, 1]])
-        ax.set_title(f"Gradient Descent (η = {eta}), Step: {frame}")
+        ax.set_title(f"{title} Step: {frame}")
 
     if show_step is None:
         anim = animation.FuncAnimation(fig, update, frames=len(xs), interval=100, repeat=False)
