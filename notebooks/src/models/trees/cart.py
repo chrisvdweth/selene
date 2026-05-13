@@ -26,7 +26,6 @@ class Node():
         if self.is_leaf() == True:
             return f"Leaf, gini: {self.score:.3f}, samples: {self.y}"
         else:
-            #return 'X[{}] <= {:.3f}, gini: {:.3f}, #samples: {}'.format(self.feature_col, self.criterion, self.score, len(self.y))
             return f"X[{self.feature_col}], criterion: {self.criterion}, gini: {self.score:.3f}, samples: {self.y}"
 
 
