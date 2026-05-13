@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>recurrent_neural_networks_language_model</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>mlp_language_model</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7498,11 +7498,11 @@ video {max-width: 100% !important; height: auto !important; }
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="RNN-based-Language-Models">RNN-based Language Models<a class="anchor-link" href="#RNN-based-Language-Models">¶</a></h1><p>Recurrent Neural Networks (RNNs) were once the dominant architecture for natural-language generation and sequence modeling, playing a crucial role in the evolution of modern deep learning. While they have largely been surpassed by Transformers, RNNs remain extremely valuable for learning how sequential models work at a fundamental level. In this notebook, we will train an RNN-based language model (specifically an LSTM) from scratch using PyTorch. The goal is not to build a state-of-the-art system but to understand each step of the process, from preparing the data to building the model and performing backpropagation through time (BPTT).</p>
-<p>To keep the focus on the concepts rather than computational complexity, we will train on a dataset of 100,000 movie reviews. This dataset is large enough to expose the real-world challenges of training sequence models — such as handling long sequences, learning useful token representations, and managing hidden states — yet small enough to allow fast experimentation on standard hardware. Working with a text corpus of this size provides a realistic demonstration of issues that arise when scaling RNNs, such as vanishing gradients, limited long-range memory, and the need for truncated BPTT.</p>
-<p>RNNs process text one time step at a time while maintaining a hidden state that is passed forward through the sequence. This sequential processing makes them intuitive to understand but also highlights their major limitations. Training is inherently slow due to the lack of parallelism, and long-range dependencies are difficult to capture because the hidden state must compress everything seen so far. These difficulties are exactly what motivated the development of the Transformer architecture, which replaces recurrence with attention, enabling full parallelism and more effective learning of long-distance relationships.</p>
-<p>By building an LSTM language model from the ground up, you will gain a deeper appreciation of how sequence models operate internally and why training them can be challenging. Understanding these limitations provides essential context for understanding why Transformers became the standard for NLP and why architectural shifts were necessary. Throughout the notebook, we will focus on clarity, practical implementation decisions, and conceptual insight rather than model performance, making the learning process both accessible and grounded in real-world considerations.</p>
-<p>If you are ready, we can continue to the dataset preparation section or outline the full training pipeline.</p>
+<h1 id="MLP-based-Language-Models">MLP-based Language Models<a class="anchor-link" href="#MLP-based-Language-Models">¶</a></h1><p>This notebook introduces a simple <strong>multilayer perceptron (MLP)</strong> as a first step toward understanding neural language models. Before diving into complex architectures, it is useful to see how far we can get with a straightforward feed-forward network: embeddings, a few fully connected layers, and a softmax output. Despite its simplicity, this setup already captures the core idea behind language modeling—learning to predict the next word given a sequence of previous words. By stripping away architectural complexity, we can focus on the mechanics of data preparation, training objectives, and how neural networks learn distributions over text.</p>
+<p>The central training objective in this notebook follows the standard formulation of language modeling: given a context of previous tokens, the model predicts the most likely next token. In practice, this means constructing fixed-size input windows and training the network to maximize the probability of the correct next word. Even though the model is not sequential in nature, it can still approximate conditional probabilities over short contexts. This highlights an important insight: language modeling is less about the specific architecture and more about the <strong>learning objective and training setup</strong>.</p>
+<p>That said, MLPs come with clear limitations. Because they operate on fixed-size inputs, they lack any built-in mechanism to capture <strong>long-term dependencies</strong> in text. Information outside the chosen context window is simply inaccessible to the model, no matter how deep or wide the network becomes. This makes MLPs fundamentally ill-suited for realistic language modeling tasks, where meaning often depends on relationships spanning entire sentences or even paragraphs. Architectures such as recurrent neural networks and transformers were developed precisely to overcome these shortcomings.</p>
+<p>For this reason, the implementation in this notebook is intended purely for <strong>educational purposes</strong>. It demonstrates that, in principle, a wide range of neural network architectures—including simple feed-forward networks—can be trained as language models if they are given appropriately structured input-output pairs. By experimenting with this minimal setup, you will gain intuition for how context windows, embeddings, and prediction objectives interact, and why more advanced architectures are necessary for scaling to real-world language understanding tasks.</p>
+<p>Let's check it out!</p>
 </div>
 </div>
 </div>
@@ -7574,8 +7574,8 @@ video {max-width: 100% !important; height: auto !important; }
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>File 'data/datasets/text/corpora/reviews/movie-reviews-imdb.zip' already exists (use 'overwrite=True' to overwrite it).
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
+<pre>100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50.6M/50.6M [00:02&lt;00:00, 19.8MiB/s]
 </pre>
 </div>
 </div>
@@ -7671,9 +7671,7 @@ video {max-width: 100% !important; height: auto !important; }
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h4 id="Preliminaries">Preliminaries<a class="anchor-link" href="#Preliminaries">¶</a></h4><p>Before checking out this notebook, please consider the following:</p>
 <ul>
-<li><p>This notebook is for education and not to build a state-of-the-art LLM. Not only is the dataset very small it also stems for a single domain: movie reviews. We also use a rather simple RNN-based model to keep things simple and reasonably fast. In any case, do not expect human-like responses from the trained model, particularly in demo mode (see below).</p>
-</li>
-<li><p>We assume that you have a good understanding of RNNs in general. If not, we have a notebook that provides an introduction to Recurrent Neural Networks.</p>
+<li><p>This notebook is for education and not to build a state-of-the-art LLM. Most importantly, MLPs are not sequence models and therefore do not support inputs of variable lengths. And also, the dataset we use here is very small; it also stems from a single domain: movie reviews. As such, do not expect anything near human-like responses from the trained model, particularly in demo mode (see below).</p>
 </li>
 <li><p>While not strictly required, we recommend the presence of a GPU to speed up the training. However, any more modern consumer GPU supported by the PyTorch library should be fine. Even for the full training mode, the default parameters are chosen that the training will not require more than 10 GB of VRAM; with 16GB slowly becoming the standard even for consumer GPUs.</p>
 </li>
@@ -7838,9 +7836,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Tokenize-&amp;-Generate-Token-Stream">Tokenize &amp; Generate Token Stream<a class="anchor-link" href="#Tokenize-&amp;-Generate-Token-Stream">¶</a></h3><p>Early RNN-based language models were typically trained on <strong>word-level vocabularies</strong>. Each word was treated as an atomic symbol with its own embedding, which made the models simple to conceptualize and train. However, this approach came with significant drawbacks. Word vocabularies must be extremely large to cover real text, often reaching hundreds of thousands of tokens, which dramatically increases memory requirements. More importantly, word-based models cannot naturally handle unseen or rare words, forcing them into a generic <code>&lt;unk&gt;</code> (unknown) token that discards important information and weakens the model's ability to generalize.</p>
-<p>Over time, <strong>subword tokenization</strong> such as Byte Pair Encoding (BPE), SentencePiece, or WordPiece became the standard for modern language models, including Transformer-based systems. Subword vocabularies strike a balance between characters and words: they are small enough to be efficient, yet expressive enough to represent any word by composing smaller units. This eliminates the <code>&lt;unk&gt;</code> problem entirely, improves handling of rare and morphologically rich words, and reduces vocabulary size dramatically, which helps models train more efficiently.</p>
-<p>For RNN-based models, subword tokenization offers the same advantages: fewer out-of-vocabulary issues, smaller embeddings, and more robust representations of linguistic structure. While RNNs were not originally trained this way due to computational limitations and tooling complexity at the time, subword units now provide a more scalable and practical foundation for any neural language model, regardless of architecture.</p>
+<h3 id="Tokenize-&amp;-Generate-Token-Stream">Tokenize &amp; Generate Token Stream<a class="anchor-link" href="#Tokenize-&amp;-Generate-Token-Stream">¶</a></h3><p><strong>Subword tokenization</strong> such as Byte Pair Encoding (BPE), SentencePiece, or WordPiece became the standard for modern language models. Subword vocabularies strike a balance between characters and words: they are small enough to be efficient, yet expressive enough to represent any word by composing smaller units. This eliminates the <code>&lt;unk&gt;</code> problem entirely, improves handling of rare and morphologically rich words, and reduces vocabulary size dramatically, which helps models train more efficiently.</p>
 <p>This is why we will be using subword tokenization in this notebook by means of a pretrained tokenizer. More specifically, we are using GPT-2 tokenizer to handle both the tokenization and indexing for us. The GPT-2 tokenizer is a subword tokenizer based on the <strong>Byte-Pair Encoding (BPE)</strong> algorithm. In nutshell, BPE (and similar approaches) learns how to tokenize words from data. Instead of splitting text strictly into full words or individual characters, BPE breaks words into frequently occurring subword units. For example, <em>"unhappiness</em>" might become <em>"un"</em>, <em>"happi"</em>, and <em>"ness"</em>. This enables the model to represent common words as single tokens while decomposing rare words into smaller, reusable pieces, preventing the out-of-vocabulary (OOV) problem that word-level tokenizers suffer from. Because subword tokens capture meaningful morphological patterns (prefixes, suffixes, roots), models can infer the meaning of new or compound words based on familiar subparts. This reduces the total number of parameters needed for embeddings and improves the model's ability to generalize to unseen text. You can learn all about BPE in a separate notebook</p>
 <p>To load the pretrained GPT-2 tokenizer, we can use the <code>AutoTokenizer</code> class Hugging Face Transformers library. This class is a high-level interface that automatically selects the appropriate tokenizer for a given pretrained model, abstracting away the need to know the specific tokenizer class. The <code>from_pretrained</code> method is used to load a tokenizer that has already been trained on a specific model's vocabulary and tokenization rules, either from the Hugging Face model hub or a local path. This method ensures that the tokenizer is configured consistently with the pretrained model, including token-to-ID mappings, special tokens, and any subword tokenization schemes (e.g., BPE), making it ready for encoding text into token IDs suitable for model training or inference. The code cell below used the class and method to load the GPT-2 tokenizer.</p>
 </div>
@@ -7969,7 +7965,7 @@ $$
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>                                                                                                                                      </pre>
+<pre>                                                                                                                                                                                                                </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -8005,82 +8001,128 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Batching-Considerations">Batching Considerations<a class="anchor-link" href="#Batching-Considerations">¶</a></h3><p>Like most language models, RNN–based language models are motivated by the need to capture sequential dependencies in language, where the meaning of each word often depends on the words that came before it. Because natural language is inherently ordered, RNNs process text one token at a time, updating an internal hidden state that summarizes everything seen so far. To train such models to understand and generate coherent text, they are typically optimized using the next-word prediction task: given a sequence of input tokens, the model must predict the next token at every time step. This setup naturally encourages the model to learn patterns of grammar, vocabulary, and long-range dependencies.</p>
-<p>In this training objective, the target sequence is simply the input sequence shifted one position to the left. For example, if the input is <em>"I like the movie very"</em>, the model is trained to predict <em>"like the movie very much"</em>; this figure below illustrates this idea. This formulation is elegant and powerful because it directly aligns the model's predictions with the structure of language, making it possible for the model to learn how each word follows from its preceding context. Through repeated exposure to large corpora, the RNN becomes able to generate fluent text by repeatedly applying this next-word prediction ability.</p>
+<h3 id="Batching-Considerations">Batching Considerations<a class="anchor-link" href="#Batching-Considerations">¶</a></h3><p>Right now, we have with <code>tokens</code> a very long list of token IDs representing our document stream. However, cannot directly pass this list as training data to our MLP later due to two main considerations</p>
+<ul>
+<li><p><strong>Fixed input size:</strong> MLPs inherently assume inputs of a fixed dimensionality, since each layer is defined by weight matrices with predetermined shapes. As a result, when dealing with sequential data such as text, the variable-length nature of sequences becomes incompatible with this requirement. To bridge this gap, sequences must first be segmented or padded into fixed-length chunks before being fed into the model. This preprocessing step ensures that every input conforms to the expected size.</p>
+</li>
+<li><p><strong>Batch processing:</strong> In addition to fixed input lengths, MLPs are typically designed to process data in batches to improve computational efficiency. By stacking multiple fixed-length sequences into a single tensor, modern hardware like GPUs can exploit parallelism, performing the same operations on many examples simultaneously rather than one at a time. This batching significantly speeds up training and makes better use of memory bandwidth, but it further reinforces the need for all inputs in a batch to share the same shape—hence the requirement to split or pad sequences to a uniform fixed length beforehand.</p>
+</li>
+</ul>
+<p>A common approach to handle long sequences of token IDs is to reshape the single list into multiple parallel streams, where the number of streams corresponds to the chosen <code>batch_size</code>. Instead of processing one long sequence end-to-end, the token list is split into equally sized chunks and arranged column-wise, so that each stream represents a continuous subsequence of the original data. This allows the model to process several subsequences in parallel, improving efficiency while preserving local sequential structure within each stream.</p>
+<p>To illustrate this idea, let's assume we have the following list of tokens IDs — for simplicity the token IDs go from $1$ to $32$:</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a0462b55-de3c-4b77-8e7b-e20e9ab9f765">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=02c34da5-933d-4f27-b931-dd08de059dcb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-lm-unrolled.png" style="margin:auto;max-width:1000px;width:100%"/>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a42544e2-2bbc-48f3-bee5-2a478006ddcb">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<br/>
-<p>In principle, we could feed our continuous stream of tokens to the RNN. However, RNNs are typically restricted in maximum sequence length because their ability to preserve information over time degrades as sequences grow longer. During training, gradients must be propagated backward through every time step, and this repeated multiplication can cause them to vanish or explode. Vanishing gradients make it difficult for the model to learn long-range dependencies, while exploding gradients can destabilize training altogether. Although variants like LSTMs and GRUs mitigate these issues with gating mechanisms, they still struggle when sequences become very long.</p>
-<p>Furthermore, longer sequences also increase computational cost and memory usage, since the hidden state and gradients for every time step must be stored during training. This limits the practical maximum sequence length that can be processed efficiently on modern hardware. As a result, even though RNNs are theoretically capable of handling arbitrarily long sequences, in practice they perform best when trained on moderately sized segments that balance computational feasibility with the ability to capture meaningful context. We therefore need to split our token stream into fixed-size chunks and pass the chunks to the model during training</p>
-<p>To maximize training efficiency, we also do not want to pass single chunks but batches containing more than one chunk in one training step. A naive approach would be to treat each chunk independently and reset the hidden state for each batch of chunks. However, treating each batch independently and resetting the hidden state at every batch boundary prevents the model from carrying information across sequence segments. Since RNNs rely on their hidden state to encode contextual information from previous tokens, resetting it means the model "forgets" everything it has learned about the text up to that point. This effectively breaks the continuity of the training data and prevents the model from learning dependencies that span beyond the fixed sequence length used in each batch.</p>
-<p>As a result, the model only learns relationships within individual segments rather than across the natural flow of the corpus. This can significantly weaken its ability to model long-range structure (such as topic shifts, document-level coherence, or dependencies spanning many sentences) because the hidden state is never allowed to accumulate context over longer stretches of text. For this reason, some training approaches like truncated backpropagation through time (TBPTT) maintain hidden states across batches within the same sequence stream, allowing the RNN to capture longer-term patterns while still keeping training manageable.</p>
-<p>To organize our dataset to properly support TBPTT, we have to make sure that the $k$-th chunk in the $i$-th batch is a continuation of the $k$-th chunk in the $(i\!-\!1)$-th batch. To illustrate this, let's assume that our token stream contains the token $1$ to $60$ as shown below:</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f8251f9e-d3ab-4862-b56b-91209b511795">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ..., 57, 58, 59, 60]
+<pre><code>tokens = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, ..., 30, 31, 32]
 </code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=715ebac2-1bf2-4b92-b0d2-c60c0131c2d4">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e96c48c4-757b-4287-86a0-640dcb905833">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<br/>
-<p>The idea is now to split the single token stream into multiple streams with the <code>batch_size</code> determining the number of substreams. Then, when forming a batch of sequences of length <code>seq_len</code>, we move a sliding window (with no overlap) of size <code>seq_len</code> across all substreams, resulting in batch of shape <code>(batch_size, seq_len)</code> that is also a continuation of the previous batch (apart from the first batch, of course). The figure below visualizes this idea using our simple example of $60$ tokens in the initial token stream. In this example, we assume a batch size of $3$, resulting in $3$ substreams.</p>
+<p>Let's further assume that we want to train our model with a batch size of $3$, i.e., <code>batch_size = 3</code>. Since our current number of tokens (i.e., <code>32</code>) is not divisible by $3$, we drop the last two tokens; keep in mind that when working with document streams containing millions and billions of tokens, this will not have any negative effect. With a total of now $30$ token IDs, we can split the list into three streams representing continuous subsequences of the original IDs:</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1e1041d2-6fe7-4f3e-b381-0a76f1d55ecc">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61225c79-21bb-437a-9e4c-49c5ef3ef713">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-lm-batching-example.png" style="margin:auto;max-width:1000px;width:100%"/>
+<pre><code>Stream 1: [ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10]
+Stream 2: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+Stream 3: [21, 22, 23, 24, 25, 26, 27, 28, 29, 20]
+</code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a9956cfa-9587-49e2-ba74-b6b9601f621b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5d1151fb-88a5-4197-b81d-0423d5c70c86">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<br/>
-<p>Notice that the last tokens (indicated by the red box in the figure above) do not form a complete batch with sequences of length <code>seq_len</code>. Although an RNN can work with sequences of arbitrary lengths, keep in mind that for this last reduced batch, we are no longer able to generate the target sequences after shifting the input sequence $1$ token to the left. Although we could fill the "missing" places with the <code>[EOS]</code> token, we can also simply ignore this batch. When working with large datasets with millions of tokens or more, dropping a few sequences does not matter at all.</p>
+<p>Lastly, we have to consider the fixed input size of MLP by moving a sliding window of a fixed size across all streams. For example, let's consider a context of $5$ tokens — that is, we want to train a model that predicts the next token based on the previous $5$ tokens. This means that our first input batch looks as follows:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48d16adf-6107-4e76-942a-dc36f670cf29">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<pre><code>[ 1,  2,  3,  4,  5]
+[11, 12, 13, 14, 15]
+[21, 22, 23, 24, 25]
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8b81ad17-1b27-418b-93fd-ae9e13becbe6">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The second batch then has the following form:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=57a86945-9b49-4a4f-aece-77e8dcce2761">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<pre><code>[ 2,  3,  4,  5,  6]
+[12, 13, 14, 15, 16]
+[22, 23, 24, 25, 26]
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85df750a-859d-4199-9852-41ea9109e355">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>and so on until we reach the end of the streams.</p>
+<p>The target for each input sequence naturally derives from the next word predict task. For our example, for each sequence of $5$ token IDs, we want to predict the token ID that directly follows those $5$ IDs. Thus, the complete first batch with both the inputs and the targets looks as follows:</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a081699f-6237-42f7-8b34-d5b9ccef8fda">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<pre><code>[ 1,  2,  3,  4,  5], [ 6]
+[11, 12, 13, 14, 15], [16]
+[21, 22, 23, 24, 25], [26]
+</code></pre>
 </div>
 </div>
 </div>
@@ -8091,13 +8133,13 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Implementing-Custom-DataSet-Class">Implementing Custom <code>DataSet</code> Class<a class="anchor-link" href="#Implementing-Custom-DataSet-Class">¶</a></h3><p>Now that we know in which format we have to bring our training data, we can implement a custom <code>DataSet</code> to achieve this. More specifically, create a class that inherits from the <a href="https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset">IterableDataset</a> class. This dataset class is designed for scenarios where data must be generated or streamed sequentially rather than randomly accessed. Unlike the standard <code>Dataset</code> class, which assumes that individual samples can be indexed (<code>__getitem__()</code>), an <code>IterableDataset</code> only requires the implementation of an <code>__iter__()</code> method that yields data samples one at a time. This makes it ideal for use cases such as reading data from large text files, streaming logs, or generating data on the fly—situations where random access is impossible or inefficient.</p>
+<h3 id="Implementing-Custom-DataSet-Class">Implementing Custom <code>DataSet</code> Class<a class="anchor-link" href="#Implementing-Custom-DataSet-Class">¶</a></h3><p>Now that we know in which format we have to bring our training data, we can implement a custom <code>DataSet</code> to achieve this. More specifically, create a class that inherits from the <a href="https://docs.pytorch.org/docs/stable/data.html#torch.utils.data.IterableDataset">IterableDataset</a> class. This dataset class is designed for scenarios where data must be generated or streamed sequentially rather than randomly accessed. Unlike the standard <code>Dataset</code> class, which assumes that individual samples can be indexed (<code>__getitem__()</code>), an <code>IterableDataset</code> only requires the implementation of an <code>__iter__()</code> method that yields data samples one at a time. This makes it ideal for use cases such as reading data from large text files, streaming logs, or generating data on the fly — situations where random access is impossible or inefficient.</p>
 <p>Because <code>IterableDataset</code> produces samples in a fixed order, it gives the user precise control over the data flow, which is especially useful for tasks like language modeling with long text streams, reinforcement learning, or online learning. However, this sequential nature also means that certain DataLoader features (e.g., shuffling or automatic batching) are limited or behave differently. This includes that we have to implement batching ourselves — but we know how to do it (see the figure above). Despite these constraints, <code>IterableDataset</code> is a powerful tool when working with continuous or very large datasets that don't fit neatly into memory or require sequential processing.</p>
-<p>The class <code>StreamDataset</code> in the code cell below implements the approach. When passing the initial array of <code>tokens</code>, the <code>batch_size</code>, and the sequence length <code>seq_len</code> of all sequences within a batch, the constructor performs the following three main steps:</p>
-<p><strong>(1) Compute the number of usable tokens:</strong> This step refers to ignoring the last tokens in each substream which are insufficient to form a full batch. We can compute this number by first computing the number of full batches by dividing the total number of tokens by the batch size using an integer division (without remainder). The number of usable tokens is the number of batches, and then multiplied again by the number of batches.</p>
+<p>The class <code>StreamDataset</code> in the code cell below implements the approach. When passing the initial array of <code>tokens</code>, the <code>batch_size</code>, and the sequence length <code>context_size</code> of all sequences within a batch, the constructor performs the following three main steps:</p>
+<p><strong>(1) Compute the number of usable tokens:</strong> This step refers to ignoring the last tokens in the inputs token list to create <code>batch_size</code> streams of equal length. We can compute this number by first computing the number of full batches by dividing the total number of tokens by the batch size using an integer division (without remainder). The number of usable tokens is the number of batches, and then multiplied again by the number of batches.</p>
 <p><strong>(2) Create substreams:</strong> We can create all <code>batch_size</code> substreams by reshaping the original 1-dim array of tokens into a 2-dim array of shape <code>(batch_size, stream_len)</code> where <code>stream_len</code> is the number of tokens in each substream — this number is, of course, the number of usable tokens divided by the batch size (i.e., the number of streams). Having all streams in a single array makes creating the final batches very easy.</p>
-<p><strong>(3) Compute total number of batches:</strong> Even if now the last batch is guaranteed to be full (i.e., all sequences have a length of <code>seq_len</code>) we still want to ignore it since we still could not generate the target sequences by shifting the inputs sequences $1$ token to the left — again, we could add an <code>[EOS]</code> token but we simply do not have to. Thus, to get the final number of batches, we simply use an integer division to divide the lengths of the streams $-1$ by <code>seq_len</code>.</p>
-<p>In the <code>__iter__()</code> method simply iterate overall valid batches numbers (i.e., their index from <code>0</code> to <code>n_batches-1</code>) to generate all input sequences and target sequences by slicing the 2-dim array that holds all substream. Notice the <code>+1</code> as part of the slicing for the target sequences. This implements the shifting of the tokens by $1$ token to the left.</p>
+<p><strong>(3) Compute total number of batches:</strong> The number of batches is naturally directly related to the length of each stream since each batch derives from the fixed-sized sliding window we move across the streams. However, we have to stop the sliding window $t$ token ID before the end of the stream since the last token ID in each stream will form the target for the last batch. The number of batches is therefore simply the length of the streams <code>stream_len</code> minus the length of each input sequence <code>context_size</code>.</p>
+<p>In the <code>__iter__()</code> method simply iterate overall valid batches numbers (i.e., their index from <code>0</code> to <code>n_batches-1</code>) to generate all input sequences and target sequences by slicing the 2-dim array that holds all substream.</p>
 </div>
 </div>
 </div>
@@ -8111,11 +8153,11 @@ $$
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">StreamDataset</span><span class="p">(</span><span class="n">IterableDataset</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tokens</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">context_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span> <span class="o">=</span> <span class="n">tokens</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seq_len</span> <span class="o">=</span> <span class="n">seq_len</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_size</span> <span class="o">=</span> <span class="n">context_size</span>
         <span class="c1"># (1) Compute number of usable tokens</span>
         <span class="n">total_tokens</span> <span class="o">=</span> <span class="n">tokens</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">usable</span> <span class="o">=</span> <span class="p">(</span><span class="n">total_tokens</span> <span class="o">//</span> <span class="n">batch_size</span><span class="p">)</span> <span class="o">*</span> <span class="n">batch_size</span>
@@ -8124,14 +8166,14 @@ $$
         <span class="c1"># (2) Create substreams: reshape into (batch_size, stream_len)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">streams</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokens</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stream_len</span><span class="p">)</span>
         <span class="c1"># (3) Compute total number of batches: ignore the last batch, even if it is full</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n_batches</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq_len</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_batches</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_len</span> <span class="o">-</span> <span class="n">context_size</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq_len</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_size</span>
         <span class="c1"># Generate next pair of inputs and targets</span>
         <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_batches</span><span class="p">):</span>
-            <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">streams</span><span class="p">[:,(</span><span class="n">step</span><span class="o">*</span><span class="n">s</span><span class="p">):(</span><span class="n">step</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="n">s</span><span class="p">)]</span>
-            <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">streams</span><span class="p">[:,(</span><span class="n">step</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">):(</span><span class="n">step</span><span class="o">*</span><span class="n">s</span><span class="o">+</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">streams</span><span class="p">[:,(</span><span class="n">step</span><span class="p">):(</span><span class="n">step</span><span class="o">+</span><span class="n">s</span><span class="p">)]</span>
+            <span class="n">targets</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">streams</span><span class="p">[:,(</span><span class="n">step</span><span class="o">+</span><span class="n">s</span><span class="p">)]</span>
             <span class="k">yield</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span>
 </pre></div>
 </div>
@@ -8145,7 +8187,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>To show how it works, we can replicate the example as visualized in the figure about. In the code cell below, we first create a 1-dim array with the numbers from $1$ to $60$. We use this array to create a <code>StreamDataset</code> instance, assuming a batch size of $4$ and a sequence length per batch of $6$.</p>
+<p>To show how it works, we can replicate the example as visualized in the figure about. In the code cell below, we first create a 1-dim array with the numbers from $1$ to $60$. We use this array to create a <code>StreamDataset</code> instance, assuming a batch size of $3$ and a sequence length per batch of $5$.</p>
 </div>
 </div>
 </div>
@@ -8157,9 +8199,9 @@ $$
 <div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">demo_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">61</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">demo_tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
 
-<span class="n">demo_dataset</span> <span class="o">=</span> <span class="n">StreamDataset</span><span class="p">(</span><span class="n">demo_tokens</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">seq_len</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">demo_dataset</span> <span class="o">=</span> <span class="n">StreamDataset</span><span class="p">(</span><span class="n">demo_tokens</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">context_size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8188,8 +8230,8 @@ $$
 
 <span class="k">for</span> <span class="n">step</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">demo_loader</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"========== Batch </span><span class="si">{</span><span class="n">step</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> =========="</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Input sequences:</span><span class="se">\n</span><span class="si">{</span><span class="n">inputs</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Target sequences:</span><span class="se">\n</span><span class="si">{</span><span class="n">targets</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Inputs:</span><span class="se">\n</span><span class="si">{</span><span class="n">inputs</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Target:</span><span class="se">\n</span><span class="si">{</span><span class="n">targets</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8203,34 +8245,44 @@ $$
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>========== Batch 1 ==========
-Input sequences:
-tensor([[ 1,  2,  3,  4,  5,  6],
-        [21, 22, 23, 24, 25, 26],
-        [41, 42, 43, 44, 45, 46]])
-Target sequences:
-tensor([[ 2,  3,  4,  5,  6,  7],
-        [22, 23, 24, 25, 26, 27],
-        [42, 43, 44, 45, 46, 47]])
+Inputs:
+tensor([[ 1,  2,  3,  4,  5],
+        [11, 12, 13, 14, 15],
+        [21, 22, 23, 24, 25]])
+Target:
+tensor([ 6, 16, 26])
 
 ========== Batch 2 ==========
-Input sequences:
-tensor([[ 7,  8,  9, 10, 11, 12],
-        [27, 28, 29, 30, 31, 32],
-        [47, 48, 49, 50, 51, 52]])
-Target sequences:
-tensor([[ 8,  9, 10, 11, 12, 13],
-        [28, 29, 30, 31, 32, 33],
-        [48, 49, 50, 51, 52, 53]])
+Inputs:
+tensor([[ 2,  3,  4,  5,  6],
+        [12, 13, 14, 15, 16],
+        [22, 23, 24, 25, 26]])
+Target:
+tensor([ 7, 17, 27])
 
 ========== Batch 3 ==========
-Input sequences:
-tensor([[13, 14, 15, 16, 17, 18],
-        [33, 34, 35, 36, 37, 38],
-        [53, 54, 55, 56, 57, 58]])
-Target sequences:
-tensor([[14, 15, 16, 17, 18, 19],
-        [34, 35, 36, 37, 38, 39],
-        [54, 55, 56, 57, 58, 59]])
+Inputs:
+tensor([[ 3,  4,  5,  6,  7],
+        [13, 14, 15, 16, 17],
+        [23, 24, 25, 26, 27]])
+Target:
+tensor([ 8, 18, 28])
+
+========== Batch 4 ==========
+Inputs:
+tensor([[ 4,  5,  6,  7,  8],
+        [14, 15, 16, 17, 18],
+        [24, 25, 26, 27, 28]])
+Target:
+tensor([ 9, 19, 29])
+
+========== Batch 5 ==========
+Inputs:
+tensor([[ 5,  6,  7,  8,  9],
+        [15, 16, 17, 18, 19],
+        [25, 26, 27, 28, 29]])
+Target:
+tensor([10, 20, 30])
 
 </pre>
 </div>
@@ -8245,8 +8297,7 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Appreciate how the input sequences match the example batches in the figure above.</p>
-<p>Of course, we do not want to train our model based on this demo dataset but on our movie reviews. So let's create a data loader using our initial document stream <code>tokens</code> with a batch size of $256$ and a sequence length of $32$. When training an RNN-based language model on a small dataset, shorter sequences are recommended because they reduce the risk of overfitting and make the learning problem more manageable. With limited data, long sequences can cause the model to memorize specific patterns rather than generalize, since the model repeatedly sees the same long contexts during training. Shorter sequences encourage the model to focus on more frequent, broadly useful local dependencies rather than rare long-range ones that the dataset cannot reliably support.</p>
-<p>Shorter sequences also reduce computational load and stabilize training. RNNs struggle with long-term dependencies due to vanishing gradients, and this issue becomes more pronounced when the amount of training data is small. By keeping sequence lengths short, gradients propagate more reliably, batches become more diverse, and the model tends to learn cleaner statistical patterns from the available data.</p>
+<p>Of course, we do not want to train our model based on this demo dataset but on our movie reviews. So let's create a data loader using our initial document stream <code>tokens</code> with a batch size of $256$ and a context size of $10$. The chosen context size (i.e., the number of input tokens) directly limits how much prior information the model can use to predict the next word. A small context size makes the model rely only on very local patterns, which is computationally efficient but often leads to poorer predictions because longer-range dependencies are ignored. Increasing the context size can improve performance by giving the model more information about preceding tokens, but it comes at a cost: the input dimensionality grows linearly with the context length, which quickly increases the number of parameters and computational requirements. As a result, there is a practical trade-off between capturing richer context and maintaining a manageable, efficient model.</p>
 </div>
 </div>
 </div>
@@ -8258,7 +8309,9 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">StreamDataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">tokens</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">seq_len</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">context_size</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">StreamDataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">tokens</span><span class="p">),</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">context_size</span><span class="o">=</span><span class="n">context_size</span><span class="p">)</span>
 
 <span class="n">loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
@@ -8273,7 +8326,7 @@ tensor([[14, 15, 16, 17, 18, 19],
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Keep in mind that creating the dataset and data loader was rather straightforward since the dataset is small enough to easily fit into memory. In contrast, large training datasets typically cannot fit into main memory all at once. Thus, when working with extensive text corpora (often gigabytes in size) loading everything upfront would exceed memory limits. Instead, the data must be streamed, read in chunks, or processed on the fly. This requires dataset implementations that can efficiently iterate through the data without holding it entirely in memory. Because of these constraints, additional considerations are needed when creating <code>Dataset</code> and <code>DataLoader</code> instances. For example, one may extend <code>IterableDataset</code> implementation to read from large text files line by line, implement custom buffering strategies, or perform on-demand tokenization. However, these consideration go beyond the scope of this notebook and are not needed here.</p>
+<p>Keep in mind that creating the dataset and data loader was rather straightforward since the dataset is small enough to easily fit into memory. In contrast, large training datasets typically cannot fit into main memory all at once. Thus, when working with extensive text corpora (often gigabytes in size) loading everything upfront would exceed memory limits. Instead, the data must be streamed, read in chunks, or processed on the fly. This requires dataset implementations that can efficiently iterate through the data without holding it entirely in memory. Because of these constraints, additional considerations are needed when creating <code>Dataset</code> and <code>DataLoader</code> instances. For example, one may extend <code>IterableDataset</code> implementation to read from large text files line by line, implement custom buffering strategies, or perform on-demand tokenization. However, these considerations go beyond the scope of this notebook and are not needed here.</p>
 </div>
 </div>
 </div>
@@ -8307,8 +8360,6 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Training-a-Single-Epoch">Training a Single Epoch<a class="anchor-link" href="#Training-a-Single-Epoch">¶</a></h3><p>As the name suggests, the method <code>train_epoch()</code> trains a given model for one epoch. Apart from the model itself, the method also gets a data loader instance to iterate over all batches, as well as an optimizer to handle the update of the model weights after the gradients have been computed during backpropagation; the description is merely to annotate the progress bar.</p>
-<p>Worth mentioning is the <code>hidden</code> variable that holds the hidden state of the RNN model. At the beginning of the hidden epoch, the hidden state is initialized with all zeros. In the loop, when each batch is passed to the model, the hidden states gets updates but <em>not</em> reset. When training an RNN with <em>stateful</em> or <em>continuation</em> batches (i.e., where the hidden state from the previous batch is reused for the next), the hidden state must be <strong>detached</strong> to prevent gradients from propagating endlessly through the entire training history. Without <code>detach()</code>, PyTorch treats the hidden state as part of the computational graph and keeps linking new operations onto that graph at every step. This causes the graph to grow without bound, dramatically increasing memory usage and eventually causing the training process to crash or slow down severely.</p>
-<p>Detaching the hidden state tells PyTorch: <em>"Use the numerical value of this tensor, but treat it as a constant for future gradient computations"</em>. In effect, it cuts the backpropagation path so that gradients only flow through the current unrolled sequence length, not through previous batches. This keeps training efficient, bounded in memory, and still allows the RNN to keep its stateful behaviour across batches without unintentionally backpropagating across the entire dataset. In simple terms, without detaching the hidden state, the model would require more and more memory and would trains slower and slower over time.</p>
 </div>
 </div>
 </div>
@@ -8325,19 +8376,15 @@ tensor([[14, 15, 16, 17, 18, 19],
     
     <span class="n">epoch_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span><span class="o">.</span><span class="n">device</span>
-    <span class="c1"># Initialize the hidden state</span>
-    <span class="n">hidden</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">init_hidden</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
     
     <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tqdm</span><span class="p">(</span><span class="n">loader</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">description</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">n_batches</span><span class="p">)):</span>
         <span class="c1"># Move data to the same device as the model</span>
         <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
         <span class="n">targets</span> <span class="o">=</span> <span class="n">targets</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-        <span class="c1"># detach hidden state to truncate BPTT</span>
-        <span class="n">hidden</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hidden</span><span class="p">)</span>
-        <span class="c1"># Get the output (logits + hidden state) for current input batch</span>
-        <span class="n">logits</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>  <span class="c1"># logits: (batch_size, seq_len, vocab)</span>
+        <span class="c1"># Pass inputs to model to get the logits as outputs</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>  <span class="c1"># logits: (batch_size, vocab)</span>
         <span class="c1"># Compute loss: flatten seq and batch dims for CrossEntropyLoss</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">logits</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">vocab_size</span><span class="p">),</span> <span class="n">targets</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
         <span class="c1"># Perform PyTorch magic: backpropagation + parameter updates</span>
         <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
         <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
@@ -8355,7 +8402,7 @@ tensor([[14, 15, 16, 17, 18, 19],
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Saving-&amp;-Loading-Checkpoints">Saving &amp; Loading Checkpoints<a class="anchor-link" href="#Saving-&amp;-Loading-Checkpoints">¶</a></h3><p>Training a Transformer-based LLM requires a lot of training, even for a rather small model trained using a rather small dataset. A <strong>checkpoint</strong> in model training is a saved snapshot of the model's state at a specific point during training, typically after a certain number of steps or epochs. It usually includes the model's parameters (weights and biases), the optimizer state (to resume learning with the same momentum and learning rate adjustments), and sometimes metadata like the current epoch or training loss. This allows training to be paused and later resumed from that point without starting over, which is especially important for large models that take days or weeks to train.</p>
+<h3 id="Saving-&amp;-Loading-Checkpoints">Saving &amp; Loading Checkpoints<a class="anchor-link" href="#Saving-&amp;-Loading-Checkpoints">¶</a></h3><p>Large models require a lot of training, even for a rather small model trained using a rather small dataset. A <strong>checkpoint</strong> in model training is a saved snapshot of the model's state at a specific point during training, typically after a certain number of steps or epochs. It usually includes the model's parameters (weights and biases), the optimizer state (to resume learning with the same momentum and learning rate adjustments), and sometimes metadata like the current epoch or training loss. This allows training to be paused and later resumed from that point without starting over, which is especially important for large models that take days or weeks to train.</p>
 <p>While many libraries have built-in support for periodically saving checkpoints, in this notebook, we purposefully use only PyTorch and avoid libraries with a higher level of abstraction. However, saving a checkpoint is very straightforward. The method <code>save_checkpoint()</code> defined in the code cell below takes a model and optimizer instance, as well as the information about the current epoch and epoch loss. The method combines all required information to resume training into a single object and uses the <code>save()</code> method of PyTorch to save this object to a file.</p>
 <p>In PyTorch, the <code>state_dict()</code> object is a Python dictionary that contains all the learnable parameters and persistent states of a model or optimizer. For models, it stores mappings from each layer's name to its corresponding tensor values (like weights and biases). For optimizers, it includes the current state of optimization variables such as momentum buffers and learning rate schedules. This dictionary enables easy saving, loading, and transferring of model and optimizer states, making it central to checkpointing and model deployment. By calling <code>torch.save(model.state_dict())</code>, you can preserve a model's learned parameters, and later restore them with <code>model.load_state_dict()</code>, ensuring the model continues exactly where it left off.</p>
 </div>
@@ -8498,7 +8545,7 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">folder</span> <span class="o">=</span> <span class="n">create_folder</span><span class="p">(</span><span class="s2">"data/generated/models/rnn-lm/"</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">folder</span> <span class="o">=</span> <span class="n">create_folder</span><span class="p">(</span><span class="s2">"data/generated/models/mlp-lm/"</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
 </pre></div>
@@ -8513,7 +8560,7 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>data/generated/models/rnn-lm/
+<pre>data/generated/models/mlp-lm/
 </pre>
 </div>
 </div>
@@ -8537,18 +8584,25 @@ tensor([[14, 15, 16, 17, 18, 19],
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Creating-&amp;-Training-the-Model">Creating &amp; Training the Model<a class="anchor-link" href="#Creating-&amp;-Training-the-Model">¶</a></h2><h3 id="Model-Definition">Model Definition<a class="anchor-link" href="#Model-Definition">¶</a></h3><p>Using the default parameter of the model class (see below), we are training a <strong>2-layer RNN</strong>. A 2-layer RNN (also called a <em>stacked RNN</em>) is a recurrent neural network where multiple RNN layers are placed on top of one another. The first RNN layer receives the input sequence, processes it over time, and produces a sequence of hidden states. Instead of sending these hidden states directly to an output layer, they are fed as inputs into a second RNN layer, which performs another round of temporal processing. This stacked structure allows the network to learn more complex hierarchical patterns in sequential data — lower layers may capture short-term or local patterns, while higher layers can model longer-term or more abstract dependencies. This deeper structure generally improves modeling power compared to a single-layer RNN, although it may require more computation and careful regularization. The figure below shows the overall architecture.</p>
+<h2 id="Creating-&amp;-Training-the-Model">Creating &amp; Training the Model<a class="anchor-link" href="#Creating-&amp;-Training-the-Model">¶</a></h2><h3 id="Model-Definition">Model Definition<a class="anchor-link" href="#Model-Definition">¶</a></h3><p>In this notebook, we will be implementing an MLP with $2$ hidden layers, say, with $512$ neurons each. The size of the input layer depends on two parameters:</p>
+<ul>
+<li><p><code>context_size</code> — the number of tokens (i.e., the length of the sequences) to be used to predict the next token (e.g., $5$)</p>
+</li>
+<li><p><code>embed_size</code> — the size of the embedding vectors for each token (e.g., $100$)</p>
+</li>
+</ul>
+<p>Thus, the size of the input layer is <code>context_size * embed_size</code>. Naturally, the size of the output layer derives from the size of the vocabulary since the output needs to be the probability for each token given the input tokens. Since we are using the pretrained GPT-2 tokenizer with a vocabulary of $50,257$ unique tokens, the size of the output layer is $50,257$. The figure below illustrates this idea assuming a context size of $5$. Keep in mind that all layers are fully connected, but not all connections are shown to ease presentation. The example also considers full words instead of subwords; again, this is merely to make the figure easier to understand.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=fbd9884f-1e64-4d2b-9366-541c1343c334">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=95a22d23-eba5-4693-8e90-2537ed3a685f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/rnn/rnn-2layer-unrolled.png" style="margin:auto;max-width:750px;width:100%"/>
+<img src="https://raw.githubusercontent.com/chrisvdweth/selene/refs/heads/master/notebooks/images/illustrations/mlp/mlp-language-model-example-setup.png" style="margin:auto;max-width:850px;width:100%"/>
 </div>
 </div>
 </div>
@@ -8559,8 +8613,15 @@ tensor([[14, 15, 16, 17, 18, 19],
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>In this notebook, we will be using an <strong>LSTM (Long Short-Term Memory)</strong> network. This is a specialized type of RNN designed to overcome the limitations of a "vanilla RNN", particularly the problem of vanishing and exploding gradients during backpropagation through time. While a vanilla RNN uses a single hidden state that is repeatedly updated, an LSTM introduces a more complex internal structure with multiple gates — <strong>input</strong>, <strong>forget</strong>, and <strong>output</strong> gates — along with a <strong>cell state</strong> that can carry information forward over long time spans. These gates learn to regulate what information to store, update, and discard, giving LSTMs much stronger control over long-range dependencies.</p>
-<p>The main benefit of LSTMs is their ability to remember information over significantly longer sequences compared to vanilla RNNs. This makes them far more effective for tasks such as language modeling, translation, speech recognition, and time-series forecasting. Additionally, because LSTMs reduce gradient decay, they train more stably and capture richer patterns, while still being flexible enough to forget irrelevant information through their gating mechanisms. The class <code>LstmLM</code> implements the complete network architecture.</p>
+<p>The class <code>MlpLM</code> implements this setup. Note that, compared to the figure above, it only adds an <code>nn.Embedding</code> layer to map the token IDs to their respective token indices. Notice how the first fully connected hidden layer <code>fc1</code> expects an input of size <code>context_size * embed_size</code> as previously motivated. The <code>forward()</code> method is straightforward, pushing the input through all the layers to get the final output logits; note that this implementation is using the ReLU activation function.</p>
+<p>Most of the code is actually the <code>generate()</code> function to generate an output sequence for a given sequence of input token IDs. Since we have to ensure a fixed input size for the model during each iteration, the implementation of the method has to handle to corner cases:</p>
+<ul>
+<li><p><strong>Padding (optional)</strong>: In case the initial sequence of tokens is shorter than the context size, we have to pad the sequence to the context size. We do this by prepending the "enough" EOS token ID to the current sequence of token IDS</p>
+</li>
+<li><p><strong>Cutting:</strong> If the initial sequence of token IDs or enough new token IDs have been predicted, the current sequence of all token IDs so far will be longer than the context size. In this case, we only considered the last <code>context_size</code> token IDs for the next iteration and thus prediction for the next token.</p>
+</li>
+</ul>
+<p>Apart from ensuring the correct input size, the <code>generate()</code> method also performs <em>top-k</em> sampling — that is, instead of always picking the token with the highest probability (i.e., <em>greedy decoding</em>), the method considers the top-k tokens and randomly picks a token from this set proportional to their probabilities. This enables a level of creativity, as greedy decoding would always generate the exact same sequence for the same input.</p>
 </div>
 </div>
 </div>
@@ -8572,40 +8633,41 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LstmLM</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">hidden_size</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">MlpLM</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">context_size</span><span class="p">,</span> <span class="n">embed_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">vocab_size</span> <span class="o">=</span> <span class="n">vocab_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">embed</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lstm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">embed_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">num_layers</span><span class="o">=</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_size</span> <span class="o">=</span> <span class="n">context_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">context_size</span> <span class="o">*</span> <span class="n">embed_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="n">num_layers</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">hidden</span><span class="p">):</span>             <span class="c1"># x:      (batch_size, seq_len)</span>
-        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embed</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>                   <span class="c1"># emb:    (batch_size, seq_len, embed_size)</span>
-        <span class="n">out</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lstm</span><span class="p">(</span><span class="n">emb</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>  <span class="c1"># out:    (batch_size, seq_len, hidden_size)</span>
-        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="c1"># logits: (batch_size, seq_len, vocab_size)</span>
-        <span class="k">return</span> <span class="n">logits</span><span class="p">,</span> <span class="n">hidden</span>
-
-    <span class="k">def</span> <span class="nf">init_hidden</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
-        <span class="c1"># return tuple (h0, c0) of shape (num_layers, batch_size, hidden_dim)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span>
-                <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_layers</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">embeds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>              <span class="c1"># (batch, context_size, embed_size)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">embeds</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">embeds</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># flatten: (batch, context_size*embed_size)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">out</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logits</span>
 
     <span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
-    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed_indices</span><span class="p">,</span> <span class="n">eos_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">'cpu'</span><span class="p">):</span>
-        <span class="n">seed</span> <span class="o">=</span> <span class="n">seed_indices</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="c1"># seed: (1, seed_seq_len)</span>
-        <span class="c1"># Initialize hidden state with all zeros</span>
-        <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_hidden</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seed_indices</span><span class="p">,</span> <span class="n">eos_token_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s1">'cpu'</span><span class="p">):</span>
         <span class="c1"># Initialize list of generation tokens with seed tokens</span>
-        <span class="n">generated</span> <span class="o">=</span> <span class="n">seed</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-        <span class="c1"># Feed the seed sequence to the model</span>
-        <span class="n">logits</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>
+        <span class="n">generated</span> <span class="o">=</span> <span class="n">seed_indices</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
         <span class="c1"># Generate remaining tokens step by step</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_len</span><span class="p">):</span>
+            <span class="c1"># Take last context_size tokens</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="n">generated</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">context_size</span><span class="p">:]</span>
+            <span class="c1"># Pad with EOS token id if needed (for short initial input)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">context_size</span><span class="p">:</span>
+                <span class="n">context</span> <span class="o">=</span> <span class="p">[</span><span class="n">eos_token_id</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">context_size</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">context</span><span class="p">))</span> <span class="o">+</span> <span class="n">context</span>
+            <span class="c1"># Construct input batch (batch_size=1) and move to correct device</span>
+            <span class="n">context_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+            <span class="n">context_tensor</span> <span class="o">=</span> <span class="n">context_tensor</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># (1, context_size)</span>
+            <span class="c1"># Perform forward pass to get logits</span>
+            <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">context_tensor</span><span class="p">)</span>  <span class="c1"># (1, vocab_size)            </span>
             <span class="c1"># Apply temperature to logits</span>
-            <span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">/</span> <span class="n">temperature</span>
+            <span class="n">logits</span> <span class="o">=</span> <span class="n">logits</span> <span class="o">/</span> <span class="n">temperature</span>
             <span class="c1"># Top-k filtering (if specified)</span>
             <span class="k">if</span> <span class="n">top_k</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">top_k</span> <span class="o">&lt;</span> <span class="n">logits</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
                 <span class="n">topk_vals</span><span class="p">,</span> <span class="n">topk_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">topk</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
@@ -8616,17 +8678,26 @@ tensor([[14, 15, 16, 17, 18, 19],
                 <span class="n">probs</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
                 <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">multinomial</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="c1"># Stop generating tokens if the next token is the EOS token</span>
-            <span class="k">if</span> <span class="n">eos_token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">next_token</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="n">eos_token</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">eos_token_id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">next_token</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="n">eos_token_id</span><span class="p">:</span>
                     <span class="k">break</span>
             <span class="c1"># Add new token to the final list of tokens (i.e., token indices)</span>
             <span class="n">generated</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_token</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
-            <span class="c1"># Pass new token and last hidden state to model</span>
-            <span class="n">logits</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="bp">self</span><span class="p">(</span><span class="n">next_token</span><span class="p">,</span> <span class="n">hidden</span><span class="p">)</span>
         <span class="c1"># Return final list of all tokens (seed tokens + generation tokens)</span>
         <span class="k">return</span> <span class="n">generated</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=39f757c3-6a60-4f91-8daf-d609e3841dbf">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>The output of the <code>generate()</code> method is the sequence of input and generated token IDs. This sequence we can then give to the tokenizer class to decode the token IDs to proper words; cf. the auxiliary method <code>generate_response()</code> above.</p>
 </div>
 </div>
 </div>
@@ -8637,9 +8708,8 @@ tensor([[14, 15, 16, 17, 18, 19],
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Model-Training">Model Training<a class="anchor-link" href="#Model-Training">¶</a></h3><p>To train the model, we first need to instantiate the model itself, as well as the optimizer and the criterion (i.e., the loss function); just run the code cell below. Common optimizers for training RNN-based language models in PyTorch are largely the same as those used for other neural networks, but some are especially popular due to their stability and ability to handle sequential data.</p>
-<p>The most commonly used optimizer is <strong>Adam</strong>, because it adapts the learning rate for each parameter, handles noisy gradients well, and generally converges faster than classical methods. Variants such as <strong>AdamW</strong> (Adam with decoupled weight decay) are also widely used, especially when regularization is important. Another traditional but still relevant choice is <strong>SGD with momentum</strong>, which can work well for RNNs when carefully tuned, though it often requires more manual learning-rate scheduling. Less common but still used options include <strong>RMSprop</strong>, which historically performed well on recurrent networks because it smooths gradient magnitudes over time. Overall, <strong>Adam or AdamW</strong> are the standard default optimizers for training RNN-based language models in PyTorch.</p>
-<p>Regarding the criterion, keep in mind that the <code>nn.CrossEntropyLoss</code> works directly on logits because it internally applies <code>log_softmax</code> to convert them into log-probabilities before computing the negative log-likelihood. This design is both numerically stable and efficient: applying <code>softmax</code> and then taking a log would risk floating-point underflow, but combining them into a single <code>log_softmax</code> step avoids these issues. As a result, you can feed raw, unnormalized model outputs (logits) directly into <code>nn.CrossEntropyLoss</code>, and it will safely and correctly compute the cross-entropy without requiring you to apply softmax yourself.</p>
+<h3 id="Model-Training">Model Training<a class="anchor-link" href="#Model-Training">¶</a></h3><p>To train the model, we first need to instantiate the model itself, as well as the optimizer and the criterion (i.e., the loss function); just run the code cell below. For this example, we use the <strong>Adam</strong> optimizer, one of the most popular optimizers to train neural networks. Regarding the criterion, keep in mind that the <code>nn.CrossEntropyLoss</code> works directly on logits because it internally applies <code>log_softmax</code> to convert them into log-probabilities before computing the negative log-likelihood. This design is both numerically stable and efficient: applying <code>softmax</code> and then taking a log would risk floating-point underflow, but combining them into a single <code>log_softmax</code> step avoids these issues. As a result, you can feed raw, unnormalized model outputs (logits) directly into <code>nn.CrossEntropyLoss</code>, and it will safely and correctly compute the cross-entropy without requiring you to apply softmax yourself.</p>
+<p><strong>Important:</strong> Note that we have to use the same context size we used to build the data loader; the embedding size and hidden size we can choose more freely in the code cell below. So in the case you also want to play with the context size, you need to go back and change the parameters when creating the data loader.</p>
 </div>
 </div>
 </div>
@@ -8651,7 +8721,9 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LstmLM</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">vocab_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">embed_size</span><span class="p">,</span> <span class="n">hidden_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">512</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">MlpLM</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">context_size</span><span class="p">,</span> <span class="n">embed_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">DEVICE</span><span class="p">)</span>
 
 <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
 <span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
@@ -8669,9 +8741,10 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>LstmLM(
-  (embed): Embedding(50257, 256)
-  (lstm): LSTM(256, 512, num_layers=2, batch_first=True, dropout=0.2)
+<pre>MlpLM(
+  (embeddings): Embedding(50257, 100)
+  (fc1): Linear(in_features=1000, out_features=512, bias=True)
+  (fc2): Linear(in_features=512, out_features=512, bias=True)
   (out): Linear(in_features=512, out_features=50257, bias=True)
 )
 </pre>
@@ -8713,7 +8786,7 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>'the best part of the movie was greatness Brut towedmd cracksggle flourishing Ame Pulse broker Ame goodkernel States padtry incapable respective incapable Casino TransportDX referral attracted rideaker happiest Continent relocation UV crou Lavrov readablebasic goddGUI pedestrians incapable incapable rib Bugsetz charitiesWelcome ISS akin sum Teslaaker Taxes'</pre>
+<pre>'the best part of the movie was upfrontrecogn € Tara sucks harbor commissioner thee Mets inland Farms unatt clandestine Tara Lopez953isner monetary witnessingScience aversci Sendplant Ara brunch Tara manufacture awaitedrenchesish Tara Marvel awaited Notre illuminate 133 entranceitating nude&gt;&gt;Moreover revival reapp Dough milk codedTags laureate010'</pre>
 </div>
 </div>
 </div>
@@ -8728,7 +8801,7 @@ tensor([[14, 15, 16, 17, 18, 19],
 <p>As expected, beyond the seed words of the prompt, the output looks like a random garbled mess. However, we can use this output to compare it with one after even the first epoch.</p>
 <p>Finally, we are ready to train the model. In the code cell below, by default, we train the model for $5$ epochs. After each epoch we either print a single generated response based on the previous example prompt (demo mode) or generate multiple example responses and save them to a file (full training mode). In the full training mode, we also save a checkpoint after each epoch.</p>
 <p><strong>Important:</strong> While the code below saves a checkpoint after each epoch in full training mode, it does not directly resume training after a problem by automatically loading the last checkpoint; notice that the method <code>load_checkpoint()</code> is actually nowhere used in the notebook. This is to keep the code as simple and clean as possible. Also, even in full training mode — and assuming a decent consumer GPU — the training time is measured in very few hours instead of days.</p>
-<p>Also word of "warning": After only $5$ epochs, even when using all $100,000$ reviews in the full training mode, you are unlikely to see great results in terms of human-like responses. Properly training a neural network-based language model — using RNNs or Transformers — simply requires a lot of time and computational resources. We also work only with a small and domain-specific dataset that likely contains not (very) well-formed sentences. We also do not perform any kind of hyperparameter tuning in this notebook to find the best values for the embedding size, hidden size, number of layers, learning rate, etc. However, you should still be able to see how the generated responses improve over time, particularly compared to the example generated without any training (see above).</p>
+<p>Also word of "warning": After only $5$ epochs, even when using all $100,000$ reviews in the full training mode, you are unlikely to see great results in terms of human-like responses. Properly training a neural network-based language model simply requires a lot of time and computational resources. We also work only with a small and domain-specific dataset that likely contains not (very) well-formed sentences. We also do not perform any kind of hyperparameter tuning in this notebook to find the best values for the context size, embedding size, hidden size, number of layers, learning rate, etc. However, you should still be able to see how the generated responses improve over time, particularly compared to the example generated without any training (see above).</p>
 </div>
 </div>
 </div>
@@ -8745,7 +8818,7 @@ tensor([[14, 15, 16, 17, 18, 19],
 <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
     <span class="n">description</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">num_epochs</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">epoch_loss</span> <span class="o">=</span> <span class="n">train_epoch</span><span class="p">(</span><span class="n">loader</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
-    <span class="c1"># Generate some reponses to track progress</span>
+    <span class="c1"># Generate some responses to track progress</span>
     <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">"demo"</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">generate_response</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">eos_token</span><span class="o">=</span><span class="n">EOS_TOKEN_INDEX</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
@@ -8765,65 +8838,65 @@ tensor([[14, 15, 16, 17, 18, 19],
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>                                                                                                                                      </pre>
+<pre>                                                                                                                                                                                                                </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>the best part of the movie was of.. to a of. to is the and, in the and a. in,. in the to the and the and the to is the the in to it the,,.. of to to. to to the is and to
+<pre>the best part of the movie was, it was so much of all the time, and there is a bad one of the characters. it is a few and the movie.  that. in that is not a good movie. there were so bad i can't say, i don
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>                                                                                                                                      </pre>
+<pre>                                                                                                                                                                                                                </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>the best part of the movie was a film for the end of the first film and a movie for a time of the first of the film was not to get it, but the first movie of the end is just to do it, the characters was a few film's film. 
+<pre>the best part of the movie was in a film that are about it with a few minutes, the whole film. the film has been so a bad movie, the plot line, but this is the most part, and it was just so bad. i was looking for the film.
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>                                                                                                                                      </pre>
+<pre>                                                                                                                                                                                                                </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>the best part of the movie was a bit. this is no way on this film that the film was just so bad that i had a little fan of a movie and the film was so much to see it. there is a film with the movie for a great. i don't
+<pre>the best part of the movie was a lot of movie, and then they were all. in the end of a lot and i'm not sure if you have been seen and you can see the same movie, but the film was a bit of the story. 
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>                                                                                                                                      </pre>
+<pre>                                                                                                                                                                                                                </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>the best part of the movie was just as an interesting movie. i have been seen in my life. if you want for watching this. i'm not sure that you would have a good story. it would not be more better than the most annoying, but it is just plain predictable
+<pre>the best part of the movie was not worth it, and it is one or two are a little to have to be the most. ursas. there are some other reviews in this, it's all to be the case. but i can't get a good idea in the
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>                                                                                                                                      </pre>
+<pre>                                                                                                                                                                                                                </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>the best part of the movie was a lot of time and that the first two of it is so much i could be disappointed with the movie with this garbage. the film is the film's "i'm sure the "gob" is an excellent movie. there wasn't the film
+<pre>the best part of the movie was very funny, but i have to see a lot of film. it's just not the most, and that's it's a good thing, and the acting is so boring and a lot of a lot of good thing that has been more to the
 Done training 5 epochs.
 </pre>
 </div>
@@ -8838,6 +8911,19 @@ Done training 5 epochs.
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>In demo mode and after only a handful of epochs, you should be able to see the responses slowly become better, with short phrases becoming more and more coherent. However, getting the model to generate fluent and coherent response across the whole sequence requires a substantial amount of training and a sufficiently large and tuned model.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3de3e40e-9870-4c7a-b0b6-15fcb3408ee5">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Discussion">Discussion<a class="anchor-link" href="#Discussion">¶</a></h3><p>In principle, we could train our model for more epochs, using more and diverse data, or perform hyperparameter tuning to improve the results. However, keep in mind that the core issue is that an MLP has <strong>no built-in notion of sequence or memory</strong>. It treats its input as a fixed-size vector, meaning the model can only consider a limited context window (e.g., the last $n$ words/tokens). Natural language, however, often depends on relationships that span long distances — such as maintaining topic consistency, resolving references, or preserving grammatical structure across sentences. Capturing these long-range dependencies with an MLP would require either an impractically large input size or inefficient workarounds, neither of which scales well.</p>
+<p>In addition, MLPs do not share parameters across positions in a sequence. Each input position is effectively treated independently, which prevents the model from learning general patterns like "a verb often follows a subject" in a position-invariant way. Architectures such as recurrent networks or transformers explicitly address this by <strong>reusing parameters across time steps</strong> or modeling <strong>interactions between all tokens</strong>, making them far more suitable for language generation tasks. Another practical limitation is efficiency. For large vocabularies and longer contexts, the number of parameters in an MLP grows quickly, making training and inference expensive without delivering competitive performance. This is one reason why modern language models rely on architectures designed specifically for sequential data.</p>
+<p>That being said, MLP-based language models are far from useless. They can be quite effective in tasks where the goal is not to generate long, coherent text, but rather to <strong>score or rank alternatives given a limited context</strong>. For example, in <strong>spell checking</strong>, the model can evaluate which candidate word best fits a short surrounding context. Similarly, in <strong>speech recognition</strong>, an MLP can help determine which word sequence is more likely among several hypotheses produced by an acoustic model. In these cases, the limited context and lack of sequential structure are less problematic, and the simplicity of an MLP can even be an advantage.</p>
 </div>
 </div>
 </div>
@@ -8859,9 +8945,9 @@ Done training 5 epochs.
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h3><p>This notebook provided a clear, step-by-step walkthrough of how to train an RNN-based language model using a simple toy dataset. Rather than focusing on scale or performance, the goal was to build intuition: how to prepare sequential data, how to construct and train a recurrent model, and how to interpret its predictions. Each component, from batching to hidden-state handling, from logits to sampling, was introduced gradually so that the underlying mechanics of recurrent models become transparent rather than obscure. Along the way, we emphasized core concepts such as truncated backpropagation through time, the importance of detaching hidden states, and sequence continuation between batches. By walking through these steps in detail, the notebook demystified what is often treated as a black box, showing how an RNN maintains and updates internal state as it processes text.</p>
-<p>Although modern large language models are almost universally based on Transformers, the ideas covered here remain highly relevant. Transformers were designed in part to overcome precisely the limitations that RNNs face, such as their difficulty capturing long-range dependencies and challenges in parallelization. Understanding where RNNs struggle gives valuable insight into why attention mechanisms, residual connections, and parallel sequence processing became so central in Transformer architectures.</p>
-<p>At the same time, RNNs have by no means disappeared. They remain widely used in many practical domains, including speech processing, time-series forecasting, online prediction tasks, and lightweight edge models. By working through a small but complete RNN language model, this notebook highlights both the strengths and weaknesses of recurrent networks, providing intuition that helps explain the evolution of modern neural architectures — and ultimately deepens our understanding of how today's large models work under the hood.</p>
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><p>This notebook provided a complete, end-to-end tutorial on training a simple language model using a Multilayer Perceptron (MLP). Starting from a small toy dataset, it walked through every step of the pipeline: tokenization, building a vocabulary, converting text into sequences of token IDs, and constructing fixed-length context–target pairs suitable for supervised learning. Special attention was given to reshaping sequential data into a format compatible with MLPs, including splitting sequences into fixed-size contexts and organizing them into batches for efficient training.</p>
+<p>The core of the notebook focused on implementing an MLP-based language model in PyTorch. The model used an embedding layer to represent tokens, followed by two fully connected hidden layers and the output layer to predict the next word given a fixed context window. Along the way, the notebook demonstrated how design choices such as context size, embedding dimension, and hidden layer width affect both the model’s capacity and computational cost. Training procedures, loss computation, and basic evaluation were also covered, giving a clear picture of how such a model learns from data.</p>
+<p>Importantly, the notebook emphasized the limitations of MLPs for language modeling. Because the model relies on a fixed context size, it cannot naturally capture long-range dependencies in text, and scaling it quickly becomes inefficient. These constraints highlight why more advanced architectures such as recurrent or attention-based models are typically preferred in practice. The main takeaway is conceptual: the next-word prediction objective that underlies language modeling is not tied to a specific architecture. Even a simple MLP can be used to formulate and learn this task, as long as the data is prepared appropriately. The notebook therefore serves as an educational tool to demystify language modeling, showing that while modern models are more sophisticated, the fundamental learning problem remains the same.</p>
 </div>
 </div>
 </div>
