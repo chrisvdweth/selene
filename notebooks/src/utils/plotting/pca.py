@@ -35,7 +35,7 @@ def plot_data_2d(X, X_pca=None, pcs=None, x_label="$x_1$", y_label="$x_2$", size
 
 
 
-def plot_data_3d(X, pca=None, show_projection=False, show_mapping=False, show_pcs=0, pcs_scaling=0.5, x_label="X", y_label="Y", z_label="Z", point_size=50, alpha=0.5, elev=20, max_lim=2, azim=None, repeat=False):
+def plot_data_3d(X, pca=None, show_projection=False, show_mapping=False, show_pcs=0, pcs_scaling=0.5, x_label="$x_1$", y_label="$x_2$", z_label="$x_3$", point_size=50, alpha=0.5, elev=20, max_lim=2, azim=None, repeat=False):
 
     X_pca = None
     if pca is not None:
