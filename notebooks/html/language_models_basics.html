@@ -7767,7 +7767,7 @@ $$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 $$\large
-P(A,B,C) = P(A)\cdot P(B|A) \cdot P(C|A,B)
+P(A,B,C) = P(A)\cdot P(B\mid A) \cdot P(C\mid A,B)
 $$
 </div>
 </div>
@@ -7793,10 +7793,10 @@ $$
 $$
 \begin{align}
 \large P(w_1, w_2, \dots, w_{n}) = &amp;\ \large P(w_1)\ \cdot \\[0.25em]
-&amp;\ \large P(w_2\ |\ w_1)\ \cdot \\[0.25em]
-&amp;\ \large P(w_3\ |\ w_1, w_2)\ \cdot \\[0.25em]
+&amp;\ \large P(w_2\mid w_1)\ \cdot \\[0.25em]
+&amp;\ \large P(w_3\mid w_1, w_2)\ \cdot \\[0.25em]
 &amp;\ \dots \\[0.25em]
-&amp;\ \large P(w_n\ |\ w_1, w_2, w_3, \dots , w_{n-1})
+&amp;\ \large P(w_n\mid w_1, w_2, w_3, \dots , w_{n-1})
 \end{align}
 $$
 </div>
@@ -7809,7 +7809,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>where $P(w_i|w_1, w_2,\dots ,w_{i-1})$ is the conditional probability of seeing the word $w_i$ after the sequence of words $w_1, w_2,\dots ,w_{i-1}$. All common language models calculate (or estimate!) the conditional probabilities instead of the joint probabilities directly. For example, we can calculate the probability of the sentence <em>"I ate cereal last night"</em> by using the chain rules as:</p>
+<p>where $P(w_i\mid w_1, w_2,\dots ,w_{i-1})$ is the conditional probability of seeing the word $w_i$ after the sequence of words $w_1, w_2,\dots ,w_{i-1}$. All common language models calculate (or estimate!) the conditional probabilities instead of the joint probabilities directly. For example, we can calculate the probability of the sentence <em>"I ate cereal last night"</em> by using the chain rules as:</p>
 </div>
 </div>
 </div>
@@ -7823,10 +7823,10 @@ $$
 $$
 \begin{align}
 \large P(\text{"I ate cereal last night"}) = &amp;\ \large P(\text{"I"})\ \cdot \\[0.25em]
-&amp;\ \large P(\text{"ate" }|\text{ "I"})\ \cdot \\[0.25em]
-&amp;\ \large P(\text{"cereal" }|\text{ "I ate"})\ \cdot \\[0.25em]
-&amp;\ \large P(\text{"last "}|\text{ "I ate cereal"})\ \cdot \\[0.25em]
-&amp;\ \large P(\text{"night "}|\text{ "I ate cereal last"})
+&amp;\ \large P(\text{"ate"}\mid\text{"I"})\ \cdot \\[0.25em]
+&amp;\ \large P(\text{"cereal" }\mid\text{"I ate"})\ \cdot \\[0.25em]
+&amp;\ \large P(\text{"last"}\mid\text{"I ate cereal"})\ \cdot \\[0.25em]
+&amp;\ \large P(\text{"night"}\mid\text{"I ate cereal last"})
 \end{align}
 $$
 </div>
@@ -7839,7 +7839,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Of course, the question is now, how these conditional probabilities $P(w_i|w_1, w_2,\dots ,w_{i-1})$ are calculated, and different types of language models use different methods. To give some basic idea how we can calculate the conditional probabilities, we briefly introduce concept of a <strong>n-gram language model</strong>. However, note that we cover only the basic ideas here for illustration; a complete introduction to n-gram language models is the subject of a separate notebook.</p>
+<p>Of course, the question is now, how these conditional probabilities $P(w_i\mid w_1, w_2,\dots ,w_{i-1})$ are calculated, and different types of language models use different methods. To give some basic idea how we can calculate the conditional probabilities, we briefly introduce concept of a <strong>n-gram language model</strong>. However, note that we cover only the basic ideas here for illustration; a complete introduction to n-gram language models is the subject of a separate notebook.</p>
 <p><strong>Important note:</strong> The conditional probability of a word $w$ may only depend on the preceding words. Some language models — and we see an example later on — implement a <strong>bidirectional language model</strong>, where the probability of a word depends on both the preceding and the following words. Of course, these types of language models cannot be used to generate text word by word. Such language models are typically used to generate contextualized word embedding vectors.</p>
 </div>
 </div>
