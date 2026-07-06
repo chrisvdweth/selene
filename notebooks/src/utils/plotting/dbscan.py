@@ -19,10 +19,10 @@ def plot_labels(X, labels=None):
     colors = ['red', 'green', 'orange', 'purple', 'teal', 'olive', 'magenta', 'maroon', 'blue', 'cyan']
     color_cycle = cycle(colors)
     
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(6, 5))
     plt.axis('equal')
-    ax.set_xlabel("X1", fontsize=18)
-    ax.set_ylabel("X2", fontsize=18)
+    ax.set_xlabel("$x_1$", fontsize=18)
+    ax.set_ylabel("$x_2$", fontsize=18)
     ax.tick_params(axis='x', labelsize=14)
     ax.tick_params(axis='y', labelsize=14)
 
@@ -47,10 +47,10 @@ def plot_label_history(X, label_history=None, interval=500, repeat=False):
 
     colors = ['red', 'green', 'orange', 'purple', 'teal', 'olive', 'magenta', 'maroon', 'blue', 'cyan']
     
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(6, 5))
     plt.axis('equal')
-    ax.set_xlabel("X1", fontsize=18)
-    ax.set_ylabel("X2", fontsize=18)
+    ax.set_xlabel("$x_1$", fontsize=18)
+    ax.set_ylabel("$x_2$", fontsize=18)
     ax.tick_params(axis='x', labelsize=14)
     ax.tick_params(axis='y', labelsize=14)
 
@@ -79,10 +79,10 @@ def plot_label_history(X, label_history=None, interval=500, repeat=False):
 
 def plot_types(X, types=None):
 
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(6, 5))
     plt.axis('equal')
-    ax.set_xlabel("X1", fontsize=18)
-    ax.set_ylabel("X2", fontsize=18)
+    ax.set_xlabel("$x_1$", fontsize=18)
+    ax.set_ylabel("$x_2$", fontsize=18)
     ax.tick_params(axis='x', labelsize=14)
     ax.tick_params(axis='y', labelsize=14)
 
@@ -107,10 +107,10 @@ def plot_types(X, types=None):
 
 def plot_type_history(X, type_history=None, interval=500, repeat=False):
 
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(6, 5))
     plt.axis('equal')
-    ax.set_xlabel("X1", fontsize=18)
-    ax.set_ylabel("X2", fontsize=18)
+    ax.set_xlabel("$x_1$", fontsize=18)
+    ax.set_ylabel("$x_2$", fontsize=18)
     ax.tick_params(axis='x', labelsize=14)
     ax.tick_params(axis='y', labelsize=14)
 
@@ -158,7 +158,7 @@ def plot_k_distance(X, k=4):
     # Column 0 is distance to itself, so column k is the k-th neighbor
     k_distances = np.sort(distances[:, k])
 
-    plt.figure(figsize=(8, 5))
+    plt.figure(figsize=(6, 5))
     plt.gca().tick_params(axis='x', labelsize=14)
     plt.gca().tick_params(axis='y', labelsize=14)
     plt.plot(k_distances, lw=3, color="blue")
