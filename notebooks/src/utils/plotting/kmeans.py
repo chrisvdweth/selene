@@ -16,8 +16,8 @@ def plot_data(X, labels=None, centroids=None, sse=None, show_links=True, repeat=
     
     fig, ax = plt.subplots(figsize=(6, 5))
     plt.axis('equal')
-    ax.set_xlabel("x", fontsize=18)
-    ax.set_ylabel("y", fontsize=18)
+    ax.set_xlabel("$x_1$", fontsize=18)
+    ax.set_ylabel("$x_2$", fontsize=18)
     ax.tick_params(axis='x', labelsize=14)
     ax.tick_params(axis='y', labelsize=14)
     
@@ -71,7 +71,7 @@ def plot_data(X, labels=None, centroids=None, sse=None, show_links=True, repeat=
 
 
 def plot_sse_history(sse_values):
-    plt.figure()
+    plt.figure(figsize=(6, 5))
     x = np.arange(len(sse_values))
     x = x+1
     x = x/2
@@ -93,7 +93,7 @@ def plot_sse_history(sse_values):
 
 
 def plot_elbow(sse_data):
-    plt.figure()
+    plt.figure(figsize=(6, 5))
     plt.xlabel('K', fontsize=16)
     plt.ylabel('SSE', fontsize=18)
     plt.tick_params(axis="x", labelsize=12)
