@@ -1,0 +1,32 @@
+[project]
+name = "selene"
+version = "0.1.0"
+description = "Notebook workspace for SELENE learning materials"
+requires-python = ">=3.14"
+dependencies = [
+  "datasets",
+  "efficient-apriori",
+  "faiss-cpu",
+  "ipykernel",
+  "ipython",
+  "langchain-huggingface",
+  "langchain-ollama",
+  "matplotlib",
+  "numpy",
+  "ollama",
+  "openai",
+  "pandas",
+  "peft",
+  "pyyaml",
+  "regex",
+  "requests",
+  "scikit-learn",
+  "sentence-transformers",
+  "spacy",
+  "torch",
+  "tqdm",
+  "transformers",
+]
+
+[tool.uv]
+package = false
