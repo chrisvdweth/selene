@@ -8,6 +8,13 @@ from IPython.display import HTML
 from itertools import cycle
 
 
+def _animation_html(anim):
+    try:
+        return HTML(anim.to_html5_video())
+    except RuntimeError:
+        return HTML(anim.to_jshtml())
+
+
 
 def plot_data(X, labels=None, centroids=None, sse=None, show_links=True, repeat=False):
 
@@ -63,7 +70,7 @@ def plot_data(X, labels=None, centroids=None, sse=None, show_links=True, repeat=
         anim = animation.FuncAnimation(fig, update, frames=len(labels), fargs=(labels, centroids, sse), interval=1000, repeat=repeat)
         #plt.tight_layout()
         plt.close(fig)
-        return HTML(anim.to_html5_video())
+        return _animation_html(anim)
     else:
         update(-1, labels, centroids, sse)
         plt.tight_layout()

@@ -6,7 +6,7 @@ from collections import Counter
 class Vocabulary:
 
     def __init__(self, tokens, special_tokens: list=[], token_counts=None):
-        self.index2token = special_tokens + tokens
+        self.index2token = list(special_tokens) + list(tokens)
         self.token2index = { token:index for index, token in enumerate(self.index2token) }
         if token_counts is not None:
             self.token_counts = np.array([token_counts.get(token, 0) for token in self.index2token])

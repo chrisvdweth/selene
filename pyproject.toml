@@ -4,29 +4,48 @@ version = "0.1.0"
 description = "Notebook workspace for SELENE learning materials"
 requires-python = ">=3.14"
 dependencies = [
+  "beautifulsoup4>=4.15.0",
   "datasets",
   "efficient-apriori",
+  "en-core-web-sm",
   "faiss-cpu",
+  "html2text>=2025.4.15",
   "ipykernel",
   "ipython",
   "langchain-huggingface",
   "langchain-ollama",
+  "markitdown[docx,pdf]>=0.1.7",
   "matplotlib",
+  "nbclient>=0.11.0",
+  "nbformat>=5.10.4",
+  "nltk<3.10",
   "numpy",
   "ollama",
   "openai",
   "pandas",
   "peft",
+  "pillow==12.3.0",
   "pyyaml",
+  "readability-lxml>=0.8.4.1",
   "regex",
   "requests",
   "scikit-learn",
+  "scipy>=1.18.0",
+  "seaborn>=0.13.2",
   "sentence-transformers",
+  "simhash>=2.1.2",
   "spacy",
+  "statsmodels>=0.14.6",
   "torch",
   "tqdm",
   "transformers",
+  "unidecode>=1.4.0",
+  "wikipedia>=1.4.0",
+  "wordcloud>=1.9.6",
 ]
 
 [tool.uv]
 package = false
+
+[tool.uv.sources]
+en-core-web-sm = { url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl" }

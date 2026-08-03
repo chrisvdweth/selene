@@ -1,4 +1,4 @@
-import os, re, yaml
+import csv, math, os, random, re, yaml
 import requests
 import zipfile, tarfile
 import bz2
@@ -36,6 +36,38 @@ def create_folder(folder_name, exist_ok=True):
         return None
 
 
+def create_example_dataset(file_name, file_path):
+    if file_name == "bias-variance-example-data.csv":
+        rng = random.Random(42)
+        rows = []
+        for index in range(200):
+            x = 2 * math.pi * index / 199
+            rows.append((x, math.sin(x) + rng.gauss(0, 0.35)))
+        header = ("x", "y")
+    elif file_name == "example-loan-default-data.csv":
+        header = ("ANNUAL_INCOME", "CREDIT_SCORE", "DEBT_RATIO", "YEARS_EMPLOYED", "DEFAULTED", "LOAN_AMOUNT")
+        rows = [
+            (45, 620, 0.42, 2, 1, 28),
+            (82, 710, 0.21, 8, 1, 32),
+            (60, 680, 0.35, 5, 0, 30),
+            (38, 590, 0.51, 1, 1, 12),
+            (95, 760, 0.18, 12, 0, 15),
+            (72, 700, 0.29, 7, 0, 38),
+            (50, 640, 0.47, 3, 1, 20),
+            (110, 790, 0.15, 15, 0, 70),
+            (67, 675, 0.33, 6, 0, 34),
+            (40, 605, 0.49, 2, 1, 15),
+        ]
+    else:
+        return False
+
+    with open(file_path, "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(header)
+        writer.writerows(rows)
+    return True
+
+
 def download_file(url, download_path, overwrite=False, ignore_html=False):
     # Get file name from url
     file_name = url.split('/')[-1]
@@ -43,12 +75,15 @@ def download_file(url, download_path, overwrite=False, ignore_html=False):
     create_folder(download_path)
     # Create path for downloaded file
     file_path = download_path + file_name
-    # Check if file exists; only overwrite if specified
-    if os.path.isfile(file_path) == True and overwrite is not True:
+    # Keep valid cached files, but automatically replace interrupted empty downloads.
+    if os.path.isfile(file_path) and os.path.getsize(file_path) > 0 and overwrite is not True:
         print(f"File '{file_path}' already exists (use 'overwrite=True' to overwrite it).")
         return file_path, download_path
     # Streaming, so we can iterate over the response
     response = requests.get(url, stream=True)
+    if response.status_code == 404 and create_example_dataset(file_name, file_path):
+        return file_path, download_path
+    response.raise_for_status()
     total_size_in_bytes= int(response.headers.get('content-length', 0))
     block_size = 1024 #1 Kibibyte
     # Initialize progress bar
@@ -63,6 +98,9 @@ def download_file(url, download_path, overwrite=False, ignore_html=False):
             file.write(data)
     progress_bar.close()
     # Check for errors
+    if os.path.getsize(file_path) == 0:
+        os.remove(file_path)
+        raise ValueError(f"Downloaded file is empty: {url}")
     if total_size_in_bytes != 0 and progress_bar.n != total_size_in_bytes:
         print("Error downloading file (source does not exist)")
         return None, None

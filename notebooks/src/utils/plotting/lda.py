@@ -5,6 +5,13 @@ import matplotlib.colors as mcolors
 from IPython.display import HTML
 
 
+def _animation_html(anim):
+    try:
+        return HTML(anim.to_html5_video())
+    except RuntimeError:
+        return HTML(anim.to_jshtml())
+
+
 def plot_data_2d(X, y, show_means=False, x_label="$x_1$", y_label="$x_2$", s=50, alpha=0.3, ylim=None):
     classes = np.unique(y)
     colors = list(mcolors.BASE_COLORS.keys())
@@ -64,7 +71,7 @@ def plot_data_3d(X, y, show_means=False, x_label="$x_1$", y_label="$x_2$", z_lab
         anim = animation.FuncAnimation(fig, update, frames=np.arange(0, 360, 2), interval=50, repeat=repeat)
         plt.tight_layout()
         plt.close(fig)
-        return HTML(anim.to_html5_video())
+        return _animation_html(anim)
     else:
         update(azim)
         plt.tight_layout()            

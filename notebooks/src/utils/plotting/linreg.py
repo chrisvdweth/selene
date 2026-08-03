@@ -113,7 +113,7 @@ def plot_huber_loss(deltas=[3], show_mae=False, show_mse=False):
         y_mse[mae_range] = 0
         #print(y_mae)
         y = y_mse + y_mae
-        plt.plot(x, y, linewidth=3, label=f"$\delta$={d}");
+        plt.plot(x, y, linewidth=3, label=f"$\\delta$={d}");
     if show_mae is True:
         plt.plot(x, np.abs(x), linewidth=3, label="MAE", linestyle='--');
     if show_mse is True:

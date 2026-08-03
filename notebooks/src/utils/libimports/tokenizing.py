@@ -7,4 +7,8 @@ from nltk import word_tokenize # Simplfied notation; it's a wrapper for the Tree
 from transformers import AutoTokenizer
 
 import spacy
-nlp = spacy.load('en_core_web_sm')
+try:
+	nlp = spacy.load('en_core_web_sm')
+except OSError:
+	# Fallback keeps notebooks runnable when the model package is unavailable.
+	nlp = spacy.blank('en')

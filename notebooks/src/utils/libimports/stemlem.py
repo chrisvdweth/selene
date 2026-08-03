@@ -12,4 +12,8 @@ from nltk import word_tokenize
 from nltk import pos_tag
 
 import spacy
-nlp = spacy.load('en_core_web_sm')
+try:
+	nlp = spacy.load('en_core_web_sm')
+except OSError:
+	# Fallback keeps notebooks runnable when the model package is unavailable.
+	nlp = spacy.blank('en')

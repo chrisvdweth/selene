@@ -4,6 +4,13 @@ import matplotlib.animation as animation
 from IPython.display import HTML
 
 
+def _animation_html(anim):
+    try:
+        return HTML(anim.to_html5_video())
+    except RuntimeError:
+        return HTML(anim.to_jshtml())
+
+
 
 def plot_function(f):
     xs = np.linspace(-1, 5, 400)
@@ -56,7 +63,7 @@ def animate_gradient(f, df, x_start=0, x_end=1, step=0.5, repeat=False, show_ste
     if show_step is None:
         anim = animation.FuncAnimation(fig, update, frames=len(x_vals), interval=500, repeat=repeat)
         plt.close(fig)
-        return HTML(anim.to_html5_video())
+        return _animation_html(anim)
     else:
         if show_step > len(xs):
             print("[Error] Valuer of show_step is too large.")
@@ -95,7 +102,7 @@ def animate_gradient_descent(f, df, x0=0, eta=0.1, n_steps=20, repeat=False, sho
     ax.tick_params(axis='y', labelsize=14)
     ax.plot(xs, ys, label="f(x)", c="blue", linewidth=3, alpha=0.25)
     
-    ax.set_title(f"Gradient Descent ($\eta$ = {eta})")
+    ax.set_title(rf"Gradient Descent ($\eta$ = {eta})")
     ax.grid(True)
     ax.legend(loc="lower left", fontsize=16)
     
@@ -110,7 +117,7 @@ def animate_gradient_descent(f, df, x0=0, eta=0.1, n_steps=20, repeat=False, sho
     if show_step is None:
         anim = animation.FuncAnimation(fig, update, frames=len(x_vals), interval=500, repeat=repeat)
         plt.close(fig)
-        return HTML(anim.to_html5_video())
+        return _animation_html(anim)
     else:
         if show_step > n_steps:
             print("[Error] n_steps must be larger than show_step.")
@@ -136,7 +143,7 @@ def animate_gradient_descent_nonconvex(f, df, x0=0, eta=0.1, n_steps=20, repeat=
     ax.tick_params(axis='y', labelsize=14)
     ax.plot(xs, ys, label="f(x)", c="blue", linewidth=3, alpha=0.25)
     
-    ax.set_title(f"Gradient Descent ($\eta$ = {eta})")
+    ax.set_title(rf"Gradient Descent ($\eta$ = {eta})")
     ax.grid(True)
     ax.legend(loc="lower left", fontsize=16)
     
@@ -151,7 +158,7 @@ def animate_gradient_descent_nonconvex(f, df, x0=0, eta=0.1, n_steps=20, repeat=
     if show_step is None:
         anim = animation.FuncAnimation(fig, update, frames=len(x_vals), interval=500, repeat=repeat)
         plt.close(fig)
-        return HTML(anim.to_html5_video())
+        return _animation_html(anim)
     else:
         if show_step > n_steps:
             print("[Error] n_steps must be larger than show_step.")
@@ -245,7 +252,7 @@ def plot_gradient_descent_2d(f, xs, eta=0.01, repeat=False, show_step=None, titl
     if show_step is None:
         anim = animation.FuncAnimation(fig, update, frames=len(xs), interval=100, repeat=False)
         plt.close()
-        return HTML(anim.to_html5_video())
+        return _animation_html(anim)
     else:
         if show_step > n_steps:
             print("[Error] n_steps must be larger than show_step.")

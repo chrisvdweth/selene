@@ -13,6 +13,13 @@ POINT_TYPE_BORDER = 2
 POINT_TYPE_NOISE  = 3
 
 
+def _animation_html(anim):
+    try:
+        return HTML(anim.to_html5_video())
+    except RuntimeError:
+        return HTML(anim.to_jshtml())
+
+
 
 def plot_labels(X, labels=None):
 
@@ -73,7 +80,7 @@ def plot_label_history(X, label_history=None, interval=500, repeat=False):
 
     anim = animation.FuncAnimation(fig, update, frames=len(label_history), interval=interval, repeat=repeat)
     plt.close(fig)
-    return HTML(anim.to_html5_video())
+    return _animation_html(anim)
 
 
 
@@ -135,7 +142,7 @@ def plot_type_history(X, type_history=None, interval=500, repeat=False):
 
     anim = animation.FuncAnimation(fig, update, frames=len(type_history), interval=interval, repeat=repeat)
     plt.close(fig)
-    return HTML(anim.to_html5_video())
+    return _animation_html(anim)
 
 
 
