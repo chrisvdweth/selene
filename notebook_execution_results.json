@@ -1,0 +1,529 @@
+{
+  "generated_at": "2026-08-03T18:31:07.466291+00:00",
+  "python_environment": ".venv via uv",
+  "notebook_count": 97,
+  "passed": 95,
+  "failed": 2,
+  "duration_seconds": 2157.734,
+  "current_validation": {
+    "generated_at": "2026-08-03T18:40:40Z",
+    "passed": 97,
+    "failed": 0,
+    "basis": "Original 95 passing sweep results plus successful targeted reruns of notebooks 89 and 92 after repairs"
+  },
+  "targeted_reruns": [
+    {
+      "notebook": "notebooks/89-llm_local_inference_pretrained_models.ipynb",
+      "status": "pass",
+      "repair": "Use explicit device placement and a device-appropriate dtype for stable model loading"
+    },
+    {
+      "notebook": "notebooks/92-llm_model_finetuning_lora_hf_kidsqa.ipynb",
+      "status": "pass",
+      "repair": "Bound default demo mode to 100 examples and one epoch while preserving the original full mode"
+    }
+  ],
+  "results": [
+    {
+      "notebook": "notebooks/01-numpy_basic_tutorial.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.005
+    },
+    {
+      "notebook": "notebooks/02-linear_regression_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 3.459
+    },
+    {
+      "notebook": "notebooks/03-linear_regression_math.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.549
+    },
+    {
+      "notebook": "notebooks/04-linear_regression_assumptions_caveats.ipynb",
+      "status": "pass",
+      "duration_seconds": 3.089
+    },
+    {
+      "notebook": "notebooks/05-logistic_regression_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 6.826
+    },
+    {
+      "notebook": "notebooks/06-logistic_regression_math.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.091
+    },
+    {
+      "notebook": "notebooks/07-bias_variance_ml_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.31
+    },
+    {
+      "notebook": "notebooks/08-bias_variance_ml_decomposition.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.736
+    },
+    {
+      "notebook": "notebooks/09-data_normalization_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.759
+    },
+    {
+      "notebook": "notebooks/10-curse_of_dimensionality.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.767
+    },
+    {
+      "notebook": "notebooks/11-bayes_rule_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.779
+    },
+    {
+      "notebook": "notebooks/12-maximum_likelihood_estimation_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.688
+    },
+    {
+      "notebook": "notebooks/13-multinomial_naive_bayes_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.626
+    },
+    {
+      "notebook": "notebooks/14-expectation_maximization_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.696
+    },
+    {
+      "notebook": "notebooks/15-decision_trees_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.151
+    },
+    {
+      "notebook": "notebooks/16-decision_trees_cart.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.752
+    },
+    {
+      "notebook": "notebooks/17-decision_trees_from_scratch.ipynb",
+      "status": "pass",
+      "duration_seconds": 3.97
+    },
+    {
+      "notebook": "notebooks/18-random_forests_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.949
+    },
+    {
+      "notebook": "notebooks/19-boosting_machine_learning_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.827
+    },
+    {
+      "notebook": "notebooks/20-support_vector_machines_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.769
+    },
+    {
+      "notebook": "notebooks/21-linear_discriminant_analysis_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 8.863
+    },
+    {
+      "notebook": "notebooks/22-clustering_kmeans_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 9.354
+    },
+    {
+      "notebook": "notebooks/23-clustering_agnes_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 3.733
+    },
+    {
+      "notebook": "notebooks/24-clustering_dbscan_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 27.523
+    },
+    {
+      "notebook": "notebooks/25-principal_component_analysis_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 42.474
+    },
+    {
+      "notebook": "notebooks/26-dimensionality_reduction_techniques_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 13.448
+    },
+    {
+      "notebook": "notebooks/27-association_rule_mining_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.645
+    },
+    {
+      "notebook": "notebooks/28-apriori_algorithm_arm.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.764
+    },
+    {
+      "notebook": "notebooks/29-time_series_analysis_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.736
+    },
+    {
+      "notebook": "notebooks/30-gradient_descent_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 5.805
+    },
+    {
+      "notebook": "notebooks/31-gradient_descent_momentum.ipynb",
+      "status": "pass",
+      "duration_seconds": 19.198
+    },
+    {
+      "notebook": "notebooks/32-adagrad_optimizer.ipynb",
+      "status": "pass",
+      "duration_seconds": 8.692
+    },
+    {
+      "notebook": "notebooks/33-rmsprop_optimizer.ipynb",
+      "status": "pass",
+      "duration_seconds": 11.831
+    },
+    {
+      "notebook": "notebooks/34-adam_optimizer.ipynb",
+      "status": "pass",
+      "duration_seconds": 11.79
+    },
+    {
+      "notebook": "notebooks/35-perceptron_learning_algorithm.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.833
+    },
+    {
+      "notebook": "notebooks/36-perceptron_xor_limitations.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.77
+    },
+    {
+      "notebook": "notebooks/37-artificial_neural_networks_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.818
+    },
+    {
+      "notebook": "notebooks/38-ann_from_scratch_numpy_only.ipynb",
+      "status": "pass",
+      "duration_seconds": 8.297
+    },
+    {
+      "notebook": "notebooks/39-nn_linear_layer.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.803
+    },
+    {
+      "notebook": "notebooks/40-nn_activation_functions_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 3.387
+    },
+    {
+      "notebook": "notebooks/41-nn_softmax.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.742
+    },
+    {
+      "notebook": "notebooks/42-backpropagation_basic_examples.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.762
+    },
+    {
+      "notebook": "notebooks/43-backpropagation_generalization.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.8
+    },
+    {
+      "notebook": "notebooks/44-nn_dropout.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.779
+    },
+    {
+      "notebook": "notebooks/45-nn_layer_normalization.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.767
+    },
+    {
+      "notebook": "notebooks/46-nn_residual_connections.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.765
+    },
+    {
+      "notebook": "notebooks/47-handwritten_digit_recognition_ann.ipynb",
+      "status": "pass",
+      "duration_seconds": 26.091
+    },
+    {
+      "notebook": "notebooks/48-neocognitron_cnn_history.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.783
+    },
+    {
+      "notebook": "notebooks/49-restricted_boltzmann_machines.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.862
+    },
+    {
+      "notebook": "notebooks/50-imagenet_alexnet_deep_learning_breakthrough.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.351
+    },
+    {
+      "notebook": "notebooks/51-vanishing_exploding_gradients.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.784
+    },
+    {
+      "notebook": "notebooks/52-td_gammon_temporal_difference_learning.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.835
+    },
+    {
+      "notebook": "notebooks/53-deep_q_learning_atari.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.392
+    },
+    {
+      "notebook": "notebooks/54-alphago_policy_value_mcts.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.738
+    },
+    {
+      "notebook": "notebooks/55-recurrent_neural_networks_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.386
+    },
+    {
+      "notebook": "notebooks/56-backpropagation_through_time_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.758
+    },
+    {
+      "notebook": "notebooks/57-lstm_from_scratch.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.699
+    },
+    {
+      "notebook": "notebooks/58-recurrent_neural_networks_language_model.ipynb",
+      "status": "pass",
+      "duration_seconds": 38.106
+    },
+    {
+      "notebook": "notebooks/59-text_classification_rnn.ipynb",
+      "status": "pass",
+      "duration_seconds": 50.417
+    },
+    {
+      "notebook": "notebooks/60-batch_processing_sequence_tasks.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.56
+    },
+    {
+      "notebook": "notebooks/61-masking_sequence_models.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.44
+    },
+    {
+      "notebook": "notebooks/62-text_normalization_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.781
+    },
+    {
+      "notebook": "notebooks/63-text_tokenization_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 5.515
+    },
+    {
+      "notebook": "notebooks/64-word_tokenizer_implementation.ipynb",
+      "status": "pass",
+      "duration_seconds": 5.032
+    },
+    {
+      "notebook": "notebooks/65-stemming_lemmatization_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 4.956
+    },
+    {
+      "notebook": "notebooks/66-porter_stemmer.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.754
+    },
+    {
+      "notebook": "notebooks/67-part_of_speech_tagging_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 27.587
+    },
+    {
+      "notebook": "notebooks/68-text_token_indexing.ipynb",
+      "status": "pass",
+      "duration_seconds": 44.229
+    },
+    {
+      "notebook": "notebooks/69-byte_pair_encoding_tokenization.ipynb",
+      "status": "pass",
+      "duration_seconds": 66.733
+    },
+    {
+      "notebook": "notebooks/70-wordpiece_tokenization.ipynb",
+      "status": "pass",
+      "duration_seconds": 33.211
+    },
+    {
+      "notebook": "notebooks/71-vector_space_model_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.378
+    },
+    {
+      "notebook": "notebooks/72-word_text_embeddings_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.737
+    },
+    {
+      "notebook": "notebooks/73-word2vec_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.49
+    },
+    {
+      "notebook": "notebooks/74-word2vec_training_from_scratch.ipynb",
+      "status": "pass",
+      "duration_seconds": 551.111
+    },
+    {
+      "notebook": "notebooks/75-ngram_language_models.ipynb",
+      "status": "pass",
+      "duration_seconds": 45.221
+    },
+    {
+      "notebook": "notebooks/76-language_models_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.688
+    },
+    {
+      "notebook": "notebooks/77-mlp_language_model.ipynb",
+      "status": "pass",
+      "duration_seconds": 67.196
+    },
+    {
+      "notebook": "notebooks/78-attention_mha_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.449
+    },
+    {
+      "notebook": "notebooks/79-positional_encodings_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.246
+    },
+    {
+      "notebook": "notebooks/80-positional_encodings_original_transformer.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.705
+    },
+    {
+      "notebook": "notebooks/81-positional_encodings_rope_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 2.704
+    },
+    {
+      "notebook": "notebooks/82-transformers_basic_architecture.ipynb",
+      "status": "pass",
+      "duration_seconds": 3.012
+    },
+    {
+      "notebook": "notebooks/83-machine_translation_transformers.ipynb",
+      "status": "pass",
+      "duration_seconds": 186.273
+    },
+    {
+      "notebook": "notebooks/84-mixture_of_experts_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.241
+    },
+    {
+      "notebook": "notebooks/85-llm_training_data_preparation_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 8.303
+    },
+    {
+      "notebook": "notebooks/86-llm_training_data_preparation_batching.ipynb",
+      "status": "pass",
+      "duration_seconds": 4.659
+    },
+    {
+      "notebook": "notebooks/87-llm_building_gptstyle_llm_from_scratch.ipynb",
+      "status": "pass",
+      "duration_seconds": 38.505
+    },
+    {
+      "notebook": "notebooks/88-gpt3_in_context_learning.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.699
+    },
+    {
+      "notebook": "notebooks/89-llm_local_inference_pretrained_models.ipynb",
+      "status": "fail",
+      "exception_type": "DeadKernelError",
+      "exception": "Kernel died",
+      "failing_cell": {
+        "index": 46,
+        "id": "96a162ee-8d2c-4a29-a3b6-e195f6cf4c06",
+        "source": "# Load the pretrained model"
+      },
+      "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 39, in <module>\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/jupyter_core/utils/__init__.py\", line 165, in wrapped\n    return loop.run_until_complete(inner)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py\", line 719, in run_until_complete\n    return future.result()\n           ~~~~~~~~~~~~~^^\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/nbclient/client.py\", line 709, in async_execute\n    await self.async_execute_cell(\n        cell, index, execution_count=self.code_cells_executed + 1\n    )\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/nbclient/client.py\", line 1009, in async_execute_cell\n    raise DeadKernelError(\"Kernel died\") from None\nnbclient.exceptions.DeadKernelError: Kernel died\n",
+      "duration_seconds": 4.199
+    },
+    {
+      "notebook": "notebooks/90-llm_openai_api_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 8.983
+    },
+    {
+      "notebook": "notebooks/91-llm_model_fine_tuning_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.647
+    },
+    {
+      "notebook": "notebooks/92-llm_model_finetuning_lora_hf_kidsqa.ipynb",
+      "status": "fail",
+      "exception_type": "CellTimeoutError",
+      "exception": "A cell timed out while it was being executed, after 600 seconds.\nThe message was: Cell execution timed out.\nHere is a preview of the cell contents:\n-------------------\ntrainer.train()\n-------------------\n",
+      "failing_cell": {
+        "index": 70,
+        "id": "d0ff91e3-8ffa-47b6-9cad-019a72679911",
+        "source": "trainer.train()"
+      },
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/nbclient/client.py\", line 782, in _async_poll_for_reply\n    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/jupyter_core/utils/__init__.py\", line 214, in ensure_async\n    result = await obj\n             ^^^^^^^^^\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/jupyter_client/channels.py\", line 330, in get_msg\n    raise Empty\n_queue.Empty\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 39, in <module>\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/jupyter_core/utils/__init__.py\", line 165, in wrapped\n    return loop.run_until_complete(inner)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py\", line 719, in run_until_complete\n    return future.result()\n           ~~~~~~~~~~~~~^^\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/nbclient/client.py\", line 709, in async_execute\n    await self.async_execute_cell(\n        cell, index, execution_count=self.code_cells_executed + 1\n    )\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/nbclient/client.py\", line 1005, in async_execute_cell\n    exec_reply = await self.task_poll_for_reply\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/nbclient/client.py\", line 806, in _async_poll_for_reply\n    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)\n                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/pavanmudigonda/code/selene/.venv/lib/python3.14/site-packages/nbclient/client.py\", line 856, in _async_handle_timeout\n    raise CellTimeoutError.error_from_timeout_and_cell(\n        \"Cell execution timed out\", timeout, cell\n    )\nnbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 600 seconds.\nThe message was: Cell execution timed out.\nHere is a preview of the cell contents:\n-------------------\ntrainer.train()\n-------------------\n\n",
+      "duration_seconds": 612.278
+    },
+    {
+      "notebook": "notebooks/93-llm_resource_efficiency_overview.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.726
+    },
+    {
+      "notebook": "notebooks/94-knowledge_distillation_logit_distillation.ipynb",
+      "status": "pass",
+      "duration_seconds": 50.371
+    },
+    {
+      "notebook": "notebooks/95-retrieval_augmented_generation_rag_basics.ipynb",
+      "status": "pass",
+      "duration_seconds": 0.77
+    },
+    {
+      "notebook": "notebooks/96-retrieval_augmented_generation_rag_basic_example.ipynb",
+      "status": "pass",
+      "duration_seconds": 13.763
+    },
+    {
+      "notebook": "notebooks/97-clip_contrastive_language_image_pretraining.ipynb",
+      "status": "pass",
+      "duration_seconds": 1.194
+    }
+  ]
+}
