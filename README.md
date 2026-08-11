@@ -2,6 +2,7 @@
 
 ## Announcements
 
+* (10/08/2026) A first prototype of the [SELENE web interface](https://chrisvdw.net/selene/) is now live.
 * (09/02/2026) Making SELENE more barrier-free: All notebooks are now available as static HTML pages; you can find the links to them on this [overview page](https://chrisvdweth.github.io/selene/).
 * (20/12/2025) The new folder notebooks/standalone/ contains standalone versions of the original notebooks with all the code required to run each notebook "as is" on Cloud platforms such as Google Colab.
 * (01/12/2025) A small milestone: We have uploaded our 50th notebook!
