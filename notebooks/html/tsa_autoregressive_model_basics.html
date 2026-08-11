@@ -7563,8 +7563,8 @@ video {max-width: 100% !important; height: auto !important; }
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre>100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 6.33k/6.33k [00:00&lt;00:00, 5.78MiB/s]
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>File 'data/datasets/tabular/timeseries/tsa-example-daily-electric-load.csv' already exists (use 'overwrite=True' to overwrite it).
 </pre>
 </div>
 </div>
@@ -10135,7 +10135,7 @@ Dep. Variable:                      y   No. Observations:                  334
 Model:                     AutoReg(3)   Log Likelihood                -252.532
 Method:               Conditional MLE   S.D. of innovations              0.519
 Date:                Tue, 11 Aug 2026   AIC                            515.064
-Time:                        15:40:57   BIC                            534.074
+Time:                        17:15:19   BIC                            534.074
 Sample:                             3   HQIC                           522.646
                                   334                                         
 ==============================================================================
@@ -10431,7 +10431,7 @@ AR.3           -1.5436           +2.7016j            3.1115            0.3326
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><p>Autoregressive (AR) models provide a conceptually simple and interpretable approach to time-series modeling by expressing each observation as a linear combination of previous observations and a random innovation. Despite this relatively simple mathematical formulation, properly fitting and evaluating an AR model is a nontrivial task in practice. Before fitting a model, the input time series should be carefully examined to determine whether the core AR assumptions are sufficiently satisfied, including stationarity, stable linear temporal dependence, regular sampling, sufficient observations, and appropriate innovation behavior. Selecting a suitable lag order and evaluating both forecasting performance and model residuals are equally important parts of the modeling process.</p>
-<p>There are several methods for estimating AR models, including Ordinary Least Squares (OLS), Yule–Walker estimation, Burg's method, Maximum Likelihood Estimation, and Bayesian approaches. These methods differ in their objectives, computational requirements, statistical assumptions, and behavior for different sample sizes and model orders, meaning that no single estimation method is universally optimal. This notebook focuses primarily on OLS because of its simplicity and its close connection to standard Linear Regression: by transforming a time series into a set of lagged features, fitting an $\text{AR}(p)} model becomes a familiar Linear Regression problem.</p>
+<p>There are several methods for estimating AR models, including Ordinary Least Squares (OLS), Yule–Walker estimation, Burg's method, Maximum Likelihood Estimation, and Bayesian approaches. These methods differ in their objectives, computational requirements, statistical assumptions, and behavior for different sample sizes and model orders, meaning that no single estimation method is universally optimal. This notebook focuses primarily on OLS because of its simplicity and its close connection to standard Linear Regression: by transforming a time series into a set of lagged features, fitting an $\text{AR}(p)$ model becomes a familiar Linear Regression problem.</p>
 <p>Overall, AR modeling illustrates an important principle of time-series analysis: a simple model does not necessarily imply a simple modeling workflow! Reliable results require understanding the data, checking assumptions, selecting an appropriate model specification, evaluating forecasts on unseen observations, and verifying through residual diagnostics that the fitted model has captured the relevant temporal structure.</p>
 </div>
 </div>
