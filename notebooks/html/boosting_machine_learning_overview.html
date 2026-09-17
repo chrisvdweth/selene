@@ -10234,7 +10234,7 @@ $$
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Side note:</strong> LightGBM does efficiently categorical features as well, but with numerical features only, the example is easier to follow.</p>
+<p><strong>Side note:</strong> LightGBM does efficiently handle categorical features as well, but with numerical features only, the example is easier to follow.</p>
 <p>Before any training starts, LightGBM performs binning for each feature by determining bin boundaries using an <strong>approximate quantile-based strategy</strong>. For each numerical feature, it first examines the distribution of feature values and then chooses cut points so that each bin contains roughly the same number of training samples. In other words, the bin boundaries are placed at estimated quantiles of the feature distribution rather than at equally spaced numerical intervals. The table below shows the result of binning assuming we define a number of $3$ bins for each feature; the table also includes the initial prediction $F_{0}(\mathbf{x}_i)$ since we need it later for the training.</p>
 </div>
 </div>
@@ -10556,7 +10556,7 @@ $$
 <td style="text-align:right;">2</td>
 <td style="text-align:right;">2, 4, 6, 9</td>
 <td style="text-align:right;"><span style="display: inline-block;">$(-200+100+400+400) = 700$</span></td>
-<td style="text-align:center;"><span style="display: inline-block;">3</span></td>
+<td style="text-align:center;"><span style="display: inline-block;">4</span></td>
 </tr>
 </tbody>
 </table>
@@ -10590,7 +10590,7 @@ $$
 <td style="text-align:right;">2</td>
 <td style="text-align:right;">2, 5, 8, 10</td>
 <td style="text-align:right;"><span style="display: inline-block;">$(-200+0-100-300) = -600$</span></td>
-<td style="text-align:center;">3</td>
+<td style="text-align:center;">4</td>
 </tr>
 </tbody>
 </table>
