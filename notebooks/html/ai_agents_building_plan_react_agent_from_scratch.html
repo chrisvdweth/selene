@@ -7527,7 +7527,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Bulding-a-Plan-then-ReAct-AI-Agent-from-Scratch">Bulding a Plan-then-ReAct AI Agent from Scratch<a class="anchor-link" href="#Bulding-a-Plan-then-ReAct-AI-Agent-from-Scratch">¶</a></h2><p style="text-align: justify;">AI agents are often presented as something almost magical: systems that reason, plan, use tools, and pursue goals on their own. In practice, they are built from a small number of understandable components wrapped around a large language model. This notebook continues our journey of looking "under the hood" of agents by implementing a <strong>Plan-then-ReAct agent</strong> entirely from scratch. There are no agent frameworks and no helper libraries. The only external dependency is a call to a cloud-based LLM via an API endpoint. Everything else, from the prompts to the control flow, the memory, and the tools, is plain Python that you can read, run, and modify line by line.</p>
+<h1 id="Bulding-a-Plan-then-ReAct-AI-Agent-from-Scratch">Bulding a Plan-then-ReAct AI Agent from Scratch<a class="anchor-link" href="#Bulding-a-Plan-then-ReAct-AI-Agent-from-Scratch">¶</a></h1><p style="text-align: justify;">AI agents are often presented as something almost magical: systems that reason, plan, use tools, and pursue goals on their own. In practice, they are built from a small number of understandable components wrapped around a large language model. This notebook continues our journey of looking "under the hood" of agents by implementing a <strong>Plan-then-ReAct agent</strong> entirely from scratch. There are no agent frameworks and no helper libraries. The only external dependency is a call to a cloud-based LLM via an API endpoint. Everything else, from the prompts to the control flow, the memory, and the tools, is plain Python that you can read, run, and modify line by line.</p>
 <p style="text-align: justify;">This notebook builds directly on the previous one, which covered very basic agent implementations, including a simple ReAct agent. As we saw there, the core agentic loop is surprisingly straightforward, but such naive implementations quickly run into limitations: the plan lives only implicitly in a growing thought trace, the agent drifts from its goal on longer tasks, and almost every failure, from a malformed output to a request for a nonexistent tool, goes unhandled. The implementation here addresses two of these gaps with two main extensions:</p>
 <ul>
 <li>First, we add a <strong>dedicated planning phase</strong> in which the LLM produces an explicit, structured plan, which the agent then processes systematically step by step and updates when new observations make the remaining steps obsolete.</li>
@@ -7548,7 +7548,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e7972c64-6e12-4e48-b79f-284ff6871133">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=e7972c64-6e12-4e48-b79f-284ff6871133">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7561,21 +7561,6 @@ a.anchor-link {
 <span class="kn">import</span><span class="w"> </span><span class="nn">chromadb</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">sentence_transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">SentenceTransformer</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child" style="table-layout: auto;">
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr" tabindex="0">
-<pre style="overflow-x: auto; white-space: pre; max-width: 100%;">W1101 10:53:04.793000 49962 site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
-W1101 10:53:05.152000 49962 site-packages/torch/utils/_pytree.py:630] &lt;enum 'KernelPreference'&gt; is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
-W1101 10:53:05.174000 49962 site-packages/torch/utils/_pytree.py:630] &lt;enum 'ScaleCalculationMode'&gt; is an Enum subclass and is now natively supported by torch.compile as an opaque value type. Calling register_constant() on Enum subclasses is deprecated and will be an error in a future release.
-</pre>
 </div>
 </div>
 </div>
@@ -9037,26 +9022,26 @@ useful facts, return an empty list.
 	- The user of travels acorss South-East Asia but also to Europe.
 	- The user always wants temperatures in Celsius and distances in kilometers.
 	- The fiscal year of the university the user works starts on April 1.
-[THOUGHT] I need to first look up the capital of France and then compose the final answer for the user.
+[THOUGHT] I need to create a plan to first confirm the capital of France and then compose the answer for the user.
 [PLAN] Current plan and progress:
-	- look up the capital of France (pending) 
-	- compose the final answer (pending) 
-[THOUGHT] I will now look up the capital of France to proceed with the plan.
+	- confirm the capital of France (pending) 
+	- compose the answer for the user (pending) 
+[THOUGHT] I will now work on confirming the capital of France, which is the first step in the plan.
 [PLAN] Current plan and progress:
-	- look up the capital of France (in_progress) 
-	- compose the final answer (pending) 
+	- confirm the capital of France (in_progress) 
+	- compose the answer for the user (pending) 
 [THOUGHT] The capital of France is Paris.
 [PLAN] Current plan and progress:
-	- look up the capital of France (done) 
-	- compose the final answer (pending) 
-[THOUGHT] The final answer can now be composed based on the information that the capital of France is Paris.
+	- confirm the capital of France (done) 
+	- compose the answer for the user (pending) 
+[THOUGHT] Now I will compose the answer that the capital of France is Paris.
 [PLAN] Current plan and progress:
-	- look up the capital of France (done) 
-	- compose the final answer (in_progress) 
-[THOUGHT] Now that I have completed all steps, I can provide the final answer regarding the capital of France.
+	- confirm the capital of France (done) 
+	- compose the answer for the user (in_progress) 
+[THOUGHT] I have completed all steps, confirming the capital of France as Paris and composing the answer.
 [PLAN] Current plan and progress:
-	- look up the capital of France (done) 
-	- compose the final answer (done) 
+	- confirm the capital of France (done) 
+	- compose the answer for the user (done) 
 [ANSWER]: The capital of France is Paris.
 </pre>
 </div>
@@ -9112,29 +9097,29 @@ useful facts, return an empty list.
 	- The user always wants temperatures in Celsius and distances in kilometers.
 	- The user wants all code examples written in Python 3.12 with type hints.
 	- The user lives in Singapore and works in the Asia/Singapore time zone.
-[THOUGHT] To find out the current temperature in Paris, I first need to call the tool that retrieves temperature data. I'll then provide the answer based on the retrieved data.
+[THOUGHT] To find the current temperature in Paris, I need to first call the temperature fetching tool and then provide the answer based on that result.
 [PLAN] Current plan and progress:
-	- Get the current temperature in Paris. (pending) 
-	- Compose the answer with the temperature information. (pending) 
-[THOUGHT] I will now call the tool to get the current temperature in Paris.
+	- Get the current temperature for Paris. (pending) 
+	- Compose the answer with the temperature result. (pending) 
+[THOUGHT] I will now call the temperature fetching tool to get the current temperature in Paris.
 [PLAN] Current plan and progress:
-	- Get the current temperature in Paris. (in_progress) 
-	- Compose the answer with the temperature information. (pending) 
+	- Get the current temperature for Paris. (in_progress) 
+	- Compose the answer with the temperature result. (pending) 
 [ACTION] Call get_temperature({'city': 'Paris'})
-[OBSERVATION] 10.8°C
-[THOUGHT] The current temperature in Paris has been retrieved successfully, so I will mark the first step as done and update the plan to reflect that.
+[OBSERVATION] 6.2°C
+[THOUGHT] The temperature in Paris has been retrieved successfully.
 [PLAN] Current plan and progress:
-	- Get the current temperature in Paris. (done) 
-	- Compose the answer with the temperature information. (pending) 
-[THOUGHT] Now that I have the temperature information, I will compose the final answer regarding the current temperature in Paris.
+	- Get the current temperature for Paris. (done) 
+	- Compose the answer with the temperature result. (pending) 
+[THOUGHT] The current temperature in Paris is 6.2°C, so I will now compose the answer.
 [PLAN] Current plan and progress:
-	- Get the current temperature in Paris. (done) 
-	- Compose the answer with the temperature information. (in_progress) 
-[THOUGHT] I can provide the final answer now that I have composed it based on the retrieved temperature.
+	- Get the current temperature for Paris. (done) 
+	- Compose the answer with the temperature result. (in_progress) 
+[THOUGHT] All steps are completed, and I can now provide the answer.
 [PLAN] Current plan and progress:
-	- Get the current temperature in Paris. (done) 
-	- Compose the answer with the temperature information. (done) 
-[ANSWER]: The current temperature in Paris is 10.8°C.
+	- Get the current temperature for Paris. (done) 
+	- Compose the answer with the temperature result. (done) 
+[ANSWER]: The current temperature in Paris is 6.2°C.
 </pre>
 </div>
 </div>
@@ -9189,36 +9174,67 @@ useful facts, return an empty list.
 	- The user always wants temperatures in Celsius and distances in kilometers.
 	- The user lives in Singapore and works in the Asia/Singapore time zone.
 	- The user of travels acorss South-East Asia but also to Europe.
-[THOUGHT] I need to compare the temperatures of Singapore, Jakarta, and Paris to determine which city is warmer. First, I'll get the temperature in Singapore, then I'll get the temperature in Jakarta, and finally, I can compare all three temperatures.
+[THOUGHT] To determine which city is warmer, I need to get the current temperature for each city and then compare them.
 [PLAN] Current plan and progress:
-	- Get the temperature in Singapore (pending) 
-	- Get the temperature in Jakarta (pending) 
-[THOUGHT] I will now get the current temperature in Singapore to compare it later with Jakarta and Paris.
+	- Get the current temperature in Singapore (pending) 
+	- Get the current temperature in Jakarta (pending) 
+	- Get the current temperature in Paris (pending) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (pending) 
+[THOUGHT] I will first get the current temperature in Singapore to start the comparison.
 [PLAN] Current plan and progress:
-	- Get the temperature in Singapore (in_progress) 
-	- Get the temperature in Jakarta (pending) 
+	- Get the current temperature in Singapore (in_progress) 
+	- Get the current temperature in Jakarta (pending) 
+	- Get the current temperature in Paris (pending) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (pending) 
 [ACTION] Call get_temperature({'city': 'Singapore'})
-[OBSERVATION] -4.7°C
-[THOUGHT] I received the temperature for Singapore. Now I will mark this step as done and proceed to get the temperature in Jakarta.
+[OBSERVATION] 12.0°C
+[THOUGHT] The temperature in Singapore has been retrieved. Now I will proceed to get the temperature in Jakarta.
 [PLAN] Current plan and progress:
-	- Get the temperature in Singapore (done) 
-	- Get the temperature in Jakarta (pending) 
-[THOUGHT] I will now get the current temperature in Jakarta to continue the comparison with Singapore and Paris.
+	- Get the current temperature in Singapore (done) 
+	- Get the current temperature in Jakarta (pending) 
+	- Get the current temperature in Paris (pending) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (pending) 
+[THOUGHT] I will now get the current temperature in Jakarta to continue with the comparison.
 [PLAN] Current plan and progress:
-	- Get the temperature in Singapore (done) 
-	- Get the temperature in Jakarta (in_progress) 
+	- Get the current temperature in Singapore (done) 
+	- Get the current temperature in Jakarta (in_progress) 
+	- Get the current temperature in Paris (pending) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (pending) 
 [ACTION] Call get_temperature({'city': 'Jakarta'})
-[OBSERVATION] -12.2°C
-[THOUGHT] I received the temperature for Jakarta. Now I will mark this step as done, and I will compare the temperatures of Singapore, Jakarta, and Paris.
+[OBSERVATION] -10.4°C
+[THOUGHT] The temperature in Jakarta has been retrieved. Next, I will get the current temperature in Paris.
 [PLAN] Current plan and progress:
-	- Get the temperature in Singapore (done) 
-	- Get the temperature in Jakarta (done) 
-[REJECTED] All steps are complete. Return 'final_answer'.
-[THOUGHT] I have compared the temperatures and determined that Paris is currently warmer than both Singapore and Jakarta.
+	- Get the current temperature in Singapore (done) 
+	- Get the current temperature in Jakarta (done) 
+	- Get the current temperature in Paris (pending) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (pending) 
+[THOUGHT] I will now get the current temperature in Paris to complete the temperature retrieval process.
 [PLAN] Current plan and progress:
-	- Get the temperature in Singapore (done) 
-	- Get the temperature in Jakarta (done) 
-[ANSWER]: Paris is warmer than both Singapore and Jakarta.
+	- Get the current temperature in Singapore (done) 
+	- Get the current temperature in Jakarta (done) 
+	- Get the current temperature in Paris (in_progress) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (pending) 
+[ACTION] Call get_temperature({'city': 'Paris'})
+[OBSERVATION] 0.3°C
+[THOUGHT] The temperature in Paris has been retrieved. Now I can compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer.
+[PLAN] Current plan and progress:
+	- Get the current temperature in Singapore (done) 
+	- Get the current temperature in Jakarta (done) 
+	- Get the current temperature in Paris (done) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (pending) 
+[THOUGHT] Now, I will compare the temperatures to find out which city is warmer. The temperatures are: Singapore - 12.0°C, Jakarta - -10.4°C, and Paris - 0.3°C. Singapore is the warmest.
+[PLAN] Current plan and progress:
+	- Get the current temperature in Singapore (done) 
+	- Get the current temperature in Jakarta (done) 
+	- Get the current temperature in Paris (done) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (in_progress) 
+[THOUGHT] I have completed all steps, and now I can provide the answer on which city is the warmest.
+[PLAN] Current plan and progress:
+	- Get the current temperature in Singapore (done) 
+	- Get the current temperature in Jakarta (done) 
+	- Get the current temperature in Paris (done) 
+	- Compare the temperatures of Singapore, Jakarta, and Paris to determine which is warmer (done) 
+[ANSWER]: Singapore is currently the warmest among Singapore, Jakarta, and Paris with a temperature of 12.0°C.
 </pre>
 </div>
 </div>
@@ -9273,25 +9289,16 @@ useful facts, return an empty list.
 	- The user always wants temperatures in Celsius and distances in kilometers.
 	- The user lives in Singapore and works in the Asia/Singapore time zone.
 	- The user of travels acorss South-East Asia but also to Europe.
-[THOUGHT] I need to outline the steps to buy Microsoft shares, including determining the amount and price before proceeding with the purchase.
+[THOUGHT] I need to create a plan to buy Microsoft shares. First, I should gather the number of shares and the price per share before executing the purchase.
 [PLAN] Current plan and progress:
-	- Determine the amount of Microsoft shares to buy (pending) 
-	- Find the current price per share of Microsoft (pending) 
-[THOUGHT] I will now work on determining the amount of Microsoft shares to buy.
+	- Ask the user for the number of Microsoft shares they want to buy and the price per share. (pending) 
+	- Execute the purchase of Microsoft shares once the required information is obtained. (pending) 
+[THOUGHT] I need to know how many shares the user wants to buy and the price per share to proceed with the purchase.
 [PLAN] Current plan and progress:
-	- Determine the amount of Microsoft shares to buy (in_progress) 
-	- Find the current price per share of Microsoft (pending) 
-[REJECTED] Plan step 1 is 'done' but has no 'result'. Record the outcome (or the reason it is blocked).
-[THOUGHT] I need to correct the outcome of the first step by recording that I've decided to buy a small number of shares.
-[PLAN] Current plan and progress:
-	- Determine the amount of Microsoft shares to buy (done) 
-	- Find the current price per share of Microsoft (in_progress) 
-[THOUGHT] Now I will find the current price per share of Microsoft to proceed with the purchase.
-[PLAN] Current plan and progress:
-	- Determine the amount of Microsoft shares to buy (done) 
-	- Find the current price per share of Microsoft (in_progress) 
-[ACTION] Call get_temperature({'city': 'Microsoft'})
-[OBSERVATION] 2.0°C
+	- Ask the user for the number of Microsoft shares they want to buy and the price per share. (in_progress) 
+	- Execute the purchase of Microsoft shares once the required information is obtained. (pending) 
+[ASK USER] How many Microsoft shares would you like to buy and what is the price per share?
+RESPONSE: How many Microsoft shares would you like to buy and what is the price per share?
 </pre>
 </div>
 </div>
@@ -9307,7 +9314,7 @@ useful facts, return an empty list.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f02e09d0-09f1-46ac-ba48-3789b3dde4fa">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f02e09d0-09f1-46ac-ba48-3789b3dde4fa">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9323,6 +9330,25 @@ useful facts, return an empty list.
 </div>
 </div>
 </div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child" style="table-layout: auto;">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre style="overflow-x: auto; white-space: pre; max-width: 100%;">[RESUME] User replied: 200 shares.
+[THOUGHT] Now that I have the number of shares, I still need the price per share to proceed with the purchase.
+[PLAN] Current plan and progress:
+	- Ask the user for the number of Microsoft shares they want to buy and the price per share. (done) 
+	- Execute the purchase of Microsoft shares once the required information is obtained. (pending) 
+[ASK USER] What is the price per share for Microsoft?
+[ANSWER]: What is the price per share for Microsoft?
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b5b97936-6ec6-4492-b98f-9bf298e220af">
 <div class="jp-Cell-inputWrapper" tabindex="0">
@@ -9333,7 +9359,7 @@ useful facts, return an empty list.
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=f381588d-7900-4d1c-96ae-13976973ec5b">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f381588d-7900-4d1c-96ae-13976973ec5b">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -9345,6 +9371,30 @@ useful facts, return an empty list.
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[ANSWER]: </span><span class="si">{</span><span class="n">response</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child" style="table-layout: auto;">
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre style="overflow-x: auto; white-space: pre; max-width: 100%;">[RESUME] User replied: 56.30 USD.
+[THOUGHT] Now that I have the number of shares (200) and the price per share (56.30 USD), I can proceed to execute the purchase of Microsoft shares.
+[PLAN] Current plan and progress:
+	- Ask the user for the number of Microsoft shares they want to buy and the price per share. (done) 
+	- Execute the purchase of Microsoft shares once the required information is obtained. (in_progress) 
+[ACTION] Call buy_shares({'symbol': 'MSFT', 'amount': 200, 'price': 56.3})
+[OBSERVATION] Order for 200 MSFT shares for 56.3 per share successfully placed
+[THOUGHT] The purchase of Microsoft shares was successfully completed.
+[PLAN] Current plan and progress:
+	- Ask the user for the number of Microsoft shares they want to buy and the price per share. (done) 
+	- Execute the purchase of Microsoft shares once the required information is obtained. (done) 
+[ANSWER]: Order for 200 MSFT shares at $56.30 per share has been successfully placed.
+</pre>
 </div>
 </div>
 </div>
